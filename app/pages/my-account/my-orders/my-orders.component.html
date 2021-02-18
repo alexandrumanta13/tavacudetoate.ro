@@ -1,0 +1,57 @@
+<section class="page-title centred"
+  style="background-image: url(assets/images/background/imagine-category-tavacudetoate.jpg);">
+  <div class="auto-container">
+    <div class="content-box">
+      <div class="title">
+        <h1>Comenzile mele</h1>
+      </div>
+      <ul class="bread-crumb clearfix">
+        <li><a routerLink="/">Acasa</a></li>
+        <li> Comenzile mele</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<section class="my-account">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9 order-lg-last dashboard-content">
+      
+        <ul class="orders">
+          <li *ngFor="let order of orders | paginate: { itemsPerPage: 5, currentPage: p }">
+            <div class="desc">
+              <h4>Comanda nr {{order.reference}}</h4>
+              <p>Plasata in data: {{order.date}}, Total: {{order.total}}</p>
+            </div>
+
+            <div class="actions">
+              <a class="theme-btn-one" routerLink="/comenzile-mele/{{order.order_uuid}}">Vezi detalii
+                comanda</a>
+            </div>
+          </li>
+        </ul>
+        <pagination-controls (pageChange)="p = $event" class="float-right pagination" directionLinks="true"
+          autoHide="true" responsive="true" previousLabel="" nextLabel="" screenReaderPaginationLabel="Pagination"
+          screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page"></pagination-controls>
+      </div><!-- End .col-lg-9 -->
+
+      <aside class="sidebar col-lg-3">
+        <div class="widget widget-dashboard">
+          <h3 class="widget-title">Contul meu</h3>
+
+          <ul class="list">
+            <li routerLinkActive='active'><a routerLink="/contul-meu">Informatii cont</a></li>
+            <li routerLinkActive='active'><a routerLink="/adresele-mele">Adresele mele</a></li>
+            <li routerLinkActive='active'><a routerLink="/comenzile-mele">Comenzile mele</a></li>
+            <li routerLinkActive='active'><a routerLink="/cupoane-reducere">Cupoane reducere</a></li>
+            <li routerLinkActive='active'><a (click)="logout()">Delogare</a></li>
+          </ul>
+
+        </div><!-- End .widget -->
+      </aside><!-- End .col-lg-3 -->
+    </div><!-- End .row -->
+  </div><!-- End .container -->
+
+  <div class="mb-5"></div><!-- margin -->
+

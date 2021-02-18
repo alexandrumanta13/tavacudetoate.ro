@@ -1,0 +1,260 @@
+.card {
+  padding: 16px;
+  align-items: flex-start;
+
+  .order-status {
+    padding: 4px 8px;
+  }
+}
+
+.blue-500 {
+  background-color: #2196F3;
+  color: #fff;
+}
+
+.red-900 {
+  background-color: #B71C1C;
+  color: #fff;
+}
+
+.green-500 {
+  background-color: #4CAF50;
+  color: #fff;
+}
+
+.orange-500 {
+  background-color: #FF9800;
+  color: #fff;
+}
+
+.orders {
+  margin-bottom: 40px;
+
+  li {
+    border-bottom: 1px solid #dee2e6;
+    padding: 2.4rem 1.5rem 1.2rem;
+
+    display: flex;
+
+    @media (max-width: 414px) {
+      flex-direction: column;
+    }
+
+    .actions {
+      display: flex;
+      margin-left: auto;
+      align-items: center;
+    }
+  }
+
+
+}
+
+
+.my-account {
+  margin-top: 40px;
+}
+
+.sidebar {
+  position: relative;
+  font-size: 13px;
+}
+
+.dashboard-content {
+  margin-bottom: 10px;
+}
+
+.dashboard-content h2,
+#account-chage-pass h3 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #6d4b50;
+}
+
+@media screen and (min-width: 992px) {
+
+  form,
+  .form-footer {
+    margin-bottom: 50px;
+  }
+}
+
+
+@media screen and (min-width: 768px) {
+
+  form,
+  .form-footer {
+    margin-bottom: 40px;
+  }
+}
+
+.sidebar .widget {
+  margin-bottom: 30px;
+}
+
+
+.widget-title {
+  margin: 5px 0 13px;
+  color: #000;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.widget-dashboard .widget-title {
+  margin-top: 2px;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.list li.active {
+  font-weight: 600;
+}
+
+.list li {
+  display: block;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.list li a {
+  display: block;
+  position: relative;
+  padding: 9px 0 7px 20px;
+  border-bottom: 1px solid #ededde;
+  color: #000;
+  font-size: 13px;
+
+  &::before {
+    display: inline-block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    margin: 9px 0 0 -10px;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-left: 4px solid #333;
+    content: '';
+  }
+}
+
+.list li a:hover,
+.list li a:focus {
+  background-color: #eee;
+  text-decoration: none;
+}
+
+.required {
+  color: #e02b27;
+  font-size: 12px;
+}
+
+.custom-control.material-checkbox .material-control-input:checked~.material-control-indicator {
+  border: 2px solid #6d4b50;
+  border-top: 0px;
+  border-left: 0px;
+}
+
+.custom-control.material-checkbox .material-control-indicator {
+  border: 1px solid #6d4b50;
+}
+
+.custom-control {
+  padding-left: 0;
+  margin-bottom: 40px;
+}
+
+.required-field>label::after {
+  margin: 0 0 0 .45rem;
+  color: #e02b27;
+  font-size: 1.2rem;
+  content: '*';
+}
+
+.form-footer-right {
+  display: flex;
+  margin-left: auto;
+  justify-content: flex-end;
+}
+
+.card {
+  margin: 20px 0;
+  border-radius: 0;
+}
+
+.actions {
+  margin-top: 16px;
+  display: flex;
+  width: 100%;
+
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+
+.delete {
+
+  margin-left: auto;
+
+  * {
+    margin-right: 16px;
+  }
+
+
+
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    margin-top: 40px;
+
+
+  }
+
+
+}
+
+
+.delete-btn {
+  margin-left: auto;
+
+  @media screen and (max-width: 768px) {
+    margin-left: 0;
+    margin-top: 16px;
+  }
+}
+
+
+.edit-actions {
+    display: flex;
+    margin-top: 16px;
+
+    * {
+        margin-right: 16px;
+    }
+
+    .theme-btn-two {
+        display: flex;
+        align-items: center;
+    }
+
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+        margin-top: 0;
+
+        * {
+            margin: 16px 0;
+        }
+        .theme-btn-two {
+            justify-content: center;
+        }
+    }
+}

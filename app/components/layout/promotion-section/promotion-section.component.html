@@ -1,0 +1,84 @@
+<section class="promotion-section alternat-2 sec-pad overlay-none"
+  style="background-image: url(assets/images/background/imagine-fundal-sectiune.jpg);">
+  <div class="auto-container">
+    <div class="sec-title centred">
+      <p>Produse de sezon</p>
+      <h2>Editie Limitata</h2>
+    </div>
+    <!-- <div class="sec-title centred">
+      <p>Produse de sezon</p>
+      <h2>Editie Limitata</h2>
+    </div> -->
+    <owl-carousel-o [options]="customOptions" class="single-item-carousel nav-style-one owl-dots-none">
+      <ng-template carouselSlide *ngFor="let product of products">
+        <div class="inner-box">
+          <div class="row clearfix">
+            <div class="col-lg-6 col-md-12 col-sm-12 image-column">
+              <div class="image-box">
+                
+                <figure class="image"><img src="/assets/images/resource/shop/{{product.images[0].image_url}}" alt=""></figure>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12 content-column">
+              <div class="content-box">
+                <div class="price-box" style="background-image: url(assets/images/icons/icon-bg-4.png);">
+                  <span>{{product.information[0].price}}</span>
+                  <p>Lei</p>
+                </div>
+                <h3>{{product.product_name}}</h3>
+                <p>{{product.description}}</p>
+                <div class="btn-box"><a routerLink="/produs/produse-editie-limitata/{{product.alias}}" class="theme-btn-two">Cumpara</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      
+
+
+      <div class="owl-nav">
+        <div class="owl-prev"><span class="icon-Arrow-Left"></span></div>
+        <div class="owl-next"><span class="icon-Arrow-Right"></span></div>
+      </div>
+      <div class="owl-dots">
+        <div class="owl-dot"><span></span></div>
+        <div class="owl-dot active"><span></span></div>
+      </div>
+    </owl-carousel-o>
+    <!-- <owl-carousel-o [options]="customOptions" class="single-item-carousel nav-style-one owl-dots-none">
+      <ng-template carouselSlide *ngFor="let product of products">
+        <div class="inner-box">
+          <div class="row clearfix">
+            <div class="col-lg-6 col-md-12 col-sm-12 image-column">
+              <div class="image-box">
+                <figure class="image"><img src="assets/images/resource/{{product.item.image}}" alt=""></figure>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12 content-column">
+              <div class="content-box">
+                <div class="price-box" style="background-image: url(assets/images/icons/icon-bg-4.png);">
+                  <span>{{product.item.price}}</span>
+                  <p>Lei</p>
+                </div>
+                <h3>{{product.item.title}}</h3>
+                <p>{{product.item.description}}</p>
+                <div class="btn-box"><a routerLink="/produs/produse-editie-limitata/{{product.forCart.alias}}" class="theme-btn-two">Vezi detalii</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      
+
+
+      <div class="owl-nav">
+        <div class="owl-prev"><span class="icon-Arrow-Left"></span></div>
+        <div class="owl-next"><span class="icon-Arrow-Right"></span></div>
+      </div>
+      <div class="owl-dots">
+        <div class="owl-dot"><span></span></div>
+        <div class="owl-dot active"><span></span></div>
+      </div>
+    </owl-carousel-o> -->
+  </div>
+</section>

@@ -1,0 +1,283 @@
+<!--Page Title-->
+<section class="page-title centred"
+  style="background-image: url(assets/images/background/imagine-category-tavacudetoate.jpg);">
+  <div class="auto-container">
+    <div class="content-box">
+      <div class="title">
+        <h1>{{productCategoryName}}</h1>
+      </div>
+      <ul class="bread-crumb clearfix">
+        <li><a routerLink="/">Acasa</a></li>
+        <li><a routerLink="/produse/{{productCategorySlug}}"> {{productCategoryName}}</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+<!--End Page Title-->
+
+
+<!-- single-product -->
+<section class="single-product">
+  <div class="product-details-content" style="background-image: url(assets/images/background/single-shop-1.jpg);">
+    <div class="auto-container">
+      <div class="row clearfix">
+        <div class="col-lg-6 col-md-12 col-sm-12 image-column">
+          <div class="bxslider">
+            <div class="slider-content">
+              <div class="product-image">
+                <figure class="image" *ngFor="let image of productImages; let i=index">
+                 
+                  <img [src]="image.thumb" (click)="open(i)" />
+                </figure>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12 content-column ">
+          <div class="product-details">
+            <h2>{{product?.product_name}}</h2>
+            <h3>{{price}} Lei {{portions}}</h3>
+
+            <div class="text">
+              <p>{{product?.description}}</p>
+            </div>
+            <div class="qnt-box">
+              <p>Gramaj:</p>
+              <ul class="clearfix">
+                <li *ngFor="let qnt of product?.information;">
+                  <button (click)="selectQnt(qnt)" [class.active]="qnt.id === isActive"
+                    class="qnt-box__qunatity">{{qnt.quantity}} {{qnt.um}}</button>
+                </li>
+              </ul>
+            </div>
+            <!-- <div class="datetimepicker-container">
+              <p>Data livrarii:</p>
+              <app-datetimepicker [(ngModel)]="stringDateModel" (onDatePicked)="addDeliveryDate($event)"
+                ngDefaultControl name="activeEndDate">
+              </app-datetimepicker>
+              <p class="interval">Interval: <strong>{{product?.interval}}</strong></p>
+            </div> -->
+            <div class="accessories" *ngIf="product?.categories[0].id == 3 || product?.categories[0].id == 4">
+              <p>Adauga acestui produs accesoriile dorite:</p>
+              <ul class="clearfix">
+                <li (click)="addAccessory($event, product, accessory)" *ngFor="let accessory of accessories">
+                  <a>
+                    <img src="/assets/images/resource/{{accessory.image_url}}" alt="">
+                  </a>
+                  {{accessory.accessory_name}} <span>{{accessory.price}} lei</span>
+
+                </li>
+              </ul>
+            </div>
+
+            <div class="composition short-box" *ngIf="product?.categories[0].id == 4">
+              <p>Alegeti compozitia:</p>
+
+              <select nice-select (change)="chooseComposition()" [(ngModel)]="composition" [value]="composition" [attr.data-value]="composition">
+                  <option value="Blanche Fraise">Blanche Fraise</option>
+                  <option value="Madagascar">Madagascar</option>
+                  <option value="Latte Framboise">Latte Framboise</option>
+                  <option value="Latte Fôret">Latte Fôret</option>
+                  <option value="Profiterol">Profiterol</option>
+                  <option value="Trois Chocolat">Trois Chocolat</option>
+                  <option value="Petite Latte">Petite Latte</option>
+                  <option value="Petite Fraise">Petite Fraise</option>
+                  <option value="Vanille au Pistache">Vanille au Pistache</option>
+                  <option value="Millefeuillle Abricot">Millefeuillle Abricot</option>
+                  <option value="Passion Orange">Passion Orange</option>
+                  <option value="Duo Chocolat">Duo Chocolat</option>
+                  <option value="Caramelle">Caramelle</option>
+                  <option value="Cheesecake New York">Cheesecake New York</option>
+              </select>
+             
+            </div>
+            <div class="message" *ngIf="product?.categories[0].id == 3 || product?.categories[0].id == 4">
+              <p>Adauga acestui produs un mesaj personalizat:</p>
+              <input type="text" [(ngModel)]="message" name="message" placeholder="Mesaj pe tort">
+              
+            </div>
+            <div class="addto-cart-box">
+              <ul class="clearfix">
+                <li><input type="text" [(ngModel)]="cartQuantity" name="cart-quantity" placeholder="1" value="1"></li>
+                <!-- <li><a routerLink="shop-details.html.html"><i class="far fa-heart"></i></a></li> -->
+                <li><button type="button" (click)="addToCart(product)" class="theme-btn-one">Adauga in cos</button></li>
+              </ul>
+            </div>
+            <div class="other-links">
+
+              <img src="/assets/images/icons/delivery.svg" alt="">
+              <span>
+                Transport gratuit*
+              </span>
+
+              <p>Comanda minima de 100 Lei</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-discription">
+    <div class="auto-container">
+      <div class="tabs-box">
+        <div class="tab-btn-box">
+          <ul class="tab-btns tab-buttons clearfix">
+            <li class="tab-btn" [ngClass]="{ 'active-btn':activeTab==='description'}" (click)="descriptionTab('description')" data-tab="#tab-1">Descriere</li>
+            <li class="tab-btn" [ngClass]="{ 'active-btn':activeTab==='infoDelivery'}" (click)="infoDelivery('infoDelivery')" data-tab="#tab-2">Info Livrare</li>
+          </ul>
+        </div>
+        <div class="tabs-content">
+          <div class="tab" [ngClass]="{ 'active-tab':activeTab==='description'}" id="tab-1">
+            <div class="content-box">
+              <h3>Descriere produs</h3>
+              <p *ngIf="!product?.descriptionInfo" [innerHTML]="product?.ingredients"></p>
+              <p *ngIf="product?.descriptionInfo" [innerHTML]="product?.descriptionInfo"></p>
+
+            </div>
+          </div>
+        </div>
+        <div class="tabs-content">
+          <div class="tab" [ngClass]="{ 'active-tab':activeTab==='infoDelivery'}" id="tab-2">
+            <div class="content-box">
+              <h3>Info Livrare</h3>
+              <p>
+                <p><strong>Informatii despre comanda </strong></p>
+                <p>Produsele noastre pot fi comandate prin intermediul acestui magazin online. </p>
+                <p>Pentru a comanda, este necesar sa fiti logat in contul dvs. de utilizator.</p>
+                <p>Dupa realizarea comenzii, veti primi un email de confirmare.</p>
+                <p>Pentru comenzi personalizate, intrebari sau nelamuriri, ne puteti suna la <a
+                    routerLink="tel:+40762.023.004">0762.023.004</a></p>
+
+                <p><strong>Informatii despre livrare* </strong></p>
+                <p>Comenzile trimise pana in ora 11:00 se pot livra in aceeasi zi intre orele 16-20</p>
+                <p>Comenzile trimise intre 11-18 se pot livra a doua zi intre orele 12-14</p>
+                <p>Comenzile trimise dupa ora 18 se livreaza a doua zi intre orele 14-16</p>
+                <p>*Aceste intervale de livrare sunt valabile pentru toate produsele, cu exceptia celor
+                  personalizate.</p>
+
+                <p><strong>Informatii despre plata</strong></p>
+                <p>Comenzile se achita la livrare prin urmatoarele modalitati:</p>
+                <ul>
+                  <li>
+                    - Cash
+                  </li>
+                  <li>
+                    - Card
+                  </li>
+                </ul>
+
+                <p>Costuri de transport</p>
+                <p>Transportul este gratuit* </p>
+                <p>* Comanda minima: 100 lei</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="related-product" style="background-image: url(assets/images/background/shop-2.jpg);">
+    <div class="auto-container">
+      <div class="top-title centred">
+        <h2>Cumparate frecvent impreuna</h2>
+      </div>
+      <div class="row clearfix">
+        <div class="col-lg-3 col-md-6 col-sm-12 shop-block" *ngFor="let product of recommended">
+          <div class="shop-block-one">
+            <div class="inner-box">
+              <figure class="image-box">
+                <a routerLink="/produs/{{product.categories[0].slug}}/{{product.alias}}">
+                  <img src="/assets/images/resource/shop/{{product.images[0].image_url}}" alt="">
+                </a>
+              </figure>
+              <div class="lower-content">
+                <span class="price-box">{{product.information[0].price}} lei</span>
+                <h3><a routerLink="/produs/{{product.categories[0].slug}}/{{product.alias}}">{{product.product_name}}</a>
+                </h3>
+                <ul>
+                  <li *ngFor="let qnt of product.information">
+                    <span>{{qnt.quantity}} {{qnt.um}}</span>
+                  </li>
+                </ul>
+                <div class="cart-btn"><a routerLink="/produs/{{product.categories[0].slug}}/{{product.alias}}"
+                    class="theme-btn-two">Cumpara</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- <div class="col-lg-3 col-md-6 col-sm-12 shop-block">
+          <div class="shop-block-one">
+            <div class="inner-box">
+              <figure class="image-box">
+                <a routerLink="/produs/prajituri-tavacudetoate/choco-fraise">
+                  <img src="assets/images/resource/shop/choco-fraise-1.jpg" alt="">
+                </a>
+              </figure>
+              <div class="lower-content">
+                <span class="price-box">16 Lei</span>
+                <h3><a routerLink="/produs/prajituri-tavacudetoate/choco-fraise">Prajitura Choco Fraise</a></h3>
+                
+                <div class="cart-btn"><a routerLink="/produs/prajituri-tavacudetoate/choco-fraise" class="theme-btn-two">Vezi detalii</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 shop-block">
+          <div class="shop-block-one">
+            <div class="inner-box">
+              <figure class="image-box">
+                <a routerLink="/produs/produse-sarate/saratele-cu-telemea-mac-si-susan"></a>
+                <img src="assets/images/resource/shop/Saratele-cu-telemea.jpg" alt="">
+              </figure>
+              <div class="lower-content">
+                <span class="price-box">16 Lei</span>
+                <h3><a routerLink="/produs/produse-sarate/saratele-cu-telemea-mac-si-susan">Saratele cu telemea</a></h3>
+               
+                <div class="cart-btn"><a routerLink="/produs/produse-sarate/saratele-cu-telemea-mac-si-susan" class="theme-btn-two">Vezi detalii</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 shop-block">
+          <div class="shop-block-one">
+            <div class="inner-box">
+              <figure class="image-box">
+                <a routerLink="/produs/torturi-aniversare/tort-petite-fraise">
+                  <img src="assets/images/resource/shop/Tort-Petite-Fraise-1.jpg" alt="">
+                </a>
+                
+              </figure>
+              <div class="lower-content">
+                <span class="price-box">16 Lei</span>
+                <h3><a routerLink="/produs/torturi-aniversare/tort-petite-fraise">Tort Petite Fraise</a></h3>
+               
+                <div class="cart-btn"><a routerLink="/produs/torturi-aniversare/tort-petite-fraise" class="theme-btn-two">Vezi detalii</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 shop-block">
+          <div class="shop-block-one">
+            <div class="inner-box">
+              <figure class="image-box">
+                <a href=""></a>
+                <img src="assets/images/resource/shop/cozonac-editie-limitata.jpg" alt="">
+              </figure>
+              <div class="lower-content">
+                <span class="price-box">16 lei</span>
+                <h3><a routerLink="shop-details.html">Cozonac Editie Limitata</a></h3>
+               
+                <div class="cart-btn"><a routerLink="shop-details.html" class="theme-btn-two">Vezi detalii</a></div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</section>
+<!-- single-product end -->

@@ -1,0 +1,13 @@
+<div class="discount-popup" *ngIf="showPopup">
+    <div class="discount-popup__inner">
+        <img src="/assets/images/resource/popup-tavacudetoate2.png" alt="">
+        <div class="discount-popup__actions">
+            <input type="text" [(ngModel)]="discount" placeholder="Adauga emailul tau">
+            <button type="submit" class="theme-btn-one" (click)="sendDiscount()">Trimite</button>
+        </div>
+        <button class="close" (click)="hidePopup()">
+            <i class="fas fa-times-circle"></i>
+        </button>
+    </div>
+    <div class="discount-popup__aside"></div>
+</div>

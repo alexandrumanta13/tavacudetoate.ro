@@ -1,0 +1,70 @@
+.main-footer:before {
+  background: #cdd8de;
+}
+
+.footer-bottom {
+  background: #6d4b50;
+}
+
+
+.footer-top .footer-widget h3 {
+  color: #333;
+}
+
+.footer-top .contact-widget .widget-content .info-list li,
+.main-footer .footer-top .links-widget .links-list li a {
+  color: #333;
+
+  img {
+    height: 16px;
+    margin-right: 8px;
+  }
+}
+
+.footer-top .contact-widget .widget-content .social-links li a {
+  background: #ecbbb6;
+}
+
+.main-footer .footer-top .shediul-widget {
+  .widget-content {
+    position: relative;
+
+    .info-list {
+      li {
+        a {
+          color: #fff;
+
+          i {
+            margin-right: 8px;
+          }
+        }
+      }
+
+
+      @media only screen and (max-width: 767px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        li {
+          a {
+            color: #333;
+            font-size: 20px;
+          }
+        }
+      }
+    }
+  }
+
+  .widget-title {
+    @media only screen and (max-width: 767px) {
+      img {
+        width: 80%;
+        margin: auto;
+        display: flex;
+      }
+    }
+  }
+}
+

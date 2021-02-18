@@ -1,0 +1,105 @@
+
+.sidebar {
+  position: relative;
+  font-size: 13px;
+}
+
+.dashboard-content {
+  margin-bottom: 10px;
+}
+
+.dashboard-content h2, #account-chage-pass h3 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #6d4b50;
+}
+
+.my-account {
+    margin-top: 40px;
+}
+
+
+
+.sidebar .widget {
+    margin-bottom: 30px;
+}
+
+
+.widget-title {
+    margin: 5px 0 13px;
+    color: #000;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.widget-dashboard .widget-title {
+    margin-top: 2px;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.list li.active {
+    font-weight: 600;
+}
+
+.list li {
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+.list li a {
+    display: block;
+    position: relative;
+    padding: 9px 0 7px 20px;
+    border-bottom: 1px solid #ededde;
+    color: #000;
+    font-size: 13px;
+    &::before {
+        display: inline-block;
+        position: absolute;
+        width: 0;
+        height: 0;
+        margin: 9px 0 0 -10px;
+        border-top: 4px solid transparent;
+        border-bottom: 4px solid transparent;
+        border-left: 4px solid #333;
+        content: '';
+    }
+}
+
+.list li a:hover, .list li a:focus {
+    background-color: #eee;
+    text-decoration: none;
+}
+
+.coupons {
+    display: flex;
+    flex-direction: column;
+
+    li {
+        display: flex;
+
+        strong {
+            margin-left: 16px;
+        }
+
+        ul {
+            display: flex;
+            justify-content: space-between;
+            flex: 1;
+            @media only screen and (max-width: 767px) {
+                flex-direction: column;
+                margin-bottom: 40px;
+            }
+        }
+    }
+}

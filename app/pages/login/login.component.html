@@ -1,0 +1,130 @@
+<!--Page Title-->
+<section class="page-title centred"
+  style="background-image: url(assets/images/background/imagine-category-tavacudetoate.jpg);">
+  <div class="auto-container">
+    <div class="content-box">
+      <div class="title">
+        <h1>Autentificare</h1>
+      </div>
+      <ul class="bread-crumb clearfix">
+        <li><a routerLink="/">Acasa</a></li>
+        <li> Autentificare</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<!--End Page Title-->
+
+<!-- single-product -->
+<section class="single-product">
+  <div class="product-details-content" style="background-image: url(assets/images/background/single-shop-1.jpg);">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="heading">
+            <h2 class="title">Autentificare cu cont</h2>
+            <p>Daca aveti deja cont, va rugam sa va autentificati.</p>
+          </div><!-- End .heading -->
+
+          <form (ngSubmit)="f.form.valid && onSubmit(f)" #f="ngForm">
+            <div class="form-group">
+              <input type="text" name="email" class="form-control" [(ngModel)]="login.email" #email="ngModel"
+                [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required email>
+              <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+                <div *ngIf="email.errors.required">Email is required</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="password" name="password" class="form-control" [(ngModel)]="login.password"
+                #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required
+                minlength="6">
+              <div *ngIf="f.submitted && password.invalid" class="invalid-feedback">
+                <div *ngIf="password.errors.required">Password is required</div>
+                <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+              </div>
+            </div>
+
+
+            <div class="form-footer">
+              <button type="submit" class="theme-btn-one">Autentificare</button>
+              <a routerLink="/am-uitat-parola" class="forget-pass"> Ai uitat parola?</a>
+            </div><!-- End .form-footer -->
+          </form>
+
+          <h2>Sau</h2>
+          <div class="social-login">
+            <button (click)="signInWithFB()" class="btn-facebook">
+              <span class="fa fa-facebook"></span> Autentificare cu Facebook</button>
+            <button (click)="signInWithGoogle()" class="btn-google">
+              <span class="fa fa-google"></span> Autentificare cu Google</button>
+          </div>
+        </div><!-- End .col-md-6 -->
+
+        <div class="col-md-6">
+          <div class="heading">
+            <h2 class="title">De ce sa-ti faci cont?</h2>
+            <p>Avantaje unui cont pe site-ul nostru consta in plasarea mai rapida a comenzii, posibilitatea de a stoca
+              si
+              de
+              alege rapid adresele de livrare si vizualizarea comenzii sau a istoricului comenzilor.</p>
+
+          </div><!-- End .heading -->
+
+
+          <form (ngSubmit)="register.form.valid && signup()" #register="ngForm"
+            [mustMatch]="['password', 'confirmPassword']" novalidate>
+            <div class="form-group">
+              <input type="text" name="name" class="form-control" placeholder="Nume" [(ngModel)]="model.name"
+                #name="ngModel" [ngClass]="{ 'is-invalid': register.submitted && name.invalid }" required>
+              <div *ngIf="register.submitted && name.invalid" class="invalid-feedback">
+                <div *ngIf="name.errors.required">Te rugam sa introduci numele!</div>
+              </div>
+            </div>
+
+            <div class="form-group form-footer">
+              <input type="text" name="lastName" class="form-control" placeholder="Prenume" [(ngModel)]="model.last_name"
+              #last_name="ngModel" [ngClass]="{ 'is-invalid': register.submitted && last_name.invalid }" required>
+            <div *ngIf="register.submitted && last_name.invalid" class="invalid-feedback">
+              <div *ngIf="last_name.errors.required">Te rugam sa introduci prenumele</div>
+            </div>
+            </div>
+
+            <div class="heading">
+              <h2 class="title">Informatii cont</h2>
+            </div>
+            <div class="form-group">
+              <input type="text" name="email" class="form-control" placeholder="Email" [(ngModel)]="model.email"
+              #email="ngModel" [ngClass]="{ 'is-invalid': register.submitted && email.invalid }" required email>
+            <div *ngIf="register.submitted && email.invalid" class="invalid-feedback">
+              <div *ngIf="email.errors.required">Te rugam sa introduci email-ul!</div>
+              <div *ngIf="email.errors.email">Email-ul nu este valid!</div>
+            </div>
+            </div>
+            <div class="form-group">
+              <input type="password" name="password" class="form-control" placeholder="Parola"
+              [(ngModel)]="model.password" #password="ngModel"
+              [ngClass]="{ 'is-invalid': register.submitted && password.invalid }" required minlength="6">
+            <div *ngIf="register.submitted && password.invalid" class="invalid-feedback">
+              <div *ngIf="password.errors.required">Te rugam sa introduci parola</div>
+              <div *ngIf="password.errors.minlength">Parola trebuie sa fie de minim 6 caractere</div>
+            </div>
+            </div>
+            <div class="form-group">
+              <input type="password" name="confirmPassword" class="form-control" placeholder="Repeta parola"
+              [(ngModel)]="model.confirmPassword" #confirmPassword="ngModel"
+              [ngClass]="{ 'is-invalid': register.submitted && confirmPassword.invalid }" required>
+            <div *ngIf="register.submitted && confirmPassword.invalid" class="invalid-feedback">
+              <div *ngIf="confirmPassword.errors.required">Te rugam sa confirmi parola</div>
+              <div *ngIf="confirmPassword.errors.mustMatch">Parolele nu se potrivesc</div>
+            </div>
+            </div>
+
+            <div class="form-footer form-group">
+              <button type="submit" class="theme-btn-one">Creeaza cont</button>
+            </div><!-- End .form-footer -->
+          </form>
+        </div><!-- End .col-md-6 -->
+      </div><!-- End .row -->
+    </div><!-- End .container -->
+  </div>
+</section>

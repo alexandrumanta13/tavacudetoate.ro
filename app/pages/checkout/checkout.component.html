@@ -1,0 +1,312 @@
+<!--Page Title-->
+<section class="page-title centred"
+  style="background-image: url(assets/images/background/imagine-category-tavacudetoate.jpg)">
+  <div class="auto-container">
+    <div class="content-box">
+      <div class="title">
+        <h1>Finalizare comanda</h1>
+      </div>
+      <ul class="bread-crumb clearfix">
+        <li><a routerLink="/">Acasa</a></li>
+        <li>Finalizare comanda</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<!--End Page Title-->
+
+
+<!-- checkout-section -->
+<section class="checkout-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 upper-column">
+        <div class="upper-box" *ngIf="!isAuthentificated">
+          <div class="customer single-box">Ai deja cont? <a>Te rugam sa te autentifici</a></div>
+          <form (ngSubmit)="f.form.valid && auth(f)" #f="ngForm" *ngIf="showAuth()">
+            <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                <input type="text" name="email" class="form-control" [(ngModel)]="login.email" #email="ngModel"
+                  [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required email>
+                <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+                  <div *ngIf="email.errors.required">Email is required</div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                <input type="password" name="password" class="form-control" [(ngModel)]="login.password"
+                  #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required
+                  minlength="6">
+                <div *ngIf="f.submitted && password.invalid" class="invalid-feedback">
+                  <div *ngIf="password.errors.required">Password is required</div>
+                  <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-footer">
+              <div class="row">
+                <div class="col-xs-12 col-md-5 login">
+                  <button type="submit" class="theme-btn-one">Autentificare</button>
+                  <a routerLink="/am-uitat-parola" class="forget-pass"> Ai uitat parola?</a>
+                </div>
+                <div class="col-xs-12 col-md-2 or">
+                  <h2>SAU</h2>
+                </div>
+                <div class="col-xs-12 col-md-5">
+                  <div class="social-login">
+                    <button (click)="signInWithFB()" class="btn-facebook">
+                      <span class="fa fa-facebook"></span> Autentificare cu Facebook</button>
+                    <button (click)="signInWithGoogle()" class="btn-google">
+                      <span class="fa fa-google"></span> Autentificare cu Google</button>
+                  </div>
+                </div>
+              </div>
+
+
+
+            </div><!-- End .form-footer -->
+          </form>
+        </div>
+        <div class="upper-box">
+
+          <div class="coupon single-box">Ai un cupon de reducere? <a (click)="toggle()">Aplica-l aici</a></div>
+          <div class="coupon-box pull-left clearfix" *ngIf="show">
+            <input [(ngModel)]="discountCode" type="text" placeholder="Adauga codul...">
+            <button (click)="checkDiscount()" class="theme-btn-one">Aplica coupon<i
+                class="flaticon-right-1"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <form class="billing-form" name="form" (ngSubmit)="f.form.valid && placeOrder(f)" #f="ngForm" novalidate>
+      <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12 left-column">
+          <div class="inner-box">
+            <div class="billing-info">
+              <h4 class="sub-title">Date de livrare</h4>
+              <!-- <div class="error alert alert-danger" *ngIf="error">{{error}}</div> -->
+
+              <div class="row" *ngIf="!isAuthentificated || addresses.length === 0 || newAddress">
+                <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                  <label>Nume*</label>
+                  <div class="field-input">
+                    <input type="text" name="firstName" class="form-control" [(ngModel)]="model.firstName"
+                      #firstName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && firstName.invalid}" required
+                      minlength="3">
+                    <div *ngIf="f.submitted && firstName.invalid" class="invalid-feedback">
+                      <div *ngIf="firstName.errors.required">Te rugam sa introduci numele!</div>
+                      <div *ngIf="firstName.errors.minlength">Numele trebuie sa contina cel putin 3 litere!</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                  <label>Prenume*</label>
+                  <div class="field-input">
+                    <input type="text" name="lastName" class="form-control" [(ngModel)]="model.lastName"
+                      #lastName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && lastName.invalid }" required
+                      minlength="3">
+                    <div *ngIf="f.submitted && lastName.invalid" class="invalid-feedback">
+                      <div *ngIf="lastName.errors.required">Te rugam sa introduci prenumele!</div>
+                      <div *ngIf="lastName.errors.minlength">Prenumele trebuie sa contina cel putin 3 litere!</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                  <label>Email*</label>
+                  <div class="field-input">
+                    <input type="text" name="email" class="form-control" [(ngModel)]="model.email" #email="ngModel"
+                      [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required email>
+                    <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+                      <div *ngIf="email.errors.required">Te rugam sa introduci adresa de email!</div>
+                      <div *ngIf="email.errors.email">Email-ul nu este valid</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                  <label>Telefon*</label>
+                  <div class="field-input">
+                    <input type="text" name="phone" class="form-control" [(ngModel)]="model.phone" #phone="ngModel"
+                      [ngClass]="{ 'is-invalid': f.submitted && phone.invalid }" required>
+                    <div *ngIf="f.submitted && phone.invalid" class="invalid-feedback">
+                      <div *ngIf="phone.errors.required">Te rugam sa introduci numarul de telefon!</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                  <label>Adresa*</label>
+                  <div class="field-input">
+                    <input type="text" name="address" class="address form-control" [(ngModel)]="model.address"
+                      #address="ngModel" [ngClass]="{ 'is-invalid': f.submitted && address.invalid }" required>
+                    <div *ngIf="f.submitted && address.invalid" class="invalid-feedback">
+                      <div *ngIf="address.errors.required">Te rugam sa introduci adresa!</div>
+                    </div>
+                    <input type="text" name="address_1" [(ngModel)]="model.address_1">
+                  </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                  <label>Oras*</label>
+                  <div class="field-input">
+                    <input type="text" name="town_city" class="form-control" [(ngModel)]="model.town_city"
+                      #town_city="ngModel" [ngClass]="{ 'is-invalid': f.submitted && town_city.invalid }" required>
+                    <div *ngIf="f.submitted && town_city.invalid" class="invalid-feedback">
+                      <div *ngIf="town_city.errors.required">Te rugam sa introduci orasul!</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                  <label>Judet*</label>
+                  <div class="field-input">
+                    <input type="text" name="county" class="form-control" [(ngModel)]="model.county" #county="ngModel"
+                      [ngClass]="{ 'is-invalid': f.submitted && county.invalid }" required>
+                    <div *ngIf="f.submitted && county.invalid" class="invalid-feedback">
+                      <div *ngIf="county.errors.required">Te rugam sa introduci judetul!</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                  <div class="create-acc">
+                    <div class="custom-controls-stacked">
+                      <label class="custom-control material-checkbox">
+                        <input type="checkbox" class="material-control-input">
+                        <span class="material-control-indicator"></span>
+                        <span class="description">Creeaza cont?</span>
+                      </label>
+                    </div>
+                  </div>
+                </div> -->
+              </div>
+
+              <div class="shipping-step-addresses" *ngIf="isAuthentificated && !newAddress">
+                <div class="shipping-address-box" *ngFor="let address of addresses; let isFirst = first; let i = index"
+                  [class.active]="isFirst">
+                  <address>
+                    {{user.name}} {{user.last_name}}<br>
+                    {{address.address}} <br>
+                    {{address.town}}<br>
+                  </address>
+
+                  <div class="address-box-action clearfix">
+                    <!-- <a href="#" class="btn btn-sm btn-link">
+                            Edit
+                        </a> -->
+
+                    <a (click)="selectAddress(i, $event)" class="theme-btn-one float-right">
+                      Alege
+                    </a>
+                  </div><!-- End .address-box-action -->
+                </div><!-- End .shipping-address-box -->
+
+              </div>
+            </div>
+            <a *ngIf="isAuthentificated" (click)="toggleNewAddress()" class="theme-btn-one add-new-address">Adauga o adresa noua</a>
+            <div class="additional-info">
+              <div class="note-book">
+                <label>Detalii suplimentare</label>
+                <textarea name="note_box" [(ngModel)]="note_box"
+                  placeholder="Detalii suplimentare pentru comanda ta"></textarea>
+              </div>
+            </div>
+            <div class="gdpr">
+              <div class="custom-controls-stacked">
+                <label class="custom-control material-checkbox">
+                  <input type="checkbox" [(ngModel)]="terms" name="terms" class="material-control-input">
+                  <span class="material-control-indicator"></span>
+                  <span class="description">Sunt de acord cu <a
+                      routerLink="https://tavacudetoate.ro/termeni-si-conditii">Termeni si Conditii </a></span>
+                </label>
+              </div>
+              <div class="custom-controls-stacked">
+                <label class="custom-control material-checkbox">
+                  <input type="checkbox" [(ngModel)]="gdpr" name="gdpr" class="material-control-input">
+                  <span class="material-control-indicator"></span>
+                  <span class="description">Sunt de acord cu <a
+                      routerLink="https://tavacudetoate.ro/confidentialitate">Politica de Confidentialitate</a>
+                    si <a routerLink="https://tavacudetoate.ro/politica-cookies">GDPR</a> </span>
+                </label>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12 right-column">
+          <div class="inner-box">
+            <div class="order-info">
+              <h4 class="sub-title">Comanda ta</h4>
+              <div class="order-product">
+                <ul class="order-list clearfix">
+                  <li class="title clearfix">
+                    <p>Produs</p>
+                    <span>Pret</span>
+                  </li>
+                  <li *ngFor="let product of products">
+                    <div class="single-box clearfix">
+                      <img src="assets/images/resource/shop/{{product.images[0].image_url}}" alt="">
+                      <h6>{{product.product_name}} x {{product.selectedQnt}}</h6>
+                      <span>{{product.selectedPrice | number:'1.2-2'}}</span>
+                    </div>
+                  </li>
+
+                  <li class="sub-total clearfix">
+                    <h6>Discount</h6>
+                    <span *ngIf="discount">{{discount}}%</span>
+                  </li>
+                  <li class="order-total clearfix">
+                    <h6>Total</h6>
+                    <span>{{totalPrice$ | number:'1.2-2'}}</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="delivery-info">
+              <h4 class="sub-title payment-info">Alege data livrarii</h4>
+              <div class="delivery-inner">
+                <app-datetimepicker [(ngModel)]="stringDateModel" (onDatePicked)="addDeliveryDate($event)"
+                  ngDefaultControl name="activeEndDate">
+                </app-datetimepicker>
+                <div class="delivery-box" *ngIf="deliverydate">
+                  <span><strong>Data livrarii:</strong> {{deliverydate}}</span>
+                  <span><strong>Interval:</strong> {{interval}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="payment-info">
+              <h4 class="sub-title payment-info">Detalii plata</h4>
+              <div class="payment-inner">
+                <div class="option-block">
+                  <div class="custom-controls-stacked">
+                    <label class="custom-control material-checkbox">
+                      <input type="radio" [(ngModel)]="payment" value="numerar" id="cash" name="select-payment"
+                        class="material-control-input">
+                      <span class="material-control-indicator"></span>
+                      <span class="description">Plata numerar la livrare</span>
+                    </label>
+                  </div>
+
+                </div>
+                <div class="option-block">
+                  <div class="custom-controls-stacked">
+                    <label class="custom-control material-checkbox">
+                      <input type="radio" [(ngModel)]="payment" value="card" id="card" name="select-payment"
+                        class="material-control-input">
+                      <span class="material-control-indicator"></span>
+                      <span class="description">Plata cu cardul la livrare</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="btn-box">
+
+                  <button type="submit" class="theme-btn-one">Plaseaza comanda</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+<!-- checkout-section end -->

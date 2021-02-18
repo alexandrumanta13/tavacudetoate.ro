@@ -1,0 +1,101 @@
+<section class="testimonial-style-two centred"
+  style="background-image: url(assets/images/background/imagine-sectiune-testimoniale.jpg);">
+  <div class="pattern-layer">
+    <div class="pattern-1" style="background-image: url(assets/images/shape/shape-9.png);"></div>
+    <div class="pattern-2" style="background-image: url(assets/images/shape/shape-10.png);"></div>
+  </div>
+  <div class="auto-container">
+    <div class="inner-box">
+      <div class="sec-title">
+        <p>Recenzii</p>
+        <h2>Vorbe dulci de la <br>
+          clientii nostri
+        </h2>
+      </div>
+      <owl-carousel-o [options]="customOptions" class="single-item-carousel owl-dots-none nav-style-one">
+
+        <ng-template carouselSlide>
+          <div class="testimonial-block-one">
+            <div class="icon-box" style="background-image: url(assets/images/icons/icon-bg-5.png);">
+              <i class="icon-Quote"></i>
+            </div>
+            <div class="text">
+              <p>Inghetata cu mango este minunata! Abia astept sa incerc si alte arome :) Torturile si prajiturile sunt
+                foarte gustoase. Recomand cu incredere.</p>
+            </div>
+            <div class="author-info">
+              <h4>Irina Andreea Populeanu</h4>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div class="testimonial-block-one">
+            <div class="icon-box" style="background-image: url(assets/images/icons/icon-bg-5.png);">
+              <i class="icon-Quote"></i>
+            </div>
+            <div class="text">
+              <p>Am comandat un tort pentru ziua baietelului meu, dar el nu a mai apucat nimic, fiindca l-am mancat eu
+                pe tot. Data viitoare o sa comand doua.</p>
+            </div>
+            <div class="author-info">
+              <h4>Cosmin Visean</h4>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div class="testimonial-block-one">
+            <div class="icon-box" style="background-image: url(assets/images/icons/icon-bg-5.png);">
+              <i class="icon-Quote"></i>
+            </div>
+            <div class="text">
+              <p>Pe langa gustul minunat si aspectul mirific al prajiturilor, echipa La Petite reuseste sa transpuna
+                orice idee intr-un tort formidabil!! Iar gustul, nu mai zic!!! De acum inainte, pentru toate torturile
+                vom apela la voi! :)</p>
+            </div>
+            <div class="author-info">
+              <h4>Ioana Dimidov</h4>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div class="testimonial-block-one">
+            <div class="icon-box" style="background-image: url(assets/images/icons/icon-bg-5.png);">
+              <i class="icon-Quote"></i>
+            </div>
+            <div class="text">
+              <p>Cele mai bune prăjituri pe care le-am mâncat in România! Cu siguranța voi alege La Petite pentru toate
+                evenimentele pe care le voi organiza.</p>
+            </div>
+            <div class="author-info">
+              <h4>Andreea Mateescu</h4>
+            </div>
+          </div>
+        </ng-template>
+
+
+        <div class="owl-nav disabled">
+          <div class="owl-prev"><span class="icon-Arrow-Left"></span></div>
+          <div class="owl-next"><span class="icon-Arrow-Right"></span></div>
+        </div>
+        <div class="owl-dots">
+          <div class="owl-dot active"><span></span></div>
+          <div class="owl-dot"><span></span></div>
+          <div class="owl-dot"><span></span></div>
+        </div>
+      </owl-carousel-o>
+    </div>
+  </div>
+</section>
+<section class="video-section">
+  <div class="auto-container">
+    <div *ngIf="!video" class="video-inner"
+      style="background-image: url(assets/images/background/cofetarie-tavacudetoate-video.jpg);">
+      <div class="video-btn">
+        <a (click)="playVideo()" id="play-video" class="lightbox-image video-btn" data-caption=""><i
+            class="icon-Video"></i></a>
+      </div>
+    </div>
+
+    <youtube-player *ngIf="video" videoId="j-1EN5jHPOY" width="100%" height="500"></youtube-player>
+  </div>
+</section>

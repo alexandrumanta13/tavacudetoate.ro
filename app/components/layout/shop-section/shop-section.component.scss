@@ -1,0 +1,23 @@
+.shop-block-one .inner-box .lower-content h3 {
+    font-size: 20px;
+
+    a {
+        &:hover {
+            color: #ecbbb6;
+        }
+    }
+}
+
+.cart-btn {
+    margin-top: 16px;
+}
+
+.theme-btn-two {
+    &:hover {
+        border-color: #ecbbb6;
+    }
+    &::before, &::after {
+        background: #ecbbb6;
+        box-shadow: 0 10px 20px rgba(236, 187, 182, 0.3);
+    }
+}

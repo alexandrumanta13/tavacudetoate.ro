@@ -1,0 +1,84 @@
+<aside class="sidebar padding-right sticky-top">
+
+  <!-- Categories Widget -->
+  <div class="sidebar-widget categories-widget">
+    <div class="widget-content">
+      <div class="sidebar-title">
+        <h4>Servicii de Instalatii</h4>
+      </div>
+
+      <ul class="blog-cat">
+        <li><a routerLink="/instalator-sector-1">Instalator Sector 1</a></li>
+        <li><a routerLink="/instalator-sector-2">Instalator Sector 2</a></li>
+        <li><a routerLink="/instalator-sector-3">Instalator Sector 3</a></li>
+        <li><a routerLink="/instalator-sector-4">Instalator Sector 4</a></li>
+        <li><a routerLink="/instalator-sector-5">Instalator Sector 5</a></li>
+        <li><a routerLink="/instalator-sector-6">Instalator Sector 6</a></li>
+        <li><a routerLink="/instalator-non-stop">Instalator Non Stop</a></li>
+        <li><a routerLink="/instalator-termic">Instalator Termic</a></li>
+        <li><a routerLink="/desfundare-scurgere">Desfundare Scurgere</a></li>
+
+      </ul>
+    </div>
+  </div>
+
+  <!-- Help Widget -->
+  <div class="sidebar-widget help-widget" *ngIf="!router.url.includes('/instalatii-termice')">
+    <div class="widget-inner">
+      <h3>Cauti un instalator?</h3>
+      <div class="title">Suna sau trimite email</div>
+      <a href="tel:+40743697295" class="phone">0743-697-295</a>
+      <a href="mailto:office@tavacudetoate.ro" class="email">office@tavacudetoate.ro</a>
+    </div>
+  </div>
+
+  <!-- Help Widget -->
+  <div class="sidebar-widget help-widget" *ngIf="router.url.includes('/instalatii-termice')">
+    <div class="widget-inner">
+      <h3>Cauti un instalator?</h3>
+      <div class="title">Suna sau trimite email</div>
+      <a href="tel:+40743697295" class="phone">0743-697-295</a>
+      <a href="tel:+40732831826" class="phone">0732-831-826</a>
+      <a href="tel:+40771506190" class="phone">0771-506-190</a>
+    
+      <a href="mailto:office@tavacudetoate.ro" class="email">office@tavacudetoate.ro</a>
+    </div>
+  </div>
+
+  <div class="sidebar-widget timing-widget" *ngIf="router.url.includes('/instalatii-termice')">
+    <div class="widget-inner">
+      <h3>Program</h3>
+      <ul>
+        <li>Luni - Vineri <span>07:00 – 22:00</span></li>
+        <li>Sambata - Duminica <span>08:00 – 22:00</span></li>
+        
+      </ul>
+    </div>
+  </div>
+
+  <!-- Timing Widget -->
+  <div class="sidebar-widget timing-widget schedule" *ngIf="!router.url.includes('/instalatii-termice')">
+    <div class="widget-inner">
+      <h3>Luk Install asigura instalatori in Bucuresti
+        acoperire in toate sectoarele si judetul Ilfov
+      </h3>
+
+      <ul>
+        <li><span>Program:</span></li>
+        <li><span>NON-STOP</span></li>
+        <li><span>7 zile din 7</span></li>
+        <li><span>24 ore din 24</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Package Widget -->
+  <div class="sidebar-widget package-widget">
+    <div class="widget-inner" style="background-image: url(/assets/images/instalator-urgente.jpg)">
+      <h3>Urgenta ta este prioritatea noastra</h3>
+      <div class="text">Intervenim rapid, oriunde in <br> Bucuresti si Ilfov</div>
+      <a href="tel:+40743697295" class="theme-btn btn-style-one"><span class="txt">Suna Non Stop</span></a>
+    </div>
+  </div>
+
+</aside>

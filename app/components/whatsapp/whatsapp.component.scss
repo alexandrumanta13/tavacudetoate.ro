@@ -1,0 +1,15 @@
+
+
+.whatsapp-module {
+    position: fixed;
+    bottom: 2rem;
+    right: 5rem;
+    z-index: 99999;
+    @media only screen and (max-width: 767px) {
+      right: 1rem;
+    }
+  }
+  
+  .whatsapp-module img {
+    width: 60px;
+  }

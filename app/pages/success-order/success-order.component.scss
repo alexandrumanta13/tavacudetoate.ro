@@ -1,0 +1,5 @@
+.table-column {
+    & > * {
+        margin-bottom: 20px;
+    }
+}

@@ -1,0 +1,44 @@
+<div class="input-group mr-2">
+    <input [ngClass]="ngControl?.valid ? 'ng-valid' : 'ng-invalid'" class="form-control" (blur)="inputBlur($event)" [ngModel]="dateString | date:inputDatetimeFormat" (change)="onInputChange($event)" [disabled]='disabled' />
+
+    <div class="input-group-append">
+        <button class="btn btn-outline-secondary btn--calendar" [ngbPopover]="calendarContent" [disabled]='disabled' type="button">
+            <img src="/assets/images/icons/calendar.svg" alt="">
+        </button>
+    </div>
+</div>
+
+<ng-template #calendarContent>
+    <div >
+        <div *ngIf="!showTimePickerToggle" >
+            <ngb-datepicker [minDate]="minDate" [markDisabled]="isDisabled"  #dp name="datepicker" [ngModel]="datetime"  (ngModelChange)="onDateChange($event)"></ngb-datepicker>
+            <button *ngIf="hasSelectDate" class="btn btn-block btn-outline-secondary btn-toggle theme-btn-one" [ngbPopover]="timePickerContent" (click)="toggleDateTimeState($event)">
+                Selecteaza ora livrarii
+            </button>
+        </div>
+        <div *ngIf="showTimePickerToggle" >
+                <button class="btn btn-block btn-outline-secondary btn-toggle theme-btn-one" [ngbPopover]="calendarContent" (click)="toggleDateTimeState($event)">
+                    Inapoi la calendar
+                </button>
+            <div class="mt-auto interval">
+                <h5 class="interval__title">Interval</h5>
+                <ul class="interval__list" *ngIf="isToday">
+                    <li><a [ngClass]="{ 'disabled': !isFirstInterval  }" (click)="selectInterval($event)">Astazi intre: 16:00 - 20:00</a></li>
+                    <li><a [ngClass]="{ 'disabled': !isSecondInterval || isNewYearToday }" (click)="selectInterval($event)">Maine intre: 12:00 - 14:00</a></li>
+                    <li><a [ngClass]="{ 'disabled': isNewYearToday }" (click)="selectInterval($event)">Maine intre:  14:00 - 16:00</a></li>
+                </ul>
+                <ul class="interval__list" *ngIf="!isToday">
+                    <li><a (click)="selectInterval($event)">Intre: 12:00 - 14:00</a></li>
+                    <li><a (click)="selectInterval($event)">Intre: 14:00 - 16:00</a></li>
+                    <li><a [ngClass]="{ 'disabled': isNewYearTowmorrow }"  (click)="selectInterval($event)">Intre: 16:00 - 20:00</a></li>
+                </ul>
+            <!-- <ngb-timepicker #tp name="timepicker" [ngModel]="datetime" (ngModelChange)="onTimeChange($event)" [seconds]="seconds"
+            [hourStep]="hourStep" [minuteStep]="minuteStep" [secondStep]="secondStep"></ngb-timepicker>-->
+            </div> 
+            <!-- <button class="btn btn-block btn-outline-secondary btn-toggle theme-btn-one" [ngbPopover]="calendarContent" (click)="close()">
+                Alege
+            </button> -->
+        </div>
+    </div>
+</ng-template>
+

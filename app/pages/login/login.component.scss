@@ -1,0 +1,69 @@
+.heading {
+  margin-bottom: 50px;
+
+  .title {
+    margin-bottom: 16px;
+  }
+}
+
+form,
+.form-footer {
+  margin-bottom: 50px;
+}
+
+@media screen and (min-width: 992px) {}
+
+
+.forget-pass {
+  position: relative;
+  display: inline-block;
+  font-size: 15px;
+  line-height: 26px;
+  color: #222;
+  padding-left: 30px;
+
+  &:hover {
+    color: #ecbbb6;
+  }
+}
+
+.custom-control.material-checkbox .material-control-indicator {
+  border: 1px solid #6d4b50;
+}
+
+.custom-control.material-checkbox .material-control-input:checked~.material-control-indicator {
+  border: 2px solid #6d4b50;
+  border-top: 0px;
+  border-left: 0px;
+}
+
+.social-login {
+  margin: 40px 0;
+  display: flex;
+  flex-direction: column;
+
+  button {
+    position: relative;
+    display: inline-block;
+    font-size: 16px;
+    line-height: 26px;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+    color: #fff !important;
+    text-align: center;
+    padding: 17px 47px;
+    text-align: center;
+    z-index: 1;
+    margin-bottom: 20px;
+  }
+
+  .btn-facebook {
+    background-color: #1A76F2;
+    box-shadow: 0 10px 20px rgba(26, 118, 242, .3);
+  }
+
+  .btn-google {
+    background-color: #CF4332;
+    box-shadow: 0 10px 20px rgba(207, 67, 50, .3);
+  }
+}

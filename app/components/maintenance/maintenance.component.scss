@@ -1,0 +1,68 @@
+.video-section .video-inner .video-btn a {
+  background: #ecbbb6;
+}
+
+youtube-player {
+  margin-top: 0;
+  display: flex;
+}
+
+.video-section .video-inner {
+  margin: 0;
+}
+
+.video {
+  display: flex;
+
+  .video-section {
+    margin: auto;
+    width: 100%;
+  }
+
+  .auto-container {
+    padding: 0;
+  }
+}
+
+.maintenance-continer {
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  .container,
+  .row {
+    height: 100%;
+  }
+}
+
+.info {
+  display: flex;
+  margin: auto;
+  flex-direction: column;
+
+  h5 {
+    margin: auto;
+    background: #ecbbb6;
+    color: #fff;
+    padding: 16px 32px;
+  }
+
+  img {
+      width: 150px;
+      margin-bottom: 16px;
+      margin-left: auto;
+  }
+
+  .btn-box {
+    margin-top: 40px;
+
+    a {
+        background: #6d4b50;
+        box-shadow: 0 10px 20px rgba(109, 75, 80, .3)
+    }
+
+  }
+
+
+
+}

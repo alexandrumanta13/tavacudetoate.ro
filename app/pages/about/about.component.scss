@@ -1,0 +1,32 @@
+.w-slide {
+  .flexh-align-center {
+    justify-content: center;
+  }
+}
+
+.header-image {
+  z-index: 1;
+}
+
+
+.has-bg-image2 .container {
+    z-index: 2;
+    position: relative;
+}
+
+.button-primary {
+    transition: none;
+}
+
+@media (max-width: 479px) {
+  .basis400 {
+    .button-primary {
+      margin:8px 0;
+    }
+}
+}
+
+
+.flex-horizontal {
+  align-items: center;
+}

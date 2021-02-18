@@ -1,0 +1,46 @@
+select {
+    color: #999;
+}
+
+.contact-details {
+    a {
+        display: flex;
+        align-items: center;
+
+        img {
+            height: 19px;
+            margin-right: 10px;
+        }
+    }
+}
+
+.single-box {
+    
+    img {
+        height: 32px;
+    }
+
+    .list {
+
+        li {
+            display: flex;
+
+            figure {
+                width: 25px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 8px;
+
+                img.phone {
+                    height: 24px;
+                }
+
+                img.mail {
+                    height: 16px;
+                }
+            }
+        }
+        
+    }
+}

@@ -1,0 +1,15 @@
+<div class="userData">
+    <h2>Welcome {{userData?.name}}</h2>
+    <b>Email</b>: {{userData?.email}}
+    <br/>
+    <b>Provider</b>: {{userData?.provider}}
+    <br/>
+    <b>Token</b>: {{userData?.token}}
+    <br/>
+    <b>ID</b>: {{userData?.id}}
+    <br/>
+    <img [src]="userData?.image" *ngIf="userData?.image" />
+    <br/>
+    <br/>
+    <button (click)='logout()' class="btn btn-logout"><span class="fa fa-sign-out"></span> Logout</button>
+    </div>

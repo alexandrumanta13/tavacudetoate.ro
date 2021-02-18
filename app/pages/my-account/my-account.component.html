@@ -1,0 +1,137 @@
+<section class="page-title centred"
+  style="background-image: url(assets/images/background/imagine-category-tavacudetoate.jpg);">
+  <div class="auto-container">
+    <div class="content-box">
+      <div class="title">
+        <h1>Contul Meu</h1>
+      </div>
+      <ul class="bread-crumb clearfix">
+        <li><a routerLink="/">Acasa</a></li>
+        <li> Contul meu</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<section class="my-account">
+    
+  
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9 order-lg-last dashboard-content">
+          <h2>Editeaza informatiile contului tau</h2>
+  
+          <form (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" [mustMatch]="['password', 'confirmPassword']"
+            novalidate>
+            <div class="row">
+              <div class="col-sm-11">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group required-field">
+                      <label for="acc-name">Nume</label>
+                      <input type="text" name="name" class="form-control" [(ngModel)]="model.name" #name="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && name.invalid }" required>
+                      <div *ngIf="f.submitted && name.invalid" class="invalid-feedback">
+                        <div *ngIf="name.errors.required">First Name is required</div>
+                      </div>
+                    </div><!-- End .form-group -->
+                  </div><!-- End .col-md-4 -->
+  
+                  <div class="col-md-4">
+                    <div class="form-group required-field">
+                      <label for="acc-lastname">Prenume</label>
+                      <input type="text" name="lastName" class="form-control" [(ngModel)]="model.last_name"
+                        #last_name="ngModel" [ngClass]="{ 'is-invalid': f.submitted && last_name.invalid }" required>
+                      <div *ngIf="f.submitted && last_name.invalid" class="invalid-feedback">
+                        <div *ngIf="last_name.errors.required">Last Name is required</div>
+                      </div>
+                    </div><!-- End .form-group -->
+                  </div><!-- End .col-md-4 -->
+                </div><!-- End .row -->
+              </div><!-- End .col-sm-11 -->
+            </div><!-- End .row -->
+  
+            <div class="form-group required-field">
+              <label for="acc-email">Email</label>
+              <input type="text" name="email" class="form-control" [(ngModel)]="model.email" #email="ngModel"
+                [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required email>
+              <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+                <div *ngIf="email.errors.required">Email is required</div>
+                <div *ngIf="email.errors.email">Email must be a valid email address</div>
+              </div>
+            </div><!-- End .form-group -->
+  
+            <div class="mb-2"></div><!-- margin -->
+  
+            <div class="custom-control custom-checkbox">
+              <div class="custom-controls-stacked">
+                <label class="custom-control material-checkbox">
+                  <input type="checkbox" (click)="changePassAction()" [checked]="changePass" id="change-pass-checkbox" value="1" class="material-control-input">
+                  <span class="material-control-indicator"></span>
+                  <span class="description">Schimba parola</span>
+                </label>
+              </div>
+             
+            </div><!-- End .custom-checkbox -->
+  
+            <div id="account-chage-pass" *ngIf="changePass">
+              <h3 class="mb-2">Schimba parola</h3>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group required-field">
+                    <label for="acc-pass2">Parola</label>
+                    <input type="password" name="password" class="form-control" [(ngModel)]="model.password"
+                      #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required
+                      minlength="6">
+                    <div *ngIf="f.submitted && password.invalid" class="invalid-feedback">
+                      <div *ngIf="password.errors.required">Password is required</div>
+                      <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+                    </div>
+                  </div><!-- End .form-group -->
+                </div><!-- End .col-md-6 -->
+  
+                <div class="col-md-6">
+                  <div class="form-group required-field">
+                    <label for="acc-pass3">Confirma parola</label>
+                    <input type="password" name="confirmPassword" class="form-control" [(ngModel)]="model.confirmPassword"
+                      #confirmPassword="ngModel" [ngClass]="{ 'is-invalid': f.submitted && confirmPassword.invalid }"
+                      required>
+                    <div *ngIf="f.submitted && confirmPassword.invalid" class="invalid-feedback">
+                      <div *ngIf="confirmPassword.errors.required">Confirm Password is required</div>
+                      <div *ngIf="confirmPassword.errors.mustMatch">Passwords must match</div>
+                    </div>
+                  </div><!-- End .form-group -->
+                </div><!-- End .col-md-6 -->
+              </div><!-- End .row -->
+            </div><!-- End #account-chage-pass -->
+  
+            <div class="required text-right">* Camp obligatoriu</div>
+            <div class="form-footer">
+             
+  
+              <div class="form-footer-right">
+                <button type="submit" class="theme-btn-one">Salveaza</button>
+              </div>
+            </div><!-- End .form-footer -->
+          </form>
+        </div><!-- End .col-lg-9 -->
+  
+        <aside class="sidebar col-lg-3">
+          <div class="widget widget-dashboard">
+            <h3 class="widget-title">Contul meu</h3>
+        
+            <ul class="list">
+              <li routerLinkActive='active'><a routerLink="/contul-meu">Informatii cont</a></li>
+              <li routerLinkActive='active'><a routerLink="/adresele-mele">Adresele mele</a></li>
+              <li routerLinkActive='active'><a routerLink="/comenzile-mele">Comenzile mele</a></li>
+              <li routerLinkActive='active'><a routerLink="/cupoane-reducere">Cupoane reducere</a></li>
+              <li routerLinkActive='active'><a (click)="logout()">Delogare</a></li>
+            </ul>
+        
+          </div><!-- End .widget -->
+        </aside><!-- End .col-lg-3 -->
+      </div><!-- End .row -->
+    </div><!-- End .container -->
+  
+    <div class="mb-5"></div><!-- margin -->
+  </section><!-- End .main -->
+  
