@@ -1,0 +1,123 @@
+<div class="breadcrumb-area gray-bg">
+  <div class="container">
+    <div class="breadcrumb-content">
+      <ul>
+        <li><a routerLink="/">Acasa</a></li>
+        <li class="active"> Autentificare / Inregistrare </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div class="login-register-area pt-95 pb-100">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7 col-md-12 ml-auto mr-auto">
+        <div class="login-register-wrapper">
+          <div class="login-register-tab-list nav">
+            <a class="active" data-toggle="tab" href="#lg1">
+              <h4> Autentificare </h4>
+            </a>
+            <a data-toggle="tab" href="#lg2">
+              <h4> Inregistrare </h4>
+            </a>
+          </div>
+          <div class="tab-content">
+            <div id="lg1" class="tab-pane active">
+              <div class="login-form-container">
+                <div class="login-register-form">
+                  <form (ngSubmit)="f.form.valid && onSubmit(f)" #f="ngForm">
+                    <div class="form-group">
+                      <input type="text" name="email" class="form-control" [(ngModel)]="login.email" #email="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required email>
+                      <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+                        <div *ngIf="email.errors.required">Te rugam sa introduci email-ul</div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <input type="password" name="password" class="form-control" [(ngModel)]="login.password"
+                        #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required>
+                      <div *ngIf="f.submitted && password.invalid" class="invalid-feedback">
+                        <div *ngIf="password.errors.required">Te rugam sa introduci parola</div>
+                      </div>
+                    </div>
+
+                    <div class="form-footer">
+                      <button type="submit" class="theme-btn-one">Autentificare</button>
+                      <a routerLink="/am-uitat-parola" class="forget-pass"> Ai uitat parola?</a>
+                    </div>
+                    <h2>Sau</h2>
+                    <div class="social-login">
+                      <button (click)="signInWithFB()" class="btn-facebook">
+                        <span class="fa fa-facebook"></span> Autentificare cu Facebook</button>
+                      <button (click)="signInWithGoogle()" class="btn-google">
+                        <span class="fa fa-google"></span> Autentificare cu Google</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div id="lg2" class="tab-pane">
+              <div class="login-form-container">
+                <div class="login-register-form">
+                  <form (ngSubmit)="register.form.valid && signup()" #register="ngForm"
+                    [mustMatch]="['password', 'confirmPassword']" novalidate>
+                    <div class="form-group">
+                      <input type="text" name="name" class="form-control" placeholder="Nume" [(ngModel)]="model.name"
+                        #name="ngModel" [ngClass]="{ 'is-invalid': register.submitted && name.invalid }" required>
+                      <div *ngIf="register.submitted && name.invalid" class="invalid-feedback">
+                        <div *ngIf="name.errors.required">Te rugam sa introduci numele!</div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <input type="text" name="lastName" class="form-control" placeholder="Prenume"
+                        [(ngModel)]="model.last_name" #last_name="ngModel"
+                        [ngClass]="{ 'is-invalid': register.submitted && last_name.invalid }" required>
+                      <div *ngIf="register.submitted && last_name.invalid" class="invalid-feedback">
+                        <div *ngIf="last_name.errors.required">Te rugam sa introduci prenumele</div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <input type="text" name="emailField" class="form-control" placeholder="Email" [(ngModel)]="model.email"
+                        #emailField="ngModel" [ngClass]="{ 'is-invalid': register.submitted && emailField.invalid }" required
+                        email>
+                      <div *ngIf="register.submitted && emailField.invalid" class="invalid-feedback">
+                        <div *ngIf="emailField.errors.required">Te rugam sa introduci email-ul!</div>
+                        <div *ngIf="emailField.errors.email">Email-ul nu este valid!</div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <input type="password" name="passwordField" class="form-control" placeholder="Parola"
+                        [(ngModel)]="model.password" #passwordField="ngModel"
+                        [ngClass]="{ 'is-invalid': register.submitted && passwordField.invalid }" required minlength="6">
+                      <div *ngIf="register.submitted && passwordField.invalid" class="invalid-feedback">
+                        <div *ngIf="passwordField.errors.required">Te rugam sa introduci parola</div>
+                        <div *ngIf="passwordField.errors.minlength">Parola trebuie sa fie de minim 6 caractere</div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <input type="password" name="confirmPassword" class="form-control" placeholder="Repeta parola"
+                        [(ngModel)]="model.confirmPassword" #confirmPassword="ngModel"
+                        [ngClass]="{ 'is-invalid': register.submitted && confirmPassword.invalid }" required>
+                      <div *ngIf="register.submitted && confirmPassword.invalid" class="invalid-feedback">
+                        <div *ngIf="confirmPassword.errors.required">Te rugam sa confirmi parola</div>
+                        <div *ngIf="confirmPassword.errors.mustMatch">Parolele nu se potrivesc</div>
+                      </div>
+                    </div>
+
+                    <div class="form-footer form-group">
+                      <button type="submit" class="theme-btn-one">Creeaza cont</button>
+                    </div><!-- End .form-footer -->
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

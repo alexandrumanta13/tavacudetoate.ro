@@ -1,0 +1,69 @@
+<div class="mobile-container" [class.mobile-menu-visible]="open">
+    <div class="mobile-menu">
+      <div class="menu-backdrop"></div>
+      <div class="close-btn" (click)="toggleMenu(navMenu)"><i class="fa fa-times"></i></div>
+  
+      <nav class="menu-box">
+        <div class="nav-logo">
+          <a routerLink="/">
+            <img alt="" src="assets/img/logo/logo.png">
+          </a>
+        </div>
+        <div class="menu-outer">
+          <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
+            <ul class="navigation clearfix">
+              <li *ngFor="let menu of navMenu">
+                <a routerLink="{{menu.link}}">{{menu.label}}</a>
+              </li>
+            </ul>
+           
+          </div>
+        </div>
+        <div class="contact-info">
+          <h4>Bucuresti</h4>
+          <ul>
+            <li>AUCHAN DRUMUL TABEREI (sect.6)</li>
+            <li>L-D: 10:00 - 21:00</li>
+            <li><a href="tel:+40741285044">(0741) 285 044</a></li>
+            <li><a href="mailto:comenzibucuresti@tavacudetoate.ro">comenzibucuresti@tavacudetoate.ro</a></li>
+          </ul>
+          <ul>
+            <li>MILITARI SHOPPING CENTER (sect.6)</li>
+            <li>L-D: 10:00 - 21:00</li>
+            <li><a href="tel:+40752107530">(0752) 107 530</a></li>
+            <li><a href="mailto:comenzibucuresti@tavacudetoate.ro">comenzibucuresti@tavacudetoate.ro</a></li>
+          </ul>
+          <ul>
+            <li>ROYAL HOSPITAL (sect.3)</li>
+            <li>L-V: 10:00 - 17:00</li>
+            <li><a href="tel:+40720612962">(0720) 612 962</a></li>
+            <li><a href="mailto:comenzibucuresti@tavacudetoate.ro">comenzibucuresti@tavacudetoate.ro</a></li>
+          </ul>
+          <ul>
+            <li>GRAND ARENA MALL (sect.6)</li>
+            <li>L-D: 10:00 - 21:00</li>
+            <li><a href="tel:+40723228243">(0723) 228 243</a></li>
+            <li><a href="mailto:comenzibucuresti@tavacudetoate.ro">comenzibucuresti@tavacudetoate.ro</a></li>
+          </ul>
+          <h4>Pitesti</h4>
+          <ul>
+            <li>AUCHAN PITESTI</li>
+            <li>L-D: 10:00 - 21:00</li>
+            <li><a href="tel:+40753037121">(0753) 037 121</a></li>
+            <li><a href="mailto:comenzibucuresti@tavacudetoate.ro">comenzibucuresti@tavacudetoate.ro</a></li>
+          </ul>
+          
+        </div>
+        <div class="gradientback">
+
+        </div>
+        
+        <div class="social-links">
+          <ul class="clearfix">
+            <li><a href="https://www.facebook.com//"><span class="fa fa-facebook-square"></span></a></li>
+            <li><a href="https://www.instagram.com//"><span class="fa fa-instagram"></span></a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>

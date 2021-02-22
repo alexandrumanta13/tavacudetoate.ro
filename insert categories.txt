@@ -1,0 +1,11 @@
+
+INSERT INTO `categories`(`category_name`, `slug`) VALUES ('Aperitive', 'aperitive');
+INSERT INTO `categories`(`category_name`, `slug`) VALUES ('Ciorbe', 'ciorbe');
+INSERT INTO `categories`(`category_name`, `slug`) VALUES ('Porc', 'porc');
+INSERT INTO `categories`(`category_name`, `slug`) VALUES ('Vita', 'vita');
+INSERT INTO `categories`(`category_name`, `slug`) VALUES ('Peste', 'peste');
+INSERT INTO `categories`(`category_name`, `slug`) VALUES ('Platouri', 'platouri');
+INSERT INTO `categories`(`category_name`, `slug`) VALUES ('Pui', 'pui');
+INSERT INTO `categories`(`category_name`, `slug`) VALUES ('Curcan', 'curcan');
+INSERT INTO `categories`(`category_name`, `slug`) VALUES ('Oaie', 'oaie');
+INSERT INTO `categories`(`category_name`, `slug`) VALUES ('Deserturi', 'deserturi');

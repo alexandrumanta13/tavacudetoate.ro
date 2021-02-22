@@ -1,0 +1,50 @@
+<div class="product-area pt-95 pb-70">
+  <div class="custom-container">
+    <div class="product-tab-list-wrap text-center mb-40 yellow-color">
+      <div class="product-tab-list nav">
+        <ng-container *ngFor="let category of categories">
+          <a (click)="selectCategory(category.category_name)"
+            [ngClass]="{ 'active': category.category_name == selectedCategory}">
+            <h4>{{category.category_name}} </h4>
+          </a>
+        </ng-container>
+      </div>
+    </div>
+    <div class="tab-content jump yellow-color">
+      <div class="tab-pane active">
+        <div class="row">
+          <div class="custom-col-5" *ngFor="let product of products">
+            <div class="product-wrapper mb-25">
+              <div class="product-img">
+                <a routerLink="/produs/{{product.categories[0].slug}}/{{product.alias}}">
+                  <img src="/assets/img/product/{{product.images[0].image_url}}" alt="">
+                </a>
+                <div class="product-action">
+                  <div class="pro-action-left">
+                    <a title="Adauga in cos" href="#"><i class="ion-android-cart"></i> Adauga in cos</a>
+                  </div>
+                  <div class="pro-action-right">
+                    <a title="Quick View" (click)="productQuickView.getProduct(product.alias)" data-toggle="modal" data-target="#exampleModal" href="#">
+                      <i class="ion-android-open"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="product-content">
+                <h4>
+                  <a routerLink="/produs/{{product.categories[0].slug}}/{{product.alias}}">{{product.product_name}} </a>
+                </h4>
+                <div class="product-price-wrapper">
+                  <span>{{product.information[0].price}} lei</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<app-product-quickview #productQuickView></app-product-quickview>

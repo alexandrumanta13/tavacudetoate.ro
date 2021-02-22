@@ -43,6 +43,7 @@
               "src/assets/css/meanmenu.min.css",
               "src/assets/css/style.css",
               "src/assets/css/responsive.css",
+              "src/assets/css/toaster.css",
               "src/styles.scss"
             ],
             "scripts": [

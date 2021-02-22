@@ -1,0 +1,54 @@
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { CartService } from 'src/app/pages/cart/cart.service';
+import { ProductsService } from 'src/app/pages/products/products.service';
+
+@Component({
+  selector: 'app-products-categories',
+  templateUrl: './products-categories.component.html',
+  styleUrls: ['./products-categories.component.scss']
+})
+export class ProductsCategoriesComponent implements OnInit {
+  categories: any;
+  selectedCategory: any;
+  products: any;
+
+  constructor(
+    private _route: ActivatedRoute,
+    private _ProductsService: ProductsService,
+    private _cartService: CartService,
+    public router: Router,
+  ) { }
+
+  ngOnInit(): void {
+
+    this._ProductsService.getCategories().then(data => {
+      console.log(data.categories)
+      this.categories = data.categories;
+    })
+
+    this.getProducts();
+  }
+
+  selectCategory(category) {
+    console.log(category)
+    this.selectedCategory = category;
+    this.getProducts();
+  }
+
+  getProducts() {
+    if (!this.selectedCategory) {
+      this._ProductsService.getProducts('').then(data => {
+        console.log(data)
+        this.products = data.products;
+      });
+
+    } else {
+      this._ProductsService.getProducts(this.selectedCategory).then(data => {
+        this.products = data.products;
+      });
+
+    }
+    
+  }
+}
