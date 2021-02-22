@@ -10,7 +10,8 @@
                         <!-- Thumbnail Large Image start -->
                         <div class="tab-content">
                             <div id="pro-1" class="tab-pane fade show active">
-                                <img src="/assets/img/product/{{product?.images[0].image_url}}" alt="">
+                                <img *ngIf="product.images.length" src="/assets/img/product/{{product.images[0].image_url}}" alt="product">
+                                <img *ngIf="!product.images.length" src="/assets/img/product/default.jpg" alt="product">
                             </div>
                             <!-- <div id="pro-2" class="tab-pane fade">
                                 <img src="assets/img/product-details/product-detalis-l2.jpg" alt="">
@@ -56,7 +57,7 @@
                             <div class="product-quantity">
                                 <div class="cart-plus-minus">
                                     
-                                    <input class="cart-plus-minus-box" type="text" name="qtybutton" value="2">
+                                    <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1">
                                 </div>
                                 <button>Adauga in cos</button>
                             </div>
