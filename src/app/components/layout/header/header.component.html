@@ -5,53 +5,37 @@
        <div class="row">
          <div class="col-lg-4 col-md-4 col-12 col-sm-4">
            <div class="welcome-area">
-             <p>Date contact: </p>
+             <p>Livrare Gratuita in Bucuresti & Pitesti </p>
            </div>
          </div>
-         <!-- <div class="col-lg-8 col-md-8 col-12 col-sm-8">
-           <div class="account-curr-lang-wrap f-right">
-             <ul>
-               <li class="top-hover"><a href="#">Language: (ENG) <i class="ion-chevron-down"></i></a>
-                 <ul>
-                   <li><a href="#">Bangla </a></li>
-                   <li><a href="#">Arabic</a></li>
-                   <li><a href="#">Hindi </a></li>
-                   <li><a href="#">Spanish</a></li>
-                 </ul>
-               </li>
-               <li class="top-hover"><a href="#">Currency: (USD) <i class="ion-chevron-down"></i></a>
-                 <ul>
-                   <li><a href="#">Taka (BDT)</a></li>
-                   <li><a href="#">Riyal (SAR)</a></li>
-                   <li><a href="#">Rupee (INR)</a></li>
-                   <li><a href="#">Dirham (AED)</a></li>
-                 </ul>
-               </li>
-               <li class="top-hover"><a href="#">Setting <i class="ion-chevron-down"></i></a>
-                 <ul>
-                   <li><a href="wishlist.html">Wishlist </a></li>
-                   <li><a href="login-register.html">Login</a></li>
-                   <li><a href="login-register.html">Register</a></li>
-                   <li><a href="my-account.html">my account</a></li>
-                 </ul>
-               </li>
-             </ul>
+         <div class="col-lg-8 col-md-8 col-12 col-sm-8 text-right">
+           <div class="welcome-area">
+             <p>Bucuresti: <a href="tel:+400720612962">(0720) 612 962</a> Pitesti: <a href="tel:+40746252899">(0746) 252
+                 899</a>
+             </p>
            </div>
-         </div> -->
+         </div>
        </div>
      </div>
    </div>
    <div class="header-middle">
      <div class="container">
        <div class="row">
-         <div class="col-lg-3 col-md-4 col-4 col-sm-4">
+         <div class="col-lg-2 col-md-2 col-4 col-sm-4">
            <div class="logo">
              <a routerLink="/">
                <img alt="" src="assets/img/logo/logo.png">
              </a>
            </div>
          </div>
-         <div class="col-lg-9 col-md-8 col-8 col-sm-8">
+         <div class="col-lg-6 col-md-6 col-4 col-sm-4">
+           <div class="search-info">
+             <input type="text" placeholder="Cauta produse">
+             <i class="fa fa-search"></i>
+           </div>
+         </div>
+
+         <div class="col-lg-4 col-md-4 col-4 col-sm-4">
            <div class="header-middle-right f-right">
              <div class="header-login">
                <a routerLink="/autentificare">
@@ -68,7 +52,7 @@
                <a (click)="togglCart()">
                  <div class="header-icon-style">
                    <i class="icon-handbag icons"></i>
-                   <span class="count-style">02</span>
+                   <span class="count-style">{{cartTotal$}}</span>
                  </div>
                  <div class="cart-text">
                    <span class="digit">Cosul meu</span>
@@ -183,6 +167,12 @@
            <div class="main-menu">
              <nav>
                <ul>
+                 <li class="top-hover">
+                   <a class="dropdown-main-menu">Meniu principal <i class="ion-chevron-down"></i></a> 
+                   <ul class="submenu">
+                     <li *ngFor="let category of categories"><a routerLink="/produse/{{category.slug}}">{{category.category_name}}</a></li>
+                   </ul>
+                 </li>
                  <li *ngFor="let menu of navMenu">
                    <a routerLink="{{menu.link}}">{{menu.label}}</a>
                  </li>

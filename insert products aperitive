@@ -1,0 +1,45 @@
+
+
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (1, 3,'97.90');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (2, 3,'97.90');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (3, 3,'97.90');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (4, 3,'57.90');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (5, 3,'77.90');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (6, 3,'77.90');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (7, 3,'57.90');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (8, 3,'77.90');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (9, 3,'74.90');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (10, 3,'74.90');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (11, 3,'97.90');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (12, 3,'57.90');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (13, 3,'66.90');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (14, 3,'74.90');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (15, 3,'107.90');
+
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (1, 2, '49.90');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (2, 2, '49.90');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (3, 2, '49.90');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (4, 2, '29.90');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (5, 2, '39.90');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (6, 2, '39.90');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (7, 2, '29.90');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (8, 2, '39.90');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (9, 2, '39.90');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (10, 2, '39.90');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (11, 2, '49.90');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (12, 2, '29.90');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (13, 2, '34.90');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (14, 2, '39.90');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (15, 2, '54.90');
+
+
+
+
+
+
+
+
+
+
+
+

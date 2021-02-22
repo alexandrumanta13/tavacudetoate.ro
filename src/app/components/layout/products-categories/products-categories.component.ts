@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { CartService } from 'src/app/pages/cart/cart.service';
 import { ProductsService } from 'src/app/pages/products/products.service';
-
+import { v4 as uuidv4 } from 'uuid';
 @Component({
   selector: 'app-products-categories',
   templateUrl: './products-categories.component.html',
@@ -12,6 +12,8 @@ export class ProductsCategoriesComponent implements OnInit {
   categories: any;
   selectedCategory: any;
   products: any;
+  product: any;
+  cartQuantity: any;
 
   constructor(
     private _route: ActivatedRoute,
@@ -50,5 +52,11 @@ export class ProductsCategoriesComponent implements OnInit {
 
     }
     
+  }
+
+  addToCart(product) {
+    product.cart_uuid = uuidv4();
+    this._cartService.addToCart(product, 1, false);
+
   }
 }

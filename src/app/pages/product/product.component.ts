@@ -86,7 +86,6 @@ export class ProductComponent implements OnInit {
       this.product.images.map(productImage => {
         this.productImages.push({ src: '/assets/images/resource/shop/' + productImage.image_url, thumb: '/assets/images/resource/shop/' + productImage.image_url })
       })
-      console.log(this.productImages)
 
     });
 
@@ -97,6 +96,7 @@ export class ProductComponent implements OnInit {
 
     this._ProductService.getRecomended(this._categoryRoute).then(data => {
       this.recommended = data.products;
+      console.log(this.recommended)
     });
   }
 

@@ -40,7 +40,7 @@ const routes: Routes = [
   {
     path: '', component: HomeComponent,
     data: {
-      title: 'Cofetaria La Petite - Douce Revelation',
+      title: '',
       description: 'La Petite - Douce Revelation este un laborator de cofetarie artizanala din Bucuresti cu deserturi delicioase, din ingrediente naturale. Vezi prajiturile noastre!',
       ogUrl: 'your og url'
     }
@@ -50,7 +50,7 @@ const routes: Routes = [
   {
     path: 'produs/:categorySlug/:productSlug', component: ProductComponent,
     data: {
-      title: 'Cofetaria La Petite - Douce Revelation',
+      title: '',
       description: '',
       ogUrl: 'your og url'
     }
@@ -60,7 +60,7 @@ const routes: Routes = [
   {
     path: 'produse', component: ProductsComponent,
     data: {
-      title: 'Cofetaria La Petite - Douce Revelation',
+      title: '',
       description: '',
       ogUrl: 'your og url'
     }
@@ -68,7 +68,7 @@ const routes: Routes = [
   {
     path: 'candy-bar', component: CandyBarComponent,
     data: {
-      title: 'Cofetaria La Petite - Douce Revelation',
+      title: '',
       description: '',
       ogUrl: 'your og url'
     }
@@ -76,7 +76,7 @@ const routes: Routes = [
   {
     path: 'produse/:categorySlug', pathMatch: 'full', component: ProductsComponent,
     data: {
-      title: 'Cofetaria La Petite - Douce Revelation',
+      title: '',
       description: '',
       ogUrl: 'your og url'
     }
@@ -85,7 +85,7 @@ const routes: Routes = [
   {
     path: 'cos-cumparaturi', component: CartComponent,
     data: {
-      title: 'Cofetaria La Petite - Douce Revelation',
+      title: '',
       description: '',
       ogUrl: 'your og url'
     }
@@ -94,7 +94,7 @@ const routes: Routes = [
   {
     path: 'finalizeaza-comanda', component: CheckoutComponent,
     data: {
-      title: 'Cofetaria La Petite - Douce Revelation',
+      title: '',
       description: '',
       ogUrl: 'your og url'
     }

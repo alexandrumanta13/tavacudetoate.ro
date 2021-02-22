@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { map, take } from 'rxjs/operators';
 import { CartService } from 'src/app/pages/cart/cart.service';
+import { ProductsService } from 'src/app/pages/products/products.service';
 declare var $: any;
 @Component({
   selector: 'app-header',
@@ -19,16 +20,17 @@ export class HeaderComponent implements OnInit {
   cartProducts: any;
   openCart: any;
   navMenu: {}[];
+  categories: any;
 
-  constructor(private router: Router, private _cartService: CartService) {
+  constructor(private router: Router, private _cartService: CartService, private _ProductsService: ProductsService,) {
     this.navMenu = [
       {
-        label: 'Acasa',
-        link: '/'
+        label: 'Delicii',
+        link: '/delicii'
       },
       {
-        label: 'Meniu',
-        link: '/meniu'
+        label: 'Vegetarian',
+        link: '/vegetarial'
       },
       {
         label: 'Locatii',
@@ -41,9 +43,14 @@ export class HeaderComponent implements OnInit {
     ]
    }
 
+
   ngOnInit(): void { 
     
     this.getProducts();
+
+    this._ProductsService.getCategories().then(data => {
+      this.categories = data.categories;
+    })
 
     this._cartService.numTotal.subscribe(info => {
       this.cartTotal$ = info;
@@ -56,6 +63,8 @@ export class HeaderComponent implements OnInit {
       this.open = false;
       
     });
+
+    console.log(this.cartProducts)
   }
 
   togglCart() {

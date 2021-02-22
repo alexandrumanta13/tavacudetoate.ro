@@ -49,12 +49,10 @@ export class CartService {
                 const filter = {
                     'id': product.id,
                     'selectedQnt': product.selectedQnt,
-                    'composition': product.composition,
-                    'message': product.message,
                 };
 
                 const existing = products.filter(function (v, i) {
-                    return (v["id"] == product.id && v["selectedQnt"] == product.selectedQnt && v["composition"] == product.composition && v["message"] == product.message);
+                    return (v["id"] == product.id && v["selectedQnt"] == product.selectedQnt);
                 });
 
                 
