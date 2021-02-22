@@ -1,0 +1,14 @@
+
+INSERT INTO `products`(`product_name`, `alias`, `ingredients`, `allergens` ) VALUES ('Salata de pui cu ciuperci', 'salata-de-pui-cu-ciuperci', 'Piept pui, ciuperci, maioneza de casa, sare, piper, castraveti murati', 'maioneza');
+INSERT INTO `products`(`product_name`, `alias`, `ingredients`, `allergens` ) VALUES ('Mancarica mazare', 'mancarica-mazare', 'Mazare, morcovi, sos de rosii, ulei, sare, ceapa, ardei', 'mazare');
+INSERT INTO `products`(`product_name`, `alias`, `ingredients`, `allergens` ) VALUES ('Mancare de fasole verde', 'mancare-de-fasole-verde', 'Fasole verde pastai, sos de rosii, ulei, sare, morcov, ceapa, ardei', '');
+INSERT INTO `products`(`product_name`, `alias`, `ingredients`, `allergens` ) VALUES ('Mancarica de spanac', 'mancarica-de-spanac', 'Spanac, ceapa alba, sos rosii, usturoi, ulei, sare, ardei', '');
+INSERT INTO `products`(`product_name`, `alias`, `ingredients`, `allergens` ) VALUES ('Mancarica de cartofi', 'mancarica-de-cartofi', 'Cartofi albi, pasta tomate, sare, piper, ceapa, morcovi, ardei, ', '');
+INSERT INTO `products`(`product_name`, `alias`, `ingredients`, `allergens` ) VALUES ('Salata a la russe', 'salata-a-la-russe', 'Cartofi, castraveti murati, gogosari, morcovi, maioneza de casa, mazare', 'mazare, maioneza');
+INSERT INTO `products`(`product_name`, `alias`, `ingredients`, `allergens` ) VALUES ('Salata de sardine si cartofi', 'salata-de-sardine-si-cartofi', 'Sardine, cartofi, ceapa rosie, fasole rosie, patrunjel', 'peste');
+INSERT INTO `products`(`product_name`, `alias`, `ingredients`, `allergens` ) VALUES ('Hummus de casa', 'hummus-de-casa', 'Naut, ulei de masline, pasta de susan, usturoi', 'susan');
+INSERT INTO `products`(`product_name`, `alias`, `ingredients`, `allergens` ) VALUES ('Cartofi gratinati  in cuptor', 'cartofi-gratinati-in-cuptor', 'Cartofi, mozzarella, condimente, ulei, smantana, ou', 'mozzarella, smantana, oua');
+INSERT INTO `products`(`product_name`, `alias`, `ingredients`, `allergens` ) VALUES ('Orez cu  legume', 'orez-cu-legume', 'Orez, legume asortate, piper, sare, ulei', '');
+INSERT INTO `products`(`product_name`, `alias`, `ingredients`, `allergens` ) VALUES ('Orez cu  ciuperci', 'orez-cu-ciuperci', 'Orez, legume asortate, ciuperci, piper, sare, ulei', '');
+INSERT INTO `products`(`product_name`, `alias`, `ingredients`, `allergens` ) VALUES ('Salata Tabouleh', 'salata-tabouleh', 'Rosii, ceapa, grau, patrunjel, ulei', 'grau (gluten)');
+INSERT INTO `products`(`product_name`, `alias`, `ingredients`, `allergens` ) VALUES ('Salata de vinete', 'salata-de-vinete', 'Vinete, maioneza de casa, ceapa, ulei, sare', 'maioneza');

@@ -17,7 +17,9 @@
             <div class="product-wrapper mb-25">
               <div class="product-img">
                 <a routerLink="/produs/{{product.categories[0].slug}}/{{product.alias}}">
-                  <img src="/assets/img/product/{{product.images[0].image_url}}" alt="">
+                  
+                  <img *ngIf="product.images.length" src="/assets/img/product/{{product.images[0].image_url}}" alt="product">
+                  <img *ngIf="!product.images.length" src="/assets/img/product/default.jpg" alt="product">
                 </a>
                 <div class="product-action">
                   <div class="pro-action-left">
