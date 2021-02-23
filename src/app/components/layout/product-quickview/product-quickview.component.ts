@@ -14,6 +14,8 @@ export class ProductQuickviewComponent implements OnInit {
   productCategorySlug: any;
   price: number;
   productImages: any;
+  isActive: any;
+  portions: any;
 
   constructor(
     private _route: ActivatedRoute,
@@ -35,14 +37,22 @@ export class ProductQuickviewComponent implements OnInit {
      
       this.productCategoryName = this.product.categories[0].category_name;
       this.productCategorySlug = this.product.categories[0].slug;
-      this.price = parseInt(this.product.information[0].price);
-    
+      this.price = this.product.information[0].price;
+      this.isActive = this.product.information[0].id;
       this.product.selectedQnt = this.product.information[0].quantity + this.product.information[0].um;
       // this.product.images.map(productImage => {
       //   this.productImages.push({ src: '/assets/images/resource/shop/' + productImage.image_url, thumb: '/assets/images/resource/shop/' + productImage.image_url })
       // })
       // console.log(this.productImages)
-      console.log(this.product)
+
     });
+  }
+
+  selectQnt(qnt) {
+    this.isActive = qnt.id;
+    this.price = qnt.price;
+    this.portions = qnt.portions;
+    this.product.selectedQnt = qnt.quantity + qnt.um;
+    console.log(qnt)
   }
 }

@@ -77,7 +77,7 @@ export class ProductComponent implements OnInit {
       this.product.selectedAccessories = '';
       this.productCategoryName = this.product.categories[0].category_name;
       this.productCategorySlug = this.product.categories[0].slug;
-      this.price = parseInt(this.product.information[0].price);
+      this.price = this.product.information[0].price;
       this.portions = this.product.information[0].portions;
       this.isActive = this.product.information[0].id;
       this.product.selectedQnt = this.product.information[0].quantity + this.product.information[0].um;
@@ -122,7 +122,7 @@ export class ProductComponent implements OnInit {
 
   selectQnt(qnt) {
     this.isActive = qnt.id;
-    this.price = parseInt(qnt.price);
+    this.price = qnt.price;
     this.portions = qnt.portions;
     this.product.selectedQnt = qnt.quantity + qnt.um;
   }

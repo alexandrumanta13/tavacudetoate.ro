@@ -23,7 +23,7 @@
         <div class="product-details-content">
           <h4>{{product?.product_name}}</h4>
 
-          <span>{{price}} Lei {{portions}}</span>
+          <span>{{price | number:'1.2-2'}} Lei {{portions}}</span>
 
           <p>{{product?.description}}</p>
           <div class="quick-view-select">

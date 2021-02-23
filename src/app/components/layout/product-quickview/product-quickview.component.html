@@ -2,7 +2,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -40,19 +40,20 @@
                         <div class="modal-pro-content">
                             <h3>{{product?.product_name}} </h3>
                             <div class="product-price-wrapper">
-                                <span>{{product?.information[0].price}} lei</span>
+                                <span>{{price | number:'1.2-2'}} Lei {{portions}}</span>
                                 <!-- <span class="product-price-old">$162.00 </span> -->
                             </div>
                             <p>{{product?.ingredients}}</p>	
                             <div class="quick-view-select">
                                 <div class="select-option-part">
                                     <label>Gramaj*</label>
-                                    <select class="select">
-                                        <option *ngFor="let quantity of product?.information" value="">{{quantity.quantity}} {{quantity.um}}</option>
-                                       
-                                    </select>
-                                </div>
-                                
+                                    <ul class="clearfix">
+                                      <li *ngFor="let qnt of product?.information;">
+                                        <button (click)="selectQnt(qnt)" [class.active]="qnt.id === isActive"
+                                          class="qnt-box__qunatity">{{qnt.quantity}} {{qnt.um}}</button>
+                                      </li>
+                                    </ul>
+                                  </div>
                             </div>
                             <div class="product-quantity">
                                 <div class="cart-plus-minus">
