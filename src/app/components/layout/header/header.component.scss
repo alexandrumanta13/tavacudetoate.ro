@@ -21,6 +21,48 @@
   margin-right: 32px;
 }
 
+.shopping-cart-content {
+  height: 75vh;
+  top: 100%;
+
+  ul {
+    height: 62%;
+    overflow: auto;
+
+    
+  }
+
+  
+
+  &.openCart {
+    display: block;
+  }
+
+  &.empty {
+    height: auto;
+  }
+
+  .shopping-cart-img {
+    img {
+      width: 100%;
+    }
+  }
+}
+
+.shopping-cart-content ul li {
+  flex-wrap: nowrap;
+
+  .shopping-cart-title {
+    margin-right: 20px;
+  }
+}
+
+.header-cart {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 @media (max-width: 767px) {
 
   .wishlist-text>p,

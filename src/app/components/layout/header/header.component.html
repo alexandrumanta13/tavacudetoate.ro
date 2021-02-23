@@ -59,94 +59,35 @@
                    <span class="cart-digit-bold">209 Lei</span>
                  </div>
                </a>
-               <div class="shopping-cart-content" [class.openCart]="openCart">
+               <div class="shopping-cart-content" [ngClass]="{'empty': cartTotal$ === 0}" [class.openCart]="openCart">
                  <ul>
-                   <li class="single-shopping-cart">
+                   <li class="single-shopping-cart" *ngFor="let product of items$ | async"
+                     (removeFromCart)="removeCart(product)">
                      <div class="shopping-cart-img">
-                       <a href="#"><img alt="" src="assets/img/cart/cart-1.jpg"></a>
+                       <a routerLink="/produs/{{product.alias}}"><img alt=""
+                           src="/assets/img/product/{{product?.images[0].image_url}}"></a>
                      </div>
                      <div class="shopping-cart-title">
-                       <h4><a href="#">Phantom Remote </a></h4>
-                       <h6>Qty: 02</h6>
-                       <span>$260.00</span>
+                       <h4><a routerLink="/produs/{{product.alias}}">{{product.product_name}}</a></h4>
+                       <h6>Cnt: {{product.num}}</h6>
+                       <span>x {{product.selectedPrice}} lei</span>
                      </div>
                      <div class="shopping-cart-delete">
-                       <a href="#"><i class="ion ion-close"></i></a>
+                       <a (click)="removeCart(product)"><i class="ion ion-close"></i></a>
                      </div>
                    </li>
-                   <li class="single-shopping-cart">
-                     <div class="shopping-cart-img">
-                       <a href="#"><img alt="" src="assets/img/cart/cart-1.jpg"></a>
-                     </div>
-                     <div class="shopping-cart-title">
-                       <h4><a href="#">Phantom Remote </a></h4>
-                       <h6>Qty: 02</h6>
-                       <span>$260.00</span>
-                     </div>
-                     <div class="shopping-cart-delete">
-                       <a href="#"><i class="ion ion-close"></i></a>
-                     </div>
-                   </li>
-                   <li class="single-shopping-cart">
-                     <div class="shopping-cart-img">
-                       <a href="#"><img alt="" src="assets/img/cart/cart-1.jpg"></a>
-                     </div>
-                     <div class="shopping-cart-title">
-                       <h4><a href="#">Phantom Remote </a></h4>
-                       <h6>Qty: 02</h6>
-                       <span>$260.00</span>
-                     </div>
-                     <div class="shopping-cart-delete">
-                       <a href="#"><i class="ion ion-close"></i></a>
-                     </div>
-                   </li>
-                   <li class="single-shopping-cart">
-                     <div class="shopping-cart-img">
-                       <a href="#"><img alt="" src="assets/img/cart/cart-1.jpg"></a>
-                     </div>
-                     <div class="shopping-cart-title">
-                       <h4><a href="#">Phantom Remote </a></h4>
-                       <h6>Qty: 02</h6>
-                       <span>$260.00</span>
-                     </div>
-                     <div class="shopping-cart-delete">
-                       <a href="#"><i class="ion ion-close"></i></a>
-                     </div>
-                   </li>
-                   <li class="single-shopping-cart">
-                     <div class="shopping-cart-img">
-                       <a href="#"><img alt="" src="assets/img/cart/cart-1.jpg"></a>
-                     </div>
-                     <div class="shopping-cart-title">
-                       <h4><a href="#">Phantom Remote </a></h4>
-                       <h6>Qty: 02</h6>
-                       <span>$260.00</span>
-                     </div>
-                     <div class="shopping-cart-delete">
-                       <a href="#"><i class="ion ion-close"></i></a>
-                     </div>
-                   </li>
-                   <li class="single-shopping-cart">
-                     <div class="shopping-cart-img">
-                       <a href="#"><img alt="" src="assets/img/cart/cart-2.jpg"></a>
-                     </div>
-                     <div class="shopping-cart-title">
-                       <h4><a href="#">Phantom Remote</a></h4>
-                       <h6>Qty: 02</h6>
-                       <span>$260.00</span>
-                     </div>
-                     <div class="shopping-cart-delete">
-                       <a href="#"><i class="ion ion-close"></i></a>
-                     </div>
-                   </li>
+
                  </ul>
-                 <div class="shopping-cart-total">
-                   <h4>Shipping : <span>$20.00</span></h4>
-                   <h4>Total : <span class="shop-total">$260.00</span></h4>
+                 <div class="shopping-cart-total" *ngIf="cartTotal$ > 0">
+                   <h4>Total : <span class="shop-total">{{totalPrice$}} lei</span></h4>
                  </div>
-                 <div class="shopping-cart-btn">
-                   <a href="cart-page.html">view cart</a>
-                   <a href="checkout.html">checkout</a>
+
+                 <div class="cart-empty" *ngIf="cartTotal$ === 0">
+                   <p>Nu ai niciun produs in cos!</p>
+                 </div>
+                 <div class="shopping-cart-btn" *ngIf="cartTotal$ > 0">
+                   <a [routerLink]="['/cos-cumparaturi']">Vezi cos</a>
+                   <a [routerLink]="['/finalizeaza-comanda']">Finalizeaza</a>
                  </div>
                </div>
              </div>
@@ -168,9 +109,10 @@
              <nav>
                <ul>
                  <li class="top-hover">
-                   <a class="dropdown-main-menu">Meniu principal <i class="ion-chevron-down"></i></a> 
+                   <a class="dropdown-main-menu">Meniu principal <i class="ion-chevron-down"></i></a>
                    <ul class="submenu">
-                     <li *ngFor="let category of categories"><a routerLink="/produse/{{category.slug}}">{{category.category_name}}</a></li>
+                     <li *ngFor="let category of categories"><a
+                         routerLink="/produse/{{category.slug}}">{{category.category_name}}</a></li>
                    </ul>
                  </li>
                  <li *ngFor="let menu of navMenu">
