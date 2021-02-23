@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 })
 export class ProductsCategoriesComponent implements OnInit {
   categories: any;
-  selectedCategory: any;
+  selectedCategory: string = 'aperitive';
   products: any;
   product: any;
   cartQuantity: any;
@@ -25,7 +25,6 @@ export class ProductsCategoriesComponent implements OnInit {
   ngOnInit(): void {
 
     this._ProductsService.getCategories().then(data => {
-      console.log(data.categories)
       this.categories = data.categories;
     })
 
@@ -33,7 +32,6 @@ export class ProductsCategoriesComponent implements OnInit {
   }
 
   selectCategory(category) {
-    console.log(category)
     this.selectedCategory = category;
     this.getProducts();
   }
@@ -51,7 +49,7 @@ export class ProductsCategoriesComponent implements OnInit {
       });
 
     }
-    
+
   }
 
   addToCart(product) {

@@ -182,7 +182,7 @@ owl-stage {
   display: block;
   height: 100%;
 
-  & > * {
+  &>* {
     height: 100%;
   }
 }
@@ -191,6 +191,44 @@ owl-stage {
   height: 100%;
 }
 
-.owl-carousel .owl-stage-outer, .owl-carousel .owl-stage {
+.owl-carousel .owl-stage-outer,
+.owl-carousel .owl-stage {
   height: 100%;
+}
+
+
+.product-wrapper {
+
+
+
+  .product-action {
+    padding: 10px;
+    background: rgba(0, 0, 0, .6);
+    color: #fff;
+
+    a {
+      i {
+        transition: all 0.3s ease-out 0s;
+        color: #fff;
+      }
+
+      &:hover {
+        color: #e02c2b;
+        cursor: pointer;
+
+        i {
+          color: #e02c2b;
+        }
+      }
+
+    }
+  }
+
+  &:hover {
+    .product-action {
+      bottom: 0;
+      opacity: 1;
+      visibility: visible;
+    }
+  }
 }

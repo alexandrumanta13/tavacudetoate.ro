@@ -3,8 +3,8 @@
     <div class="product-tab-list-wrap text-center mb-40 yellow-color">
       <div class="product-tab-list nav">
         <ng-container *ngFor="let category of categories">
-          <a (click)="selectCategory(category.category_name)"
-            [ngClass]="{ 'active': category.category_name == selectedCategory}">
+          <a (click)="selectCategory(category.slug)"
+            [ngClass]="{'active': category.slug === selectedCategory}">
             <h4>{{category.category_name}} </h4>
           </a>
         </ng-container>
