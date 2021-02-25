@@ -31,12 +31,8 @@ export class HeaderComponent implements OnInit {
   constructor(private router: Router, private _cartService: CartService, private _ProductsService: ProductsService, private _eref: ElementRef) {
     this.navMenu = [
       {
-        label: 'Delicii',
-        link: '/delicii'
-      },
-      {
-        label: 'Vegetarian',
-        link: '/vegetarial'
+        label: 'Sugestiile bucatarului',
+        link: '/sugestiile-bucatarului'
       },
       {
         label: 'Locatii',
@@ -45,6 +41,10 @@ export class HeaderComponent implements OnInit {
       {
         label: 'Contact',
         link: '/'
+      },
+      {
+        label: 'Cariere',
+        link: '/cariere'
       }
     ];
 

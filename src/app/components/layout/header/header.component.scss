@@ -2,11 +2,11 @@
   position: relative;
 
   img {
-    height: 70px;
+    height: 80px;
     top: 0;
     bottom: 0;
     margin: auto;
-    margin: auto;
+    position: absolute;
   }
 
 
@@ -24,6 +24,11 @@
 
 
   }
+}
+
+
+.header-middle {
+  padding: 30px;
 }
 
 .header-login {
@@ -266,6 +271,7 @@ a.dropdown-main-menu:not([href]):not([tabindex]) {
   line-height: 60px;
   text-transform: uppercase;
   padding-top: 2px;
+  font-size: 18px;
 
   &:hover {
     color: #e02c2b;
