@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { SEOServiceService } from './seoservice.service';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { filter, map, mergeMap } from 'rxjs/operators';
+import { HostListener } from '@angular/core';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { filter, map, mergeMap } from 'rxjs/operators';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
- 
+
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -41,7 +42,7 @@ export class AppComponent {
       if (!(evt instanceof NavigationEnd)) {
         return;
       }
-      
+
       window.scrollTo(0, 0);
     });
   }

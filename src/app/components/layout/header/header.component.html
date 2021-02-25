@@ -28,14 +28,18 @@
              </a>
            </div>
          </div>
-         <div class="col-lg-6 col-md-6 col-4 col-sm-4">
-           <div class="search-info">
+         <div class="col-lg-6 col-md-6 col-1 col-sm-4">
+           <a class="toggle-search d-md-none" (click)="toggleSearch()">
+            <i class="icon-magnifier icons"></i>
+           </a>
+          
+           <div class="search-info" [class.open]="search">
              <input type="text" placeholder="Cauta produse">
              <i class="fa fa-search"></i>
            </div>
          </div>
 
-         <div class="col-lg-4 col-md-4 col-4 col-sm-4">
+         <div class="col-lg-4 col-md-4 col-7 col-sm-4">
            <div class="header-middle-right f-right">
              <div class="header-login">
                <a routerLink="/autentificare">

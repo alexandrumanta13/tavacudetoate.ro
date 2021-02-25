@@ -7,13 +7,22 @@
     bottom: 0;
     margin: auto;
     margin: auto;
+  }
 
 
-    @media (max-width: 767px) {
-      position: absolute;
-      transform: translate(-50%, 0);
-      height: 60px;
+
+  @media (max-width: 767px) {
+    margin: 0;
+
+    img {
+      position: relative;
+
+      height: auto;
+      width: 100%;
     }
+
+
+
   }
 }
 
@@ -29,10 +38,10 @@
     height: 62%;
     overflow: auto;
 
-    
+
   }
 
-  
+
 
   &.openCart {
     display: block;
@@ -63,6 +72,8 @@
   }
 }
 
+
+
 @media (max-width: 767px) {
 
   .wishlist-text>p,
@@ -77,6 +88,61 @@
 
   .header-middle {
     padding: 50px 0 30px;
+
+    &.clone {
+      top: -100%;
+      position: fixed;
+    }
+
+    .search-info {
+      animation: 700ms ease-in-out 0s normal none 1 running fadeInDown;
+      position: fixed;
+      top: -100%;
+      width: 100%;
+      left: 0;
+      
+      background: #fff;
+      padding: 0 20px;
+      padding-bottom: 10px;
+      z-index: 99;
+
+      i {
+        right: 30px;
+        bottom: 0;
+      }
+
+      &.open {
+        top: 190px;
+      }
+    }
+
+    &.fixed {
+      position: fixed;
+      animation: 700ms ease-in-out 0s normal none 1 running fadeInDown;
+      background-color: #fff;
+      border-bottom: 0 solid #4a90e2;
+      box-shadow: 0 0 25px 0 rgb(0 0 0 / 4%);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 9999;
+      padding: 20px 0;
+
+      .search-info {
+        &.open {
+          top: 90px;
+        }
+      }
+    }
+
+    
+
+    .toggle-search {
+      display: flex;
+      align-items: center;
+      font-size: 20px;
+     
+    }
   }
 
   .header-middle-right {
@@ -187,6 +253,7 @@
     position: absolute;
     right: 20px;
     top: 50%;
+    
     transform: translate(-50%, -50%);
   }
 }
@@ -199,6 +266,7 @@ a.dropdown-main-menu:not([href]):not([tabindex]) {
   line-height: 60px;
   text-transform: uppercase;
   padding-top: 2px;
+
   &:hover {
     color: #e02c2b;
     cursor: pointer;
@@ -208,4 +276,8 @@ a.dropdown-main-menu:not([href]):not([tabindex]) {
 
 .top-hover {
   margin-right: 80px;
+}
+
+.stick a.dropdown-main-menu:not([href]):not([tabindex]) {
+  color: #2f333a;
 }

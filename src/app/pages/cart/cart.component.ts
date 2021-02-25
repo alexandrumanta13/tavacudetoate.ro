@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 })
 
 export class CartComponent implements OnInit {
-  @Input() productNum: number;
+  
 
   constructor(
     public router: Router,

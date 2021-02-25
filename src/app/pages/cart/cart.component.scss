@@ -1,84 +1,65 @@
-.cart-section .cart-table tbody tr .prod-column .column-box .prod-thumb {
-  height: 100px;
-  transform: translate(0%, -50%);
-  top: 50%;
-}
+.table-content {
+  table {
+    tr {
+      td.product-thumbnail {
+        img {
+          width: 100%;
+        }
+      }
+    }
 
-.accessories {
-  font-size: 12px;
-  color: #c3c3c3;
-}
+    @media (max-width: 767px) {
+      thead {
+        display: none;
+      }
 
-.extra {
-  position: absolute;
-  right: 0;
-  display: flex;
+      tr {
+        flex-wrap: wrap;
+        display: flex;
 
-  .composition,
-  .message {
-    margin-right: 16px;
-  }
+        td.product-thumbnail {
+          flex-basis: 100%;
+        }
 
-  @media only screen and (max-width: 767px) {
-    position: relative;
-    flex-direction: column;
-    margin: 32px 32px 0;
-  }
-}
+        td.product-name {
+          width: 100%;
+        }
 
+        td.product-price-cart {
+          flex: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
 
-.back-to-shop {
-  margin-top: 40px;
-}
+        td.product-quantity {
+          flex: 50%;
+        }
 
-.other-links {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
+        td.product-subtotal {
+          flex: 80%;
+          font-size: 18px;
+        }
 
-  small {
-    flex-basis: 100%;
-    color: #f60000;
-  }
-
-  img {
-    height: 20px;
-    margin-right: 8px;
-
-  }
-}
-
-.cart-section .othre-content .coupon-box {
-  width: 50%;
-
-  @media only screen and (max-width: 767px) {
-    width: 100%;
-  }
-
-}
-
-.theme-btn-one:disabled {
-  background: #ddd;
-  box-shadow: none;
-
-  &:hover {
-    cursor: not-allowed;
-
-    &:before,
-    &:after {
-      content: none;
+        td.product-remove {
+          flex: 20%;
+        }
+      }
     }
   }
 }
 
 
-.cart-section .othre-content .update-btn button {
-  color: #6d4b50;
-  border: 2px solid #6d4b50;
+@media (max-width: 767px) {
 
-  &:hover {
-    opacity: 1;
-    color: #fff;
-    background: #6d4b50;
+  .cart-shiping-update>a,
+  .cart-clear>button,
+  .cart-clear>a {
+    margin: 0 0 15px;
+    padding: 18px 35px 19px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

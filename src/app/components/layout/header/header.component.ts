@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { map, take } from 'rxjs/operators';
 import { CartService } from 'src/app/pages/cart/cart.service';
@@ -24,6 +24,9 @@ export class HeaderComponent implements OnInit {
   openCart: any;
   navMenu: {}[];
   categories: any;
+  cln: HTMLElement;
+  search: any;
+  headerMiddle: HTMLElement;
 
   constructor(private router: Router, private _cartService: CartService, private _ProductsService: ProductsService, private _eref: ElementRef) {
     this.navMenu = [
@@ -43,7 +46,11 @@ export class HeaderComponent implements OnInit {
         label: 'Contact',
         link: '/'
       }
-    ]
+    ];
+
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
   }
 
 
@@ -64,10 +71,17 @@ export class HeaderComponent implements OnInit {
         return;
       }
       this.open = false;
-
+      this.openCart = false;
+      this.search = false;
     });
 
-    console.log(this.cartProducts)
+    if(window.outerWidth < 767) {
+      this.headerMiddle = (<HTMLElement>document.querySelector('.header-middle'));
+
+      // this.cln = (<HTMLElement>this.headerMiddle.cloneNode(true));
+      // this.cln.classList.add('clone');
+      // document.querySelector('.header-area').appendChild(this.cln);
+    }
   }
 
   togglCart() {
@@ -76,14 +90,38 @@ export class HeaderComponent implements OnInit {
 
   toggleMenu() {
     this.open = !this.open;
+  }
 
+  toggleSearch() {
+   this.search = !this.search
   }
 
   onClick(event) {
     if (!this._eref.nativeElement.contains(event.target)) {
       this.openCart = false;
     }
+  }
 
+ 
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll() {
+    const header = (<HTMLElement>document.querySelector('.header-bottom'));
+    if(window.outerWidth > 767) {
+      if (window.pageYOffset > (header.getBoundingClientRect().bottom + (header.getBoundingClientRect().height * 2))) {
+        header.classList.add('stick');
+      } else {
+        header.classList.remove('stick');
+      }
+    } else {
+      this.search = false;
+      if (window.pageYOffset > 0) {
+        this.headerMiddle.classList.add('fixed');
+      } else if(window.pageYOffset === 0) {
+        this.headerMiddle.classList.remove('fixed');
+      }
+    }
+    
   }
 
 
