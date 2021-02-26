@@ -1,28 +1,5 @@
-.pagination li a:not(.active) {
-  &:hover {
-    cursor: pointer;
-  }
-}
-
-.cart-btn {
-  margin-top: 16px;
-}
-
-.lower-content ul {
-  display: flex;
-
-  flex-wrap: wrap;
-
-  li {
-    display: flex;
-    margin-right: 16px;
-    align-items: center;
-
-    &:first-child {
-      span {
-        border: 1px solid #e5e5e5;
-        padding: 2px 8px;
-      }
-    }
+.shop-sidebar-wrapper {
+  &.stick {
+    position: fixed;
   }
 }

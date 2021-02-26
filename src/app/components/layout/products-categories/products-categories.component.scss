@@ -5,3 +5,15 @@
 .product-tab-list > a h4 {
     font-size: 19px;
 }
+
+.product-tab-list {
+    @media (max-width: 767px) {
+      & > a {
+        flex-basis: 50%;
+        margin-bottom: 16px;
+        &::before {
+            content: none;
+        }
+      }
+    }
+  }

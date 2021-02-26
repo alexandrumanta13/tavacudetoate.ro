@@ -1,20 +1,129 @@
+<div class="breadcrumb-area gray-bg">
+  <div class="container">
+    <div class="breadcrumb-content">
+      <ul>
+        <li><a routerLink="/">Acasa</a></li>
+        <li class="active">Produse </li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-
-<!-- shop-page-section -->
-<section class="shop-page-section shop-page-1">
-  <div class="auto-container">
-    <div class="row clearfix">
-      <div class="col-lg-3 col-md-12 col-sm-12 sidebar-side">
-        <div class="shop-sidebar default-sidebar">
-          <div class="sidebar-widget sidebar-categories">
-            <div class="widget-title">
-              <h3>Categorii</h3>
+<div class="shop-page-area pt-100 pb-100">
+  <div class="container">
+    <div class="row flex-row-reverse">
+      <div class="col-lg-9">
+        <div class="banner-area pb-30">
+          <a href="product-details.html"><img alt="" src="assets/img/banner/banner-49.jpg"></a>
+        </div>
+        <!-- <div class="shop-topbar-wrapper">
+          <div class="shop-topbar-left">
+            <ul class="view-mode">
+              <li class="active"><a href="#product-grid" data-view="product-grid"><i class="fa fa-th"></i></a></li>
+              <li><a href="#product-list" data-view="product-list"><i class="fa fa-list-ul"></i></a></li>
+            </ul>
+            <p>Showing 1 - 20 of 30 results </p>
+          </div>
+          <div class="product-sorting-wrapper">
+            <div class="product-shorting shorting-style">
+              <label>View:</label>
+              <select>
+                <option value=""> 20</option>
+                <option value=""> 23</option>
+                <option value=""> 30</option>
+              </select>
             </div>
-            <div class="widget-content">
-              <ul class="categories-list clearfix">
+            <div class="product-show shorting-style">
+              <label>Sort by:</label>
+              <select>
+                <option value="">Default</option>
+                <option value=""> Name</option>
+                <option value=""> price</option>
+              </select>
+            </div>
+          </div>
+        </div> -->
+        <div class="grid-list-product-wrapper">
+          <div class="product-grid product-view pb-20">
+            <div class="row">
+              <div class="product-width col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 mb-30" *ngFor="let product of products">
+                <div class="product-wrapper">
+                  <div class="product-img">
+                    <a routerLink="/produs/{{product.categories[0].slug}}/{{product.alias}}">
+                      
+                      <img *ngIf="product.images.length" src="/assets/img/product/{{product.images[0].image_url}}" alt="product">
+                      <img *ngIf="!product.images.length" src="/assets/img/product/default.jpg" alt="product">
+                    </a>
+                    <div class="product-action">
+                      <div class="pro-action-left">
+                        <a title="Adauga in cos" (click)="addToCart(product)"><i class="ion-android-cart"></i> Adauga in cos</a>
+                      </div>
+                      <div class="pro-action-right">
+                        <a title="Quick View" (click)="productQuickView.getProduct(product.alias)" data-toggle="modal" data-target="#exampleModal" href="#">
+                          <i class="ion-android-open"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="product-content">
+                    <h4>
+                      <a routerLink="/produs/{{product.categories[0].slug}}/{{product.alias}}">{{product.product_name}} </a>
+                    </h4>
+                    <div class="product-price-wrapper">
+                      <span>{{product.information[0].price}} lei</span>
+                    </div>
+                  </div>
+                  <div class="product-list-details">
+                    <h4>
+                      <a routerLink="/produs/{{product.categories[0].slug}}/{{product.alias}}">{{product.product_name}} </a>
+                    </h4>
+                    <div class="product-price-wrapper">
+                      <span>{{product.information[0].price}} lei</span>
+                      
+                    </div>
+                    <p>Ingrediente: {{product.ingredients}}</p>
+                    <p>Alergeni: {{product.allergens}}</p>
+                    <div class="shop-list-cart-wishlist">
+                      
+                      <a title="Adauga in cos" (click)="addToCart(product)"><i class="ion-android-cart"></i> Adauga in cos</a>
+                      <a title="Quick View" (click)="productQuickView.getProduct(product.alias)" data-toggle="modal" data-target="#exampleModal" href="#">
+                        <i class="ion-android-open"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+             
+            </div>
+          </div>
+          <!-- <div class="pagination-total-pages">
+            <div class="pagination-style">
+              <ul>
+                <li><a class="prev-next prev" href="#"><i class="ion-ios-arrow-left"></i> Prev</a></li>
+                <li><a class="active" href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">...</a></li>
+                <li><a href="#">10</a></li>
+                <li><a class="prev-next next" href="#">Next<i class="ion-ios-arrow-right"></i> </a></li>
+              </ul>
+            </div>
+            <div class="total-pages">
+              <p>Showing 1 - 20 of 30 results </p>
+            </div>
+          </div> -->
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="shop-sidebar-wrapper gray-bg-7 shop-sidebar-mrg">
+          <div class="shop-widget">
+            <h4 class="shop-sidebar-title">Categorii</h4>
+            <div class="shop-catigory">
+              <ul id="faq">
+
                 <li *ngFor="let category of categories">
-                    <a *ngIf="category.category_name != 'Accesorii' && category.slug != 'candy-bar'" routerLink="/produse/{{category.slug}}">{{category.category_name}}</a>
-                    <a *ngIf="category.slug === 'candy-bar'" routerLink="/{{category.slug}}">{{category.category_name}}</a>
+                  <a routerLink="/produse/{{category.slug}}">{{category.category_name}}</a>
+
                 </li>
               </ul>
             </div>
@@ -22,47 +131,9 @@
 
         </div>
       </div>
-      <div class="col-lg-9 col-md-12 col-sm-12 content-side">
-        <div class="our-shop">
-          <div class="row clearfix">
-            <div class="col-lg-4 col-md-6 col-sm-12 shop-block" *ngFor="let product of products">
-              <div class="shop-block-one">
-                <div class="inner-box">
-                  <figure class="image-box">
-                    <a routerLink="/produs/{{product.categories[0].slug}}/{{product.alias}}">
-                      <img *ngIf="product.image_url" src="/assets/img/product/{{product.images[0].image_url}}" alt="product">
-                      <img *ngIf="!product.image_url" src="/assets/img/product/default.png" alt="product">
-                    </a>
-                  </figure>
-                  <div class="lower-content">
-                    <span class="price-box">{{product.information[0].price}} lei</span>
-                    <h3><a routerLink="/produs/{{product.categories[0].slug}}/{{product.alias}}">{{product.product_name}}</a></h3>
-                    <ul>
-                        <li *ngFor="let qnt of product.information">
-                            <span>{{qnt.quantity}} {{qnt.um}}</span>
-                        </li>
-                    </ul>
-                    
-                    <div class="cart-btn"><a routerLink="/produs/{{product.categories[0].slug}}/{{product.alias}}" class="theme-btn-two">Cumpara</a></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- <div class="pagination-wrapper centred" *ngIf="totalPages > 1">
-            <ul class="pagination">
-              <li><a (click)="decreaseCurrentPage();"><i class="fas fa-angle-left"></i></a></li>
-              <li *ngFor="let number of pages" (click)="setCurrentPage(number)">
-                <a [class.active]="number === currentPage">{{number}}</a>
-              </li>
-              <li><a (click)="increaseCurrentPage();"><i class="fas fa-angle-right"></i></a></li>
-            </ul>
-          </div> -->
-        </div>
-      </div>
     </div>
   </div>
-</section>
-<!-- shop-page-section end -->
+</div>
+
+
+<app-product-quickview #productQuickView></app-product-quickview>

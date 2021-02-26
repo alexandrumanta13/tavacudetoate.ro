@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ProductsService } from './products.service';
 import { Product } from '../product/product.model'
@@ -105,6 +105,41 @@ export class ProductsComponent implements OnInit {
       scrollToContainer.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
 
     }
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll() {
+    const sidebar = (<HTMLElement>document.querySelector('.shop-sidebar-wrapper'));
+    const width = sidebar.parentElement.getBoundingClientRect().width - 32;
+    const left = sidebar.parentElement.getBoundingClientRect().left + 16;
+    const footer = (<HTMLElement>document.querySelector('.footer-area'));
+    const body = (<HTMLElement>document.querySelector('body'));
+
+    if(window.outerWidth > 767) {
+      if (window.pageYOffset > 280 && window.pageYOffset < body.offsetHeight - (footer.getBoundingClientRect().height * 2)) {
+        sidebar.classList.add('stick');
+        sidebar.style.width = width + 'px';
+        sidebar.style.left = left + 'px';
+        sidebar.style.top = 84 + 'px';
+        sidebar.style.removeProperty('position');
+        sidebar.style.removeProperty('bottom');
+
+      } else if(window.outerWidth > body.offsetHeight - (footer.getBoundingClientRect().height * 2) && sidebar.classList.contains('stick') && window.outerWidth !< 280) {
+        sidebar.style.position = 'absolute';
+        sidebar.style.bottom = -80 + 'px';
+        sidebar.style.top = 'auto';
+        sidebar.style.left = 0 + 'px';
+        sidebar.style.width = width + 'px';
+      } else {
+        sidebar.classList.remove('stick');
+        sidebar.style.width = 100 + '%';
+        sidebar.style.left = 'auto';
+        sidebar.style.position = 'relative';
+        sidebar.style.bottom = 'auto';
+        sidebar.style.top = 'auto';
+      }
+    } 
+    
   }
 
 
