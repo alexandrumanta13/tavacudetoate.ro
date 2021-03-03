@@ -72,7 +72,7 @@
                  </div>
                  <div class="cart-text">
                    <span class="digit">Cosul meu</span>
-                   <span class="cart-digit-bold">209 Lei</span>
+                   <span class="cart-digit-bold">{{totalPrice$}} Lei</span>
                  </div>
                </a>
                <div class="shopping-cart-content" [ngClass]="{'empty': cartTotal$ === 0}" [class.openCart]="openCart">
@@ -89,7 +89,7 @@
                        <span>x {{product.selectedPrice}} lei</span>
                      </div>
                      <div class="shopping-cart-delete">
-                       <a (click)="removeCart(product)"><i class="ion ion-close"></i></a>
+                       <span class="remove-from-cart" (click)="removeCart(product)"><i class="ion ion-close remove-from-cart"></i></span>
                      </div>
                    </li>
 

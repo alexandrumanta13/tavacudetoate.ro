@@ -90,14 +90,6 @@ export class CheckoutComponent implements OnInit {
       console.log(this.products)
     })
 
-    this.cartService.totalPrice.subscribe(info => {
-      this.totalPrice$ = info;
-      if (this.totalPrice$ < 100) {
-        this.router.navigate(['/cos-cumparaturi']);
-      }
-    });
-
-
 
     this.userSub = this.authAPIService.user.subscribe(user => {
       this.isAuthentificated = !!user;

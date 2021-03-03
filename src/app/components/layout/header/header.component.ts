@@ -65,6 +65,10 @@ export class HeaderComponent implements OnInit {
       this.categories = data.categories;
     })
 
+    this._cartService.totalPrice.subscribe(info => {
+      this.totalPrice$ = info.toFixed(2);
+    });
+
     this._cartService.numTotal.subscribe(info => {
       this.cartTotal$ = info;
     });
@@ -88,7 +92,6 @@ export class HeaderComponent implements OnInit {
     }
 
     this._ProductsService.getProductsAll().then(products => {
-      console.log(products)
       this.products = products;
     })
   }
@@ -107,8 +110,13 @@ export class HeaderComponent implements OnInit {
   }
 
   onClick(event) {
+console.log(!this._eref.nativeElement.contains(document.querySelector('.remove-from-cart')))
+   
     if (!this._eref.nativeElement.contains(event.target)) {
-      this.openCart = false;
+      if(!event.target.closest('.shopping-cart-delete')) {
+        console.log(!event.target.closest('.shopping-cart-delete'))
+        this.openCart = false;
+      } 
     }
   }
 
