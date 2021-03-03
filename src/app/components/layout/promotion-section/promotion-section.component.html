@@ -31,7 +31,7 @@
                         <a title="Adauga in cos" (click)="addToCart(product)"><i class="ion-android-cart"></i> Adauga in cos</a>
                       </div>
                       <div class="pro-action-right">
-                        <a title="Quick View" (click)="productQuickView.getProduct(product.alias)" data-toggle="modal" data-target="#exampleModal" href="#">
+                        <a title="Quick View" (click)="getProduct(product.alias)" data-toggle="modal" data-target="#exampleModall" href="#">
                           <i class="ion-android-open"></i>
                         </a>
                       </div>
@@ -64,4 +64,75 @@
     </div>
   </div>
 </div>
-<app-product-quickview #productQuickView></app-product-quickview>
+<div class="modal fade" id="exampleModall" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
+          </div>
+          <div class="modal-body">
+              <div class="row">
+                  <div class="col-md-5 col-sm-5 col-xs-12">
+                      <!-- Thumbnail Large Image start -->
+                      <div class="tab-content">
+                          <div id="pro-1" class="tab-pane fade show active">
+                              <img src="/assets/img/product/{{product?.images[0].image_url}}" alt="product">
+                              
+                          </div>
+                          <!-- <div id="pro-2" class="tab-pane fade">
+                              <img src="assets/img/product-details/product-detalis-l2.jpg" alt="">
+                          </div>
+                          <div id="pro-3" class="tab-pane fade">
+                              <img src="assets/img/product-details/product-detalis-l3.jpg" alt="">
+                          </div>
+                          <div id="pro-4" class="tab-pane fade">
+                              <img src="assets/img/product-details/product-detalis-l4.jpg" alt="">
+                          </div> -->
+                      </div>
+                      <!-- Thumbnail Large Image End -->
+                      <!-- Thumbnail Image End -->
+                      <!-- <div class="product-thumbnail">
+                          <div class="thumb-menu owl-carousel nav nav-style" role="tablist">
+                              <a class="active" data-toggle="tab" href="#pro-1">
+                                  <img src="assets/img/product-details/product-detalis-s1.jpg" alt=""></a>
+                              <a data-toggle="tab" href="#pro-2"><img src="assets/img/product-details/product-detalis-s2.jpg" alt=""></a>
+                              <a data-toggle="tab" href="#pro-3"><img src="assets/img/product-details/product-detalis-s3.jpg" alt=""></a>
+                              <a data-toggle="tab" href="#pro-4"><img src="assets/img/product-details/product-detalis-s4.jpg" alt=""></a>
+                          </div>
+                      </div> -->
+                      <!-- Thumbnail image end -->
+                  </div>
+                  <div class="col-md-7 col-sm-7 col-xs-12">
+                      <div class="modal-pro-content">
+                          <h3>{{product?.product_name}} </h3>
+                          <div class="product-price-wrapper">
+                              <span>{{price | number:'1.2-2'}} Lei {{portions}}</span>
+                              <!-- <span class="product-price-old">$162.00 </span> -->
+                          </div>
+                          <p>{{product?.ingredients}}</p>	
+                          <div class="quick-view-select">
+                              <div class="select-option-part">
+                                  <label>Gramaj*</label>
+                                  <ul class="clearfix">
+                                    <li *ngFor="let qnt of product?.information;">
+                                      <button (click)="selectQnt(qnt)" [class.active]="qnt.id === isActive"
+                                        class="qnt-box__qunatity">{{qnt.quantity}} {{qnt.um}}</button>
+                                    </li>
+                                  </ul>
+                                </div>
+                          </div>
+                          <div class="product-quantity">
+                              <div class="cart-plus-minus">
+                                  
+                                  <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1">
+                              </div>
+                              <button>Adauga in cos</button>
+                          </div>
+                          
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

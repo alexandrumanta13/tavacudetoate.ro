@@ -208,7 +208,7 @@
     .grand-totall {
         padding: 45px 20px 50px;
     }
-    #exampleModal .modal-dialog {
+    .modal-dialog {
         width: 730px;
     }
     .checkout-login {
@@ -725,7 +725,7 @@
         margin-top: 10px;
         overflow-y: auto;
     }
-    #exampleModal .modal-dialog {
+    .modal-dialog {
         max-width: 100%;
         width: 100%;
     }

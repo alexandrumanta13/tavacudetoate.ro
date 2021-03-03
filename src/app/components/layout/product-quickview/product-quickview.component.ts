@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 import { CartService } from 'src/app/pages/cart/cart.service';
+import { Product } from 'src/app/pages/product/product.model';
 import { ProductService } from 'src/app/pages/product/product.service';
 
 @Component({
@@ -9,6 +11,7 @@ import { ProductService } from 'src/app/pages/product/product.service';
   styleUrls: ['./product-quickview.component.scss']
 })
 export class ProductQuickviewComponent implements OnInit {
+  
   product: any;
   productCategoryName: any;
   productCategorySlug: any;
@@ -16,25 +19,35 @@ export class ProductQuickviewComponent implements OnInit {
   productImages: any;
   isActive: any;
   portions: any;
+  
 
   constructor(
     private _route: ActivatedRoute,
     private _ProductService: ProductService,
     private _cartService: CartService,
     public router: Router,
-  ) { }
+  ) {
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
 
+   }
+
+  
   ngOnInit(): void {
-    
+   
   }
 
 
   
   getProduct(slug) {
-    console.group(slug)
+   
     this._ProductService.getProduct(slug).then(data => {
+      this.product = "";
       this.product = data;
-     
+
+      console.log(this.product)
+      
       this.productCategoryName = this.product.categories[0].category_name;
       this.productCategorySlug = this.product.categories[0].slug;
       this.price = this.product.information[0].price;
@@ -47,6 +60,8 @@ export class ProductQuickviewComponent implements OnInit {
 
     });
   }
+
+  
 
   selectQnt(qnt) {
     this.isActive = qnt.id;
