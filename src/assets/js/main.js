@@ -53,32 +53,32 @@
     })
     
     /* Best selling active */
-    $('.product-slider-active').owlCarousel({
-        loop: true,
-        nav: true,
-        autoplay: false,
-        autoplayTimeout: 5000,
-        navText: ['<i class="ion-ios-arrow-back"></i>', '<i class="ion-ios-arrow-forward"></i>'],
-        item: 3,
-        margin: 30,
-        responsive: {
-            0: {
-                items: 1
-            },
-            576: {
-                items: 2
-            },
-            768: {
-                items: 2
-            },
-            992: {
-                items: 2
-            },
-            1200: {
-                items: 3
-            }
-        }
-    })
+    // $('.product-slider-active').owlCarousel({
+    //     loop: true,
+    //     nav: true,
+    //     autoplay: false,
+    //     autoplayTimeout: 5000,
+    //     navText: ['<i class="ion-ios-arrow-back"></i>', '<i class="ion-ios-arrow-forward"></i>'],
+    //     item: 3,
+    //     margin: 30,
+    //     responsive: {
+    //         0: {
+    //             items: 1
+    //         },
+    //         576: {
+    //             items: 2
+    //         },
+    //         768: {
+    //             items: 2
+    //         },
+    //         992: {
+    //             items: 2
+    //         },
+    //         1200: {
+    //             items: 3
+    //         }
+    //     }
+    // })
 
     /* Best selling active */
     $('.related-product-active').owlCarousel({

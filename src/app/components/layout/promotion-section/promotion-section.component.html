@@ -1,84 +1,67 @@
-<section class="promotion-section alternat-2 sec-pad overlay-none"
-  style="background-image: url(assets/images/background/imagine-fundal-sectiune.jpg);">
-  <div class="auto-container">
-    <div class="sec-title centred">
-      <p>Produse de sezon</p>
-      <h2>Editie Limitata</h2>
+<div class="best-food-area pb-95">
+  <div class="custom-container">
+    <div class="row">
+      <div class="best-food-width-1">
+        <div class="single-banner">
+          <div class="hover-style">
+            <a href="#"><img src="assets/img/banner/BANNER_HOMEPAGE_1.jpg" alt=""></a>
+          </div>
+        </div>
+      </div>
+      <div class="best-food-width-2">
+        <div class="product-top-bar section-border mb-25 yellow-color">
+          <div class="section-title-wrap">
+            <h3 class="section-title section-bg-white">Cele mai populare</h3>
+          </div>
+
+        </div>
+        <div class="tab-content jump yellow-color">
+          <div id="tab4" class="tab-pane active">
+            <owl-carousel-o [options]="customOptions" class="product-slider-active product-nav">
+              <ng-template carouselSlide *ngFor="let product of products">
+                <div class="product-wrapper">
+                  <div class="product-img">
+                    <a routerLink="/produs/{{product.categories[0].slug}}/{{product.alias}}">
+                      
+                      <img *ngIf="product.images.length" src="/assets/img/product/{{product.images[0].image_url}}" alt="product">
+                      <img *ngIf="!product.images.length" src="/assets/img/product/default.jpg" alt="product">
+                    </a>
+                    <div class="product-action">
+                      <div class="pro-action-left">
+                        <a title="Adauga in cos" (click)="addToCart(product)"><i class="ion-android-cart"></i> Adauga in cos</a>
+                      </div>
+                      <div class="pro-action-right">
+                        <a title="Quick View" (click)="productQuickView.getProduct(product.alias)" data-toggle="modal" data-target="#exampleModal" href="#">
+                          <i class="ion-android-open"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="product-content">
+                    <h4>
+                      <a routerLink="/produs/{{product.categories[0].slug}}/{{product.alias}}">{{product.product_name}} </a>
+                    </h4>
+                    <div class="product-price-wrapper">
+                      <span>{{product.information[0].price}} lei</span>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+              
+            </owl-carousel-o>
+
+          </div>
+
+        </div>
+      </div>
+      <div class="best-food-width-1 mrg-small-35">
+        <div class="single-banner">
+          <div class="hover-style">
+            <a href="#"><img src="assets/img/banner/BANNER_HOMEPAGE_2.jpg" alt=""></a>
+          </div>
+        </div>
+      </div>
     </div>
-    <!-- <div class="sec-title centred">
-      <p>Produse de sezon</p>
-      <h2>Editie Limitata</h2>
-    </div> -->
-    <owl-carousel-o [options]="customOptions" class="single-item-carousel nav-style-one owl-dots-none">
-      <ng-template carouselSlide *ngFor="let product of products">
-        <div class="inner-box">
-          <div class="row clearfix">
-            <div class="col-lg-6 col-md-12 col-sm-12 image-column">
-              <div class="image-box">
-                
-                <figure class="image"><img src="/assets/images/resource/shop/{{product.images[0].image_url}}" alt=""></figure>
-              </div>
-            </div>
-            <div class="col-lg-6 col-md-12 col-sm-12 content-column">
-              <div class="content-box">
-                <div class="price-box" style="background-image: url(assets/images/icons/icon-bg-4.png);">
-                  <span>{{product.information[0].price}}</span>
-                  <p>Lei</p>
-                </div>
-                <h3>{{product.product_name}}</h3>
-                <p>{{product.description}}</p>
-                <div class="btn-box"><a routerLink="/produs/produse-editie-limitata/{{product.alias}}" class="theme-btn-two">Cumpara</a></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </ng-template>
-      
-
-
-      <div class="owl-nav">
-        <div class="owl-prev"><span class="icon-Arrow-Left"></span></div>
-        <div class="owl-next"><span class="icon-Arrow-Right"></span></div>
-      </div>
-      <div class="owl-dots">
-        <div class="owl-dot"><span></span></div>
-        <div class="owl-dot active"><span></span></div>
-      </div>
-    </owl-carousel-o>
-    <!-- <owl-carousel-o [options]="customOptions" class="single-item-carousel nav-style-one owl-dots-none">
-      <ng-template carouselSlide *ngFor="let product of products">
-        <div class="inner-box">
-          <div class="row clearfix">
-            <div class="col-lg-6 col-md-12 col-sm-12 image-column">
-              <div class="image-box">
-                <figure class="image"><img src="assets/images/resource/{{product.item.image}}" alt=""></figure>
-              </div>
-            </div>
-            <div class="col-lg-6 col-md-12 col-sm-12 content-column">
-              <div class="content-box">
-                <div class="price-box" style="background-image: url(assets/images/icons/icon-bg-4.png);">
-                  <span>{{product.item.price}}</span>
-                  <p>Lei</p>
-                </div>
-                <h3>{{product.item.title}}</h3>
-                <p>{{product.item.description}}</p>
-                <div class="btn-box"><a routerLink="/produs/produse-editie-limitata/{{product.forCart.alias}}" class="theme-btn-two">Vezi detalii</a></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </ng-template>
-      
-
-
-      <div class="owl-nav">
-        <div class="owl-prev"><span class="icon-Arrow-Left"></span></div>
-        <div class="owl-next"><span class="icon-Arrow-Right"></span></div>
-      </div>
-      <div class="owl-dots">
-        <div class="owl-dot"><span></span></div>
-        <div class="owl-dot active"><span></span></div>
-      </div>
-    </owl-carousel-o> -->
   </div>
-</section>
+</div>
+<app-product-quickview #productQuickView></app-product-quickview>
