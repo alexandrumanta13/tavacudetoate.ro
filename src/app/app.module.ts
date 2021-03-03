@@ -85,7 +85,7 @@ import { AddressesComponent } from './pages/my-account/addresses/addresses.compo
 import { NiceSelectModule } from "ng-nice-select";
 import { ProductsCategoriesComponent } from './components/layout/products-categories/products-categories.component';
 import { ProductQuickviewComponent } from './components/layout/product-quickview/product-quickview.component';
-
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 @NgModule({
   declarations: [
     AppComponent,
@@ -151,7 +151,8 @@ import { ProductQuickviewComponent } from './components/layout/product-quickview
     SocialLoginModule,
     YouTubePlayerModule,
     LightboxModule,
-    NiceSelectModule
+    NiceSelectModule,
+    Ng2SearchPipeModule
   ],
   exports: [],
   providers: [

@@ -4,7 +4,7 @@
       <div class="best-food-width-1">
         <div class="single-banner">
           <div class="hover-style">
-            <a href="#"><img src="assets/img/banner/BANNER_HOMEPAGE_1.jpg" alt=""></a>
+            <a routerLink="/locatii"><img src="assets/img/banner/BANNER_HOMEPAGE_1.jpg" alt=""></a>
           </div>
         </div>
       </div>
@@ -23,8 +23,8 @@
                   <div class="product-img">
                     <a routerLink="/produs/{{product.categories[0].slug}}/{{product.alias}}">
                       
-                      <img *ngIf="product.images.length" src="/assets/img/product/{{product.images[0].image_url}}" alt="product">
-                      <img *ngIf="!product.images.length" src="/assets/img/product/default.jpg" alt="product">
+                      <img src="/assets/img/product/{{product.images[0].image_url}}" alt="product">
+                     
                     </a>
                     <div class="product-action">
                       <div class="pro-action-left">
@@ -57,7 +57,7 @@
       <div class="best-food-width-1 mrg-small-35">
         <div class="single-banner">
           <div class="hover-style">
-            <a href="#"><img src="assets/img/banner/BANNER_HOMEPAGE_2.jpg" alt=""></a>
+            <a><img src="assets/img/banner/BANNER_HOMEPAGE_2.jpg" alt=""></a>
           </div>
         </div>
       </div>

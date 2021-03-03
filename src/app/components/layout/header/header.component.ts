@@ -27,6 +27,9 @@ export class HeaderComponent implements OnInit {
   cln: HTMLElement;
   search: any;
   headerMiddle: HTMLElement;
+  results: boolean;
+  productSearch: any;
+  products: any;
 
   constructor(private router: Router, private _cartService: CartService, private _ProductsService: ProductsService, private _eref: ElementRef) {
     this.navMenu = [
@@ -73,6 +76,7 @@ export class HeaderComponent implements OnInit {
       this.open = false;
       this.openCart = false;
       this.search = false;
+      this.results = false;
     });
 
     if(window.outerWidth < 767) {
@@ -82,6 +86,11 @@ export class HeaderComponent implements OnInit {
       // this.cln.classList.add('clone');
       // document.querySelector('.header-area').appendChild(this.cln);
     }
+
+    this._ProductsService.getProductsAll().then(products => {
+      console.log(products)
+      this.products = products;
+    })
   }
 
   togglCart() {
@@ -93,7 +102,8 @@ export class HeaderComponent implements OnInit {
   }
 
   toggleSearch() {
-   this.search = !this.search
+   this.search = !this.search;
+   this.results = false;
   }
 
   onClick(event) {
@@ -115,6 +125,7 @@ export class HeaderComponent implements OnInit {
       }
     } else {
       this.search = false;
+      this.results = false;
       if (window.pageYOffset > 0) {
         this.headerMiddle.classList.add('fixed');
       } else if(window.pageYOffset === 0) {
@@ -171,6 +182,12 @@ export class HeaderComponent implements OnInit {
   removeCart(product) {
     this._cartService.removeFromCart(product);
     this.getProducts();
+  }
+
+  onSearchChange() {
+    
+    this.results = true;
+    
   }
 
   // onLogout() {

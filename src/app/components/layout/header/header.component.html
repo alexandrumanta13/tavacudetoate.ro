@@ -34,8 +34,20 @@
            </a>
           
            <div class="search-info" [class.open]="search">
-             <input type="text" placeholder="Cauta produse">
+             <input type="text" name="q" id="q" (click)="onSearchChange()" [(ngModel)]="productSearch" autocomplete="off" placeholder="Cauta produse">
              <i class="fa fa-search"></i>
+
+             <ul class="results" *ngIf="results">
+              <li *ngFor="let product of products | filter:productSearch">
+                <a routerLink="/produs/{{product.categories[0].slug}}/{{product.alias}}">
+                  <figure>
+                    <img src="/assets/img/product/{{product.images[0].image_url}}" alt="">
+                  </figure>
+                  
+                  <strong>{{product.product_name}}</strong>
+                </a>              
+              </li>
+            </ul>
            </div>
          </div>
 

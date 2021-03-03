@@ -92,4 +92,20 @@ export class ProductsService {
                 }, reject);
         });
     }
+
+    /**
+     * Get products
+     *
+     * @returns {Promise<any>}
+     */
+    getProductsAll() : Promise<any>
+    {
+        return new Promise((resolve, reject) => {
+            this._httpClient.get(this.REST_API_SERVER + 'productsAll')
+                .subscribe((response: any) => {
+                    resolve(response);
+                }, reject);
+        });
+       
+    }
 }
