@@ -276,3 +276,29 @@ owl-stage {
     }
   }
 }
+
+.product-details-img,
+.product-dec-slider {
+
+  .owl-theme,
+  .owl-carousel .owl-stage-outer,
+  .owl-carousel .owl-stage,
+  owl-stage {
+    height: auto;
+  }
+
+
+}
+
+.product-dec-slider {
+
+  .owl-carousel .owl-stage-outer,
+  .owl-carousel .owl-stage {
+    width: 100% !important;
+  }
+
+  .owl-carousel.owl-drag .owl-item {
+    width: 25% !important;
+    
+  }
+}

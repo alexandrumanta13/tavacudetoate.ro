@@ -6,6 +6,7 @@ import { ProductService } from './product.service';
 import { v4 as uuidv4 } from 'uuid';
 import { ToastrService } from 'ngx-toastr';
 import { Lightbox } from 'ngx-lightbox';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 declare var $: any;
 
@@ -61,6 +62,27 @@ export class ProductComponent implements OnInit {
     };
   }
 
+  customOptions: OwlOptions = {
+    items: 1, dots: false, margin: 0, stagePadding: 0, autoWidth: true, autoHeight: true,
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 1
+      },
+      740: {
+        items: 1
+      },
+      940: {
+        items: 1
+      }
+    },
+  }
+
+  dotsOptions: OwlOptions;
+  selectedImage: string;
+
   ngOnInit(): void {
     this.formGroup = new FormGroup({
       activeEndDate: new FormControl(new Date(), { validators: [Validators.required, DateTimeValidator] })
@@ -100,8 +122,11 @@ export class ProductComponent implements OnInit {
     });
   }
 
-  addDeliveryDate(date) {
+  changeimage(image: string) {
+    this.selectedImage = image;
+  }
 
+  addDeliveryDate(date) {
 
 
     this.product.deliverydate = `${date.datetime.day + '.' + date.datetime.month + '.' + date.datetime.year}`;

@@ -14,11 +14,31 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-6 col-md-12">
-        <div class="product-details-img">
-          <img *ngIf="product?.images.length" src="/assets/img/product/{{product?.images[0].image_url}}" alt="product">
-          <img *ngIf="!product?.images.length" src="/assets/img/product/default.jpg" alt="product">
-        </div>
+        <owl-carousel-o [options]="customOptions" #owlGal class="product-details-img">
+          <ng-container>
+            <ng-template carouselSlide [id]="product?.images[0].image_url">
+              <img src="/assets/img/product/{{product?.images[0].image_url}}" />
+            </ng-template>
+          </ng-container>
+          <ng-container *ngFor="let image of product?.images">
+            <ng-template carouselSlide [id]="image?.image_url">
+              <img src="/assets/img/product/{{image.image_url}}" alt="">
+            </ng-template>
+          </ng-container>
+
+        </owl-carousel-o>
+        <owl-carousel-o [options]="dotsOptions" class="mt-20 product-dec-slider">
+          <ng-container *ngFor="let image of product?.images; let i = index">
+            <ng-template carouselSlide [id]="image.image_url+i" [width]="80">
+              <a (click)="owlGal.to(image.image_url); changeimage(image.image_url+i)">
+                <img src="/assets/img/product/{{image.image_url}}"
+                  [ngClass]="{'product-gallery__carousel-item--active':selectedImage === image.image_url+i || (i == 0 && !selectedImage)}">
+              </a>
+            </ng-template>
+          </ng-container>
+        </owl-carousel-o>
       </div>
+
       <div class="col-lg-6 col-md-12">
         <div class="product-details-content">
           <h4>{{product?.product_name}}</h4>
@@ -69,6 +89,7 @@
   </div>
 </div>
 
+
 <div class="description-review-area pb-100">
   <div class="container">
     <div class="description-review-wrapper">
@@ -115,42 +136,43 @@
 </div>
 <div class="product-area pb-95">
   <div class="container">
-      <div class="product-top-bar section-border mb-25">
-          <div class="section-title-wrap">
-              <h3 class="section-title section-bg-white">Cumparate frecvent impreuna</h3>
+    <div class="product-top-bar section-border mb-25">
+      <div class="section-title-wrap">
+        <h3 class="section-title section-bg-white">Cumparate frecvent impreuna</h3>
+      </div>
+    </div>
+    <div class="related-product-active product-nav">
+      <div class="row">
+        <div class="product-wrapper col-lg-3 col-md-3 col-sm-3 col-12" *ngFor="let product of recommended">
+          <div class="product-img">
+            <a routerLink="/produs/{{product.categories[0].slug}}/{{product.alias}}">
+              <img *ngIf="product?.images.length" src="/assets/img/product/{{product?.images[0].image_url}}"
+                alt="product">
+              <img *ngIf="!product?.images.length" src="/assets/img/product/default.jpg" alt="product">
+            </a>
+            <div class="product-action">
+              <div class="pro-action-left">
+                <a title="Adauga in cos" (click)="addToCart(product)"><i class="ion-android-cart"></i> Adauga in cos</a>
+              </div>
+              <div class="pro-action-right">
+                <a title="Quick View" data-toggle="modal" data-target="#exampleModal"
+                  (click)="productQuickView.getProduct(product.alias)"><i class="ion-android-open"></i></a>
+              </div>
+            </div>
           </div>
-      </div>
-      <div class="related-product-active product-nav">
-        <div class="row">
-          <div class="product-wrapper col-lg-3 col-md-3 col-sm-3 col-12" *ngFor="let product of recommended">
-            <div class="product-img">
-                <a routerLink="/produs/{{product.categories[0].slug}}/{{product.alias}}">
-                  <img *ngIf="product?.images.length" src="/assets/img/product/{{product?.images[0].image_url}}" alt="product">
-                <img *ngIf="!product?.images.length" src="/assets/img/product/default.jpg" alt="product">
-                </a>
-                <div class="product-action">
-                    <div class="pro-action-left">
-                        <a title="Adauga in cos" (click)="addToCart(product)"><i class="ion-android-cart"></i> Adauga in cos</a>
-                    </div>
-                    <div class="pro-action-right">
-                        <a title="Quick View" data-toggle="modal" data-target="#exampleModal"(click)="productQuickView.getProduct(product.alias)"><i class="ion-android-open"></i></a>
-                    </div>
-                </div>
+          <div class="product-content">
+            <h4>
+              <a routerLink="/produs/{{product.categories[0].slug}}/{{product.alias}}">{{product.product_name}}</a>
+            </h4>
+            <div class="product-price-wrapper">
+              <span>{{product.information[0].price}} lei</span>
+
             </div>
-            <div class="product-content">
-                <h4>
-                  <a routerLink="/produs/{{product.categories[0].slug}}/{{product.alias}}">{{product.product_name}}</a>
-                </h4>
-                <div class="product-price-wrapper">
-                    <span>{{product.information[0].price}} lei</span>
-                    
-                </div>
-            </div>
+          </div>
         </div>
-        </div>
-          
       </div>
+
+    </div>
   </div>
 </div>
 <app-product-quickview #productQuickView></app-product-quickview>
-
