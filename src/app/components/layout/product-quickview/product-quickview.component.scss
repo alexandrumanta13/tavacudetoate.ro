@@ -7,3 +7,24 @@
       list-style: none;
     }
   }
+
+  .product-dec-slider {
+    padding: 0;
+    flex:1
+  }
+
+  .product-details-img {
+    width: 100%;
+    display: flex;
+    flex:1;
+  }
+
+  .modal-body {
+    height: 620px;
+    flex: unset;
+  }
+
+  .carousel-container {
+    display: flex;
+    flex-direction: column;
+  }

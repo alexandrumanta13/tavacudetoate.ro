@@ -27,7 +27,7 @@
           </ng-container>
 
         </owl-carousel-o>
-        <owl-carousel-o [options]="dotsOptions" class="mt-20 product-dec-slider">
+        <owl-carousel-o [options]="dotsOptions" class="mt-20 product-dec-slider" *ngIf="product?.images.length > 1">
           <ng-container *ngFor="let image of product?.images; let i = index">
             <ng-template carouselSlide [id]="image.image_url+i" [width]="80">
               <a (click)="owlGal.to(image.image_url); changeimage(image.image_url+i)">
@@ -143,7 +143,7 @@
     </div>
     <div class="related-product-active product-nav">
       <div class="row">
-        <div class="product-wrapper col-lg-3 col-md-3 col-sm-3 col-12" *ngFor="let product of recommended">
+        <div class="product-wrapper col-lg-3 col-md-3 col-sm-3 col-12 mb-35" *ngFor="let product of recommended">
           <div class="product-img">
             <a routerLink="/produs/{{product.categories[0].slug}}/{{product.alias}}">
               <img *ngIf="product?.images.length" src="/assets/img/product/{{product?.images[0].image_url}}"
@@ -156,7 +156,7 @@
               </div>
               <div class="pro-action-right">
                 <a title="Quick View" data-toggle="modal" data-target="#exampleModal"
-                  (click)="productQuickView.getProduct(product.alias)"><i class="ion-android-open"></i></a>
+                (click)="openModal(product)"><i class="ion-android-open"></i></a>
               </div>
             </div>
           </div>
@@ -175,4 +175,4 @@
     </div>
   </div>
 </div>
-<app-product-quickview #productQuickView></app-product-quickview>
+

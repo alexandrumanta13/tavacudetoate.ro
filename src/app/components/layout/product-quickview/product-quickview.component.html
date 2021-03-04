@@ -1,42 +1,35 @@
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
+
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.dismiss('Cross click')"><i class="fa fa-times"></i></button>
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-5 col-sm-5 col-xs-12">
-                        <!-- Thumbnail Large Image start -->
-                        <div class="tab-content">
-                            <div id="pro-1" class="tab-pane fade show active">
-                                <img src="/assets/img/product/{{product?.images[0].image_url}}" alt="product">
-                                
-                            </div>
-                            <!-- <div id="pro-2" class="tab-pane fade">
-                                <img src="assets/img/product-details/product-detalis-l2.jpg" alt="">
-                            </div>
-                            <div id="pro-3" class="tab-pane fade">
-                                <img src="assets/img/product-details/product-detalis-l3.jpg" alt="">
-                            </div>
-                            <div id="pro-4" class="tab-pane fade">
-                                <img src="assets/img/product-details/product-detalis-l4.jpg" alt="">
-                            </div> -->
-                        </div>
-                        <!-- Thumbnail Large Image End -->
-                        <!-- Thumbnail Image End -->
-                        <!-- <div class="product-thumbnail">
-                            <div class="thumb-menu owl-carousel nav nav-style" role="tablist">
-                                <a class="active" data-toggle="tab" href="#pro-1">
-                                    <img src="assets/img/product-details/product-detalis-s1.jpg" alt=""></a>
-                                <a data-toggle="tab" href="#pro-2"><img src="assets/img/product-details/product-detalis-s2.jpg" alt=""></a>
-                                <a data-toggle="tab" href="#pro-3"><img src="assets/img/product-details/product-detalis-s3.jpg" alt=""></a>
-                                <a data-toggle="tab" href="#pro-4"><img src="assets/img/product-details/product-detalis-s4.jpg" alt=""></a>
-                            </div>
-                        </div> -->
-                        <!-- Thumbnail image end -->
+                    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12 carousel-container">
+                        <owl-carousel-o [options]="customOptions" #owlGal class="product-details-img">
+                            <ng-container>
+                              <ng-template carouselSlide [id]="product?.images[0].image_url">
+                                <img src="/assets/img/product/{{product?.images[0].image_url}}" />
+                              </ng-template>
+                            </ng-container>
+                            <ng-container *ngFor="let image of product?.images">
+                              <ng-template carouselSlide [id]="image?.image_url">
+                                <img src="/assets/img/product/{{image.image_url}}" alt="">
+                              </ng-template>
+                            </ng-container>
+                  
+                          </owl-carousel-o>
+                          <owl-carousel-o [options]="dotsOptions" class="mt-20 product-dec-slider" *ngIf="product?.images.length > 1">
+                            <ng-container *ngFor="let image of product?.images; let i = index">
+                              <ng-template carouselSlide [id]="image.image_url+i" [width]="80">
+                                <a (click)="owlGal.to(image.image_url); changeimage(image.image_url+i)">
+                                  <img src="/assets/img/product/{{image.image_url}}"
+                                    [ngClass]="{'product-gallery__carousel-item--active':selectedImage === image.image_url+i || (i == 0 && !selectedImage)}">
+                                </a>
+                              </ng-template>
+                            </ng-container>
+                          </owl-carousel-o>
                     </div>
-                    <div class="col-md-7 col-sm-7 col-xs-12">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="modal-pro-content">
                             <h3>{{product?.product_name}} </h3>
                             <div class="product-price-wrapper">
@@ -67,6 +60,3 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>

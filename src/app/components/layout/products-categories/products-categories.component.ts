@@ -3,6 +3,8 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { CartService } from 'src/app/pages/cart/cart.service';
 import { ProductsService } from 'src/app/pages/products/products.service';
 import { v4 as uuidv4 } from 'uuid';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ProductQuickviewComponent } from '../product-quickview/product-quickview.component';
 @Component({
   selector: 'app-products-categories',
   templateUrl: './products-categories.component.html',
@@ -20,7 +22,10 @@ export class ProductsCategoriesComponent implements OnInit {
     private _ProductsService: ProductsService,
     private _cartService: CartService,
     public router: Router,
-  ) { }
+    public modalService: NgbModal
+  ) {
+    
+   }
 
   ngOnInit(): void {
 
@@ -56,5 +61,16 @@ export class ProductsCategoriesComponent implements OnInit {
     product.selectedPrice = product.information[0].price;
     product.selectedQnt = product.information[0].quantity + product.information[0].um;
     this._cartService.addToCart(product, 1, false);
+  }
+
+  openModal(product) {
+    console.log(product)
+    const modalRef = this.modalService.open(ProductQuickviewComponent);
+    modalRef.componentInstance.productInput = product;
+    modalRef.result.then((result) => {
+      if (result) {
+        console.log(result);
+      }
+    });
   }
 }

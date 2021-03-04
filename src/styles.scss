@@ -283,12 +283,32 @@ owl-stage {
   .owl-theme,
   .owl-carousel .owl-stage-outer,
   .owl-carousel .owl-stage,
-  owl-stage {
+  owl-stage, 
+  .owl-carousel.owl-drag .owl-item {
     height: auto;
   }
 
 
 }
+
+.modal-body {
+  .product-details-img{
+
+  
+    .owl-carousel.owl-drag .owl-item {
+      height: auto;
+    }
+
+    .owl-carousel .owl-item img {
+      max-width: 414px;
+    }
+
+    a {
+      padding: 0;
+    }
+  }
+}
+
 
 .product-dec-slider {
 
@@ -301,4 +321,6 @@ owl-stage {
     width: 25% !important;
     
   }
+  
 }
+

@@ -40,7 +40,7 @@ import { ProductComponent } from './pages/product/product.component';
 
 
 import { DatetimepickerComponent } from './components/datetimepicker/datetimepicker.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 import {
@@ -147,18 +147,20 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     BrowserAnimationsModule,
     CarouselModule,
     NgbModule,
+    
     ToastrModule.forRoot(),
     SocialLoginModule,
     YouTubePlayerModule,
     LightboxModule,
     NiceSelectModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
   ],
   exports: [],
   providers: [
     {
       provide: NgbDateAdapter,
       useClass: NgbDateNativeAdapter,
+      
     },
     {
       provide: 'SocialAuthServiceConfig',
@@ -178,6 +180,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
         ]
       } as SocialAuthServiceConfig,
     },
+    
+      NgbActiveModal
+    
 
   ],
   bootstrap: [AppComponent]

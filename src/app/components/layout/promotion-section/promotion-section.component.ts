@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { ProductService } from 'src/app/pages/product/product.service';
 import { ProductsService } from 'src/app/pages/products/products.service';
 import { CartService } from '../../../pages/cart/cart.service';
+import { ProductQuickviewComponent } from '../product-quickview/product-quickview.component';
 
 
 
@@ -55,6 +57,7 @@ export class PromotionSectionComponent implements OnInit {
     private _cartService: CartService,
     private _ProductsService: ProductsService,
     private _ProductService: ProductService,
+    public modalService: NgbModal
   ) { }
 
 
@@ -102,6 +105,17 @@ export class PromotionSectionComponent implements OnInit {
     this.portions = qnt.portions;
     this.product.selectedQnt = qnt.quantity + qnt.um;
     console.log(qnt)
+  }
+
+  openModal(product) {
+    console.log(product)
+    const modalRef = this.modalService.open(ProductQuickviewComponent);
+    modalRef.componentInstance.productInput = product;
+    modalRef.result.then((result) => {
+      if (result) {
+        console.log(result);
+      }
+    });
   }
 
 }

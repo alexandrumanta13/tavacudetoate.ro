@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 import { BehaviorSubject } from 'rxjs';
 import { CartService } from 'src/app/pages/cart/cart.service';
 import { Product } from 'src/app/pages/product/product.model';
@@ -11,6 +13,9 @@ import { ProductService } from 'src/app/pages/product/product.service';
   styleUrls: ['./product-quickview.component.scss']
 })
 export class ProductQuickviewComponent implements OnInit {
+
+  @Input() public productInput;
+  @Output() passEntry: EventEmitter<any> = new EventEmitter();
   
   product: any;
   productCategoryName: any;
@@ -19,6 +24,15 @@ export class ProductQuickviewComponent implements OnInit {
   productImages: any;
   isActive: any;
   portions: any;
+
+  customOptions: OwlOptions = {
+    items: 1, dots: false, margin: 0, stagePadding: 0
+    
+  }
+
+  dotsOptions: OwlOptions;
+  selectedImage: string;
+
   
 
   constructor(
@@ -26,6 +40,7 @@ export class ProductQuickviewComponent implements OnInit {
     private _ProductService: ProductService,
     private _cartService: CartService,
     public router: Router,
+    public activeModal: NgbActiveModal
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
@@ -35,14 +50,15 @@ export class ProductQuickviewComponent implements OnInit {
 
   
   ngOnInit(): void {
-   
+    console.log(this.productInput)
+    this.getProduct();
   }
 
 
   
-  getProduct(slug) {
+  getProduct() {
    
-    this._ProductService.getProduct(slug).then(data => {
+    this._ProductService.getProduct(this.productInput.alias).then(data => {
       this.product = "";
       this.product = data;
 
@@ -70,4 +86,10 @@ export class ProductQuickviewComponent implements OnInit {
     this.product.selectedQnt = qnt.quantity + qnt.um;
     console.log(qnt)
   }
+
+  changeimage(image: string) {
+    this.selectedImage = image;
+  }
+
+ 
 }

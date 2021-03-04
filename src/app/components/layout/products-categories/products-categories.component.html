@@ -26,7 +26,7 @@
                     <a title="Adauga in cos" (click)="addToCart(product)"><i class="ion-android-cart"></i> Adauga in cos</a>
                   </div>
                   <div class="pro-action-right">
-                    <a title="Quick View" (click)="productQuickView.getProduct(product.alias)" data-toggle="modal" data-target="#exampleModal" href="#">
+                    <a title="Quick View" (click)="openModal(product)" data-toggle="modal" data-target="#exampleModal" href="#">
                       <i class="ion-android-open"></i>
                     </a>
                   </div>
@@ -49,4 +49,3 @@
     </div>
   </div>
 </div>
-<app-product-quickview #productQuickView></app-product-quickview>

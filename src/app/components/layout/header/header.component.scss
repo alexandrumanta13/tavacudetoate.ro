@@ -339,3 +339,7 @@ a.dropdown-main-menu:not([href]):not([tabindex]) {
     }
   }
 }
+
+.transparent-bar.stick {
+  z-index: 99;
+}

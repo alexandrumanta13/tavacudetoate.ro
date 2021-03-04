@@ -7,6 +7,8 @@ import { Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { CartService } from '../cart/cart.service';
 import { v4 as uuidv4 } from 'uuid';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ProductQuickviewComponent } from 'src/app/components/layout/product-quickview/product-quickview.component';
 
 
 
@@ -41,6 +43,7 @@ export class ProductsComponent implements OnInit {
     private _ProductsService: ProductsService,
     private _cartService: CartService,
     public router: Router,
+    public modalService: NgbModal
     ) { }
 
   ngOnInit(): void {
@@ -179,6 +182,17 @@ export class ProductsComponent implements OnInit {
       this.currentPage -= 1;
     }
     this.getProducts();
+  }
+
+  openModal(product) {
+    console.log(product)
+    const modalRef = this.modalService.open(ProductQuickviewComponent);
+    modalRef.componentInstance.productInput = product;
+    modalRef.result.then((result) => {
+      if (result) {
+        console.log(result);
+      }
+    });
   }
 
 }
