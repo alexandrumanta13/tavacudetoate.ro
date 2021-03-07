@@ -54,14 +54,14 @@
          <div class="col-lg-4 col-md-4 col-7 col-sm-4">
            <div class="header-middle-right f-right">
              <div class="header-login">
-               <a routerLink="/autentificare">
+               <a (click)="toggUser()">
                  <div class="header-icon-style">
                    <i class="icon-user icons"></i>
                  </div>
-                 <div class="login-text-content">
-                   <p>Fa-ti cont<br> sau <span>Intra in cont</span></p>
-                 </div>
                </a>
+               <div class="user-content" [class.openUser]="openUser">
+                 <a routerLink="/autentificare">Autentificare / Inregistrare</a>
+               </div>
              </div>
 
              <div class="header-cart">

@@ -30,6 +30,7 @@ export class HeaderComponent implements OnInit {
   results: boolean;
   productSearch: any;
   products: any;
+  openUser: boolean;
 
   constructor(private router: Router, private _cartService: CartService, private _ProductsService: ProductsService, private _eref: ElementRef) {
     this.navMenu = [
@@ -83,7 +84,7 @@ export class HeaderComponent implements OnInit {
       this.results = false;
     });
 
-    if(window.outerWidth < 767) {
+    if (window.outerWidth < 767) {
       this.headerMiddle = (<HTMLElement>document.querySelector('.header-middle'));
 
       // this.cln = (<HTMLElement>this.headerMiddle.cloneNode(true));
@@ -98,46 +99,77 @@ export class HeaderComponent implements OnInit {
 
   togglCart() {
     this.openCart = !this.openCart;
+    this.search = false;
+    this.results = false;
+    this.openUser = false;
+  }
+
+  toggUser() {
+    this.openUser = !this.openUser;
+    this.search = false;
+    this.results = false;
+    this.openCart = false;
   }
 
   toggleMenu() {
     this.open = !this.open;
+    this.search = false;
+    this.results = false;
+    this.openUser = false;
+    this.openCart = false;
   }
 
   toggleSearch() {
-   this.search = !this.search;
-   this.results = false;
+    this.search = !this.search;
+    this.results = false;
+    this.openUser = false;
+    this.openCart = false;
   }
+
+
 
   onClick(event) {
     if (!this._eref.nativeElement.contains(event.target)) {
-      if(!event.target.closest('.shopping-cart-delete')) {
+      this.openUser = false;
+      this.search = false;
+      this.results = false;
+      if (!event.target.closest('.shopping-cart-delete')) {
         this.openCart = false;
-      } 
+      }
     }
   }
 
- 
+
 
   @HostListener('window:scroll', ['$event'])
   onScroll() {
     const header = (<HTMLElement>document.querySelector('.header-bottom'));
-    if(window.outerWidth > 767) {
+    const headerRight = (<HTMLElement>document.querySelector('.header-middle-right'));
+    const search = (<HTMLElement>document.querySelector('.toggle-search'));
+    const searchInfo = (<HTMLElement>document.querySelector('.search-info'));
+    this.search = false;
+    this.results = false;
+    if (window.outerWidth > 767) {
       if (window.pageYOffset > (header.getBoundingClientRect().bottom + (header.getBoundingClientRect().height * 2))) {
         header.classList.add('stick');
+        headerRight.classList.add('fixed');
+        search.classList.add('fixed');
+        searchInfo.classList.add('fixed');
       } else {
         header.classList.remove('stick');
+        headerRight.classList.remove('fixed');
+        search.classList.remove('fixed');
+        searchInfo.classList.remove('fixed');
       }
     } else {
-      this.search = false;
-      this.results = false;
+
       if (window.pageYOffset > 0) {
         this.headerMiddle.classList.add('fixed');
-      } else if(window.pageYOffset === 0) {
+      } else if (window.pageYOffset === 0) {
         this.headerMiddle.classList.remove('fixed');
       }
     }
-    
+
   }
 
 
@@ -190,9 +222,9 @@ export class HeaderComponent implements OnInit {
   }
 
   onSearchChange() {
-    
+
     this.results = true;
-    
+
   }
 
   // onLogout() {

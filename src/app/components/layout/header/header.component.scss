@@ -33,6 +33,7 @@
 
 .header-login {
   margin-right: 32px;
+  position: relative;
 }
 
 .shopping-cart-content {
@@ -324,7 +325,7 @@ a.dropdown-main-menu:not([href]):not([tabindex]) {
 
   @media (max-width: 767px) {
     .search-info ul {
-      background: rgba(255,255,255,.9) none repeat scroll 0 0;
+      background: rgba(255, 255, 255, .9) none repeat scroll 0 0;
       width: 100%;
       position: fixed;
       top: 238px;
@@ -342,4 +343,75 @@ a.dropdown-main-menu:not([href]):not([tabindex]) {
 
 .transparent-bar.stick {
   z-index: 99;
+}
+
+.user-content {
+  background: #fff none repeat scroll 0 0;
+  border: 1px solid #ebebeb;
+  border-radius: 5px;
+  padding: 31px 35px;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  width: 340px;
+  z-index: 9999;
+  display: none;
+
+  &.openUser {
+    display: block;
+  }
+
+  a {
+    transition: all 280ms ease;
+
+    &:hover {
+      color: #e02c2b;
+      cursor: pointer;
+    }
+  }
+}
+
+
+.header-middle-right {
+  &.fixed {
+    animation: 700ms ease-in-out 0s normal none 1 running fadeInDown;
+    position: fixed;
+    top: 14px;
+    right: 20px;
+    z-index: 1000;
+  }
+}
+
+.toggle-search {
+
+
+  &.fixed {
+    animation: 700ms ease-in-out 0s normal none 1 running fadeInDown;
+    position: fixed;
+    top: 14px;
+    right: 240px;
+    z-index: 1000;
+    display: flex !important;
+  }
+
+  i {
+    font-size: 34px;
+  }
+}
+
+
+.search-info {
+  &.fixed {
+
+    &.open {
+      animation: 700ms ease-in-out 0s normal none 1 running fadeInDown;
+      position: fixed;
+      top: 64px;
+      right: 240px;
+      z-index: 98;
+      background-color: #fff;
+      width: 540px;
+    }
+
+  }
 }
