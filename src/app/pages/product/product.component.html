@@ -103,16 +103,23 @@
           <div class="product-description-wrapper">
             <p><strong>Ingrediente:</strong> {{product?.ingredients}}</p>
             <p><strong>Alergeni:</strong> {{product?.allergens}}</p>
+            <p>Toate preparatele noastre sunt gatite in ziua in care se livreaza si sunt trecute printr-un proces
+              controlat de racire, de aceea se livreaza reci.</p>
+
+            <p>Fotografiile sunt cu titlu de prezentare, preparatele comandate sunt livrate in caserole de unica
+              folosinta.</p>
           </div>
         </div>
         <div id="des-details2" class="tab-pane">
           <div class="product-anotherinfo-wrapper">
             <p><strong>Informatii despre comanda </strong></p>
             <p>Produsele noastre pot fi comandate prin intermediul acestui magazin online. </p>
-            <p>Pentru a comanda, este necesar sa fiti logat in contul dvs. de utilizator.</p>
+            <p>Pentru a comanda, nu este necesar sa va creati un cont de utilizator, va puteti loga cu contul dvs. de
+              Facebook sau Google.</p>
             <p>Dupa realizarea comenzii, veti primi un email de confirmare.</p>
-            <p>Pentru comenzi personalizate, intrebari sau nelamuriri, ne puteti suna la <a
-                href="tel:+40762000000">0762.000.000</a></p>
+            <p>Pentru comenzi personalizate, intrebari sau nelamuriri, ne puteti suna la numerele de telefon <a
+                href="tel:+40720612962">(0720) 612 962</a> (Bucuresti) si <a
+                href="tel:+0746252899">(0746) 252 899</a> (Pitesti)</p>
             <p><strong>Informatii despre plata</strong></p>
             <p>Comenzile se achita la livrare prin urmatoarele modalitati:</p>
             <ul>
@@ -123,10 +130,10 @@
                 - Card
               </li>
             </ul>
-
-            <p>Costuri de transport:</p>
-            <p>Transportul este gratuit* </p>
-            <p>* Comanda minima: 100 lei</p>
+            
+            
+            <p>Cost de livrare:</p>
+            <p>Livram GRATUIT in Bucuresti si Pitesti. Comanda minima: 99 lei</p>
           </div>
         </div>
 
@@ -155,8 +162,8 @@
                 <a title="Adauga in cos" (click)="addToCart(product)"><i class="ion-android-cart"></i> Adauga in cos</a>
               </div>
               <div class="pro-action-right">
-                <a title="Quick View" data-toggle="modal" data-target="#exampleModal"
-                (click)="openModal(product)"><i class="ion-android-open"></i></a>
+                <a title="Quick View" data-toggle="modal" data-target="#exampleModal" (click)="openModal(product)"><i
+                    class="ion-android-open"></i></a>
               </div>
             </div>
           </div>
@@ -175,4 +182,3 @@
     </div>
   </div>
 </div>
-
