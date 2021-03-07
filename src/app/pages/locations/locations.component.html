@@ -1,0 +1,38 @@
+<div class="breadcrumb-area gray-bg">
+    <div class="container">
+      <div class="breadcrumb-content">
+        <ul>
+          <li><a routerLink="/">Acasa</a></li>
+          <li class="active">Locatii </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  <div class="shop-page-area pt-100 pb-100">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="banner-area pb-30">
+            <a ><img alt="" src="assets/img/banner/banner-pagina-locatii-tavacudetoate.jpg"></a>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-6 location" *ngFor="let location of locations">
+            <img src="/assets/img/locations/{{location.location_image}}" alt="">
+            <span class="{{location.town}}">{{location.town}}</span>
+            <h5>{{location.location_name}}</h5>
+            <ul>
+                <li><a href="tel:{{location.phone}}">{{location.pretty_phone}}</a></li>
+                <li>Program: {{location.schedule}}</li>
+                <li>Adresa: {{location.address}}</li>
+                <li><a href="{{location.pin}}" target="_blank" class="theme-btn-one">Vezi pe harta</a></li>
+            </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  

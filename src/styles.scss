@@ -134,7 +134,7 @@ body {
   width: 50px;
   line-height: 50px;
   text-align: center;
-  
+
   color: #222;
   background: transparent;
   z-index: 1;
@@ -164,6 +164,11 @@ button {
   text-transform: uppercase;
   transition: all 0.3s ease 0s;
   height: 60px;
+
+  &:hover {
+    color: #fff;
+    background-color: #e02c2b;
+  }
 }
 
 .custom-container {
@@ -326,7 +331,8 @@ owl-stage {
 
 
 
-input[type="radio"], input[type="checkbox"] {
+input[type="radio"],
+input[type="checkbox"] {
   height: auto;
   width: auto;
   margin-right: 16px;

@@ -35,6 +35,7 @@ import { MyOrdersComponent } from './pages/my-account/my-orders/my-orders.compon
 import { OrderDetailsComponent } from './pages/my-account/order-details/order-details.component';
 import { CouponsComponent } from './pages/my-account/coupons/coupons.component';
 import { AddressesComponent } from './pages/my-account/addresses/addresses.component';
+import { LocationsComponent } from './pages/locations/locations.component';
 
 const routes: Routes = [
   {
@@ -93,6 +94,14 @@ const routes: Routes = [
 
   {
     path: 'finalizeaza-comanda', component: CheckoutComponent,
+    data: {
+      title: '',
+      description: '',
+      ogUrl: 'your og url'
+    }
+  },
+  {
+    path: 'locatii', component: LocationsComponent,
     data: {
       title: '',
       description: '',
