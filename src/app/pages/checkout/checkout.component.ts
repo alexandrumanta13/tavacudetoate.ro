@@ -23,7 +23,7 @@ import { UserService } from '../user/user.service';
 export class CheckoutComponent implements OnInit {
   @ViewChild('sendOrder') ngForm: NgForm;
 
-  order: any[];
+  order: any = {};
   discount: number = 0;
   payment: any;
   note_box: any = '';
@@ -31,6 +31,7 @@ export class CheckoutComponent implements OnInit {
   show: boolean = false;
   terms: any;
   gdpr: any;
+  location: string;
 
   private CHECK_COUPON = "https://tavacudetoate.ro/tavacudetoate-api/v1/coupon/check";
   private USE_COUPON = "https://tavacudetoate.ro/tavacudetoate-api/v1/coupon/use";
@@ -56,6 +57,8 @@ export class CheckoutComponent implements OnInit {
   public responseData: any;
   showForm: boolean;
   newAddress: boolean;
+  selectedLocation: any;
+  selectDeliveryLocaiton: any;
 
 
   constructor(
@@ -74,6 +77,7 @@ export class CheckoutComponent implements OnInit {
   public products;
   public totalPrice$;
   model: any = {};
+  delivery: any = {};
   login: any = {};
 
 
@@ -87,7 +91,6 @@ export class CheckoutComponent implements OnInit {
   ngOnInit(): void {
     this.items$.subscribe(data => {
       this.products = data;
-      console.log(this.products)
     })
 
 
@@ -103,7 +106,8 @@ export class CheckoutComponent implements OnInit {
       activeEndDate: new FormControl(new Date(), { validators: [Validators.required, DateTimeValidator] })
     }, { updateOn: 'change' });
 
-    console.log(this.selectedAddress)
+    this.getTotalPrice();
+
   }
 
   send() {
@@ -113,19 +117,50 @@ export class CheckoutComponent implements OnInit {
   toggle() {
     this.show = !this.show;
   }
+
   showAuth() {
     this.showForm = !this.showForm;
   }
+
+  getTotalPrice() {
+    this.cartService.totalPrice.subscribe(info => {
+      this.totalPrice$ = info.toFixed(2);
+    });
+  }
+
+  selectDelivery(event) {
+    this.location = event.target.value;
+    console.log(event.target.value)
+    if (this.location != 'livreaza') {
+      this.getLocations(this.location);
+    } else {
+      this.discount = 0;
+      this.selectedLocation = '';
+      this.selectDeliveryLocaiton = '';
+      this.getTotalPrice();
+    }
+  }
+
+  getLocations(location) {
+    this._httpClient.get('https://tavacudetoate.ro/tavacudetoate-api/v1/locations/' + location).subscribe((data: any) => {
+      this.selectedLocation = data;
+    });
+  }
+
+  deliveryLocation(location) {
+    this.selectDeliveryLocaiton = location;
+    this.discount = 15;
+    this.totalPrice$ = (this.totalPrice$ - (this.totalPrice$ * this.discount / 100)).toFixed(2);
+  }
+
   toggleNewAddress() {
     this.newAddress = !this.newAddress;
 
-    if(this.newAddress) {
+    if (this.newAddress) {
       this.selectedAddress = 0;
     } else {
       this.selectedAddress = this.addresses[0];
     }
-
-    console.log(this.selectedAddress)
   }
 
   getData() {
@@ -174,6 +209,23 @@ export class CheckoutComponent implements OnInit {
 
   placeOrder(f: NgForm) {
 
+    if (!this.location) {
+      this.toaster.warning('Te rugam sa alegi modalitatea de livrare!', 'Comanda nu poate fi trimisa!', {
+        timeOut: 3000,
+        positionClass: 'toast-bottom-right'
+      });
+      return;
+    }
+
+
+    if (this.location != 'livreaza' && !this.selectDeliveryLocaiton) {
+      this.toaster.warning('Te rugam sa alegi locatia de unde vrei sa ridici comanda!', 'Comanda nu poate fi trimisa!', {
+        timeOut: 3000,
+        positionClass: 'toast-bottom-right'
+      });
+      return;
+    }
+
     if (!this.terms) {
       this.toaster.warning('Trebuie sa fii de acord cu termenii si conditiile site-ului!', 'Comanda nu poate fi trimisa!', {
         timeOut: 3000,
@@ -206,13 +258,13 @@ export class CheckoutComponent implements OnInit {
       return;
     }
 
-    if (!this.interval) {
-      this.toaster.warning('Comanda nu poate fi trimisa!', 'Te rugam sa alegi intervalul de livrare!', {
-        timeOut: 3000,
-        positionClass: 'toast-bottom-right'
-      });
-      return;
-    }
+    // if (!this.interval) {
+    //   this.toaster.warning('Comanda nu poate fi trimisa!', 'Te rugam sa alegi intervalul de livrare!', {
+    //     timeOut: 3000,
+    //     positionClass: 'toast-bottom-right'
+    //   });
+    //   return;
+    // }
 
     if (!this.payment) {
       this.toaster.warning('Comanda nu poate fi trimisa!', 'Te rugam sa alegi metoda de plata!', {
@@ -222,19 +274,18 @@ export class CheckoutComponent implements OnInit {
       return;
     }
 
+    const accepted = ['bucuresti', 'pitesti'];
+    
+    if(this.location == 'livreaza' && !accepted.includes(this.model.town_city.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""))) {
+      this.toaster.warning('Comanda nu poate fi trimisa!', 'Ne pare rau, momentan livram doar in Bucuresti si Pitesti', {
+        timeOut: 3000,
+        positionClass: 'toast-bottom-right'
+      });
+      return;
+    } 
+
     this.order = [
       {
-        customer: {
-          firstName: this.model.firstName,
-          lastName: this.model.lastName,
-          email: this.model.email,
-          phone: this.model.phone,
-          shippingAddress: {
-            address: (this.model.address_1 ? this.model.address + ' ' + this.model.address_1 : this.model.address),
-            town: this.model.town_city,
-            county: this.model.county,
-          }
-        },
         total: this.totalPrice$,
         discount: this.discount,
         method: this.payment,
@@ -242,13 +293,47 @@ export class CheckoutComponent implements OnInit {
         products: this.products,
         accessories: this.products.accessories,
         deliverydate: this.deliverydate,
-        intervaldelivery: this.interval
+        //intervaldelivery: this.interval
       }
     ];
 
+   
+
+    if (this.location != 'livreaza') {
+
+      this.order[0].customer = {
+        firstName: this.delivery.firstName,
+        lastName: this.delivery.lastName,
+        email: this.delivery.email,
+        phone: this.delivery.phone,
+        contact_phone: this.selectDeliveryLocaiton.phone,
+        contact_email: this.selectDeliveryLocaiton.email,
+        shippingAddress: {
+          address: 'Ridicare personala din: ' + this.selectDeliveryLocaiton.location_name,
+          town: this.selectDeliveryLocaiton.town,
+          county: this.selectDeliveryLocaiton.county,
+        }
+      }
+
+    } else {
+
+      this.order[0].customer = {
+        firstName: this.model.firstName,
+        lastName: this.model.lastName,
+        email: this.model.email,
+        phone: this.model.phone,
+        contact_email: (this.model.town_city == 'Bucuresti' ? 'comenzi.bucureresti@tavacudetoate.ro' : 'comenzi.pitesti@tavacudetoate.ro'),
+        shippingAddress: {
+          address: (this.model.address_1 ? this.model.address + ' ' + this.model.address_1 : this.model.address),
+          town: this.model.town_city,
+          county: this.model.county,
+        }
+      }
+    }
+
     if (this.isAuthentificated) {
       let userInfo = {};
-      if(this.selectedAddress != 0) {
+      if (this.selectedAddress != 0) {
         userInfo = {
           user_id: this.user.id,
           address_id: this.selectedAddress.id
@@ -281,8 +366,8 @@ export class CheckoutComponent implements OnInit {
           town: this.model.town_city,
           county: this.model.county,
         }
-        
-      
+
+
         this.order.push(userInfo);
       }
     }
@@ -360,7 +445,7 @@ export class CheckoutComponent implements OnInit {
     this._httpClient.get<any>(`https://tavacudetoate.ro/tavacudetoate-api/v1/addresses/${user.id}`).subscribe(addresses => {
       this.addresses = addresses.data;
       this.selectedAddress = this.addresses[0];
-      
+
     })
   }
   selectAddress(addressIndex, event) {
@@ -370,7 +455,6 @@ export class CheckoutComponent implements OnInit {
       active[i].classList.remove('active');
     }
     event.target.closest(".shipping-address-box").classList.add('active');
-    console.log(this.selectedAddress)
   }
 
   signInWithGoogle(): void {
@@ -390,7 +474,6 @@ export class CheckoutComponent implements OnInit {
   }
 
   apiConnection(data) {
-    console.log(data);
     this.userPostData.email = data.email;
     this.userPostData.name = data.name;
     this.userPostData.provider = data.provider;

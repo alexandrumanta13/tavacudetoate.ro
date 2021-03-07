@@ -110,11 +110,8 @@ export class HeaderComponent implements OnInit {
   }
 
   onClick(event) {
-console.log(!this._eref.nativeElement.contains(document.querySelector('.remove-from-cart')))
-   
     if (!this._eref.nativeElement.contains(event.target)) {
       if(!event.target.closest('.shopping-cart-delete')) {
-        console.log(!event.target.closest('.shopping-cart-delete'))
         this.openCart = false;
       } 
     }

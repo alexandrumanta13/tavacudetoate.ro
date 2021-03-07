@@ -30,13 +30,13 @@ body {
 
   .ngb-dp-header,
   .ngb-dp-weekdays {
-    background-color: #ecbbb6;
+    background-color: #2f333a;
     border-radius: 0;
     color: #fff;
   }
 
   .ngb-dp-navigation-chevron {
-    color: #6d4b50;
+    color: #fff;
   }
 
   .ngb-dp-weekday {
@@ -47,19 +47,19 @@ body {
     border-radius: 0;
 
     &:focus {
-      border-color: #ecbbb6;
+      border-color: #2f333a;
       box-shadow: 0 10px 20px rgba(236, 187, 182, 0.3);
     }
   }
 
   .btn-light {
     &.bg-primary {
-      background-color: #6d4b50 !important;
+      background-color: #f3b804 !important;
       border-radius: 0;
     }
 
     &:hover {
-      background-color: #6d4b50;
+      background-color: #f3b804;
       color: #fff;
       border-radius: 0;
     }
@@ -68,8 +68,8 @@ body {
   }
 
   .btn-toggle {
-    border-color: #ecbbb6;
-    background-color: #ecbbb6;
+    border-color: #2f333a;
+    background-color: #2f333a;
     color: #fff;
     border-radius: 0;
     padding: 17px 27px;
@@ -90,7 +90,7 @@ body {
   flex: 1;
 
   button {
-    color: #6d4b50;
+    color: #f3b804;
   }
 }
 
@@ -134,7 +134,7 @@ body {
   width: 50px;
   line-height: 50px;
   text-align: center;
-  font-family: 'Rubik', sans-serif;
+  
   color: #222;
   background: transparent;
   z-index: 1;
@@ -283,7 +283,7 @@ owl-stage {
   .owl-theme,
   .owl-carousel .owl-stage-outer,
   .owl-carousel .owl-stage,
-  owl-stage, 
+  owl-stage,
   .owl-carousel.owl-drag .owl-item {
     height: auto;
   }
@@ -292,9 +292,9 @@ owl-stage {
 }
 
 .modal-body {
-  .product-details-img{
+  .product-details-img {
 
-  
+
     .owl-carousel.owl-drag .owl-item {
       height: auto;
     }
@@ -319,8 +319,39 @@ owl-stage {
 
   .owl-carousel.owl-drag .owl-item {
     width: 25% !important;
-    
+
   }
-  
+
 }
 
+
+
+input[type="radio"], input[type="checkbox"] {
+  height: auto;
+  width: auto;
+  margin-right: 16px;
+}
+
+.custom-control {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+
+  label {
+    margin-bottom: 0;
+  }
+}
+
+
+textarea {
+  background: #fff none repeat scroll 0 0;
+  border: 1px solid #eaeaea;
+  color: #454545;
+  height: 250px;
+  padding: 20px 20px;
+  font-size: 14px;
+}
+
+ul {
+  list-style: none;
+}

@@ -148,6 +148,8 @@ export class ProductsComponent implements OnInit {
 
   addToCart(product) {
     product.cart_uuid = uuidv4();
+    product.selectedPrice = product.information[0].price;
+    product.selectedQnt = product.information[0].quantity + product.information[0].um;
     this._cartService.addToCart(product, 1, false);
   }
 

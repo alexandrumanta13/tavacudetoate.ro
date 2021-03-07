@@ -238,7 +238,7 @@ export class DatetimepickerComponent implements ControlValueAccessor, OnInit, Af
         
         this.setDateStringModel();
         this.checkIfToday();
-       
+        this.close();
     }
 
     onTimeChange(event: NgbTimeStruct) {

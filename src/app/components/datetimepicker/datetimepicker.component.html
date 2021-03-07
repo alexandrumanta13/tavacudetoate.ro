@@ -3,7 +3,7 @@
 
     <div class="input-group-append">
         <button class="btn btn-outline-secondary btn--calendar" [ngbPopover]="calendarContent" [disabled]='disabled' type="button">
-            <img src="/assets/images/icons/calendar.svg" alt="">
+            <i class="fa fa-calendar"></i>
         </button>
     </div>
 </div>
@@ -12,11 +12,11 @@
     <div >
         <div *ngIf="!showTimePickerToggle" >
             <ngb-datepicker [minDate]="minDate" [markDisabled]="isDisabled"  #dp name="datepicker" [ngModel]="datetime"  (ngModelChange)="onDateChange($event)"></ngb-datepicker>
-            <button *ngIf="hasSelectDate" class="btn btn-block btn-outline-secondary btn-toggle theme-btn-one" [ngbPopover]="timePickerContent" (click)="toggleDateTimeState($event)">
+            <!-- <button *ngIf="hasSelectDate" class="btn btn-block btn-outline-secondary btn-toggle theme-btn-one" [ngbPopover]="timePickerContent" (click)="toggleDateTimeState($event)">
                 Selecteaza ora livrarii
-            </button>
+            </button> -->
         </div>
-        <div *ngIf="showTimePickerToggle" >
+        <!-- <div *ngIf="showTimePickerToggle" >
                 <button class="btn btn-block btn-outline-secondary btn-toggle theme-btn-one" [ngbPopover]="calendarContent" (click)="toggleDateTimeState($event)">
                     Inapoi la calendar
                 </button>
@@ -32,13 +32,10 @@
                     <li><a (click)="selectInterval($event)">Intre: 14:00 - 16:00</a></li>
                     <li><a [ngClass]="{ 'disabled': isNewYearTowmorrow }"  (click)="selectInterval($event)">Intre: 16:00 - 20:00</a></li>
                 </ul>
-            <!-- <ngb-timepicker #tp name="timepicker" [ngModel]="datetime" (ngModelChange)="onTimeChange($event)" [seconds]="seconds"
-            [hourStep]="hourStep" [minuteStep]="minuteStep" [secondStep]="secondStep"></ngb-timepicker>-->
+           
             </div> 
-            <!-- <button class="btn btn-block btn-outline-secondary btn-toggle theme-btn-one" [ngbPopover]="calendarContent" (click)="close()">
-                Alege
-            </button> -->
-        </div>
+           
+        </div> -->
     </div>
 </ng-template>
 

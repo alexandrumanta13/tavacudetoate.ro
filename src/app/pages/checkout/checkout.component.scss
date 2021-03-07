@@ -47,9 +47,6 @@
 .checkout-section .sub-title {
   margin-bottom: 20px;
 
-  &.payment-info {
-    margin: 0;
-  }
 }
 
 
@@ -61,9 +58,6 @@
     .delivery-inner {
       position: relative;
       display: block;
-      border: 1px solid #e6e6e6;
-      border-top: none;
-      padding: 28px 30px 40px 30px;
 
       .delivery-box {
         margin-top: 20px;
@@ -96,7 +90,7 @@
   display: inline-block;
   font-size: 15px;
   line-height: 26px;
-  color: #222;
+  color: #2f333a;
   padding-left: 30px;
 }
 
@@ -118,7 +112,7 @@
     display: inline-block;
     font-size: 16px;
     line-height: 26px;
-    font-family: 'Rubik', sans-serif;
+
     font-weight: 500;
     color: #fff !important;
     text-align: center;
@@ -215,4 +209,149 @@
 
 .add-new-address {
   margin-bottom: 20px;
+}
+
+.single-box.black-bg {
+  color: #fff;
+  padding: 20px;
+
+  a {
+    color: #e02c2b;
+    margin-left: 10px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.discount-pick-up {
+  background-color: #2f333a;
+  color: #fff;
+  padding: 8px 16px;
+  span {
+    color: #e02c2b;
+  }
+}
+
+checkout-section .order-info{
+  position: relative;
+  display: block;
+  margin-bottom: 70px;
+}
+
+.checkout-section .order-info .order-list li{
+  position: relative;
+  display: block;
+  border-bottom: 1px solid #e6e6e6;
+  padding: 20px 30px;
+}
+
+.checkout-section .order-info .order-list li.title{
+  padding: 24px 30px 2px 30px;
+}
+
+.checkout-section .order-info .order-list li.title p{
+  font-size: 15px;
+  color: #2f333a;
+  float: left;
+}
+
+.checkout-section .order-info .order-list li.title span{
+  position: relative;
+  display: block;
+  font-size: 15px;
+  color: #2f333a;
+  float: right;
+}
+
+.checkout-section .order-info .order-list li .single-box{
+  position: relative;
+  padding: 40px 0px 30px 110px;
+  min-height: 100px;
+}
+
+.checkout-section .order-info .order-list li .single-box img{
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 87px;
+  height: 100px;
+  background: #fff;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.checkout-section .order-info .order-list li .single-box h6{
+  position: relative;
+  font-size: 16px;
+  color: #2f333a;
+  float: left;
+  font-weight: 500;
+  width: 100%;
+}
+
+.checkout-section .order-info .order-list li .single-box span{
+  position: relative;
+  display: block;
+  float: right;
+  font-size: 15px;
+  color: #2f333a;
+}
+
+.checkout-section .order-info .order-list li.sub-total{
+  padding: 17px 30px 10px 0px;
+}
+
+.checkout-section .order-info .order-list li.sub-total h6{
+  font-size: 16px;
+  font-weight: 500;
+  color: #2f333a;
+  float: left;
+}
+
+.checkout-section .order-info .order-list li.sub-total span{
+  position: relative;
+  display: block;
+  font-size: 15px;
+  color: #848484;
+  float: right;
+}
+
+.checkout-section .order-info .order-list li.order-total{
+  padding: 17px 30px 11px 0px;
+}
+
+.checkout-section .order-info .order-list li.order-total h6{
+  font-size: 16px;
+  font-weight: 500;
+  color: #2f333a;
+  float: left;
+}
+
+.checkout-section .order-info .order-list li.order-total span{
+  position: relative;
+  display: block;
+  font-size: 18px;
+  color: #2f333a;
+  font-weight: 500;
+  float: right;
+}
+
+
+.select-town {
+  .custom-control {
+    display: flex;
+    align-items: flex-start;
+
+    ul {
+      list-style: none;
+      position: relative;
+      top: -8px;
+    }
+  }
+  
+}
+
+.checkout-section a{
+  color: #007bff;
 }

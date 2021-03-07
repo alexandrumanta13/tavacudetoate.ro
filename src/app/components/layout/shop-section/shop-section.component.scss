@@ -3,7 +3,7 @@
 
     a {
         &:hover {
-            color: #ecbbb6;
+            color: #2f333a;
         }
     }
 }
@@ -14,10 +14,10 @@
 
 .theme-btn-two {
     &:hover {
-        border-color: #ecbbb6;
+        border-color: #2f333a;
     }
     &::before, &::after {
-        background: #ecbbb6;
+        background: #2f333a;
         box-shadow: 0 10px 20px rgba(236, 187, 182, 0.3);
     }
 }

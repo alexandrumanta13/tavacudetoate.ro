@@ -1,44 +1,40 @@
-<!--Page Title-->
-<section class="page-title centred"
-  style="background-image: url(assets/images/background/imagine-category-tavacudetoate.jpg)">
-  <div class="auto-container">
-    <div class="content-box">
-      <div class="title">
-        <h1>Finalizare comanda</h1>
-      </div>
-      <ul class="bread-crumb clearfix">
+<div class="breadcrumb-area gray-bg">
+  <div class="container">
+    <div class="breadcrumb-content">
+      <ul>
         <li><a routerLink="/">Acasa</a></li>
-        <li>Finalizare comanda</li>
+        <li class="active">Finalizare comanda </li>
       </ul>
     </div>
   </div>
-</section>
-<!--End Page Title-->
+</div>
+
 
 
 <!-- checkout-section -->
-<section class="checkout-section">
+<section class="checkout-section pt-100 pb-100">
   <div class="container">
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12 upper-column">
         <div class="upper-box" *ngIf="!isAuthentificated">
-          <div class="customer single-box">Ai deja cont? <a>Te rugam sa te autentifici</a></div>
-          <form (ngSubmit)="f.form.valid && auth(f)" #f="ngForm" *ngIf="showAuth()">
+          <div class="customer single-box black-bg mb-20">Ai deja cont? <a (click)="showAuth()">Te rugam sa te
+              autentifici</a></div>
+          <form class="mt-40" (ngSubmit)="f.form.valid && auth(f)" #f="ngForm" *ngIf="showForm">
             <div class="row">
               <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                <label>Email*</label>
                 <input type="text" name="email" class="form-control" [(ngModel)]="login.email" #email="ngModel"
                   [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required email>
                 <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
-                  <div *ngIf="email.errors.required">Email is required</div>
+                  <div *ngIf="email.errors.required">Te rugam sa introduci Email-ul</div>
                 </div>
               </div>
               <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                <label>Parola*</label>
                 <input type="password" name="password" class="form-control" [(ngModel)]="login.password"
-                  #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required
-                  minlength="6">
+                  #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required>
                 <div *ngIf="f.submitted && password.invalid" class="invalid-feedback">
-                  <div *ngIf="password.errors.required">Password is required</div>
-                  <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+                  <div *ngIf="password.errors.required">Te rugam sa introduci parola!</div>
                 </div>
               </div>
             </div>
@@ -50,7 +46,7 @@
                   <a routerLink="/am-uitat-parola" class="forget-pass"> Ai uitat parola?</a>
                 </div>
                 <div class="col-xs-12 col-md-2 or">
-                  <h2>SAU</h2>
+                  <h4>SAU</h4>
                 </div>
                 <div class="col-xs-12 col-md-5">
                   <div class="social-login">
@@ -69,8 +65,9 @@
         </div>
         <div class="upper-box">
 
-          <div class="coupon single-box">Ai un cupon de reducere? <a (click)="toggle()">Aplica-l aici</a></div>
-          <div class="coupon-box pull-left clearfix" *ngIf="show">
+          <div class="coupon single-box black-bg mb-20">Ai un cupon de reducere? <a (click)="toggle()">Aplica-l aici</a>
+          </div>
+          <div class="coupon-box pull-left clearfix mt-40 mb-40" *ngIf="show">
             <input [(ngModel)]="discountCode" type="text" placeholder="Adauga codul...">
             <button (click)="checkDiscount()" class="theme-btn-one">Aplica coupon<i
                 class="flaticon-right-1"></i></button>
@@ -79,14 +76,128 @@
       </div>
     </div>
 
-    <form class="billing-form" name="form" (ngSubmit)="f.form.valid && placeOrder(f)" #f="ngForm" novalidate>
+    <form class="billing-form mt-40" name="form" (ngSubmit)="f.form.valid && placeOrder(f)" #f="ngForm" novalidate>
       <div class="row">
+        <div class="col-12 delivery-info mb-40">
+          <h4 class="sub-title payment-info mb-40">Alege data livrarii</h4>
+          <div class="delivery-inner">
+            <p>Intervale livrare:</p>
+
+            <ul>
+              <li>Comenzile plasate <strong>sambata sau duminica, se livreaza luni</strong></li>
+              <li>Comenzile plasate in <strong>intervalul 08:00 - 21:00, se livreaza in 24-36 ore</strong></li>
+              <li>Comenzile plasate in <strong>intervalul 21:00 - 08:00, se livreaza in 48 - 60 ore</strong></li>
+            </ul>
+            <p>Comenzile se livreaza <strong>luni - sambata, in intervalul 15:00 - 21:00</strong></p>
+            <div class="row">
+              <div class="col-12 col-md-6">
+                <app-datetimepicker [(ngModel)]="stringDateModel" (onDatePicked)="addDeliveryDate($event)"
+                  ngDefaultControl name="activeEndDate">
+                </app-datetimepicker>
+                <div class="delivery-box" *ngIf="deliverydate">
+                  <span><strong>Data livrarii:</strong> {{deliverydate}}</span>
+                  <span><strong>Interval:</strong> {{interval}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h4 class="sub-title mt-40">Modalitatea de livrare</h4>
+          <p class="discount-pick-up">Ridica comanda din locatiile noastre si primesti un discount de <span>15%</span>
+          </p>
+          <div class="custom-control">
+            <input type="radio" [(ngModel)]="location" value="Bucuresti" (click)="selectDelivery($event)" id="bucuresti"
+              name="select-payment">
+            <label for="bucuresti">Bucuresti</label>
+          </div>
+          <div class="custom-control">
+            <input type="radio" [(ngModel)]="location" value="Pitesti" (click)="selectDelivery($event)" id="pitesti"
+              name="select-payment">
+            <label for="pitesti">Pitesti</label>
+          </div>
+          <div class="custom-control">
+            <input type="radio" [(ngModel)]="location" value="livreaza" (click)="selectDelivery($event)" id="livreaza"
+              name="select-payment">
+            <label for="livreaza">Livreaza la domiciliu</label>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row mt-40">
         <div class="col-lg-6 col-md-12 col-sm-12 left-column">
           <div class="inner-box">
-            <div class="billing-info">
-              <h4 class="sub-title">Date de livrare</h4>
-              <!-- <div class="error alert alert-danger" *ngIf="error">{{error}}</div> -->
+            <div class="select-location" *ngIf="location != 'livreaza' && location != undefined">
 
+              <div class="select-town">
+                <h4 class="sub-title">Selecteaza locatia</h4>
+                <ng-container *ngFor="let location of selectedLocation">
+                  <label class="custom-control" (click)="deliveryLocation(location)">
+                    <input type="radio" value="{{location.id}}" id="location_{{location.id}}" name="location_selected">
+
+                    <ul>
+                      <li>{{location.location_name}}</li>
+                      <li>{{location.schedule}}</li>
+                      <li><a href="tel:{{location.phone}}">{{location.pretty_phone}}</a></li>
+                      <li><a href="mailto:{{location.email}}">{{location.email}}</a></li>
+                    </ul>
+                  </label>
+                </ng-container>
+              </div>
+              <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                  <label>Nume*</label>
+                  <div class="field-input">
+                    <input type="text" name="firstName" class="form-control" [(ngModel)]="delivery.firstName"
+                      #firstName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && firstName.invalid}" required
+                      minlength="3">
+                    <div *ngIf="f.submitted && firstName.invalid" class="invalid-feedback">
+                      <div *ngIf="firstName.errors.required">Te rugam sa introduci numele!</div>
+                      <div *ngIf="firstName.errors.minlength">Numele trebuie sa contina cel putin 3 litere!</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                  <label>Prenume*</label>
+                  <div class="field-input">
+                    <input type="text" name="lastName" class="form-control" [(ngModel)]="delivery.lastName"
+                      #lastName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && lastName.invalid }" required
+                      minlength="3">
+                    <div *ngIf="f.submitted && lastName.invalid" class="invalid-feedback">
+                      <div *ngIf="lastName.errors.required">Te rugam sa introduci prenumele!</div>
+                      <div *ngIf="lastName.errors.minlength">Prenumele trebuie sa contina cel putin 3 litere!</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                  <label>Email*</label>
+                  <div class="field-input">
+                    <input type="text" name="email" class="form-control" [(ngModel)]="delivery.email" #email="ngModel"
+                      [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required email>
+                    <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+                      <div *ngIf="email.errors.required">Te rugam sa introduci adresa de email!</div>
+                      <div *ngIf="email.errors.email">Email-ul nu este valid</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                  <label>Telefon*</label>
+                  <div class="field-input">
+                    <input type="text" name="phone" class="form-control" [(ngModel)]="delivery.phone" #phone="ngModel"
+                      [ngClass]="{ 'is-invalid': f.submitted && phone.invalid }" required>
+                    <div *ngIf="f.submitted && phone.invalid" class="invalid-feedback">
+                      <div *ngIf="phone.errors.required">Te rugam sa introduci numarul de telefon!</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="billing-info" *ngIf="location === 'livreaza'">
+              <h4 class="sub-title">Date de livrare</h4>
               <div class="row" *ngIf="!isAuthentificated || addresses.length === 0 || newAddress">
                 <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                   <label>Nume*</label>
@@ -143,7 +254,7 @@
                     <div *ngIf="f.submitted && address.invalid" class="invalid-feedback">
                       <div *ngIf="address.errors.required">Te rugam sa introduci adresa!</div>
                     </div>
-                    <input type="text" name="address_1" [(ngModel)]="model.address_1">
+                    <input class="mt-15" type="text" name="address_1" [(ngModel)]="model.address_1">
                   </div>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12 form-group">
@@ -202,10 +313,12 @@
 
               </div>
             </div>
-            <a *ngIf="isAuthentificated" (click)="toggleNewAddress()" class="theme-btn-one add-new-address">Adauga o adresa noua</a>
+            <a *ngIf="isAuthentificated" (click)="toggleNewAddress()" class="theme-btn-one add-new-address">Adauga o
+              adresa noua</a>
             <div class="additional-info">
               <div class="note-book">
-                <label>Detalii suplimentare</label>
+                <h4 class="sub-title">Detalii suplimentare</h4>
+
                 <textarea name="note_box" [(ngModel)]="note_box"
                   placeholder="Detalii suplimentare pentru comanda ta"></textarea>
               </div>
@@ -244,36 +357,25 @@
                   </li>
                   <li *ngFor="let product of products">
                     <div class="single-box clearfix">
-                      <img src="assets/images/resource/shop/{{product.images[0].image_url}}" alt="">
+                      <img src="/assets/img/product/{{product.images[0].image_url}}" alt="">
                       <h6>{{product.product_name}} x {{product.selectedQnt}}</h6>
-                      <span>{{product.selectedPrice | number:'1.2-2'}}</span>
+                      <span>{{product.num}} x {{product.selectedPrice | number:'1.2-2'}}</span>
                     </div>
                   </li>
 
-                  <li class="sub-total clearfix">
+                  <li class="sub-total clearfix" *ngIf="discount">
                     <h6>Discount</h6>
-                    <span *ngIf="discount">{{discount}}%</span>
+                    <span>{{discount}}%</span>
                   </li>
                   <li class="order-total clearfix">
                     <h6>Total</h6>
-                    <span>{{totalPrice$ | number:'1.2-2'}}</span>
+                    <span>{{totalPrice$}} Lei</span>
                   </li>
                 </ul>
               </div>
             </div>
-            <div class="delivery-info">
-              <h4 class="sub-title payment-info">Alege data livrarii</h4>
-              <div class="delivery-inner">
-                <app-datetimepicker [(ngModel)]="stringDateModel" (onDatePicked)="addDeliveryDate($event)"
-                  ngDefaultControl name="activeEndDate">
-                </app-datetimepicker>
-                <div class="delivery-box" *ngIf="deliverydate">
-                  <span><strong>Data livrarii:</strong> {{deliverydate}}</span>
-                  <span><strong>Interval:</strong> {{interval}}</span>
-                </div>
-              </div>
-            </div>
-            <div class="payment-info">
+
+            <div class="payment-info mt-40">
               <h4 class="sub-title payment-info">Detalii plata</h4>
               <div class="payment-inner">
                 <div class="option-block">
@@ -297,7 +399,7 @@
                     </label>
                   </div>
                 </div>
-                <div class="btn-box">
+                <div class="btn-box mt-40">
 
                   <button type="submit" class="theme-btn-one">Plaseaza comanda</button>
                 </div>
