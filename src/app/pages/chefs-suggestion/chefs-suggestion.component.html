@@ -1,0 +1,82 @@
+<div class="breadcrumb-area gray-bg">
+    <div class="container">
+      <div class="breadcrumb-content">
+        <ul>
+          <li><a routerLink="/">Acasa</a></li>
+          <li class="active">Produse </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  <div class="shop-page-area pt-100 pb-100">
+    <div class="container">
+      <div class="row flex-row-reverse">
+        <div class="col-12">
+          <div class="banner-area pb-30">
+            <a><img alt="" src="assets/img/banner/banner-49.jpg"></a>
+          </div>
+          
+          <div class="grid-list-product-wrapper">
+            <div class="product-grid product-view pb-20">
+              <div class="row">
+                <div class="product-width col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 mb-30" *ngFor="let product of products">
+                  <div class="product-wrapper">
+                    <div class="product-img">
+                      <a routerLink="/produs/{{product.categories[0].slug}}/{{product.alias}}">
+                        
+                        <img *ngIf="product.images.length" src="/assets/img/product/{{product.images[0].image_url}}" alt="product">
+                        <img *ngIf="!product.images.length" src="/assets/img/product/default.jpg" alt="product">
+                      </a>
+                      <div class="product-action">
+                        <div class="pro-action-left">
+                          <a title="Adauga in cos" (click)="addToCart(product)"><i class="ion-android-cart"></i> Adauga in cos</a>
+                        </div>
+                        <div class="pro-action-right">
+                          <a title="Quick View" (click)="openModal(product)" data-toggle="modal" data-target="#exampleModal" href="#">
+                            <i class="ion-android-open"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="product-content">
+                      <h4>
+                        <a routerLink="/produs/{{product.categories[0].slug}}/{{product.alias}}">{{product.product_name}} </a>
+                      </h4>
+                      <div class="product-price-wrapper">
+                        <span>{{product.information[0].price}} lei / {{product.information[0].quantity}} {{product.information[0].um}}</span>
+                      </div>
+                    </div>
+                    <div class="product-list-details">
+                      <h4>
+                        <a routerLink="/produs/{{product.categories[0].slug}}/{{product.alias}}">{{product.product_name}} </a>
+                      </h4>
+                      <div class="product-price-wrapper">
+                        <span>{{product.information[0].price}} lei</span>
+                        
+                      </div>
+                      <p>Ingrediente: {{product.ingredients}}</p>
+                      <p>Alergeni: {{product.allergens}}</p>
+                      <div class="shop-list-cart-wishlist">
+                        
+                        <a title="Adauga in cos" (click)="addToCart(product)"><i class="ion-android-cart"></i> Adauga in cos</a>
+                        <a title="Quick View" (click)="openModal(product)" data-toggle="modal" data-target="#exampleModal" href="#">
+                          <i class="ion-android-open"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+               
+              </div>
+            </div>
+           
+          </div>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+  
+  
+  

@@ -108,4 +108,19 @@ export class ProductsService {
         });
        
     }
+    /**
+     * Get chef's products
+     *
+     * @returns {Promise<any>}
+     */
+    getChefsProducts() : Promise<any>
+    {
+        return new Promise((resolve, reject) => {
+            this._httpClient.get(this.REST_API_SERVER + 'chefs')
+                .subscribe((response: any) => {
+                    resolve(response);
+                }, reject);
+        });
+       
+    }
 }

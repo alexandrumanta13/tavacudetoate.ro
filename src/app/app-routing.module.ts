@@ -36,6 +36,7 @@ import { OrderDetailsComponent } from './pages/my-account/order-details/order-de
 import { CouponsComponent } from './pages/my-account/coupons/coupons.component';
 import { AddressesComponent } from './pages/my-account/addresses/addresses.component';
 import { LocationsComponent } from './pages/locations/locations.component';
+import { ChefsSuggestionComponent } from './pages/chefs-suggestion/chefs-suggestion.component';
 
 const routes: Routes = [
   {
@@ -102,6 +103,14 @@ const routes: Routes = [
   },
   {
     path: 'locatii', component: LocationsComponent,
+    data: {
+      title: '',
+      description: '',
+      ogUrl: 'your og url'
+    }
+  },
+  {
+    path: 'sugestiile-bucatarului', component: ChefsSuggestionComponent,
     data: {
       title: '',
       description: '',
