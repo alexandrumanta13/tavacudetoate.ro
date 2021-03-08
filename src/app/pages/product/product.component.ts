@@ -39,6 +39,7 @@ export class ProductComponent implements OnInit {
 
   productImages = [];
   activeTab: any = "description";
+  currentRate = 0;
 
 
   /**
