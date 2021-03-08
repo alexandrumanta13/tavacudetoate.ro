@@ -382,22 +382,28 @@ a.dropdown-main-menu:not([href]):not([tabindex]) {
   }
 }
 
-.toggle-search {
+.header-middle {
+  .toggle-search {
 
 
-  &.fixed {
-    animation: 700ms ease-in-out 0s normal none 1 running fadeInDown;
-    position: fixed;
-    top: 14px;
-    right: 240px;
-    z-index: 1000;
-    display: flex !important;
-  }
+    &.fixed {
+      animation: 700ms ease-in-out 0s normal none 1 running fadeInDown;
+      position: fixed;
+      top: 14px;
+      right: 240px;
+      z-index: 1000;
+      display: flex !important;
 
-  i {
-    font-size: 34px;
+      i {
+        font-size: 34px;
+      }
+    }
+  
+    
   }
 }
+
+
 
 
 .search-info {
