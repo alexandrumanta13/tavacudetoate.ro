@@ -184,14 +184,14 @@ const routes: Routes = [
   //     ogUrl: 'your og url'
   //   }
   // },
-  // {
-  //   path: 'contact', component: ContactComponent,
-  //   data: {
-  //     title: 'Contact',
-  //     description: '',
-  //     ogUrl: 'your og url'
-  //   }
-  // },
+  {
+    path: 'contact', component: ContactComponent,
+    data: {
+      title: 'Contact',
+      description: '',
+      ogUrl: 'your og url'
+    }
+  },
   { path: 'login', component: LoginComponent },
   { path: 'autentificare', component: LoginComponent },
   { path: 'contul-meu', component: MyAccountComponent, canActivate: [AuthGuard] },

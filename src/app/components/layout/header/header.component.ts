@@ -44,7 +44,7 @@ export class HeaderComponent implements OnInit {
       },
       {
         label: 'Contact',
-        link: '/'
+        link: '/contact'
       },
       {
         label: 'Cariere',
