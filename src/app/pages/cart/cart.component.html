@@ -84,6 +84,21 @@
           </div>
         </form>
         <div class="row">
+          <div class="col-lg-8 col-md-12">
+            <div class="pro-details-cart-wrap">
+              <p>Momentan livram in Bucuresti si Pitesti. <strong>Comanda minima este de 100 lei</strong></p>
+              <p>
+                <img src="/assets/img/icon-img/food-delivery.svg" alt="">
+                <strong>LIVRARE GRATUITA</strong>
+              </p>
+            </div>
+            <div class="pro-details-cart-wrap">
+              <p><strong>INTERVALE DE LIVRARE (luni-sambata 15:00-21:00):</strong></p>
+              <p>Comenzile de sambata si duminica vor fi livrate luni.</p>
+              <p>Comenzile inregistrate in intervalul 08-21 se livreaza in 24-36 de ore.</p>
+              <p>Comenzile inregistrate in intervalul 21-08 se livreaza in 48-60 de ore.</p>
+            </div>
+          </div>
           <div class="col-lg-4 col-md-12">
             <div class="grand-totall">
               <div class="title-wrap">
@@ -92,7 +107,7 @@
               <h5>Total produse <span>{{totalPrice$ | number:'1.2-2'}} lei </span></h5>
               
               <h4 class="grand-totall-title">Total <span>{{totalPrice$ | number:'1.2-2'}} lei</span></h4>
-              <a routerLink="/finalizeaza-comanda" >Finalizeaza comanda</a>
+              <button [disabled]="totalPrice$ > 100 ? false : true" routerLink="/finalizeaza-comanda" >Finalizeaza comanda</button>
             </div>
           </div>
         </div>

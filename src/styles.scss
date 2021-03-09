@@ -169,6 +169,9 @@ button {
     color: #fff;
     background-color: #e02c2b;
   }
+  &:disabled {
+    cursor:not-allowed;
+  }
 }
 
 .custom-container {

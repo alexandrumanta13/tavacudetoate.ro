@@ -141,12 +141,33 @@ export class ProductComponent implements OnInit {
   }
 
 
-  addToCart(product) {
+  // addToCart(product) {
 
+  //   this.product.selectedPrice = this.price;
+  //   product.cart_uuid = uuidv4();
+  //   this._cartService.addToCart(product, this.cartQuantity, false);
+
+  // }
+
+  addToCart(product, event, isBlur: boolean = false) {
     this.product.selectedPrice = this.price;
-    product.cart_uuid = uuidv4();
-    this._cartService.addToCart(product, this.cartQuantity, false);
+    if(isBlur) {
+      this._cartService.addToCart(product, this.cartQuantity, true);
+    } else {
+      this._cartService.addToCart(product, this.cartQuantity, false);
+    }
+  }
 
+  addOneToCart(product) {
+    this.product.selectedPrice = this.price;
+    this.cartQuantity += 1;
+    this._cartService.addToCart(product, this.cartQuantity, true);
+  }
+
+  removeOneFromCart(product) {
+    this.product.selectedPrice = this.price;
+    this.cartQuantity -= 1;
+    this._cartService.addToCart(product, this.cartQuantity, true);
   }
 
   selectQnt(qnt) {

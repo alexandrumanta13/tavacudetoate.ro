@@ -256,6 +256,7 @@ figure.image {
   display: flex;
   align-items: center;
   padding: 30px 0;
+
   ul {
     display: flex;
     list-style: none;
@@ -280,18 +281,60 @@ figure.image {
   font-size: 16px;
   color: #d3d3d3;
 }
+
 .full {
-  color: red;
+  color: #e2403e;
 }
+
 .half {
   position: absolute;
   display: inline-block;
   overflow: hidden;
-  color: red;
+  color: #e2403e;
 }
 
 .rate {
   ngb-rating {
+    margin-top: 20px;
+    margin-right: 16px;
+  }
+}
+
+
+.product-details-content {
+  &>h4 {
+    font-size: 24px;
+  }
+
+  &> span {
+    font-size: 28px;
+  }
+}
+
+
+.product-quantity .cart-plus-minus, .product-quantity input.cart-plus-minus-box {
+  width: 90px;
+}
+
+
+.add-to-cart-btn {
+  background-color: #e2403e;
+  color: #fff;
+  height: 40px;
+  margin-left: 32px;
+
+  &:hover {
+    background-color: #f80803;
+  }
+}
+
+
+.pro-details-cart-wrap {
+  display: flex;
+  flex-wrap: wrap;
+
+  img {
+    width: 30px;
     margin-right: 16px;
   }
 }

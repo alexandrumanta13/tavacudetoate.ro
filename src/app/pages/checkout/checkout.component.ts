@@ -124,6 +124,9 @@ export class CheckoutComponent implements OnInit {
 
   getTotalPrice() {
     this.cartService.totalPrice.subscribe(info => {
+      if (this.totalPrice$ < 100) {
+        this.router.navigate(['/cos-cumparaturi']);
+      }
       this.totalPrice$ = info.toFixed(2);
     });
   }
