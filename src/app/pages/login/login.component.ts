@@ -135,8 +135,6 @@ export class LoginComponent implements OnInit {
   }
 
   signup() {
-   
-    console.log(this.model)
     this.authAPIService.signup(this.model).subscribe(data => {
       if(data['success']) {
         this._toaster.success('', `${data['message']}`, {

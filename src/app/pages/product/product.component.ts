@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl, ValidatorFn, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from '../cart/cart.service';
 import { ProductService } from './product.service';
@@ -9,6 +9,8 @@ import { Lightbox } from 'ngx-lightbox';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductQuickviewComponent } from 'src/app/components/layout/product-quickview/product-quickview.component';
+import { HttpClient } from '@angular/common/http';
+
 
 declare var $: any;
 
@@ -39,7 +41,12 @@ export class ProductComponent implements OnInit {
 
   productImages = [];
   activeTab: any = "description";
-  currentRate = 0;
+  currentRate: any = 0;
+  addRate = 5;
+  public model: any = {};
+  reviews: any;
+
+  private SEND_REVIEW = "https://tavacudetoate.ro/data/sendReview.php";
 
 
   /**
@@ -59,7 +66,9 @@ export class ProductComponent implements OnInit {
     public router: Router,
     private toaster: ToastrService,
     private _lightbox: Lightbox,
-    public modalService: NgbModal
+    public modalService: NgbModal,
+    private _toaster: ToastrService,
+    private _httpClient: HttpClient,
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
@@ -88,7 +97,7 @@ export class ProductComponent implements OnInit {
   selectedImage: string;
 
   ngOnInit(): void {
-    
+
     this._route.paramMap.subscribe(params => {
       this._categoryRoute = params.get('categorySlug');
       this._productRoute = params.get('productSlug');
@@ -103,11 +112,28 @@ export class ProductComponent implements OnInit {
       this.price = this.product.information[0].price;
       this.isActive = this.product.information[0].id;
       this.product.selectedQnt = this.product.information[0].quantity + this.product.information[0].um;
+
+      this.getReviews();
     });
 
     this._ProductService.getRecomended(this._categoryRoute).then(data => {
       this.recommended = data.products;
     });
+
+
+  }
+
+
+  getReviews() {
+    this._ProductService.getProductReview(this.product.id).then(data => {
+      this.reviews = data;
+    })
+    this._ProductService.getProductRating(this.product.id).then(data => {
+      console.log(data)
+      this.currentRate =data[0].rating
+      
+    })
+    
   }
 
   changeimage(image: string) {
@@ -129,17 +155,17 @@ export class ProductComponent implements OnInit {
     this.product.selectedQnt = qnt.quantity + qnt.um;
   }
 
-  
 
-  ngAfterViewInit() {    
-   
+
+  ngAfterViewInit() {
+
   }
 
-  descriptionTab(activeTab){
+  descriptionTab(activeTab) {
     this.activeTab = activeTab;
   }
 
-  infoDelivery(activeTab){
+  infoDelivery(activeTab) {
     this.activeTab = activeTab;
   }
 
@@ -155,5 +181,35 @@ export class ProductComponent implements OnInit {
   }
 
 
+  onSubmit(form: NgForm) {
+    
+    this.model.id =  uuidv4();
+    this.model.rating = this.addRate;
+    this.model.ProductID = this.product.id;
+    this.model.product_name = this.product.product_name;
+    console.log(this.model)
+    this._ProductService.addProductReview(this.model).then(data => {
+      console.log(data)
+      if (data.success) {
+        this.model.review_id = data.review_id;
+        this._httpClient.post(this.SEND_REVIEW, this.model).subscribe((data: any) => {
+          if (data.success) {
+            this._toaster.success('Multumimn!', `${data['message']}`, {
+              timeOut: 8000,
+              positionClass: 'toast-bottom-right'
+            });
+            this.getReviews();
+            form.reset();
+          }
+
+        })
+      } else {
+        this._toaster.success('Te rugam sa incerci din nou', 'A aparut o eroare', {
+          timeOut: 8000,
+          positionClass: 'toast-bottom-right'
+        })
+      }
+    });
+  }
 }
 

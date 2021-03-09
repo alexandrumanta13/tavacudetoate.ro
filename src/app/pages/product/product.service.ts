@@ -80,4 +80,62 @@ export class ProductService {
                 }, reject);
         });
     }
+
+    /**
+     * Add product review
+     *
+     * @returns {Promise<any>}
+     */
+    addProductReview(review) : Promise<any>
+    {
+        return new Promise((resolve, reject) => {
+            this._httpClient.post(this.REST_API_SERVER + 'review/add', 
+            {
+                id: review.id, 
+                user_name: review.user_name, 
+                user_email: review.user_email, 
+                user_message: review.user_message,
+                ProductID: review.ProductID,
+                rating: review.rating
+            })
+                .subscribe((response: any) => {
+                    resolve(response);
+                }, reject);
+        });
+       
+    }
+
+
+    /**
+     * Get product review
+     *
+     * @returns {Promise<any>}
+     */
+    getProductReview(ProductID) : Promise<any>
+    {
+        return new Promise((resolve, reject) => {
+            this._httpClient.post(this.REST_API_SERVER + 'reviews', {ProductID: ProductID})
+                .subscribe((response: any) => {
+                    resolve(response);
+                }, reject);
+        });
+       
+    }
+
+
+    /**
+     * Get product rating
+     *
+     * @returns {Promise<any>}
+     */
+    getProductRating(ProductID) : Promise<any>
+    {
+        return new Promise((resolve, reject) => {
+            this._httpClient.post(this.REST_API_SERVER + 'review/product', {ProductID: ProductID})
+                .subscribe((response: any) => {
+                    resolve(response);
+                }, reject);
+        });
+       
+    }
 }

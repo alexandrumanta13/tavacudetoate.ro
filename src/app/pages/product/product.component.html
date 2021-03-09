@@ -48,9 +48,12 @@
             </span>
           </ng-template>
 
-          <ngb-rating [(rate)]="currentRate" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
+          <div class="rate mb-20">
+            <ngb-rating [(rate)]="currentRate" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
 
-          <pre>Rate: <b>{{currentRate}}</b></pre>
+            {{currentRate}}
+          </div>
+
           <!-- <button class="btn btn-sm btn-outline-primary mr-2" (click)="currentRate = 1.60">1.35</button> -->
 
           <span>{{price | number:'1.2-2'}} Lei {{portions}}</span>
@@ -148,62 +151,67 @@
         </div>
         <div id="des-details3" class="tab-pane">
           <div class="rattings-wrapper">
-              <div class="sin-rattings">
-                  <div class="star-author-all">
-                      <div class="ratting-star f-left">
-                          <i class="ion-star theme-color"></i>
-                          <i class="ion-star theme-color"></i>
-                          <i class="ion-star theme-color"></i>
-                          <i class="ion-star theme-color"></i>
-                          <i class="ion-star theme-color"></i>
-                          <span>(5)</span>
-                      </div>
-                      <div class="ratting-author f-right">
-                          <h3>Alex Manta</h3>
-                          <span>12:24</span>
-                          <span>8 March 2021</span>
-                      </div>
-                  </div>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nost rud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nost.</p>
+            <div class="sin-rattings" *ngFor="let review of reviews">
+              <div class="star-author-all">
+                <div class="ratting-star f-left">
+                  <ngb-rating [(rate)]="review.rating" [readonly]="true" max="5"></ngb-rating>
+                  <span>({{review.rating}})</span>
+                </div>
+                <div class="ratting-author f-right">
+                  <h3>{{review.user_name}}</h3>
+                  <span>{{review.date_added | date:'h:mm'}}</span>
+                  <span>{{review.date_added | date:'d.M.y'}}</span>
+                </div>
               </div>
-              
+              <p>{{review.user_message}}</p>
+            </div>
+
           </div>
           <div class="ratting-form-wrapper">
-              <h3>Adauga recenzia ta :</h3>
-              <div class="ratting-form">
-                  <form action="#">
-                      <div class="star-box">
-                          <h2>Rating:</h2>
-                          <div class="ratting-star">
-                              <i class="ion-star theme-color"></i>
-                              <i class="ion-star theme-color"></i>
-                              <i class="ion-star theme-color"></i>
-                              <i class="ion-star theme-color"></i>
-                              <i class="ion-star"></i>
-                          </div>
+            <h3>Adauga recenzia ta :</h3>
+            <div class="ratting-form">
+              <form (ngSubmit)="f.form.valid && onSubmit(f)" #f="ngForm">
+                <div class="star-box">
+                  <h2>Rating:</h2>
+                  <ngb-rating [(rate)]="addRate" max="5"></ngb-rating>
+
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="rating-form-style mb-20">
+                      <input placeholder="Nume" type="text" class="form-control" name="user_name"
+                        [(ngModel)]="model.user_name" #user_name="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && user_name.invalid }" required minlength="3">
+                      <div *ngIf="f.submitted && user_name.invalid" class="invalid-feedback">
+                        <div *ngIf="user_name.errors.required">Te rugam sa introduci numele</div>
+                        <div *ngIf="user_name.errors.minlength">Numele trebuie sa fie de minim 3 caractere</div>
                       </div>
-                      <div class="row">
-                          <div class="col-md-6">
-                              <div class="rating-form-style mb-20">
-                                  <input placeholder="Nume" type="text">
-                              </div>
-                          </div>
-                          <div class="col-md-6">
-                              <div class="rating-form-style mb-20">
-                                  <input placeholder="Email" type="text">
-                              </div>
-                          </div>
-                          <div class="col-md-12">
-                              <div class="rating-form-style form-submit">
-                                  <textarea name="message" placeholder="Mesajul tau"></textarea>
-                                  <input type="submit" value="Adauga recenzie">
-                              </div>
-                          </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="rating-form-style mb-20">
+                      <input type="email" name="user_email" class="form-control" placeholder="Email"
+                        [(ngModel)]="model.user_email" #user_email="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && user_email.invalid }" required email>
+                      <div *ngIf="f.submitted && user_email.invalid" class="invalid-feedback">
+                        <div *ngIf="user_email.errors.required">Te rugam sa introduci email-ul!</div>
+                        <div *ngIf="user_email.errors.email">Email-ul nu este valid!</div>
                       </div>
-                  </form>
-              </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="rating-form-style form-submit">
+                      <textarea name="user_message" class="form-control" placeholder="Mesajul tau"
+                        [(ngModel)]="model.user_message" #user_message="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && user_message.invalid }" required></textarea>
+                      <input type="submit" value="Adauga recenzie">
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
           </div>
-      </div>
+        </div>
       </div>
     </div>
   </div>
