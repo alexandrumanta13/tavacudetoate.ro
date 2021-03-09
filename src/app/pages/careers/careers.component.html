@@ -1,0 +1,106 @@
+<div class="breadcrumb-area gray-bg">
+    <div class="container">
+      <div class="breadcrumb-content">
+        <ul>
+          <li><a routerLink="/">Acasa</a></li>
+          <li class="active">Cariere </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  <div class="shop-page-area pt-100 pb-100">
+    <div class="container">
+        <h2></h2>
+      <div class="row">
+        <div class="col-12 col-md-4 career mb-20" *ngFor="let career of careers">
+            <div class="career__inner">
+                <h5>{{career.career_name}}</h5>
+                <button (click)="selectCareer(career.career_name)" data-toggle="modal" data-target="#exampleModal" class="mt-20" >Aplica</button>
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                   
+                    <div class="col-12">
+                        <div class="modal-pro-content">
+                            <h3>{{model.subject}} </h3>
+                            
+                            <form method="post" id="contact-form" class="default-form" (ngSubmit)="f.form.valid && submit(f)"
+                            #f="ngForm" novalidate>
+                            <div class="row clearfix">
+                              <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                <input type="text" name="name" class="form-control" [(ngModel)]="model.name" #name="ngModel"
+                                  [ngClass]="{ 'is-invalid': f.submitted && name.invalid}" required minlength="3" placeholder="Nume">
+                                <div *ngIf="f.submitted && name.invalid" class="invalid-feedback">
+                                  <div *ngIf="name.errors.required">Te rugam sa introduci numele!</div>
+                                  <div *ngIf="name.errors.minlength">Numele trebuie sa contina cel putin 3 litere!</div>
+                                </div>
+                              </div>
+                              <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                <input type="text" name="email" class="form-control" [(ngModel)]="model.email" #email="ngModel"
+                                  [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" placeholder="Email" required email>
+                                <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+                                  <div *ngIf="email.errors.required">Te rugam sa introduci adresa de email!</div>
+                                  <div *ngIf="email.errors.email">Email-ul nu este valid</div>
+                                </div>
+                              </div>
+                              <div class="col-lg-6 col-md-12 col-sm-12 form-group">
+                                <input type="text" name="phone" [(ngModel)]="model.phone" placeholder="Telefon">
+                              </div>
+                              <div class="col-lg-6 col-md-12 col-sm-12 form-group">
+                                <input type="text" name="subject" [(ngModel)]="model.subject" placeholder="Subiect">
+                              </div>
+                              <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                <input type="file" (change)="fileChange($event)" id="image_file_input"
+                                accept=".pdf,.doc,.docx" />
+                              </div>
+                          
+                              <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                <textarea name="message" [(ngModel)]="model.message" placeholder="Mesajul tau ..."></textarea>
+                              </div>
+                             
+                              <div class="gdpr">
+                                <div class="custom-controls-stacked">
+                                  <label class="custom-control material-checkbox">
+                                    <input type="checkbox" [(ngModel)]="terms" name="terms" class="material-control-input">
+                                    <span class="material-control-indicator"></span>
+                                    <span class="description">Sunt de acord cu <a routerLink="/termeni-si-conditii">Termeni si
+                                        Conditii </a></span>
+                                  </label>
+                                </div>
+                                <div class="custom-controls-stacked">
+                                  <label class="custom-control material-checkbox">
+                                    <input type="checkbox" [(ngModel)]="gdpr" name="gdpr" class="material-control-input">
+                                    <span class="material-control-indicator"></span>
+                                    <span class="description">Sunt de acord cu <a routerLink="/confidentialitate">Politica de
+                                        Confidentialitate</a>
+                                      si <a routerLink="/politica-cookies">GDPR</a> </span>
+                                  </label>
+                                </div>
+                              </div>
+                              <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn mt-20">
+                                <button [disabled]="disabled" class="theme-btn-one" type="submit" name="submit-form">Trimite</button>
+                              </div>
+                            </div>
+                          </form>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

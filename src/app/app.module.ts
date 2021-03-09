@@ -88,6 +88,7 @@ import { ProductQuickviewComponent } from './components/layout/product-quickview
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { LocationsComponent } from './pages/locations/locations.component';
 import { ChefsSuggestionComponent } from './pages/chefs-suggestion/chefs-suggestion.component';
+import { CareersComponent } from './pages/careers/careers.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -139,6 +140,7 @@ import { ChefsSuggestionComponent } from './pages/chefs-suggestion/chefs-suggest
     ProductQuickviewComponent,
     LocationsComponent,
     ChefsSuggestionComponent,
+    CareersComponent,
   ],
   imports: [
     BrowserModule,

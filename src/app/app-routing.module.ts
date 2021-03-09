@@ -37,6 +37,7 @@ import { CouponsComponent } from './pages/my-account/coupons/coupons.component';
 import { AddressesComponent } from './pages/my-account/addresses/addresses.component';
 import { LocationsComponent } from './pages/locations/locations.component';
 import { ChefsSuggestionComponent } from './pages/chefs-suggestion/chefs-suggestion.component';
+import { CareersComponent } from './pages/careers/careers.component';
 
 const routes: Routes = [
   {
@@ -111,6 +112,14 @@ const routes: Routes = [
   },
   {
     path: 'sugestiile-bucatarului', component: ChefsSuggestionComponent,
+    data: {
+      title: '',
+      description: '',
+      ogUrl: 'your og url'
+    }
+  },
+  {
+    path: 'cariere', component: CareersComponent,
     data: {
       title: '',
       description: '',
