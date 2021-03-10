@@ -337,4 +337,23 @@ figure.image {
     width: 30px;
     margin-right: 16px;
   }
+
+  p {
+    flex-basis: 100%;
+  }
+}
+
+.bullet {
+  margin-bottom: 16px;
+  li {
+    &::before {
+      content: "\2022";
+      color: #333;
+      font-weight: bold;
+      margin-right: 16px;
+    }
+  }
+ 
+
+
 }

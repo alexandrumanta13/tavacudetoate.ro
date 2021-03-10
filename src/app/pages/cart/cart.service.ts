@@ -41,7 +41,7 @@ export class CartService {
             take(1),
             map((products) => {
 
-                if(value <= 0) {
+                if (value <= 0) {
                     this.removeFromCart(product);
                     return;
                 }
@@ -55,27 +55,42 @@ export class CartService {
                     return (v["id"] == product.id && v["selectedQnt"] == product.selectedQnt);
                 });
 
-                
+
 
                 if (existing.length > 0) {
-                    if(increment) {
+                    if(existing[0].num > parseInt(value)) {
+                        this.toaster.success(`${product.product_name + ' ' + product.selectedQnt}`, 'Produsul fost scos din cos!', {
+                            timeOut: 3000,
+                            positionClass: 'toast-bottom-right'
+                        });
+                    } else {
+                        this.toaster.success(`${product.product_name + ' ' + product.selectedQnt}`, 'Produsul fost adaugat in cos!', {
+                            timeOut: 3000,
+                            positionClass: 'toast-bottom-right'
+                        });
+                    }
+
+                    if (increment) {
                         existing[0].num = parseInt(value);
                     } else {
                         existing[0].num += parseInt(value);
                     }
+
+                    
                 } else {
                     products.push({ ...product, num: parseInt(value) });
+                    this.toaster.success(`${product.product_name + ' ' + product.selectedQnt}`, 'Produsul fost adaugat in cos!', {
+                        timeOut: 3000,
+                        positionClass: 'toast-bottom-right'
+                    });
                 }
 
                 localStorage.setItem('tavaProducts', JSON.stringify(products));
                 this.calcTotal();
-                
+
             }),
         ).subscribe();
-        this.toaster.success(`${product.product_name + ' ' + product.selectedQnt}`, 'Produsul fost adaugat in cos!', {
-            timeOut: 3000,
-            positionClass: 'toast-bottom-right'
-          });
+
     }
 
     removeFromCart(product: Product) {

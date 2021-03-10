@@ -137,12 +137,10 @@
                 <ng-container *ngFor="let location of selectedLocation">
                   <label class="custom-control" (click)="deliveryLocation(location)">
                     <input type="radio" value="{{location.id}}" id="location_{{location.id}}" name="location_selected">
-
                     <ul>
                       <li>{{location.location_name}}</li>
                       <li>{{location.schedule}}</li>
                       <li><a href="tel:{{location.phone}}">{{location.pretty_phone}}</a></li>
-                      <li><a href="mailto:{{location.email}}">{{location.email}}</a></li>
                     </ul>
                   </label>
                 </ng-container>
@@ -258,25 +256,53 @@
                   </div>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                  <label>Oras*</label>
+                  <div class="product-show shorting-style">
+                    <label>Oras*</label>
+                    <select class="form-control" name="town_city" [(ngModel)]="model.town_city" #town_city="ngModel"
+                      [ngClass]="{ 'is-invalid': f.submitted && town_city.invalid }" required>
+                      <option value="Bucuresti">Bucuresti</option>
+                      <option value="Pitesti">Pitesti</option>
+                    </select>
+                    <div *ngIf="f.submitted && town_city.invalid" class="invalid-feedback">
+                      <div *ngIf="town_city.errors.required">Te rugam sa alegi orasul!</div>
+                    </div>
+                  </div>
+                  <!-- <label>Oras*</label>
                   <div class="field-input">
+                    
                     <input type="text" name="town_city" class="form-control" [(ngModel)]="model.town_city"
                       #town_city="ngModel" [ngClass]="{ 'is-invalid': f.submitted && town_city.invalid }" required>
                     <div *ngIf="f.submitted && town_city.invalid" class="invalid-feedback">
                       <div *ngIf="town_city.errors.required">Te rugam sa introduci orasul!</div>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
-                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                <div class="col-lg-12 col-md-12 col-sm-12 form-group" *ngIf="model.town_city === 'Pitesti'">
                   <label>Judet*</label>
                   <div class="field-input">
                     <input type="text" name="county" class="form-control" [(ngModel)]="model.county" #county="ngModel"
+                      value="Arges" disabled>
+                  </div>
+                </div>
+
+                <div class="col-lg-12 col-md-12 col-sm-12 form-group" *ngIf="model.town_city === 'Bucuresti'">
+                  <div class="product-show shorting-style">
+                    <label>Sector*</label>
+                    <select class="form-control" name="county" [(ngModel)]="model.county" #county="ngModel"
                       [ngClass]="{ 'is-invalid': f.submitted && county.invalid }" required>
+                      <option value="Sector 1">Sector 1</option>
+                      <option value="Sector 2">Sector 2</option>
+                      <option value="Sector 3">Sector 3</option>
+                      <option value="Sector 4">Sector 4</option>
+                      <option value="Sector 5">Sector 5</option>
+                      <option value="Sector 6">Sector 6</option>
+                    </select>
                     <div *ngIf="f.submitted && county.invalid" class="invalid-feedback">
-                      <div *ngIf="county.errors.required">Te rugam sa introduci judetul!</div>
+                      <div *ngIf="county.errors.required">Te rugam sa introduci sectorul!</div>
                     </div>
                   </div>
                 </div>
+
 
                 <!-- <div class="form-group col-lg-12 col-md-12 col-sm-12">
                   <div class="create-acc">
@@ -313,14 +339,196 @@
 
               </div>
             </div>
+
             <a *ngIf="isAuthentificated" (click)="toggleNewAddress()" class="theme-btn-one add-new-address">Adauga o
               adresa noua</a>
+
+            <div class="custom-controls-stacked mb-20" *ngIf="location">
+              <label class="custom-control material-checkbox">
+                <input type="checkbox" [(ngModel)]="isInvoice" name="isInvoice" class="material-control-input">
+                <span class="material-control-indicator"></span>
+                <span class="description">Vreau factura persoana fizica</span>
+              </label>
+            </div>
+
+            <div class="custom-controls-stacked mb-20" *ngIf="location">
+              <label class="custom-control material-checkbox">
+                <input type="checkbox" [(ngModel)]="invoice" name="invoice" class="material-control-input">
+                <span class="material-control-indicator"></span>
+                <span class="description">Vreau factura persoana juridica</span>
+              </label>
+            </div>
+
+            <div class="shorting-style pj-invoice" *ngIf="invoice">
+              <div class="form-group">
+                <label>Nume companie </label>
+                <input [(ngModel)]="invoicePj.companyName" name="companyName" id="companyName" type="text" class="form-control" #companyName="ngModel"
+                [ngClass]="{ 'is-invalid': f.submitted && companyName.invalid }" required>
+                <div *ngIf="f.submitted && companyName.invalid" class="invalid-feedback">
+                  <div *ngIf="companyName.errors.required">Te rugam sa introduci numele companiei!</div>
+                </div>
+              </div><!-- End .form-group -->
+
+              <div class="form-group j row">
+                <label class="col-12">Numar de inregistrare in Registrul Comertului </label>
+                <div class="col-12 col-md-2">
+                  <select name="J" class="form-control" id="J" [(ngModel)]="invoicePj.J"  #J="ngModel"
+                  [ngClass]="{ 'is-invalid': f.submitted && J.invalid }" required>
+                    <option value="J">J</option>
+                    <option value="F">F</option>
+                    <option value="C">C</option>
+                    <option selected="selected" value="-">-</option>
+                  </select>
+                  <div *ngIf="f.submitted && J.invalid" class="invalid-feedback">
+                    <div *ngIf="J.errors.required">Te rugam sa introduci nr de inregistrare!</div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-2">
+                  <select class="form-control j1" name="J1" id="J1" [(ngModel)]="invoicePj.J1" #J1="ngModel"
+                  [ngClass]="{ 'is-invalid': f.submitted && J1.invalid }" required>
+                    <option value="">--</option>
+                    <option value="0">00</option>
+                    <option value="1">01</option>
+                    <option value="2">02</option>
+                    <option value="3">03</option>
+                    <option value="4">04</option>
+                    <option value="5">05</option>
+                    <option value="6">06</option>
+                    <option value="7">07</option>
+                    <option value="8">08</option>
+                    <option value="9">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+                    <option value="32">32</option>
+                    <option value="33">33</option>
+                    <option value="34">34</option>
+                    <option value="35">35</option>
+                    <option value="36">36</option>
+                    <option value="37">37</option>
+                    <option value="38">38</option>
+                    <option value="39">39</option>
+                    <option value="40">40</option>
+                    <option value="41">41</option>
+                    <option value="42">42</option>
+                    <option value="43">43</option>
+                    <option value="44">44</option>
+                    <option value="50">50</option>
+                    <option value="51">51</option>
+                    <option value="52">52</option>
+                  </select>
+                  <div *ngIf="f.submitted && J1.invalid" class="invalid-feedback">
+                    <div *ngIf="J1.errors.required">Te rugam sa introduci nr de inregistrare!</div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-5">
+                  <input type="text" [(ngModel)]="invoicePj.J2" name="J2" id="J2" class="form-control" #J2="ngModel"
+                  [ngClass]="{ 'is-invalid': f.submitted && J2.invalid }" required>
+                  <div *ngIf="f.submitted && J2.invalid" class="invalid-feedback">
+                    <div *ngIf="J2.errors.required">Te rugam sa introduci nr de inregistrare!</div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-3">
+                  <select name="J3" class="form-control date" id="J3" [(ngModel)]="invoicePj.J3" #J3="ngModel"
+                  [ngClass]="{ 'is-invalid': f.submitted && J3.invalid }" required>
+                    <option value="">----</option>
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
+                    <option value="2018">2018</option>
+                    <option value="2017">2017</option>
+                    <option value="2016">2016</option>
+                    <option value="2015">2015</option>
+                    <option value="2014">2014</option>
+                    <option value="2013">2013</option>
+                    <option value="2012">2012</option>
+                    <option value="2011">2011</option>
+                    <option value="2010">2010</option>
+                    <option value="2009">2009</option>
+                    <option value="2008">2008</option>
+                    <option value="2007">2007</option>
+                    <option value="2006">2006</option>
+                    <option value="2005">2005</option>
+                    <option value="2004">2004</option>
+                    <option value="2003">2003</option>
+                    <option value="2002">2002</option>
+                    <option value="2001">2001</option>
+                    <option value="2000">2000</option>
+                    <option value="1999">1999</option>
+                    <option value="1998">1998</option>
+                    <option value="1997">1997</option>
+                    <option value="1996">1996</option>
+                    <option value="1995">1995</option>
+                    <option value="1994">1994</option>
+                    <option value="1993">1993</option>
+                    <option value="1992">1992</option>
+                    <option value="1991">1991</option>
+                    <option value="1990">1990</option>
+                  </select>
+                  <div *ngIf="f.submitted && J3.invalid" class="invalid-feedback">
+                    <div *ngIf="J3.errors.required">Te rugam sa introduci nr de inregistrare!</div>
+                  </div>
+                </div>
+
+              </div><!-- End .form-group -->
+
+              <div class="form-group cui row">
+                <label class="col-12">Cod unic de Inregistrare </label>
+                <div class="col-12 col-md-2">
+                  <select id="prefcode" name="prefcode" class="form-control" [(ngModel)]="invoicePj.prefcode" #prefcode="ngModel"
+                  [ngClass]="{ 'is-invalid': f.submitted && prefcode.invalid }" required>
+                    <option value="RO">RO</option>
+                    <option value="0">----</option>
+                  </select>
+                  <div *ngIf="f.submitted && prefcode.invalid" class="invalid-feedback">
+                    <div *ngIf="prefcode.errors.required">Te rugam sa introduci CUI-ul!</div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-9">
+                  <input [(ngModel)]="invoicePj.cui" name="cui" id="cui" type="text" class="form-control" #cui="ngModel"
+                  [ngClass]="{ 'is-invalid': f.submitted && cui.invalid }" required>
+                </div>
+                <div *ngIf="f.submitted && cui.invalid" class="invalid-feedback">
+                  <div *ngIf="cui.errors.required">Te rugam sa introduci CUI-ul!</div>
+                </div>
+              </div><!-- End .form-group -->
+
+              <div class="form-group">
+                <label>Adresa sediu social </label>
+                <input [(ngModel)]="invoicePj.companyAddress" name="companyAddress" id="companyAddress" type="text"
+                  class="form-control"  #companyAddress="ngModel"
+                  [ngClass]="{ 'is-invalid': f.submitted && companyAddress.invalid }" required>
+                  <div *ngIf="f.submitted && companyAddress.invalid" class="invalid-feedback">
+                    <div *ngIf="companyAddress.errors.required">Te rugam sa introduci adresa companiei!</div>
+                  </div>
+              </div><!-- End .form-group -->
+
+            </div>
+
             <div class="additional-info">
               <div class="note-book">
                 <h4 class="sub-title">Detalii suplimentare</h4>
 
                 <textarea name="note_box" [(ngModel)]="note_box"
-                  placeholder="Detalii suplimentare pentru comanda ta"></textarea>
+                  placeholder="Exemplu: vreau fara sare, mai sarat, mai iute, etc."></textarea>
               </div>
             </div>
             <div class="gdpr">
@@ -381,21 +589,30 @@
                 <div class="option-block">
                   <div class="custom-controls-stacked">
                     <label class="custom-control material-checkbox">
-                      <input type="radio" [(ngModel)]="payment" value="numerar" id="cash" name="select-payment"
+                      <input type="radio" [(ngModel)]="payment" value="card online" id="card" name="select-payment"
                         class="material-control-input">
                       <span class="material-control-indicator"></span>
-                      <span class="description">Plata numerar la livrare</span>
+                      <span class="description">Card Online (recomandat)</span>
                     </label>
                   </div>
-
                 </div>
                 <div class="option-block">
                   <div class="custom-controls-stacked">
                     <label class="custom-control material-checkbox">
-                      <input type="radio" [(ngModel)]="payment" value="card" id="card" name="select-payment"
-                        class="material-control-input">
+                      <input type="radio" [(ngModel)]="payment" value="plata numerar sau card la livrare"
+                        id="numerarCardLivrare" name="select-payment" class="material-control-input">
                       <span class="material-control-indicator"></span>
-                      <span class="description">Plata cu cardul la livrare</span>
+                      <span class="description">Platesc la livrare (numerar/card)</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="option-block" *ngIf="location != 'livreaza' && location != undefined">
+                  <div class="custom-controls-stacked">
+                    <label class="custom-control material-checkbox">
+                      <input type="radio" [(ngModel)]="payment" value="plata la ridicare" id="laRidicare"
+                        name="select-payment" class="material-control-input">
+                      <span class="material-control-indicator"></span>
+                      <span class="description">Platesc la ridicare din locatie (numerar/card)</span>
                     </label>
                   </div>
                 </div>

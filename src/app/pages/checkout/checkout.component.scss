@@ -188,6 +188,8 @@
     }
   }
 
+  
+
   @media (min-width: 576px) {
     .shipping-address-box {
       width: 50%;
@@ -354,4 +356,36 @@ checkout-section .order-info{
 
 .checkout-section a{
   color: #007bff;
+}
+
+
+.theme-btn-one {
+  background-color: #e02c2b;
+  color: #fff;
+  &:hover {
+    background-color: #ff5501;
+  }
+}
+
+
+.shorting-style {
+  display: flex;
+    flex-direction: column;
+    margin: 0;
+
+    & > label {
+      margin-bottom: .5rem;
+    }
+
+    select {
+      height: 45px;
+      width: 100%;
+    }
+}
+
+
+.pj-invoice {
+  select, input {
+    margin-bottom: 16px;
+  }
 }

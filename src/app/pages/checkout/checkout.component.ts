@@ -79,7 +79,12 @@ export class CheckoutComponent implements OnInit {
   model: any = {};
   delivery: any = {};
   login: any = {};
+  limit: number = 99;
 
+  isInvoice: boolean = false;
+  invoice: boolean = false;
+  invoicePj: any = {};
+  
 
   formGroup: FormGroup;
   dateModel: Date = new Date();
@@ -124,16 +129,18 @@ export class CheckoutComponent implements OnInit {
 
   getTotalPrice() {
     this.cartService.totalPrice.subscribe(info => {
-      if (this.totalPrice$ < 100) {
+      this.totalPrice$ = info.toFixed(2);
+      
+      if (parseInt(this.totalPrice$) < this.limit && parseInt(this.totalPrice$) == 0) {
         this.router.navigate(['/cos-cumparaturi']);
       }
-      this.totalPrice$ = info.toFixed(2);
+      
+     
     });
   }
 
   selectDelivery(event) {
     this.location = event.target.value;
-    console.log(event.target.value)
     if (this.location != 'livreaza') {
       this.getLocations(this.location);
     } else {
@@ -287,6 +294,10 @@ export class CheckoutComponent implements OnInit {
       return;
     } 
 
+   
+
+    console.log(this.invoicePj)
+
     this.order = [
       {
         total: this.totalPrice$,
@@ -297,9 +308,23 @@ export class CheckoutComponent implements OnInit {
         accessories: this.products.accessories,
         deliverydate: this.deliverydate,
         //intervaldelivery: this.interval
+        invoicePj: this.invoicePj,
+        isInvoice: this.isInvoice,
+        isInvoicePJ: this.invoice
       }
     ];
 
+
+    if(this.invoicePj) {
+      this.isInvoice = false;
+
+      this.order[0].invoicePj = {
+        companyName: this.invoicePj.companyName,
+        companyAddress: this.invoicePj.companyAddress,
+        registryNumber: this.invoicePj.J + ' ' + this.invoicePj.J1 + ' ' + this.invoicePj.J2 + ' ' + this.invoicePj.J3,
+        cui: this.invoicePj.prefcode + ' ' + this.invoicePj.cui
+      }
+    }
    
 
     if (this.location != 'livreaza') {
@@ -409,6 +434,7 @@ export class CheckoutComponent implements OnInit {
 
             this.cartService.emptyCart();
             f.reset();
+            this.totalPrice$ = 0;
             this.router.navigate(['/comanda-finalizata']);
           }
         })
