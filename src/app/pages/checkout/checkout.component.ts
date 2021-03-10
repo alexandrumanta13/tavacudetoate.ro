@@ -178,34 +178,43 @@ export class CheckoutComponent implements OnInit {
   }
 
   checkDiscount() {
-    if (this.model.email) {
-      this._httpClient.post(this.CHECK_COUPON, { email: this.model.email, coupon: this.discountCode }).subscribe((data: any) => {
-        if (data.success === true) {
-
-          this.discount = data.percent;
-          this.totalPrice$ = this.totalPrice$ - (this.totalPrice$ * this.discount / 100);
-          this._httpClient.post(this.USE_COUPON, { email: this.model.email, coupon: this.discountCode }).subscribe((data: any) => {
-            if (data.success === true) {
-              this.toaster.success('Iti multumim!', `${data.message}`, {
-                timeOut: 3000,
-                positionClass: 'toast-bottom-right'
-              });
-            }
-          })
-
-        } else {
-          this.toaster.warning('', `${data.message}`, {
-            timeOut: 3000,
-            positionClass: 'toast-bottom-right'
-          });
-        }
-      })
-    } else {
-      this.toaster.warning('', 'Te rugam sa introduci adresa de email!', {
+    if (this.discountCode.toUpperCase() === 'REDUCERE25') {
+      this.toaster.success('Iti multumim!', `Reducerea a fost aplicata cu succes`, {
         timeOut: 3000,
         positionClass: 'toast-bottom-right'
       });
+
+      this.discount = 25;
     }
+    
+    // if (this.model.email) {
+    //   this._httpClient.post(this.CHECK_COUPON, { email: this.model.email, coupon: this.discountCode }).subscribe((data: any) => {
+    //     if (data.success === true) {
+
+    //       this.discount = data.percent;
+    //       this.totalPrice$ = this.totalPrice$ - (this.totalPrice$ * this.discount / 100);
+    //       this._httpClient.post(this.USE_COUPON, { email: this.model.email, coupon: this.discountCode }).subscribe((data: any) => {
+    //         if (data.success === true) {
+    //           this.toaster.success('Iti multumim!', `${data.message}`, {
+    //             timeOut: 3000,
+    //             positionClass: 'toast-bottom-right'
+    //           });
+    //         }
+    //       })
+
+    //     } else {
+    //       this.toaster.warning('', `${data.message}`, {
+    //         timeOut: 3000,
+    //         positionClass: 'toast-bottom-right'
+    //       });
+    //     }
+    //   })
+    // } else {
+    //   this.toaster.warning('', 'Te rugam sa introduci adresa de email!', {
+    //     timeOut: 3000,
+    //     positionClass: 'toast-bottom-right'
+    //   });
+    // }
 
   }
 
