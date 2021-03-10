@@ -268,13 +268,13 @@ export class CheckoutComponent implements OnInit {
       return;
     }
 
-    // if (!this.interval) {
-    //   this.toaster.warning('Comanda nu poate fi trimisa!', 'Te rugam sa alegi intervalul de livrare!', {
-    //     timeOut: 3000,
-    //     positionClass: 'toast-bottom-right'
-    //   });
-    //   return;
-    // }
+    if (!this.interval) {
+      this.toaster.warning('Comanda nu poate fi trimisa!', 'Te rugam sa alegi intervalul de livrare!', {
+        timeOut: 3000,
+        positionClass: 'toast-bottom-right'
+      });
+      return;
+    }
 
     if (!this.payment) {
       this.toaster.warning('Comanda nu poate fi trimisa!', 'Te rugam sa alegi metoda de plata!', {
@@ -307,7 +307,7 @@ export class CheckoutComponent implements OnInit {
         products: this.products,
         accessories: this.products.accessories,
         deliverydate: this.deliverydate,
-        //intervaldelivery: this.interval
+        intervaldelivery: this.interval,
         invoicePj: this.invoicePj,
         isInvoice: this.isInvoice,
         isInvoicePJ: this.invoice
