@@ -33,3 +33,20 @@
     width: 100%;
   }
 }
+
+
+.footer-bottom-area {
+  
+  &  * {
+    display: flex;
+  align-items: center;
+  }
+  img {
+    width: 100%;
+  }
+}
+
+.footer-social {
+  display: flex;
+  margin-left: auto;
+}

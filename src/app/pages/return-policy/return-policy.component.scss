@@ -17,8 +17,27 @@ table th {
   text-decoration: none;
   vertical-align: baseline;
   font-size: 10.5pt;
-  font-family: "Roboto";
   font-style: normal
+}
+
+.c1 {
+  color: #000000;
+  font-weight: 400;
+  text-decoration: none;
+  vertical-align: baseline;
+  font-size: 11pt;
+  
+  font-style: normal
+}
+
+.c2 {
+  margin-left: 18pt;
+  padding-top: 12pt;
+  padding-bottom: 12pt;
+
+  orphans: 2;
+  widows: 2;
+  text-align: justify
 }
 
 .c6 {
@@ -31,56 +50,77 @@ table th {
   font-style: normal
 }
 
-.c2 {
-  color: #000000;
-  font-weight: 400;
-  text-decoration: none;
-  vertical-align: baseline;
-  font-size: 11pt;
-  
-  font-style: normal
-}
-
-.c1 {
+.c4 {
   padding-top: 0pt;
   padding-bottom: 0pt;
-  
+
   orphans: 2;
   widows: 2;
   text-align: left;
   height: 11pt
 }
 
-.c4 {
-  padding-top: 0pt;
-  padding-bottom: 0pt;
-  
+.c13 {
+  padding-top: 12pt;
+  padding-bottom: 12pt;
+
   orphans: 2;
   widows: 2;
   text-align: left
 }
 
 .c3 {
-  background-color: #ffffff;
-  font-size: 10.5pt;
-  font-family: "Roboto";
-  font-weight: 700
+  padding-top: 12pt;
+  padding-bottom: 12pt;
+
+  orphans: 2;
+  widows: 2;
+  text-align: justify
 }
 
 .c7 {
+  padding-top: 0pt;
+  padding-bottom: 0pt;
+
+  orphans: 2;
+  widows: 2;
+  text-align: left
+}
+
+.c9 {
+  background-color: #ffffff;
+  font-size: 10.5pt;
+  font-weight: 700
+}
+
+.c11 {
   text-decoration-skip-ink: none;
   -webkit-text-decoration-skip: none;
+  color: #1155cc;
   text-decoration: underline
 }
 
-.c8 {
+.c10 {
   background-color: #ffffff;
- 
+
 }
 
 .c5 {
+  margin-left: 54pt;
+  text-indent: -18pt
+}
+
+.c8 {
   color: inherit;
   text-decoration: inherit
+}
+
+.c12 {
+  font-weight: 700
+}
+
+.c14 {
+  height: 11pt
 }
 
 .title {
@@ -89,7 +129,7 @@ table th {
   font-size: 26pt;
   padding-bottom: 3pt;
   
-  
+
   page-break-after: avoid;
   orphans: 2;
   widows: 2;
@@ -99,15 +139,16 @@ table th {
 .subtitle {
   padding-top: 0pt;
   color: #666666;
-  font-size: 15pt;
+ 
   padding-bottom: 16pt;
   
-  
+
   page-break-after: avoid;
   orphans: 2;
   widows: 2;
   text-align: left
 }
+
 
 
 p {
@@ -123,7 +164,7 @@ h1 {
   font-size: 20pt;
   padding-bottom: 6pt;
   
-  
+
   page-break-after: avoid;
   orphans: 2;
   widows: 2;
@@ -136,7 +177,7 @@ h2 {
   font-size: 16pt;
   padding-bottom: 6pt;
   
-  
+
   page-break-after: avoid;
   orphans: 2;
   widows: 2;
@@ -149,7 +190,7 @@ h3 {
   font-size: 14pt;
   padding-bottom: 4pt;
   
-  
+
   page-break-after: avoid;
   orphans: 2;
   widows: 2;
@@ -162,7 +203,7 @@ h4 {
   font-size: 12pt;
   padding-bottom: 4pt;
   
-  
+
   page-break-after: avoid;
   orphans: 2;
   widows: 2;
@@ -175,7 +216,7 @@ h5 {
   font-size: 11pt;
   padding-bottom: 4pt;
   
-  
+
   page-break-after: avoid;
   orphans: 2;
   widows: 2;
@@ -188,7 +229,7 @@ h6 {
   font-size: 11pt;
   padding-bottom: 4pt;
   
-  
+
   page-break-after: avoid;
   font-style: italic;
   orphans: 2;

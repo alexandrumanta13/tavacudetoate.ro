@@ -89,6 +89,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { LocationsComponent } from './pages/locations/locations.component';
 import { ChefsSuggestionComponent } from './pages/chefs-suggestion/chefs-suggestion.component';
 import { CareersComponent } from './pages/careers/careers.component';
+import { ReturnPolicyComponent } from './pages/return-policy/return-policy.component';
+import { HowToDeliverComponent } from './pages/how-to-deliver/how-to-deliver.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -141,6 +143,8 @@ import { CareersComponent } from './pages/careers/careers.component';
     LocationsComponent,
     ChefsSuggestionComponent,
     CareersComponent,
+    ReturnPolicyComponent,
+    HowToDeliverComponent,
   ],
   imports: [
     BrowserModule,

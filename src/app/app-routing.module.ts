@@ -38,6 +38,8 @@ import { AddressesComponent } from './pages/my-account/addresses/addresses.compo
 import { LocationsComponent } from './pages/locations/locations.component';
 import { ChefsSuggestionComponent } from './pages/chefs-suggestion/chefs-suggestion.component';
 import { CareersComponent } from './pages/careers/careers.component';
+import { ReturnPolicyComponent } from './pages/return-policy/return-policy.component';
+import { HowToDeliverComponent } from './pages/how-to-deliver/how-to-deliver.component';
 
 const routes: Routes = [
   {
@@ -169,22 +171,22 @@ const routes: Routes = [
   //     ogUrl: 'your og url'
   //   }
   // },
-  // {
-  //   path: 'cum-cumpar', component: HowToBuyComponent,
-  //   data: {
-  //     title: 'Cum cumpar',
-  //     description: '',
-  //     ogUrl: 'your og url'
-  //   }
-  // },
-  // {
-  //   path: 'cum-platesc', component: HowToPayComponent,
-  //   data: {
-  //     title: 'Cum platesc',
-  //     description: '',
-  //     ogUrl: 'your og url'
-  //   }
-  // },
+  {
+    path: 'cum-cumpar', component: HowToBuyComponent,
+    data: {
+      title: 'Cum cumpar',
+      description: '',
+      ogUrl: 'your og url'
+    }
+  },
+  {
+    path: 'cum-platesc', component: HowToPayComponent,
+    data: {
+      title: 'Cum platesc',
+      description: '',
+      ogUrl: 'your og url'
+    }
+  },
   // {
   //   path: 'info-livrare', component: DeliveryInfoComponent,
   //   data: {
@@ -193,6 +195,22 @@ const routes: Routes = [
   //     ogUrl: 'your og url'
   //   }
   // },
+  {
+    path: 'cum-se-livreaza', component: HowToDeliverComponent,
+    data: {
+      title: 'Cum platesc',
+      description: '',
+      ogUrl: 'your og url'
+    }
+  },
+  {
+    path: 'politica-retur', component: ReturnPolicyComponent,
+    data: {
+      title: 'Politica retur',
+      description: '',
+      ogUrl: 'your og url'
+    }
+  },
   {
     path: 'contact', component: ContactComponent,
     data: {

@@ -13,6 +13,11 @@
     <div class="container">
         <h2></h2>
       <div class="row">
+        <div class="col-12 mb-40">
+          <h4 class="text-center mb-20">Posturi Disponibile</h4>
+          <p>Suntem bucurosi sa te primim in echipa TAVA CU DE TOATE. Mai jos ai o lista cu posturile noastre disponibile. Te rugam sa aplici pentru postul care se potriveste cel mai bine experientei tale profesionale.</p>
+          <p>Lasa-ne un CV si datele tale de contact pentru a te cunoaste mai bine.</p>
+        </div>
         <div class="col-12 col-md-4 career mb-20" *ngFor="let career of careers">
             <div class="career__inner">
                 <h5>{{career.career_name}}</h5>
@@ -64,8 +69,9 @@
                                 <input type="text" name="subject" [(ngModel)]="model.subject" placeholder="Subiect">
                               </div>
                               <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                <label>Ataseaza CV</label>
                                 <input type="file" (change)="fileChange($event)" id="image_file_input"
-                                accept=".pdf,.doc,.docx" />
+                                accept=".pdf,.doc,.docx" placeholder="Ataseaza CV" />
                               </div>
                           
                               <div class="col-lg-12 col-md-12 col-sm-12 form-group">
