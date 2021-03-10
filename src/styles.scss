@@ -376,3 +376,38 @@ ngb-rating {
 .form-control {
   border-color: #ebebeb;
 }
+
+
+.slider-active .owl-nav div {
+  background-color: #fff;
+  border-radius: 3px;
+  color: #000;
+  display: inline-block;
+  font-size: 20px;
+  height: 45px;
+  left: 15px;
+  line-height: 47px;
+  opacity: 0;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.3s ease 0s;
+  width: 45px;
+}
+
+
+.slider-active .owl-nav div.owl-next {
+  left: auto;
+  right: 15px;
+}
+
+
+.slider-active:hover  .owl-nav div {
+  opacity: 1;
+}
+
+.slider-active .owl-nav div:hover {
+  background-color: #e02c2b;
+  color: #fff;
+}
