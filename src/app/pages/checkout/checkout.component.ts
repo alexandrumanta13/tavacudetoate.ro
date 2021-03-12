@@ -58,7 +58,8 @@ export class CheckoutComponent implements OnInit {
   showForm: boolean;
   newAddress: boolean;
   selectedLocation: any;
-  selectDeliveryLocaiton: any;
+  selectDeliveryLocation: any;
+  discountDelivery: number;
 
 
   constructor(
@@ -84,7 +85,7 @@ export class CheckoutComponent implements OnInit {
   isInvoice: boolean = false;
   invoice: boolean = false;
   invoicePj: any = {};
-  
+
 
   formGroup: FormGroup;
   dateModel: Date = new Date();
@@ -129,13 +130,19 @@ export class CheckoutComponent implements OnInit {
 
   getTotalPrice() {
     this.cartService.totalPrice.subscribe(info => {
-      this.totalPrice$ = info.toFixed(2);
-      
+      if(this.discount > 0) {
+        this.totalPrice$ = info; 
+        this.totalPrice$ = (this.totalPrice$ - (this.totalPrice$ * this.discount / 100)).toFixed(2);
+      } else {
+        this.totalPrice$ = info.toFixed(2); 
+      }
+     
+
       if (parseInt(this.totalPrice$) < this.limit && parseInt(this.totalPrice$) == 0) {
         this.router.navigate(['/cos-cumparaturi']);
       }
-      
-     
+
+
     });
   }
 
@@ -144,9 +151,9 @@ export class CheckoutComponent implements OnInit {
     if (this.location != 'livreaza') {
       this.getLocations(this.location);
     } else {
-      this.discount = 0;
+      this.discountDelivery = 0;
       this.selectedLocation = '';
-      this.selectDeliveryLocaiton = '';
+      this.selectDeliveryLocation = '';
       this.getTotalPrice();
     }
   }
@@ -158,9 +165,10 @@ export class CheckoutComponent implements OnInit {
   }
 
   deliveryLocation(location) {
-    this.selectDeliveryLocaiton = location;
-    this.discount = 15;
-    this.totalPrice$ = (this.totalPrice$ - (this.totalPrice$ * this.discount / 100)).toFixed(2);
+    this.selectDeliveryLocation = location;
+    this.discountDelivery = 15;
+    this.discount = 0;
+    this.totalPrice$ = (this.totalPrice$ - (this.totalPrice$ * this.discountDelivery / 100)).toFixed(2);
   }
 
   toggleNewAddress() {
@@ -185,8 +193,10 @@ export class CheckoutComponent implements OnInit {
       });
 
       this.discount = 25;
+      this.discountDelivery = 0;
+      this.totalPrice$ = (this.totalPrice$ - (this.totalPrice$ * this.discount / 100)).toFixed(2);
     }
-    
+
     // if (this.model.email) {
     //   this._httpClient.post(this.CHECK_COUPON, { email: this.model.email, coupon: this.discountCode }).subscribe((data: any) => {
     //     if (data.success === true) {
@@ -237,7 +247,7 @@ export class CheckoutComponent implements OnInit {
     }
 
 
-    if (this.location != 'livreaza' && !this.selectDeliveryLocaiton) {
+    if (this.location != 'livreaza' && !this.selectDeliveryLocation) {
       this.toaster.warning('Te rugam sa alegi locatia de unde vrei sa ridici comanda!', 'Comanda nu poate fi trimisa!', {
         timeOut: 3000,
         positionClass: 'toast-bottom-right'
@@ -294,18 +304,15 @@ export class CheckoutComponent implements OnInit {
     }
 
     const accepted = ['bucuresti', 'pitesti'];
-    
-    if(this.location == 'livreaza' && !accepted.includes(this.model.town_city.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""))) {
+
+    if (this.location == 'livreaza' && !accepted.includes(this.model.town_city.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""))) {
       this.toaster.warning('Comanda nu poate fi trimisa!', 'Ne pare rau, momentan livram doar in Bucuresti si Pitesti', {
         timeOut: 3000,
         positionClass: 'toast-bottom-right'
       });
       return;
-    } 
+    }
 
-   
-
-    console.log(this.invoicePj)
 
     this.order = [
       {
@@ -319,12 +326,13 @@ export class CheckoutComponent implements OnInit {
         intervaldelivery: this.interval,
         invoicePj: this.invoicePj,
         isInvoice: this.isInvoice,
-        isInvoicePJ: this.invoice
+        isInvoicePJ: this.invoice,
+        sendOrderEmail: 'comenzi@tavacudetoate.ro'
       }
     ];
 
 
-    if(this.invoicePj) {
+    if (this.invoicePj) {
       this.isInvoice = false;
 
       this.order[0].invoicePj = {
@@ -334,38 +342,71 @@ export class CheckoutComponent implements OnInit {
         cui: this.invoicePj.prefcode + ' ' + this.invoicePj.cui
       }
     }
-   
+
 
     if (this.location != 'livreaza') {
+
+      this.order[0].contact_phone = this.selectDeliveryLocation.phone;
+      this.order[0].pretty_contact_phone = this.selectDeliveryLocation.pretty_phone;
+      this.order[0].contact_email = this.selectDeliveryLocation.email;
+      if(this.selectDeliveryLocation.county == 'Arges') {
+        this.order[0].additionalSendOrderEmail = 'comanvvv@yahoo.com';
+      } else if (this.selectDeliveryLocation.county == 'Sector 1' || this.selectDeliveryLocation.county == 'Sector 5' || this.selectDeliveryLocation.county == 'Sector 6') {
+        this.order[0].additionalSendOrderEmail = 'cristian.stanga88@gmail.com';
+      } else {
+        this.order[0].additionalSendOrderEmail = 'bursucvictor@yahoo.com';
+      }
+      
 
       this.order[0].customer = {
         firstName: this.delivery.firstName,
         lastName: this.delivery.lastName,
         email: this.delivery.email,
         phone: this.delivery.phone,
-        contact_phone: this.selectDeliveryLocaiton.phone,
-        contact_email: this.selectDeliveryLocaiton.email,
+
         shippingAddress: {
-          address: 'Ridicare personala din: ' + this.selectDeliveryLocaiton.location_name,
-          town: this.selectDeliveryLocaiton.town,
-          county: this.selectDeliveryLocaiton.county,
+          address: 'Ridicare personala din: ' + this.selectDeliveryLocation.location_name,
+          town: this.selectDeliveryLocation.town,
+          county: this.selectDeliveryLocation.county,
         }
       }
 
     } else {
 
-      this.order[0].customer = {
-        firstName: this.model.firstName,
-        lastName: this.model.lastName,
-        email: this.model.email,
-        phone: this.model.phone,
-        contact_email: (this.model.town_city == 'Bucuresti' ? 'comenzi.bucureresti@tavacudetoate.ro' : 'comenzi.pitesti@tavacudetoate.ro'),
-        shippingAddress: {
-          address: (this.model.address_1 ? this.model.address + ' ' + this.model.address_1 : this.model.address),
-          town: this.model.town_city,
-          county: this.model.county,
-        }
+
+      if(this.model.town_city == 'Pitesti')  {
+        this.model.county = 'Arges'
       }
+        
+      if(this.model.county == 'Arges') {
+        this.order[0].additionalSendOrderEmail = 'comanvvv@yahoo.com';
+        this.order[0].contact_email = 'comenzi.pitesti@tavacudetoate.ro';
+
+        this.order[0].contact_phone = '0746252899';
+        this.order[0].pretty_contact_phone = '(0746) 252 899';
+      } else if (this.model.county == 'Sector 1' || this.model.county == 'Sector 5' || this.model.county == 'Sector 6') {
+        this.order[0].additionalSendOrderEmail = 'cristian.stanga88@gmail.com';
+        this.order[0].contact_email = 'comenzi.bucuresti@tavacudetoate.ro';
+        this.order[0].contact_phone = '0741285044';
+        this.order[0].pretty_contact_phone = '(0741) 285 044';
+      } else {
+        this.order[0].contact_phone = '0720.612.962';
+        this.order[0].pretty_contact_phone = '(0720) 612 962';
+        this.order[0].additionalSendOrderEmail = 'bursucvictor@yahoo.com';
+        this.order[0].contact_email = 'comenzi.bucuresti@tavacudetoate.ro';
+      }
+
+        this.order[0].customer = {
+          firstName: this.model.firstName,
+          lastName: this.model.lastName,
+          email: this.model.email,
+          phone: this.model.phone,
+          shippingAddress: {
+            address: (this.model.address_1 ? this.model.address + ' ' + this.model.address_1 : this.model.address),
+            town: this.model.town_city,
+            county: this.model.county,
+          }
+        }
     }
 
     if (this.isAuthentificated) {
@@ -374,6 +415,24 @@ export class CheckoutComponent implements OnInit {
         userInfo = {
           user_id: this.user.id,
           address_id: this.selectedAddress.id
+        }
+
+        if(this.selectedAddress.county == 'Arges') {
+          this.order[0].additionalSendOrderEmail = 'comanvvv@yahoo.com';
+          this.order[0].contact_email = 'comenzi.pitesti@tavacudetoate.ro';
+  
+          this.order[0].contact_phone = '0746252899';
+          this.order[0].pretty_contact_phone = '(0746) 252 899';
+        } else if (this.selectedAddress.county == 'Sector 1' || this.selectedAddress.county == 'Sector 5' || this.selectedAddress.county == 'Sector 6') {
+          this.order[0].additionalSendOrderEmail = 'cristian.stanga88@gmail.com';
+          this.order[0].contact_email = 'comenzi.bucuresti@tavacudetoate.ro';
+          this.order[0].contact_phone = '0741285044';
+          this.order[0].pretty_contact_phone = '(0741) 285 044';
+        } else {
+          this.order[0].contact_phone = '0720.612.962';
+          this.order[0].pretty_contact_phone = '(0720) 612 962';
+          this.order[0].additionalSendOrderEmail = 'bursucvictor@yahoo.com';
+          this.order[0].contact_email = 'comenzi.bucuresti@tavacudetoate.ro';
         }
 
         this.order[0]['customer'] = {

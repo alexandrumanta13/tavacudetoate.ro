@@ -20,17 +20,30 @@
                 <button class="btn-block btn-outline-secondary btn-toggle theme-btn-one" [ngbPopover]="calendarContent" (click)="toggleDateTimeState($event)">
                     Inapoi la calendar
                 </button>
-            <div class="mt-auto interval">
-                <h5 class="interval__title">Interval</h5>
-                
-                <ul class="interval__list">
-                    <li><a (click)="selectInterval($event)">Intre: 14:00 - 17:00</a></li>
-                    <li><a (click)="selectInterval($event)">Intre: 18:00 - 21:00</a></li>
-                </ul>
-           
-            </div> 
+            
            
         </div>
     </div>
 </ng-template>
+
+<div class="mt-20 interval" *ngIf="showInterval">
+    <p><strong>Interval</strong></p>
+
+    <div class="custom-control">
+        <input type="radio" [(ngModel)]="interval" (click)="selectInterval($event)" value="Intre: 14:00 - 17:00" id="firstInterval"
+          name="select-interval">
+        <label for="firstInterval">Intre: 14:00 - 17:00</label>
+      </div>
+      <div class="custom-control">
+        <input type="radio" [(ngModel)]="interval" (click)="selectInterval($event)" value="Intre: 18:00 - 21:00" id="secondInterval"
+          name="select-interval">
+        <label for="secondInterval">Intre: 18:00 - 21:00</label>
+      </div>
+    
+    <!-- <ul class="interval__list">
+        <li><a (click)="selectInterval($event)">Intre: 14:00 - 17:00</a></li>
+        <li><a (click)="selectInterval($event)">Intre: 18:00 - 21:00</a></li>
+    </ul> -->
+
+</div> 
 

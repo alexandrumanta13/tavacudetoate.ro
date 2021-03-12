@@ -42,6 +42,7 @@ export class DatetimepickerComponent implements ControlValueAccessor, OnInit, Af
     public showTimePickerToggle = false;
 
     public datetime: DateTimeModel = new DateTimeModel();
+    
     public firstTimeAssign = true;
 
     @ViewChild(NgbDatepicker)
@@ -63,6 +64,8 @@ export class DatetimepickerComponent implements ControlValueAccessor, OnInit, Af
     isSecondInterval: boolean = false;
     interval: any;
 
+    
+
     json = {
         disable: [0],
         disabledDates: [
@@ -80,6 +83,8 @@ export class DatetimepickerComponent implements ControlValueAccessor, OnInit, Af
 
     isNewYearTowmorrow: boolean = false;
     isNewYearToday: boolean = false;
+    showInterval: boolean;
+    
 
     constructor(
         private config: NgbPopoverConfig,
@@ -94,9 +99,6 @@ export class DatetimepickerComponent implements ControlValueAccessor, OnInit, Af
             month: current.getMonth() + 1,
             day: current.getDate()
         };
-
-
-
     }
 
     ngOnInit(): void {
@@ -126,8 +128,6 @@ export class DatetimepickerComponent implements ControlValueAccessor, OnInit, Af
                 ? true
                 : false;
         };
-
-        console.log(this.json)
     }
 
     ngAfterViewInit(): void {
@@ -164,6 +164,7 @@ export class DatetimepickerComponent implements ControlValueAccessor, OnInit, Af
             this.json = {
                 disable: [0],
                 disabledDates: [
+                    { year: yyyy, month: mm, day: dd},
                     { year: yyyy, month: mm, day: dd + 1 },
                     { year: yyyy, month: mm, day: dd + 2 },
                 ]
@@ -172,6 +173,7 @@ export class DatetimepickerComponent implements ControlValueAccessor, OnInit, Af
             this.json = {
                 disable: [0],
                 disabledDates: [
+                    { year: yyyy, month: mm, day: dd},
                     { year: yyyy, month: mm, day: dd + 2 },
                 ]
             };
@@ -180,6 +182,7 @@ export class DatetimepickerComponent implements ControlValueAccessor, OnInit, Af
             this.json = {
                 disable: [0],
                 disabledDates: [
+                    { year: yyyy, month: mm, day: dd},
                     { year: yyyy, month: mm, day: dd + 1 },
                 ]
             };
@@ -187,7 +190,16 @@ export class DatetimepickerComponent implements ControlValueAccessor, OnInit, Af
             this.json = {
                 disable: [0],
                 disabledDates: [
+                    { year: yyyy, month: mm, day: dd},
                     { year: yyyy, month: mm, day: dd + 1 },
+                    { year: yyyy, month: mm, day: dd + 2 },
+                ]
+            };
+        } else {
+            this.json = {
+                disable: [0],
+                disabledDates: [
+                    { year: yyyy, month: mm, day: dd},
                     { year: yyyy, month: mm, day: dd + 2 },
                 ]
             };
@@ -197,8 +209,7 @@ export class DatetimepickerComponent implements ControlValueAccessor, OnInit, Af
     }
 
     selectInterval(event) {
-        this.interval = event.target.innerText;
-        console.log(this.interval)
+        this.interval = event.target.value;
         this.close();
     }
 
@@ -269,7 +280,8 @@ export class DatetimepickerComponent implements ControlValueAccessor, OnInit, Af
         this.datetime.year = date.year;
         this.datetime.month = date.month;
         this.datetime.day = date.day;
-        console.log(this.datetime);
+
+        this.showInterval = true;
 
         //this.dp.navigateTo({ year: date.year, month: date.month });
 
