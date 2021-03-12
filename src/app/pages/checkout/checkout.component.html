@@ -601,7 +601,7 @@
                     </label>
                   </div>
                 </div>
-                <div class="option-block">
+                <div class="option-block" *ngIf="location == 'livreaza' && location != undefined">
                   <div class="custom-controls-stacked">
                     <label class="custom-control material-checkbox">
                       <input type="radio" [(ngModel)]="payment" value="plata numerar sau card la livrare"
@@ -634,3 +634,49 @@
   </div>
 </section>
 <!-- checkout-section end -->
+
+<form target="_blank" *ngIf="showEPForm" ACTION="https://secure.euplatesc.ro/tdsprocess/tranzactd.php" METHOD="POST"
+  id="epForm" name="gateway" target="_self">
+
+  <!-- begin billing details -->
+  <input name="fname" type="hidden" value="{{order[0]['customer']['firstName']}}" />
+  <input name="lname" type="hidden" value="{{order[0]['customer']['lastName']}}" />
+
+  <input name="country" type="hidden" value="" />
+  <input name="company" type="hidden" value="" />
+  <input name="city" type="hidden" value="{{order[0]['customer']['shippingAddress']['town']}}" />
+  <input name="add" type="hidden" value="{{order[0]['customer']['shippingAddress']['address']}}" />
+  <input name="email" type="hidden" value="{{order[0]['customer']['email']}}" />
+  <input name="phone" type="hidden" value="{{order[0]['customer']['phone']}}" />
+  <input name="fax" type="hidden" value="" />
+  <!-- snd billing details -->
+
+
+
+
+  <!-- daca detaliile de shipping difera -->
+  <!-- begin shipping details -->
+  <input name="sfname" type="hidden" value="{{order[0]['customer']['firstName']}}" />
+  <input name="slname" type="hidden" value="{{order[0]['customer']['lastName']}}" />
+  <input name="scountry" type="hidden" value="" />
+  <input name="scompany" type="hidden" value="" />
+  <input name="scity" type="hidden" value="{{order[0]['customer']['shippingAddress']['town']}}" />
+  <input name="sadd" type="hidden" value="" />
+  <input name="semail" type="hidden" value="{{order[0]['customer']['email']}}" />
+  <input name="sphone" type="hidden" value="{{order[0]['customer']['phone']}}" />
+  <input name="sfax" type="hidden" value="" />
+
+  <!-- end shipping details -->
+
+  <input type="hidden" name="amount" value="{{order[0]['total']}}" SIZE="12" MAXLENGTH="12" />
+  <input TYPE="hidden" name="curr" value="{{dataAll.curr}}" SIZE="5" MAXLENGTH="3" />
+  <input type="hidden" name="invoice_id" value="{{order_guid}}" SIZE="32" MAXLENGTH="32" />
+  <input type="hidden" name="order_desc" value="{{dataAll.order_desc}}" SIZE="32" MAXLENGTH="50" />
+  <input TYPE="hidden" name="merch_id" size="15" value="{{dataAll.merch_id}}" />
+  <input TYPE="hidden" name="timestamp" size="15" value="{{dataAll.timestamp}}" />
+  <input TYPE="hidden" name="nonce" size="35" value="{{dataAll.nonce}}" />
+  <input TYPE="hidden" name="fp_hash" size="40" value="{{dataAll.fp_hash}}" />
+<script>
+  //document.getElementById('epForm').submit();
+</script>
+</form>

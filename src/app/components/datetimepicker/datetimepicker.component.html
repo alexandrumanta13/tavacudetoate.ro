@@ -12,9 +12,9 @@
     <div >
         <div *ngIf="!showTimePickerToggle" >
             <ngb-datepicker [minDate]="minDate" [markDisabled]="isDisabled"  #dp name="datepicker" [ngModel]="datetime"  (ngModelChange)="onDateChange($event)"></ngb-datepicker>
-            <button *ngIf="hasSelectDate" class="btn-block btn-outline-secondary btn-toggle theme-btn-one" [ngbPopover]="timePickerContent" (click)="toggleDateTimeState($event)">
+            <!-- <button *ngIf="hasSelectDate" class="btn-block btn-outline-secondary btn-toggle theme-btn-one" [ngbPopover]="timePickerContent" (click)="toggleDateTimeState($event)">
                 Selecteaza ora livrarii
-            </button>
+            </button> -->
         </div>
         <div *ngIf="showTimePickerToggle" >
                 <button class="btn-block btn-outline-secondary btn-toggle theme-btn-one" [ngbPopover]="calendarContent" (click)="toggleDateTimeState($event)">
