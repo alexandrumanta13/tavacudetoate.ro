@@ -147,22 +147,22 @@ const routes: Routes = [
   //   }
   // },
 
-  // {
-  //   path: 'confidentialitate', component: ConfidentialityComponent,
-  //   data: {
-  //     title: 'Confidentialitate',
-  //     description: '',
-  //     ogUrl: 'your og url'
-  //   }
-  // },
-  // {
-  //   path: 'politica-cookies', component: CookiesComponent,
-  //   data: {
-  //     title: 'politica cookies',
-  //     description: '',
-  //     ogUrl: 'your og url'
-  //   }
-  // },
+  {
+    path: 'confidentialitate', component: ConfidentialityComponent,
+    data: {
+      title: 'Confidentialitate',
+      description: '',
+      ogUrl: 'your og url'
+    }
+  },
+  {
+    path: 'politica-cookies', component: CookiesComponent,
+    data: {
+      title: 'politica cookies',
+      description: '',
+      ogUrl: 'your og url'
+    }
+  },
   // {
   //   path: 'termeni-si-conditii', component: TermsComponent,
   //   data: {

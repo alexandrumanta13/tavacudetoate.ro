@@ -42,7 +42,7 @@ export class DatetimepickerComponent implements ControlValueAccessor, OnInit, Af
     public showTimePickerToggle = false;
 
     public datetime: DateTimeModel = new DateTimeModel();
-    
+
     public firstTimeAssign = true;
 
     @ViewChild(NgbDatepicker)
@@ -64,7 +64,7 @@ export class DatetimepickerComponent implements ControlValueAccessor, OnInit, Af
     isSecondInterval: boolean = false;
     interval: any;
 
-    
+
 
     json = {
         disable: [0],
@@ -84,7 +84,7 @@ export class DatetimepickerComponent implements ControlValueAccessor, OnInit, Af
     isNewYearTowmorrow: boolean = false;
     isNewYearToday: boolean = false;
     showInterval: boolean;
-    
+
 
     constructor(
         private config: NgbPopoverConfig,
@@ -98,6 +98,25 @@ export class DatetimepickerComponent implements ControlValueAccessor, OnInit, Af
             year: current.getFullYear(),
             month: current.getMonth() + 1,
             day: current.getDate()
+        };
+
+        this.isDisabled = (date: NgbDateStruct) => {
+
+
+
+            return this.json.disabledDates.find(
+                x =>
+                    new NgbDate(x.year, x.month, x.day).equals(date) ||
+                    this.json.disable.includes(
+                        this.calendar.getWeekday(
+                            new NgbDate(date.year, date.month, date.day)
+                        )
+                    )
+
+
+            )
+                ? true
+                : false;
         };
     }
 
@@ -114,20 +133,8 @@ export class DatetimepickerComponent implements ControlValueAccessor, OnInit, Af
             this.isNewYearToday = true;
 
         this.checkIfToday();
+        this.getAllSundays();
 
-        this.isDisabled = (date: NgbDateStruct) => {
-            return this.json.disabledDates.find(
-                x =>
-                    new NgbDate(x.year, x.month, x.day).equals(date) ||
-                    this.json.disable.includes(
-                        this.calendar.getWeekday(
-                            new NgbDate(date.year, date.month, date.day)
-                        )
-                    )
-            )
-                ? true
-                : false;
-        };
     }
 
     ngAfterViewInit(): void {
@@ -160,52 +167,98 @@ export class DatetimepickerComponent implements ControlValueAccessor, OnInit, Af
         if (date.getHours() < 18)
             this.isSecondInterval = true;
 
-        if (date.getDay() == 5) {
-            this.json = {
-                disable: [0],
-                disabledDates: [
-                    { year: yyyy, month: mm, day: dd},
-                    { year: yyyy, month: mm, day: dd + 1 },
-                    { year: yyyy, month: mm, day: dd + 2 },
-                ]
-            };
-        } else if (date.getDay() == 6) {
-            this.json = {
-                disable: [0],
-                disabledDates: [
-                    { year: yyyy, month: mm, day: dd},
-                    { year: yyyy, month: mm, day: dd + 2 },
-                ]
-            };
+        // if (date.getDay() == 5) {
+        //     this.json = {
+        //         disable: [0],
+        //         disabledDates: [
+        //             { year: yyyy, month: mm, day: dd},
+        //             { year: yyyy, month: mm, day: dd + 1 },
 
+        //         ]
+        //     };
+
+
+        // } else if (date.getDay() == 6) {
+        //     this.json = {
+        //         disable: [0],
+        //         disabledDates: [
+        //             { year: yyyy, month: mm, day: dd},
+
+        //         ]
+        //     };
+
+        // } else if (date.getDay() == 0) {
+        //     this.json = {
+        //         disable: [0],
+        //         disabledDates: [
+        //             { year: yyyy, month: mm, day: dd},
+        //             { year: yyyy, month: mm, day: dd + 1 },
+        //         ]
+        //     };
+        // } else if (date.getDay() == 4) {
+        //     this.json = {
+        //         disable: [0],
+        //         disabledDates: [
+        //             { year: yyyy, month: mm, day: dd},
+        //             { year: yyyy, month: mm, day: dd + 1 },
+        //             { year: yyyy, month: mm, day: dd + 2 },
+        //         ]
+        //     };
+
+
+
+        if (date.getDay() == 6) {
+            this.json = {
+                disable: [0],
+                disabledDates: [
+                    { year: yyyy, month: mm, day: dd },
+                    { year: yyyy, month: mm, day: dd + 1 },
+
+                ]
+            };
         } else if (date.getDay() == 0) {
             this.json = {
                 disable: [0],
                 disabledDates: [
-                    { year: yyyy, month: mm, day: dd},
-                    { year: yyyy, month: mm, day: dd + 1 },
+                    { year: yyyy, month: mm, day: dd },
                 ]
             };
-        } else if (date.getDay() == 4) {
-            this.json = {
-                disable: [0],
-                disabledDates: [
-                    { year: yyyy, month: mm, day: dd},
-                    { year: yyyy, month: mm, day: dd + 1 },
-                    { year: yyyy, month: mm, day: dd + 2 },
-                ]
-            };
+
         } else {
             this.json = {
                 disable: [0],
                 disabledDates: [
-                    { year: yyyy, month: mm, day: dd},
-                    { year: yyyy, month: mm, day: dd + 2 },
+                    { year: yyyy, month: mm, day: dd },
+
                 ]
             };
         }
 
+    }
 
+    getAllSundays() {
+        const date = new Date();
+        const todayDate = date.getDate();
+        const dd = date.getDate();
+        const mm = date.getMonth() + 1;
+        const yyyy = date.getFullYear();
+        while (date.getDay() != 0) {
+            date.setDate(date.getDate() + 1);
+        }
+        var days = [];
+        while (date.getFullYear() == yyyy) {
+            var m = date.getMonth() + 1;
+            var d = date.getDate();
+
+            
+            this.json.disabledDates.push({year: yyyy, month: m, day: d})
+            // days.push(
+            //     yyyy + '-' +
+            //     (m < 10 ? '0' + m : m) + '-' +
+            //     (d < 10 ? '0' + d : d)
+            // );
+            date.setDate(date.getDate() + 7);
+        }
     }
 
     selectInterval(event) {

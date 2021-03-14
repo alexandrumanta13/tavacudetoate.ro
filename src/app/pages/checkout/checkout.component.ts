@@ -63,6 +63,8 @@ export class CheckoutComponent implements OnInit {
   discountDelivery: number;
   status: { name: string; color: string; }[];
   showEPForm: boolean = false;
+  order_guid: any;
+  showForm: boolean;
 
 
   constructor(
@@ -131,7 +133,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   showAuth() {
-    this.EP = !this.EP;
+    this.showForm = !this.showForm;
   }
 
   getTotalPrice() {
@@ -172,8 +174,13 @@ export class CheckoutComponent implements OnInit {
 
   deliveryLocation(location) {
     this.selectDeliveryLocation = location;
-    this.discountDelivery = 15;
+    
     this.discount = 0;
+    
+    if(this.discountDelivery > 0)
+    return;
+
+    this.discountDelivery = 15;
     this.totalPrice$ = (this.totalPrice$ - (this.totalPrice$ * this.discountDelivery / 100)).toFixed(2);
   }
 
@@ -237,7 +244,7 @@ export class CheckoutComponent implements OnInit {
 
   addDeliveryDate(date) {
     this.deliverydate = `${date.datetime.day + '.' + date.datetime.month + '.' + date.datetime.year}`;
-    this.interval = date.interval;
+    // this.interval = date.interval;
   }
 
 
@@ -293,13 +300,13 @@ export class CheckoutComponent implements OnInit {
       return;
     }
 
-    if (!this.interval) {
-      this.toaster.warning('Comanda nu poate fi trimisa!', 'Te rugam sa alegi intervalul de livrare!', {
-        timeOut: 3000,
-        positionClass: 'toast-bottom-right'
-      });
-      return;
-    }
+    // if (!this.interval) {
+    //   this.toaster.warning('Comanda nu poate fi trimisa!', 'Te rugam sa alegi intervalul de livrare!', {
+    //     timeOut: 3000,
+    //     positionClass: 'toast-bottom-right'
+    //   });
+    //   return;
+    // }
 
     if (!this.payment) {
       this.toaster.warning('Comanda nu poate fi trimisa!', 'Te rugam sa alegi metoda de plata!', {
@@ -329,7 +336,7 @@ export class CheckoutComponent implements OnInit {
         products: this.products,
         accessories: this.products.accessories,
         deliverydate: this.deliverydate,
-        intervaldelivery: this.interval,
+        intervaldelivery: '',
         invoicePj: this.invoicePj,
         isInvoice: this.isInvoice,
         isInvoicePJ: this.invoice,
@@ -514,6 +521,7 @@ export class CheckoutComponent implements OnInit {
           amount: this.order['total'],
           invoice_id: data.order_guid
         };
+        this.order_guid = data.order_guid;
         this._httpClient.post(this.SEND_ORDER, this.order).subscribe((data: any) => {
           if (data.status == "success") {
 

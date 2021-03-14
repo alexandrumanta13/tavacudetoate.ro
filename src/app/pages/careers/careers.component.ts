@@ -82,7 +82,6 @@ export class CareersComponent implements OnInit {
   submit(f: NgForm) {
 
     if (!this.terms) {
-      console.log('asdads')
       this.toaster.warning('', 'Trebuie sa fii de acord cu termenii si conditiile site-ului!', {
         timeOut: 3000,
         positionClass: 'toast-bottom-right'
@@ -113,7 +112,13 @@ export class CareersComponent implements OnInit {
       .subscribe(
         response => {
           f.reset();
-          this.router.navigate(['/mesaj-trimis']);
+          if (!this.terms) {
+            this.toaster.warning('Iti multumim!', 'Am primit cererea ta, iti vom raspunde in cel mai scurt timp!', {
+              timeOut: 3000,
+              positionClass: 'toast-bottom-right'
+            });
+            return;
+          }
         }
 
       )

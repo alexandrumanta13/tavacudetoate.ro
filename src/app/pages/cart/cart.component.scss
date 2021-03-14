@@ -78,3 +78,24 @@
   }
   
 }
+
+.cart-clear {
+  a {
+    &:hover {
+      cursor: pointer;
+      color: #fff;
+    }
+  }
+}
+
+.grand-totall {
+  button {
+    background-color: #e02c2b;
+    color: #fff;
+
+    &:hover {
+      background-color: #ff5501;
+    }
+  }
+
+}

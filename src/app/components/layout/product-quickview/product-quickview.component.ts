@@ -5,6 +5,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import { BehaviorSubject } from 'rxjs';
 import { CartService } from 'src/app/pages/cart/cart.service';
 import { Product } from 'src/app/pages/product/product.model';
+import { v4 as uuidv4 } from 'uuid';
 import { ProductService } from 'src/app/pages/product/product.service';
 
 @Component({
@@ -32,6 +33,7 @@ export class ProductQuickviewComponent implements OnInit {
 
   dotsOptions: OwlOptions;
   selectedImage: string;
+  cartQuantity: number = 1;
 
   
 
@@ -89,6 +91,27 @@ export class ProductQuickviewComponent implements OnInit {
 
   changeimage(image: string) {
     this.selectedImage = image;
+  }
+
+  addToCart(product, event, isBlur: boolean = false) {
+    this.product.selectedPrice = this.price;
+    if(isBlur) {
+      this._cartService.addToCart(product, this.cartQuantity, true);
+    } else {
+      this._cartService.addToCart(product, this.cartQuantity, false);
+    }
+  }
+
+  addOneToCart(product) {
+    this.product.selectedPrice = this.price;
+    this.cartQuantity += 1;
+    this._cartService.addToCart(product, this.cartQuantity, true);
+  }
+
+  removeOneFromCart(product) {
+    this.product.selectedPrice = this.price;
+    this.cartQuantity -= 1;
+    this._cartService.addToCart(product, this.cartQuantity, true);
   }
 
  

@@ -49,11 +49,18 @@
                                   </div>
                             </div>
                             <div class="product-quantity">
+                              
+
                                 <div class="cart-plus-minus">
-                                    
-                                    <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1">
+                  
+                                  <div (click)="removeOneFromCart(product)" class="dec qtybutton">-</div>
+                                  <input class="cart-plus-minus-box" [(ngModel)]="cartQuantity" value="1" type="text" name="quantity"
+                                    (blur)="addToCart(product, $event, true)">
+                                  <div (click)="addOneToCart(product)" class="inc qtybutton">+</div>
                                 </div>
-                                <button>Adauga in cos</button>
+                  
+                              
+                                <button (click)="addToCart(product, 1, false)">Adauga in cos</button>
                             </div>
                             
                         </div>

@@ -188,7 +188,7 @@
     }
   }
 
-  
+
 
   @media (min-width: 576px) {
     .shipping-address-box {
@@ -231,35 +231,41 @@
   background-color: #2f333a;
   color: #fff;
   padding: 8px 16px;
+
   span {
     color: #e02c2b;
+    font-weight: bold;
+    background-color: #fff;
+    padding: 2px 8px;
+    font-size: 18px;
+    margin-left: 8px;
   }
 }
 
-checkout-section .order-info{
+checkout-section .order-info {
   position: relative;
   display: block;
   margin-bottom: 70px;
 }
 
-.checkout-section .order-info .order-list li{
+.checkout-section .order-info .order-list li {
   position: relative;
   display: block;
   border-bottom: 1px solid #e6e6e6;
   padding: 20px 30px;
 }
 
-.checkout-section .order-info .order-list li.title{
+.checkout-section .order-info .order-list li.title {
   padding: 24px 30px 2px 30px;
 }
 
-.checkout-section .order-info .order-list li.title p{
+.checkout-section .order-info .order-list li.title p {
   font-size: 15px;
   color: #2f333a;
   float: left;
 }
 
-.checkout-section .order-info .order-list li.title span{
+.checkout-section .order-info .order-list li.title span {
   position: relative;
   display: block;
   font-size: 15px;
@@ -267,13 +273,13 @@ checkout-section .order-info{
   float: right;
 }
 
-.checkout-section .order-info .order-list li .single-box{
+.checkout-section .order-info .order-list li .single-box {
   position: relative;
   padding: 40px 0px 30px 110px;
   min-height: 100px;
 }
 
-.checkout-section .order-info .order-list li .single-box img{
+.checkout-section .order-info .order-list li .single-box img {
   position: absolute;
   left: 0px;
   top: 0px;
@@ -283,7 +289,7 @@ checkout-section .order-info{
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
 
-.checkout-section .order-info .order-list li .single-box h6{
+.checkout-section .order-info .order-list li .single-box h6 {
   position: relative;
   font-size: 16px;
   color: #2f333a;
@@ -292,7 +298,7 @@ checkout-section .order-info{
   width: 100%;
 }
 
-.checkout-section .order-info .order-list li .single-box span{
+.checkout-section .order-info .order-list li .single-box span {
   position: relative;
   display: block;
   float: right;
@@ -300,18 +306,18 @@ checkout-section .order-info{
   color: #2f333a;
 }
 
-.checkout-section .order-info .order-list li.sub-total{
+.checkout-section .order-info .order-list li.sub-total {
   padding: 17px 30px 10px 0px;
 }
 
-.checkout-section .order-info .order-list li.sub-total h6{
+.checkout-section .order-info .order-list li.sub-total h6 {
   font-size: 16px;
   font-weight: 500;
   color: #2f333a;
   float: left;
 }
 
-.checkout-section .order-info .order-list li.sub-total span{
+.checkout-section .order-info .order-list li.sub-total span {
   position: relative;
   display: block;
   font-size: 15px;
@@ -319,18 +325,18 @@ checkout-section .order-info{
   float: right;
 }
 
-.checkout-section .order-info .order-list li.order-total{
+.checkout-section .order-info .order-list li.order-total {
   padding: 17px 30px 11px 0px;
 }
 
-.checkout-section .order-info .order-list li.order-total h6{
+.checkout-section .order-info .order-list li.order-total h6 {
   font-size: 16px;
   font-weight: 500;
   color: #2f333a;
   float: left;
 }
 
-.checkout-section .order-info .order-list li.order-total span{
+.checkout-section .order-info .order-list li.order-total span {
   position: relative;
   display: block;
   font-size: 18px;
@@ -351,10 +357,10 @@ checkout-section .order-info{
       top: -8px;
     }
   }
-  
+
 }
 
-.checkout-section a{
+.checkout-section a {
   color: #007bff;
 }
 
@@ -362,6 +368,7 @@ checkout-section .order-info{
 .theme-btn-one {
   background-color: #e02c2b;
   color: #fff;
+
   &:hover {
     background-color: #ff5501;
   }
@@ -370,22 +377,25 @@ checkout-section .order-info{
 
 .shorting-style {
   display: flex;
-    flex-direction: column;
-    margin: 0;
+  flex-direction: column;
+  margin: 0;
 
-    & > label {
-      margin-bottom: .5rem;
-    }
+  &>label {
+    margin-bottom: .5rem;
+  }
 
-    select {
-      height: 45px;
-      width: 100%;
-    }
+  select {
+    height: 45px;
+    width: 100%;
+  }
 }
 
 
 .pj-invoice {
-  select, input {
+
+  select,
+  input {
     margin-bottom: 16px;
   }
 }
+

@@ -81,14 +81,8 @@
         <div class="col-12 delivery-info mb-40">
           <h4 class="sub-title payment-info mb-40">Alege data livrarii</h4>
           <div class="delivery-inner">
-            <p>Intervale livrare:</p>
-
-            <ul>
-              <li>Comenzile plasate <strong>sambata sau duminica, se livreaza luni</strong></li>
-              <li>Comenzile plasate in <strong>intervalul 08:00 - 21:00, se livreaza in 24-36 ore</strong></li>
-              <li>Comenzile plasate in <strong>intervalul 21:00 - 08:00, se livreaza in 48 - 60 ore</strong></li>
-            </ul>
-            <p>Comenzile se livreaza <strong>luni - sambata, in intervalul 15:00 - 21:00</strong></p>
+            
+            <p>Comenzile se livreaza <strong>luni - sambata, in intervalul 14:00 - 21:00</strong></p>
             <div class="row">
               <div class="col-12 col-md-6">
                 <app-datetimepicker [(ngModel)]="stringDateModel" (onDatePicked)="addDeliveryDate($event)"
@@ -96,7 +90,7 @@
                 </app-datetimepicker>
                 <div class="delivery-box" *ngIf="deliverydate">
                   <span><strong>Data livrarii:</strong> {{deliverydate}}</span>
-                  <span><strong>Interval:</strong> {{interval}}</span>
+                  <!-- <span><strong>Interval:</strong> {{interval}}</span> -->
                 </div>
               </div>
             </div>
@@ -111,12 +105,12 @@
           <div class="custom-control">
             <input type="radio" [(ngModel)]="location" value="Bucuresti" (click)="selectDelivery($event)" id="bucuresti"
               name="select-delivery">
-            <label for="bucuresti">Bucuresti</label>
+            <label for="bucuresti">Bucuresti - ridic din locatie (-15%)</label>
           </div>
           <div class="custom-control">
             <input type="radio" [(ngModel)]="location" value="Pitesti" (click)="selectDelivery($event)" id="pitesti"
               name="select-delivery">
-            <label for="pitesti">Pitesti</label>
+            <label for="pitesti">Pitesti - ridic din locatie (-15%)</label>
           </div>
           <div class="custom-control">
             <input type="radio" [(ngModel)]="location" value="livreaza" (click)="selectDelivery($event)" id="livreaza"
