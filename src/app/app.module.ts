@@ -180,12 +180,12 @@ import { HowToDeliverComponent } from './pages/how-to-deliver/how-to-deliver.com
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              '1087172953936-7dvrdpqboiep79098ieuv4k0adf23r2m.apps.googleusercontent.com'
+              '372049907460-9moutp3bta2e9o9nj2hjcgaeja1iodnb.apps.googleusercontent.com'
             )
           },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider('218154493124799')
+            provider: new FacebookLoginProvider('2526902350945893')
           }
         ]
       } as SocialAuthServiceConfig,
