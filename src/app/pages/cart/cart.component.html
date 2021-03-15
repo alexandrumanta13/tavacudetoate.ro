@@ -105,6 +105,7 @@
               
               <h4 class="grand-totall-title">Total <span>{{totalPrice$ | number:'1.2-2'}} lei</span></h4>
               <button [disabled]="totalPrice$ > 99 ? false : true" routerLink="/finalizeaza-comanda" >Finalizeaza comanda</button>
+              <p *ngIf="totalPrice$ < 99" style="color: red">Comanda minima 99 Lei</p>
             </div>
           </div>
         </div>

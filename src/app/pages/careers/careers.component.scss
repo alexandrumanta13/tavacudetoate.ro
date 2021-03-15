@@ -4,6 +4,15 @@
     align-items: center;
     justify-content: center;
 
-    border: 1px solid #eaeaea;
+    
     padding: 40px 15px 34px;
+}
+
+
+.close {
+    &:hover {
+        i {
+            color: #fff;
+        }
+    }
 }

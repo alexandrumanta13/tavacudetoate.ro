@@ -112,9 +112,11 @@ export class CareersComponent implements OnInit {
     this._httpClient.post(this.endpoint, postVars)
       .subscribe(
         response => {
+          let modal: HTMLElement = document.querySelector('.close') as HTMLElement;
+          modal.click()
           f.reset();
           if (!this.terms) {
-            this.toaster.warning('Iti multumim!', 'Am primit cererea ta, iti vom raspunde in cel mai scurt timp!', {
+            this.toaster.success('Iti multumim!', 'Am primit cererea ta, iti vom raspunde in cel mai scurt timp!', {
               timeOut: 3000,
               positionClass: 'toast-bottom-right'
             });
