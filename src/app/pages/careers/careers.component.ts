@@ -27,7 +27,7 @@ export class CareersComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCareers();
-    this.endpoint = "https://tavacudetoate.ro/data/sendEmail.php";
+    this.endpoint = "https://tavacudetoate.ro/data/sendCareers.php";
   }
 
   getCareers() {
@@ -103,10 +103,11 @@ export class CareersComponent implements OnInit {
       phone: this.model.phone,
       subject: this.model.subject,
       message: this.model.message,
+      cv: this.datasheet,
     };
 
 
-    console.log(postVars)
+    
 
     this._httpClient.post(this.endpoint, postVars)
       .subscribe(
