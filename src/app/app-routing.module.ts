@@ -163,14 +163,14 @@ const routes: Routes = [
       ogUrl: 'your og url'
     }
   },
-  // {
-  //   path: 'termeni-si-conditii', component: TermsComponent,
-  //   data: {
-  //     title: 'Termeni si conditii',
-  //     description: '',
-  //     ogUrl: 'your og url'
-  //   }
-  // },
+  {
+    path: 'termeni-si-conditii', component: TermsComponent,
+    data: {
+      title: 'Termeni si conditii',
+      description: '',
+      ogUrl: 'your og url'
+    }
+  },
   {
     path: 'cum-cumpar', component: HowToBuyComponent,
     data: {
