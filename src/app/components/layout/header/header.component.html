@@ -101,7 +101,7 @@
                  </div>
                  <div class="shopping-cart-btn" *ngIf="cartTotal$ > 0">
                    <a [routerLink]="['/cos-cumparaturi']">Vezi cos</a>
-                   <a [routerLink]="['/finalizeaza-comanda']">Finalizeaza</a>
+                   <a *ngIf="totalPrice$ > 99" [routerLink]="['/finalizeaza-comanda']">Finalizeaza</a>
                  </div>
                </div>
              </div>

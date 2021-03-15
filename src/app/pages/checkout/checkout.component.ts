@@ -174,11 +174,11 @@ export class CheckoutComponent implements OnInit {
 
   deliveryLocation(location) {
     this.selectDeliveryLocation = location;
-    
+
     this.discount = 0;
-    
-    if(this.discountDelivery > 0)
-    return;
+
+    if (this.discountDelivery > 0)
+      return;
 
     this.discountDelivery = 15;
     this.totalPrice$ = (this.totalPrice$ - (this.totalPrice$ * this.discountDelivery / 100)).toFixed(2);
@@ -482,7 +482,7 @@ export class CheckoutComponent implements OnInit {
     }
 
 
-    if(this.order[0].method == 'card online') {
+    if (this.order[0].method == 'card online') {
 
       this.status = [
         {
@@ -536,7 +536,7 @@ export class CheckoutComponent implements OnInit {
             //   })
             // }
 
-            if(this.order[0].method == 'card online') {
+            if (this.order[0].method == 'card online') {
 
               this.status = [
                 {
@@ -545,44 +545,47 @@ export class CheckoutComponent implements OnInit {
                 }
               ]
 
-              if(this.order[0]['customer'].shippingAddress.town == 'Bucuresti') {
+              if (this.order[0]['customer'].shippingAddress.town == 'Bucuresti') {
                 this.euplatesctSend = "https://tavacudetoate.ro/payment/ep_send_bucuresti.php"
               } else {
                 this.euplatesctSend = "https://tavacudetoate.ro/payment/ep_send_pitesti.php"
               }
-
-              console.log(this.euplatesctSend)
               this._httpClient.post(this.euplatesctSend, dataSend)
-              .pipe(
-                take(1),
-                map((response) => {
+                .pipe(
+                  take(1),
+                  map((response) => {
 
-                  this.dataAll = response;
-                  this.showEPForm = true;
-                  return response;
-                }),
-              )
-              .subscribe((data: any) => {
-                if (data) {
-                  setTimeout(() => {
+                    this.dataAll = response;
+                    this.showEPForm = true;
+                    return response;
+                  }),
+                )
+                .subscribe((data: any) => {
+                  if (data) {
+                    setTimeout(() => {
 
                       this.toaster.success('Iti multumim!', 'Vei fi redirectionat catre EuPlatesc!', {
                         timeOut: 3000,
                         positionClass: 'toast-bottom-right'
                       });
+                      console.log(this.showEPForm)
                       this.submit();
-                    
+                      this.cartService.emptyCart();
+                      f.reset();
+                      this.totalPrice$ = 0;
 
-                  }, 1000);
-                }
-              })
+                    }, 1000);
+                  }
+                })
             } else {
+              this.cartService.emptyCart();
+              f.reset();
+              this.totalPrice$ = 0;
               this.router.navigate(['/comanda-finalizata']);
-            }        
-            
-            this.cartService.emptyCart();
-            f.reset();
-            this.totalPrice$ = 0;
+
+            }
+
+
           }
         })
       }
@@ -674,7 +677,9 @@ export class CheckoutComponent implements OnInit {
 
   submit() {
     const epForm = <HTMLFormElement>document.getElementById('epForm');
+    console.log(epForm)
     epForm.submit();
+
   }
 }
 
