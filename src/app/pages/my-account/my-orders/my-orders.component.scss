@@ -38,7 +38,7 @@
 .dashboard-content h2, #account-chage-pass h3 {
   margin-bottom: 20px;
   font-size: 24px;
-  color: #6d4b50;
+  color: #2f333a;
 }
 
 @media screen and (min-width: 992px) {
@@ -125,13 +125,13 @@
 }
 
 .custom-control.material-checkbox .material-control-input:checked ~ .material-control-indicator {
-    border: 2px solid #6d4b50;
+    border: 2px solid #2f333a;
     border-top: 0px;
     border-left: 0px;
 }
 
 .custom-control.material-checkbox .material-control-indicator {
-    border: 1px solid #6d4b50;
+    border: 1px solid #2f333a;
 }
 
 .custom-control {

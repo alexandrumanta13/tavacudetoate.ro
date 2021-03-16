@@ -1,7 +1,9 @@
 import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { CartService } from 'src/app/pages/cart/cart.service';
+import { AuthAPIService } from 'src/app/pages/login/auth-api.service';
 import { ProductsService } from 'src/app/pages/products/products.service';
 declare var $: any;
 @Component({
@@ -31,8 +33,16 @@ export class HeaderComponent implements OnInit {
   productSearch: any;
   products: any;
   openUser: boolean;
+  authObs: Observable<any>;
+  private userSub: Subscription;
+  isAuthentificated: boolean;
 
-  constructor(private router: Router, private _cartService: CartService, private _ProductsService: ProductsService, private _eref: ElementRef) {
+  constructor(
+    private router: Router, 
+    private _cartService: CartService, 
+    private _ProductsService: ProductsService, 
+    private _eref: ElementRef,
+    public authAPIService: AuthAPIService,) {
     this.navMenu = [
       {
         label: 'Sugestiile bucatarului',
@@ -82,6 +92,7 @@ export class HeaderComponent implements OnInit {
       this.openCart = false;
       this.search = false;
       this.results = false;
+      this.openUser = false;
     });
 
     if (window.outerWidth < 767) {
@@ -95,6 +106,11 @@ export class HeaderComponent implements OnInit {
     this._ProductsService.getProductsAll().then(products => {
       this.products = products;
     })
+
+
+    this.userSub = this.authAPIService.user.subscribe(user => {
+      this.isAuthentificated = !!user;
+    });
   }
 
   togglCart() {
@@ -225,6 +241,10 @@ export class HeaderComponent implements OnInit {
 
     this.results = true;
 
+  }
+
+  logout() {
+    this.authAPIService.logout();
   }
 
   // onLogout() {

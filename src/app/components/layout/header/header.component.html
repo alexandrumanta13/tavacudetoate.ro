@@ -58,7 +58,14 @@
                  </div>
                </a>
                <div class="user-content" [class.openUser]="openUser">
-                 <a routerLink="/autentificare">Autentificare / Inregistrare</a>
+                 <a *ngIf="!isAuthentificated" routerLink="/autentificare">Autentificare / Inregistrare</a>
+                 <ul *ngIf="isAuthentificated">
+                  <li routerLinkActive='active'><a routerLink="/contul-meu">Informatii cont</a></li>
+                  <li routerLinkActive='active'><a routerLink="/adresele-mele">Adresele mele</a></li>
+                  <li routerLinkActive='active'><a routerLink="/comenzile-mele">Comenzile mele</a></li>
+                  <!-- <li routerLinkActive='active'><a routerLink="/cupoane-reducere">Cupoane reducere</a></li> -->
+                  <li routerLinkActive='active'><a (click)="logout()">Delogare</a></li>
+                </ul>
                </div>
              </div>
 

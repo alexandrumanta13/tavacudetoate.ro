@@ -146,7 +146,7 @@ export class CheckoutComponent implements OnInit {
       }
 
 
-      if (parseInt(this.totalPrice$) < this.limit && parseInt(this.totalPrice$) == 0) {
+      if (this.totalPrice$ < this.limit) {
         this.router.navigate(['/cos-cumparaturi']);
       }
 
@@ -424,7 +424,7 @@ export class CheckoutComponent implements OnInit {
 
     if (this.isAuthentificated) {
       let userInfo = {};
-      if (this.selectedAddress != 0) {
+      if (this.selectedAddress != 0 && this.selectedAddress != undefined) {
         userInfo = {
           user_id: this.user.id,
           address_id: this.selectedAddress.id
@@ -624,11 +624,16 @@ export class CheckoutComponent implements OnInit {
     this._httpClient.get<any>(`https://tavacudetoate.ro/tavacudetoate-api/v1/addresses/${user.id}`).subscribe(addresses => {
       this.addresses = addresses.data;
       this.selectedAddress = this.addresses[0];
-
+      this.model.town_city = this.selectedAddress.town;
+      console.log(this.model.town_city)
+      console.log(this.selectedAddress.town)
     })
   }
   selectAddress(addressIndex, event) {
     this.selectedAddress = this.addresses[addressIndex];
+    this.model.town_city = this.selectedAddress.town;
+
+   
     const active = document.querySelectorAll('.shipping-address-box.active');
     for (let i = 0; i < active.length; i++) {
       active[i].classList.remove('active');

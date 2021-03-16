@@ -1,87 +1,79 @@
-<section class="page-title centred"
-  style="background-image: url(assets/images/background/imagine-category-tavacudetoate.jpg);">
-  <div class="auto-container">
-    <div class="content-box">
-      <div class="title">
-        <h1>Comenzile mele</h1>
-      </div>
-      <ul class="bread-crumb clearfix">
+<div class="breadcrumb-area gray-bg">
+  <div class="container">
+    <div class="breadcrumb-content">
+      <ul>
         <li><a routerLink="/">Acasa</a></li>
-        <li> Comanda {{order?.order_uuid}}</li>
+        <li class="active"> Comanda {{order?.order_uuid}} </li>
       </ul>
     </div>
   </div>
-</section>
-<section class="my-account">
+</div>
+
+<div class="my-account pt-95 pb-100">
 
   <div class="container">
     <div class="row">
-        <div class="col-lg-9 order-lg-last dashboard-content">
-          
-          <p>Plasata in: <strong>{{order?.date}}</strong></p>
-          <p>Total: <strong>{{order?.total}} lei</strong></p>
-         
-          
-  
-          <p *ngIf="order?.discount > 0">Discount: <strong>{{order?.discount}}%</strong></p>
-  
-          <div class="delivery-card card">
-            <p><strong>Adresa de livrare:</strong></p>
-            <p>{{order?.customer.name}} {{order?.customer.last_name}} {{order?.customer.shippingAddress[0].phone}}</p>
-            <p>{{order?.customer.shippingAddress[0].address}}, {{order?.customer.shippingAddress[0].county}},
-              {{order?.customer.shippingAddress[0].town}}</p>
-          </div>
-  
-          <div class="delivery-card card">
-            <p><strong>Modalitate de plata:</strong></p>
-            <p>{{order?.method == "card" ? 'Plata card' : 'Plata cash'}}</p>
-           
-            <p>Valoare toala: {{order?.total}} lei</p>
-          </div>
-  
-          <p><strong>Produse:</strong></p>
-          <ul class="products">
-            <li *ngFor="let product of order?.products">
-              
-              <a href="/produs/{{product.alias}}" class="product-image">
-                <img src="/assets/images/resource/shop/{{product.images[0].image_url}}" alt="product">
-              </a>
-              <a href="/produs/{{product?.alias}}" class="product-name">
-                  <strong>{{product.num}} x {{product.product_name}}</strong>
-                  <ul class="accessories" *ngIf="product.accessories">
-                      <li *ngFor="let accessory of product.accessories">
-                        <img src="/assets/images/resource/{{accessory.image_url}}" alt="">
-                        {{accessory.accessory_name}}
-                      </li>
-                  </ul>
-              </a>
-              <div class="details">
-                <span>Cantitate: {{product.quantity}}</span>
-                <span *ngIf="product.composition">Compozitie: {{product.composition}}</span>
-                <span *ngIf="product.message">Mesaj: {{product.message}}</span>
-              </div>
-              <span class="price">{{product.price}} Lei</span>
-            </li>
-          </ul>
-        </div><!-- End .col-lg-9 -->
-  
-        <aside class="sidebar col-lg-3">
-          <div class="widget widget-dashboard">
-            <h3 class="widget-title">Contul meu</h3>
-  
-            <ul class="list">
-              <li routerLinkActive='active'><a routerLink="/contul-meu">Informatii cont</a></li>
-              <li routerLinkActive='active'><a routerLink="/adresele-mele">Adresele mele</a></li>
-              <li routerLinkActive='active'><a routerLink="/comenzile-mele">Comenzile mele</a></li>
-              <li routerLinkActive='active'><a routerLink="/cupoane-reducere">Cupoane reducere</a></li>
-              <li routerLinkActive='active'><a (click)="logout()">Delogare</a></li>
-            </ul>
-  
-          </div><!-- End .widget -->
-        </aside><!-- End .col-lg-3 -->
-      </div><!-- End .row -->
-    </div><!-- End .container -->
-  
-    <div class="mb-5"></div><!-- margin -->
+      <aside class="sidebar col-lg-3">
+        <div class="widget widget-dashboard">
+          <h3 class="widget-title">Contul meu</h3>
 
-  
+          <ul class="list">
+            <li routerLinkActive='active'><a routerLink="/contul-meu">Informatii cont</a></li>
+            <li routerLinkActive='active'><a routerLink="/adresele-mele">Adresele mele</a></li>
+            <li routerLinkActive='active'><a routerLink="/comenzile-mele">Comenzile mele</a></li>
+            <!-- <li routerLinkActive='active'><a routerLink="/cupoane-reducere">Cupoane reducere</a></li> -->
+            <li routerLinkActive='active'><a (click)="logout()">Delogare</a></li>
+          </ul>
+
+        </div><!-- End .widget -->
+      </aside><!-- End .col-lg-3 -->
+      <div class="col-lg-9 order-lg-last dashboard-content">
+
+        <p>Plasata in: <strong>{{order?.date}}</strong></p>
+        <p>Total: <strong>{{order?.total}} lei</strong></p>
+
+
+
+        <p *ngIf="order?.discount > 0">Discount: <strong>{{order?.discount}}%</strong></p>
+
+        <div class="delivery-card card">
+          <p><strong>Adresa de livrare:</strong></p>
+          <p>{{order?.customer.name}} {{order?.customer.last_name}} {{order?.customer.shippingAddress[0].phone}}</p>
+          <p>{{order?.customer.shippingAddress[0].address}}, {{order?.customer.shippingAddress[0].county}},
+            {{order?.customer.shippingAddress[0].town}}</p>
+        </div>
+
+        <div class="delivery-card card">
+          <p><strong>Modalitate de plata:</strong></p>
+          <p>{{order?.method == "card" ? 'Plata card' : 'Plata cash'}}</p>
+
+          <p>Valoare toala: {{order?.total}} lei</p>
+        </div>
+
+        <p><strong>Produse:</strong></p>
+        <ul class="products">
+          <li *ngFor="let product of order?.products">
+
+            <a href="/produs/{{product.alias}}" class="product-image">
+              <img src="/assets/img/product/{{product.images[0].image_url}}" alt="product">
+            </a>
+            <a href="/produs/{{product?.alias}}" class="product-name">
+              <strong>{{product.num}} x {{product.product_name}}</strong>
+
+            </a>
+            <div class="details">
+              <span>Gramaj: {{product.quantity}}</span>
+
+            </div>
+            <span class="price">{{product.price}} Lei</span>
+          </li>
+        </ul>
+      </div><!-- End .col-lg-9 -->
+
+
+    </div><!-- End .row -->
+  </div><!-- End .container -->
+
+  <div class="mb-5"></div><!-- margin -->
+
+</div>

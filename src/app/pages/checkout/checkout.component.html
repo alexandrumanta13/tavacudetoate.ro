@@ -139,7 +139,7 @@
                   </label>
                 </ng-container>
               </div>
-              <div class="row">
+              <div class="row" *ngIf="!isAuthentificated || addresses.length === 0 || newAddress">
                 <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                   <label>Nume*</label>
                   <div class="field-input">
@@ -309,6 +309,7 @@
                     </div>
                   </div>
                 </div> -->
+               
               </div>
 
               <div class="shipping-step-addresses" *ngIf="isAuthentificated && !newAddress">
@@ -317,7 +318,7 @@
                   <address>
                     {{user.name}} {{user.last_name}}<br>
                     {{address.address}} <br>
-                    {{address.town}}<br>
+                    {{address.town}}, {{address.county}}<br>
                   </address>
 
                   <div class="address-box-action clearfix">
@@ -332,10 +333,16 @@
                 </div><!-- End .shipping-address-box -->
 
               </div>
+              <div class="actions clearfix">
+                <a *ngIf="isAuthentificated && !newAddress" (click)="toggleNewAddress()" class="theme-btn-one add-new-address float-left">Adauga o
+                  adresa noua</a>
+                <a *ngIf="isAuthentificated && newAddress" (click)="toggleNewAddress()" class="theme-btn-one add-new-address float-left">Alege o
+                    adresa</a>
+              </div>
+             
             </div>
 
-            <a *ngIf="isAuthentificated" (click)="toggleNewAddress()" class="theme-btn-one add-new-address">Adauga o
-              adresa noua</a>
+           
 
             <div class="custom-controls-stacked mb-20" *ngIf="location">
               <label class="custom-control material-checkbox">

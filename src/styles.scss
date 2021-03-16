@@ -109,11 +109,11 @@ body {
   margin-top: 20px;
 
   .custom-control.material-checkbox .material-control-indicator {
-    //border: 1px solid #6d4b50;
+    //border: 1px solid #2f333a;
   }
 
   .custom-control.material-checkbox .material-control-input:checked~.material-control-indicator {
-    border: 2px solid #6d4b50;
+    border: 2px solid #2f333a;
     border-top: 0px;
     border-left: 0px;
   }
@@ -410,4 +410,41 @@ ngb-rating {
 .slider-active .owl-nav div:hover {
   background-color: #e02c2b;
   color: #fff;
+}
+
+.list li a {
+  display: block;
+  position: relative;
+  padding: 9px 0 7px 20px;
+  border-bottom: 1px solid #ededde;
+  color: #000;
+  font-size: 13px;
+  &::before {
+      display: inline-block;
+      position: absolute;
+      width: 0;
+      height: 0;
+      margin: 9px 0 0 -10px;
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent;
+      border-left: 4px solid #333;
+      content: '';
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      left: 0;
+  }
+}
+
+a {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+
+.my-account a {
+  &:hover {
+    color: #e02c2b;
+  }
 }
