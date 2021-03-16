@@ -111,6 +111,7 @@ export class ProductComponent implements OnInit {
       this.productCategoryName = this.product.categories[0].category_name;
       this.productCategorySlug = this.product.categories[0].slug;
       this.price = this.product.information[0].price;
+      this.selectedQnt = this.product.information[0].quantity + this.product.information[0].um;
       this.isActive = this.product.information[0].id;
       this.product.selectedQnt = this.product.information[0].quantity + this.product.information[0].um;
 
