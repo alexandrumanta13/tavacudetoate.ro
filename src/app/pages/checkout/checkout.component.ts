@@ -298,7 +298,7 @@ export class CheckoutComponent implements OnInit {
     // }
 
     if (!this.deliverydate) {
-      this.toaster.warning('Comanda nu poate fi trimisa!', 'Te rugam sa alegi data livraii!', {
+      this.toaster.warning('Comanda nu poate fi trimisa!', 'Te rugam sa alegi data livrarii!', {
         timeOut: 3000,
         positionClass: 'toast-bottom-right'
       });
