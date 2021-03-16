@@ -47,6 +47,7 @@ export class ProductComponent implements OnInit {
   reviews: any;
 
   private SEND_REVIEW = "https://tavacudetoate.ro/data/sendReview.php";
+  selectedQnt: any;
 
 
   /**
@@ -150,7 +151,9 @@ export class ProductComponent implements OnInit {
   // }
 
   addToCart(product, event, isBlur: boolean = false) {
-    this.product.selectedPrice = this.price;
+    product.cart_uuid = uuidv4();
+    product.selectedPrice = this.price;
+    product.selectedQnt = this.selectedQnt;
     if(isBlur) {
       this._cartService.addToCart(product, this.cartQuantity, true);
     } else {
@@ -177,6 +180,7 @@ export class ProductComponent implements OnInit {
     this.isActive = qnt.id;
     this.price = qnt.price;
     this.product.selectedQnt = qnt.quantity + qnt.um;
+    this.selectedQnt = qnt.quantity + qnt.um;
   }
 
 
