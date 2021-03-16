@@ -137,21 +137,24 @@ export class CheckoutComponent implements OnInit {
   }
 
   getTotalPrice() {
-    this.cartService.totalPrice.subscribe(info => {
-      if (this.discount > 0) {
-        this.totalPrice$ = info;
-        this.totalPrice$ = (this.totalPrice$ - (this.totalPrice$ * this.discount / 100)).toFixed(2);
-      } else {
+
+    if (this.discount > 0) {
+      this.cartService.totalPrice.subscribe(info => {
         this.totalPrice$ = info.toFixed(2);
-      }
+        this.totalPrice$ = (this.totalPrice$ - (this.totalPrice$ * this.discount / 100)).toFixed(2);
+      });
 
+    } else if (this.discountDelivery > 0) {
+      this.cartService.totalPrice.subscribe(info => {
+        this.totalPrice$ = info.toFixed(2);
+        this.totalPrice$ = (this.totalPrice$ - (this.totalPrice$ * this.discountDelivery / 100)).toFixed(2);
+      });
+    } else {
+      this.cartService.totalPrice.subscribe(info => {
+        this.totalPrice$ = info.toFixed(2);
+      });
+    }
 
-      if (this.totalPrice$ < this.limit) {
-        this.router.navigate(['/cos-cumparaturi']);
-      }
-
-
-    });
   }
 
   selectDelivery(event) {
@@ -174,14 +177,14 @@ export class CheckoutComponent implements OnInit {
 
   deliveryLocation(location) {
     this.selectDeliveryLocation = location;
-
+    this.totalPrice$ = 0;
     this.discount = 0;
 
     if (this.discountDelivery > 0)
       return;
 
     this.discountDelivery = 15;
-    this.totalPrice$ = (this.totalPrice$ - (this.totalPrice$ * this.discountDelivery / 100)).toFixed(2);
+    this.getTotalPrice();
   }
 
   toggleNewAddress() {
@@ -199,6 +202,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   checkDiscount() {
+
     if (this.discountCode.toUpperCase() === 'REDUCERE25') {
       this.toaster.success('Iti multumim!', `Reducerea a fost aplicata cu succes`, {
         timeOut: 3000,
@@ -206,8 +210,10 @@ export class CheckoutComponent implements OnInit {
       });
 
       this.discount = 25;
+      this.totalPrice$ = 0;
       this.discountDelivery = 0;
-      this.totalPrice$ = (this.totalPrice$ - (this.totalPrice$ * this.discount / 100)).toFixed(2);
+      this.getTotalPrice();
+
     }
 
     // if (this.model.email) {
@@ -633,7 +639,7 @@ export class CheckoutComponent implements OnInit {
     this.selectedAddress = this.addresses[addressIndex];
     this.model.town_city = this.selectedAddress.town;
 
-   
+
     const active = document.querySelectorAll('.shipping-address-box.active');
     for (let i = 0; i < active.length; i++) {
       active[i].classList.remove('active');

@@ -139,7 +139,7 @@
                   </label>
                 </ng-container>
               </div>
-              <div class="row" *ngIf="!isAuthentificated || addresses.length === 0 || newAddress">
+              <div class="row" *ngIf="selectDeliveryLocation">
                 <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                   <label>Nume*</label>
                   <div class="field-input">
@@ -190,7 +190,7 @@
             </div>
             <div class="billing-info" *ngIf="location === 'livreaza'">
               <h4 class="sub-title">Date de livrare</h4>
-              <div class="row" *ngIf="!isAuthentificated || addresses.length === 0 || newAddress">
+              <div class="row" *ngIf="addresses.length === 0 || newAddress">
                 <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                   <label>Nume*</label>
                   <div class="field-input">
@@ -538,7 +538,7 @@
                   <input type="checkbox" [(ngModel)]="terms" name="terms" class="material-control-input">
                   <span class="material-control-indicator"></span>
                   <span class="description">Sunt de acord cu <a
-                      routerLink="https://tavacudetoate.ro/termeni-si-conditii">Termeni si Conditii </a></span>
+                      routerLink="/termeni-si-conditii">Termeni si Conditii </a></span>
                 </label>
               </div>
               <div class="custom-controls-stacked">
@@ -546,8 +546,8 @@
                   <input type="checkbox" [(ngModel)]="gdpr" name="gdpr" class="material-control-input">
                   <span class="material-control-indicator"></span>
                   <span class="description">Sunt de acord cu <a
-                      routerLink="https://tavacudetoate.ro/confidentialitate">Politica de Confidentialitate</a>
-                    si <a routerLink="https://tavacudetoate.ro/politica-cookies">GDPR</a> </span>
+                      routerLink="/confidentialitate">Politica de Confidentialitate</a>
+                    si <a routerLink="/politica-cookies">GDPR</a> </span>
                 </label>
               </div>
 

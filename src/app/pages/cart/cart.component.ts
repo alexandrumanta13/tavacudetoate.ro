@@ -27,7 +27,7 @@ export class CartComponent implements OnInit {
     })
 
     this.cartService.totalPrice.subscribe(info => {
-      this.totalPrice$ = parseInt(info).toFixed(2);
+      this.totalPrice$ = info.toFixed(2);
     });
 
   }
