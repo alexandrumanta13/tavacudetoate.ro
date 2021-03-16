@@ -28,3 +28,9 @@
     display: flex;
     flex-direction: column;
   }
+
+  .close {
+    &:hover {
+      color: #fff;
+    }
+  }
