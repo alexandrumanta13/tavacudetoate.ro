@@ -112,6 +112,7 @@ export class CheckoutComponent implements OnInit {
       this.isAuthentificated = !!user;
       if (this.isAuthentificated) {
         this.user = user;
+
         this.getAddresses(user);
       }
     });
@@ -155,6 +156,10 @@ export class CheckoutComponent implements OnInit {
       });
     }
 
+    if(this.totalPrice$ < 99 && !this.discount && !this.discountDelivery) {
+      this.router.navigate(['/cos-cumparaturi']);
+    }
+
   }
 
   selectDelivery(event) {
@@ -177,12 +182,15 @@ export class CheckoutComponent implements OnInit {
 
   deliveryLocation(location) {
     this.selectDeliveryLocation = location;
-    this.discount = 0;
+    //this.discount = 0;
 
     if (this.discountDelivery > 0)
       return;
 
-    this.discountDelivery = 15;
+    if(!this.discount) {
+      this.discountDelivery = 15;
+    }
+    
     this.getTotalPrice();
   }
 
@@ -348,9 +356,9 @@ export class CheckoutComponent implements OnInit {
       }
     ];
 
-    if(this.discount) {
+    if (this.discount) {
       this.order[0].discount = this.discount;
-    } else if (this.discountDelivery){
+    } else if (this.discountDelivery) {
       this.order[0].discount = this.discountDelivery;
     } else {
       this.order[0].discount = 0;
@@ -369,69 +377,12 @@ export class CheckoutComponent implements OnInit {
     }
 
 
-    
-
-    if (this.isAuthentificated) {
-      let userInfo = {};
-      if (this.selectedAddress != 0 && this.selectedAddress != undefined) {
-        userInfo = {
-          user_id: this.user.id,
-          address_id: this.selectedAddress.id
-        }
-
-        if (this.selectedAddress.county == 'Arges') {
-          this.order[0].additionalSendOrderEmail = 'comanvvv@yahoo.com';
-          this.order[0].contact_email = 'comenzi.pitesti@tavacudetoate.ro';
-
-          this.order[0].contact_phone = '0746252899';
-          this.order[0].pretty_contact_phone = '(0746) 252 899';
-        } else if (this.selectedAddress.county == 'Sector 1' || this.selectedAddress.county == 'Sector 5' || this.selectedAddress.county == 'Sector 6') {
-          this.order[0].additionalSendOrderEmail = 'cristian.stanga88@gmail.com';
-          this.order[0].contact_email = 'comenzi.bucuresti@tavacudetoate.ro';
-          this.order[0].contact_phone = '0741285044';
-          this.order[0].pretty_contact_phone = '(0741) 285 044';
-        } else {
-          this.order[0].contact_phone = '0720.612.962';
-          this.order[0].pretty_contact_phone = '(0720) 612 962';
-          this.order[0].additionalSendOrderEmail = 'bursucvictor@yahoo.com';
-          this.order[0].contact_email = 'comenzi.bucuresti@tavacudetoate.ro';
-        }
-
-        this.order[0]['customer'] = {
-          firstName: this.user.name,
-          lastName: this.user.last_name,
-          email: this.user.email,
-          phone: this.selectedAddress.phone,
-          shippingAddress: {
-            address: 'Adresa de livrare: ' + this.selectedAddress.address,
-            town: this.selectedAddress.town,
-            county: this.selectedAddress.county,
-          }
-        }
-
-        this.order.push(userInfo);
-      } else {
-        userInfo = {
-          user_id: this.user.id,
-          phone: this.model.phone,
-          address: (this.model.address_1 ? this.model.address + ' ' + this.model.address_1 : this.model.address),
-          town: this.model.town_city,
-          county: this.model.county,
-        }
-
-        this.order[0]['customer'].shippingAddress = {
-          address: (this.model.address_1 ? this.model.address + ' ' + this.model.address_1 : this.model.address),
-          town: this.model.town_city,
-          county: this.model.county,
-        }
 
 
-        this.order.push(userInfo);
-      }
-    }
+   
 
     if (this.location != 'livreaza') {
-      
+
       this.order[0].contact_phone = this.selectDeliveryLocation.phone;
       this.order[0].pretty_contact_phone = this.selectDeliveryLocation.pretty_phone;
       this.order[0].contact_email = this.selectDeliveryLocation.email;
@@ -495,6 +446,68 @@ export class CheckoutComponent implements OnInit {
       }
     }
 
+    if (this.isAuthentificated) {
+      let userInfo = {};
+      
+      this.order[0]['customer'] = {
+        user_id: this.user.id,
+        address_id: this.selectedAddress.id,
+        firstName: this.user.name,
+        lastName: this.user.last_name,
+        email: this.user.email,
+        phone: this.selectedAddress.phone,
+        shippingAddress: {
+      
+          address: 'Adresa de livrare: ' + this.selectedAddress.address,
+          town: this.selectedAddress.town,
+          county: this.selectedAddress.county,
+        }
+      }
+    
+      if (this.selectedAddress != 0 && this.selectedAddress != undefined) {
+        
+
+        if (this.selectedAddress.county == 'Arges') {
+          this.order[0].additionalSendOrderEmail = 'comanvvv@yahoo.com';
+          this.order[0].contact_email = 'comenzi.pitesti@tavacudetoate.ro';
+
+          this.order[0].contact_phone = '0746252899';
+          this.order[0].pretty_contact_phone = '(0746) 252 899';
+        } else if (this.selectedAddress.county == 'Sector 1' || this.selectedAddress.county == 'Sector 5' || this.selectedAddress.county == 'Sector 6') {
+          this.order[0].additionalSendOrderEmail = 'cristian.stanga88@gmail.com';
+          this.order[0].contact_email = 'comenzi.bucuresti@tavacudetoate.ro';
+          this.order[0].contact_phone = '0741285044';
+          this.order[0].pretty_contact_phone = '(0741) 285 044';
+        } else {
+          this.order[0].contact_phone = '0720.612.962';
+          this.order[0].pretty_contact_phone = '(0720) 612 962';
+          this.order[0].additionalSendOrderEmail = 'bursucvictor@yahoo.com';
+          this.order[0].contact_email = 'comenzi.bucuresti@tavacudetoate.ro';
+        }
+
+             
+
+        //this.order[0].push(userInfo);
+      } else {
+        userInfo = {
+          user_id: this.user.id,
+          phone: this.model.phone,
+          address: (this.model.address_1 ? this.model.address + ' ' + this.model.address_1 : this.model.address),
+          town: this.model.town_city,
+          county: this.model.county,
+        }
+
+        this.order[0]['customer'].shippingAddress = {
+          address: (this.model.address_1 ? this.model.address + ' ' + this.model.address_1 : this.model.address),
+          town: this.model.town_city,
+          county: this.model.county,
+        }
+
+
+        //this.order[0].push(userInfo);
+      }
+    }
+
 
     if (this.order[0].method == 'card online') {
 
@@ -532,10 +545,11 @@ export class CheckoutComponent implements OnInit {
     this._httpClient.post(this.ADD_ORDER, this.order).subscribe((data: any) => {
       if (data.status == "success") {
         let dataSend = {
-          amount: this.order['total'],
+          amount: this.order[0].total,
           invoice_id: data.order_guid
         };
         this.order_guid = data.order_guid;
+        this.order[0].order_guid = data.order_guid;
         this._httpClient.post(this.SEND_ORDER, this.order).subscribe((data: any) => {
           if (data.status == "success") {
 
@@ -582,11 +596,11 @@ export class CheckoutComponent implements OnInit {
                         timeOut: 3000,
                         positionClass: 'toast-bottom-right'
                       });
-                      console.log(this.showEPForm)
+                      console.log( this.dataAll)
                       this.submit();
                       this.cartService.emptyCart();
                       f.reset();
-                
+
 
                     }, 1000);
                   }
@@ -594,7 +608,7 @@ export class CheckoutComponent implements OnInit {
             } else {
               this.cartService.emptyCart();
               f.reset();
-        
+
               this.router.navigate(['/comanda-finalizata']);
 
             }
@@ -639,8 +653,7 @@ export class CheckoutComponent implements OnInit {
       this.addresses = addresses.data;
       this.selectedAddress = this.addresses[0];
       this.model.town_city = this.selectedAddress.town;
-      console.log(this.model.town_city)
-      console.log(this.selectedAddress.town)
+      this.model.county = this.selectedAddress.county;
     })
   }
   selectAddress(addressIndex, event) {
