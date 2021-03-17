@@ -49,6 +49,7 @@
                   <td class="product-name">
                     <a
                       routerLink="/produs/{{product.categories[0].slug}}/{{product.alias}}">{{product.product_name}}</a>
+                      <p>Gramaj: {{product.selectedQnt}}</p>
                   </td>
                   <td class="product-price-cart"><span class="amount">{{product.selectedPrice | number:'1.2-2'}}
                       lei</span></td>
