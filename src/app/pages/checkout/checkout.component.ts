@@ -417,20 +417,20 @@ export class CheckoutComponent implements OnInit {
 
       if (this.model.county == 'Arges') {
         this.order[0].additionalSendOrderEmail = 'comanvvv@yahoo.com';
-        this.order[0].contact_email = 'comenzi.pitesti@tavacudetoate.ro';
+        this.order[0].contact_email = 'comenzi@tavacudetoate.ro';
 
         this.order[0].contact_phone = '0746252899';
         this.order[0].pretty_contact_phone = '(0746) 252 899';
       } else if (this.model.county == 'Sector 1' || this.model.county == 'Sector 5' || this.model.county == 'Sector 6') {
         this.order[0].additionalSendOrderEmail = 'cristian.stanga88@gmail.com';
-        this.order[0].contact_email = 'comenzi.bucuresti@tavacudetoate.ro';
+        this.order[0].contact_email = 'comenzi@tavacudetoate.ro';
         this.order[0].contact_phone = '0741285044';
         this.order[0].pretty_contact_phone = '(0741) 285 044';
       } else {
         this.order[0].contact_phone = '0720.612.962';
         this.order[0].pretty_contact_phone = '(0720) 612 962';
         this.order[0].additionalSendOrderEmail = 'bursucvictor@yahoo.com';
-        this.order[0].contact_email = 'comenzi.bucuresti@tavacudetoate.ro';
+        this.order[0].contact_email = 'comenzi@tavacudetoate.ro';
       }
 
       this.order[0].customer = {
