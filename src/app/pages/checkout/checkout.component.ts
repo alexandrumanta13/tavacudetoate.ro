@@ -469,42 +469,44 @@ export class CheckoutComponent implements OnInit {
 
         if (this.selectedAddress.county == 'Arges') {
           this.order[0].additionalSendOrderEmail = 'comanvvv@yahoo.com';
-          this.order[0].contact_email = 'comenzi.pitesti@tavacudetoate.ro';
+          this.order[0].contact_email = 'comenzi@tavacudetoate.ro';
 
           this.order[0].contact_phone = '0746252899';
           this.order[0].pretty_contact_phone = '(0746) 252 899';
         } else if (this.selectedAddress.county == 'Sector 1' || this.selectedAddress.county == 'Sector 5' || this.selectedAddress.county == 'Sector 6') {
           this.order[0].additionalSendOrderEmail = 'cristian.stanga88@gmail.com';
-          this.order[0].contact_email = 'comenzi.bucuresti@tavacudetoate.ro';
+          this.order[0].contact_email = 'comenzi@tavacudetoate.ro';
           this.order[0].contact_phone = '0741285044';
           this.order[0].pretty_contact_phone = '(0741) 285 044';
         } else {
           this.order[0].contact_phone = '0720.612.962';
           this.order[0].pretty_contact_phone = '(0720) 612 962';
           this.order[0].additionalSendOrderEmail = 'bursucvictor@yahoo.com';
-          this.order[0].contact_email = 'comenzi.bucuresti@tavacudetoate.ro';
+          this.order[0].contact_email = 'comenzi@tavacudetoate.ro';
         }
 
              
 
         //this.order[0].push(userInfo);
       } else {
-        userInfo = {
+        this.order[0]['customer'] = {
           user_id: this.user.id,
+          
+          firstName: this.user.name,
+          lastName: this.user.last_name,
+          email: this.user.email,
           phone: this.model.phone,
-          address: (this.model.address_1 ? this.model.address + ' ' + this.model.address_1 : this.model.address),
-          town: this.model.town_city,
-          county: this.model.county,
+          shippingAddress: {
+        
+            address: 'Adresa de livrare: ' +  (this.model.address_1 ? this.model.address + ' ' + this.model.address_1 : this.model.address),
+            town: this.model.town_city,
+            county: this.model.county,
+          }
         }
+        
 
-        this.order[0]['customer'].shippingAddress = {
-          address: (this.model.address_1 ? this.model.address + ' ' + this.model.address_1 : this.model.address),
-          town: this.model.town_city,
-          county: this.model.county,
-        }
+       
 
-
-        //this.order[0].push(userInfo);
       }
     }
 
