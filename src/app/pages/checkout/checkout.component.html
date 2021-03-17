@@ -590,9 +590,9 @@
             </div>
 
             <div class="payment-info mt-40">
-              <h4 class="sub-title payment-info">Detalii plata</h4>
+              <h4 class="sub-title payment-info"  *ngIf="location">Detalii plata</h4>
               <div class="payment-inner">
-                <div class="option-block">
+                <div class="option-block" *ngIf="location">
                   <div class="custom-controls-stacked">
                     <label class="custom-control material-checkbox">
                       <input type="radio" [(ngModel)]="payment" value="card online" id="card" name="select-payment"
@@ -605,20 +605,40 @@
                 <div class="option-block" *ngIf="location == 'livreaza' && location != undefined">
                   <div class="custom-controls-stacked">
                     <label class="custom-control material-checkbox">
-                      <input type="radio" [(ngModel)]="payment" value="plata numerar sau card la livrare"
+                      <input type="radio" [(ngModel)]="payment" value="plata numerar la livrare"
                         id="numerarCardLivrare" name="select-payment" class="material-control-input">
                       <span class="material-control-indicator"></span>
-                      <span class="description">Platesc la livrare (numerar/card)</span>
+                      <span class="description">Platesc numerar la livrare</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="option-block" *ngIf="location == 'livreaza' && location != undefined">
+                  <div class="custom-controls-stacked">
+                    <label class="custom-control material-checkbox">
+                      <input type="radio" [(ngModel)]="payment" value="plata card la livrare"
+                        id="numerarCardLivrare" name="select-payment" class="material-control-input">
+                      <span class="material-control-indicator"></span>
+                      <span class="description">Platesc cu cardul la livrare</span>
                     </label>
                   </div>
                 </div>
                 <div class="option-block" *ngIf="location != 'livreaza' && location != undefined">
                   <div class="custom-controls-stacked">
                     <label class="custom-control material-checkbox">
-                      <input type="radio" [(ngModel)]="payment" value="plata la ridicare" id="laRidicare"
+                      <input type="radio" [(ngModel)]="payment" value="plata numerar la ridicare" id="laRidicare"
                         name="select-payment" class="material-control-input">
                       <span class="material-control-indicator"></span>
-                      <span class="description">Platesc la ridicare din locatie (numerar/card)</span>
+                      <span class="description">Platesc numerar la ridicare din locatie</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="option-block" *ngIf="location != 'livreaza' && location != undefined">
+                  <div class="custom-controls-stacked">
+                    <label class="custom-control material-checkbox">
+                      <input type="radio" [(ngModel)]="payment" value="plata card la ridicare" id="laRidicare"
+                        name="select-payment" class="material-control-input">
+                      <span class="material-control-indicator"></span>
+                      <span class="description">Platesc cu cardul la ridicare din locatie</span>
                     </label>
                   </div>
                 </div>
