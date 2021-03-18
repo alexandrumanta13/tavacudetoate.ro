@@ -65,6 +65,7 @@ export class CheckoutComponent implements OnInit {
   showEPForm: boolean = false;
   order_guid: any;
   showForm: boolean;
+  showInvoicePJ: boolean;
 
 
   constructor(
@@ -87,7 +88,7 @@ export class CheckoutComponent implements OnInit {
   login: any = {};
   limit: number = 99;
 
-  isInvoice: boolean = false;
+  isInvoice: string;
   invoice: boolean = false;
   invoicePj: any = {};
 
@@ -261,6 +262,17 @@ export class CheckoutComponent implements OnInit {
   }
 
 
+  selectInvoice(event) {
+    if(event.target.value == 'pf') {
+      this.showInvoicePJ = false;      
+    } else if(event.target.value == 'pj'){
+      this.showInvoicePJ = true;
+    }
+
+    this.isInvoice = event.target.value;  
+  }
+
+
 
   placeOrder(f: NgForm) {
 
@@ -350,9 +362,10 @@ export class CheckoutComponent implements OnInit {
         deliverydate: this.deliverydate,
         intervaldelivery: '',
         invoicePj: this.invoicePj,
-        isInvoice: this.isInvoice,
-        isInvoicePJ: this.invoice,
-        sendOrderEmail: 'comenzi@tavacudetoate.ro'
+        isInvoice: (this.isInvoice == 'pf' ? true : false),
+        isInvoicePJ: (this.isInvoice == 'pj' ? true : false),
+        sendOrderEmail: 'comenzi@tavacudetoate.ro',
+        
       }
     ];
 
@@ -366,8 +379,6 @@ export class CheckoutComponent implements OnInit {
 
 
     if (this.invoicePj) {
-      this.isInvoice = false;
-
       this.order[0].invoicePj = {
         companyName: this.invoicePj.companyName,
         companyAddress: this.invoicePj.companyAddress,
@@ -396,6 +407,7 @@ export class CheckoutComponent implements OnInit {
 
 
       this.order[0].customer = {
+        user_id: 0,
         firstName: this.delivery.firstName,
         lastName: this.delivery.lastName,
         email: this.delivery.email,
@@ -434,6 +446,7 @@ export class CheckoutComponent implements OnInit {
       }
 
       this.order[0].customer = {
+        user_id: 0,
         firstName: this.model.firstName,
         lastName: this.model.lastName,
         email: this.model.email,
