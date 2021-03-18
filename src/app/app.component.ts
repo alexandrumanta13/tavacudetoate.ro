@@ -3,6 +3,7 @@ import { SEOServiceService } from './seoservice.service';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { filter, map, mergeMap } from 'rxjs/operators';
 import { HostListener } from '@angular/core';
+import { AuthAPIService } from './pages/login/auth-api.service';
 
 
 @Component({
@@ -15,12 +16,14 @@ export class AppComponent {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private _seoService: SEOServiceService
+    private _seoService: SEOServiceService,
+    public authAPIService: AuthAPIService
   ) { }
 
 
 
   ngOnInit() {
+    this.authAPIService.autoLogin();
     this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd),
       map(() => this.activatedRoute),
