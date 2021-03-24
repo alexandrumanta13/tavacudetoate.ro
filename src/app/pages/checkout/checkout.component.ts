@@ -113,6 +113,7 @@ export class CheckoutComponent implements OnInit {
       this.isAuthentificated = !!user;
       if (this.isAuthentificated) {
         this.user = user;
+        console.log(this.user)
         this.getAddresses(user);
       }
     });
@@ -465,7 +466,7 @@ export class CheckoutComponent implements OnInit {
         user_id: this.user.id,
         address_id: this.selectedAddress.id,
         firstName: this.user.name,
-        lastName: this.user.last_name,
+        lastName: (this.user.last_name ? this.user.last_name : ''),
         email: this.user.email,
         phone: this.selectedAddress.phone,
         shippingAddress: {
@@ -501,12 +502,13 @@ export class CheckoutComponent implements OnInit {
 
         //this.order[0].push(userInfo);
       } else {
+        console.log(this.user)
         this.order[0]['customer'] = {
-          user_id: this.user.id,
+          user_id: this.user[0].id,
           
-          firstName: this.user.name,
-          lastName: this.user.last_name,
-          email: this.user.email,
+          firstName: this.user[0].name,
+          lastName: (this.user[0].last_name ? this.user[0].last_name : ''),
+          email: this.user[0].email,
           phone: this.model.phone,
           shippingAddress: {
         
@@ -665,8 +667,8 @@ export class CheckoutComponent implements OnInit {
 
     this._httpClient.get<any>(`https://tavacudetoate.ro/tavacudetoate-api/v1/addresses/${user.id}`).subscribe(addresses => {
       this.addresses = addresses.data;
-
-      if(addresses.data) {
+      console.log(addresses.data)
+      if(addresses.data.length > 0) {
         this.selectedAddress = this.addresses[0];
         this.model.town_city = this.selectedAddress.town;
         this.model.county = this.selectedAddress.county;

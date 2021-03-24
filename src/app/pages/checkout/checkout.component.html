@@ -333,7 +333,7 @@
 
               </div>
               <div class="actions clearfix">
-                <a *ngIf="isAuthentificated && !newAddress" (click)="toggleNewAddress()"
+                <a *ngIf="isAuthentificated && !newAddress && addresses.length > 0" (click)="toggleNewAddress()"
                   class="theme-btn-one add-new-address float-left">Adauga o
                   adresa noua</a>
                 <a *ngIf="isAuthentificated && newAddress" (click)="toggleNewAddress()"

@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit {
   }
 
   apiConnection(data) {
-    
+    console.log(data)
     this.userPostData.email = data.email;
     this.userPostData.name = data.name;
     this.userPostData.provider = data.provider;
@@ -127,11 +127,11 @@ export class LoginComponent implements OnInit {
           timeOut: 8000,
           positionClass: 'toast-bottom-right'
         });
-        window.location.reload();
-        setTimeout(() => {
+        // window.location.reload();
+        // setTimeout(() => {
           
-          this.router.navigate(['/contul-meu'])
-        }, 2000)
+        //   this.router.navigate(['/contul-meu'])
+        // }, 2000)
         
        
       } else {
