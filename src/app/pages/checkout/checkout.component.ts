@@ -113,7 +113,6 @@ export class CheckoutComponent implements OnInit {
       this.isAuthentificated = !!user;
       if (this.isAuthentificated) {
         this.user = user;
-
         this.getAddresses(user);
       }
     });
@@ -666,9 +665,13 @@ export class CheckoutComponent implements OnInit {
 
     this._httpClient.get<any>(`https://tavacudetoate.ro/tavacudetoate-api/v1/addresses/${user.id}`).subscribe(addresses => {
       this.addresses = addresses.data;
-      this.selectedAddress = this.addresses[0];
-      this.model.town_city = this.selectedAddress.town;
-      this.model.county = this.selectedAddress.county;
+
+      if(addresses.data) {
+        this.selectedAddress = this.addresses[0];
+        this.model.town_city = this.selectedAddress.town;
+        this.model.county = this.selectedAddress.county;
+      }
+    
     })
   }
   selectAddress(addressIndex, event) {

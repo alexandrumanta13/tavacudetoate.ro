@@ -169,8 +169,9 @@ button {
     color: #fff;
     background-color: #e02c2b;
   }
+
   &:disabled {
-    cursor:not-allowed;
+    cursor: not-allowed;
   }
 }
 
@@ -403,7 +404,7 @@ ngb-rating {
 }
 
 
-.slider-active:hover  .owl-nav div {
+.slider-active:hover .owl-nav div {
   opacity: 1;
 }
 
@@ -419,20 +420,21 @@ ngb-rating {
   border-bottom: 1px solid #ededde;
   color: #000;
   font-size: 13px;
+
   &::before {
-      display: inline-block;
-      position: absolute;
-      width: 0;
-      height: 0;
-      margin: 9px 0 0 -10px;
-      border-top: 4px solid transparent;
-      border-bottom: 4px solid transparent;
-      border-left: 4px solid #333;
-      content: '';
-      top: 0;
-      bottom: 0;
-      margin: auto;
-      left: 0;
+    display: inline-block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    margin: 9px 0 0 -10px;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-left: 4px solid #333;
+    content: '';
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    left: 0;
   }
 }
 
@@ -446,5 +448,28 @@ a {
 .my-account a {
   &:hover {
     color: #e02c2b;
+  }
+}
+
+
+@media (max-width: 767px) {
+  .modal-open .modal {
+    top: 94px;
+    width: 100%;
+  }
+
+  .modal.show .modal-dialog {
+    width: 100%;
+    border-radius: 0;
+    display: block;
+    height: calc(100vh - 94px);
+    margin: 0;
+  }
+
+  .modal-header {
+    border-top-left-radius: .3rem;
+    border-top-right-radius: .3rem;
+    border-radius: 0;
+    width: 100%;
   }
 }

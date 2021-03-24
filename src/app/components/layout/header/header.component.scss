@@ -118,7 +118,7 @@
       }
 
       &.open {
-        top: 190px;
+        top: 140px;
       }
     }
 
@@ -368,6 +368,12 @@ a.dropdown-main-menu:not([href]):not([tabindex]) {
       color: #e02c2b;
       cursor: pointer;
     }
+  }
+}
+
+@media (max-width: 767px) {
+  .user-content {
+    transform: translate(50%, 10px);
   }
 }
 
