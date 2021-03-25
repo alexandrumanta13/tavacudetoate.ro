@@ -113,7 +113,7 @@ export class CheckoutComponent implements OnInit {
       this.isAuthentificated = !!user;
       if (this.isAuthentificated) {
         this.user = user;
-        console.log(this.user)
+      
         this.getAddresses(user);
       }
     });
@@ -460,25 +460,22 @@ export class CheckoutComponent implements OnInit {
     }
 
     if (this.isAuthentificated) {
-      let userInfo = {};
+         
+      if (this.selectedAddress != 0 && this.selectedAddress != undefined && this.location == 'livreaza') {
       
-      this.order[0]['customer'] = {
-        user_id: this.user.id,
-        address_id: this.selectedAddress.id,
-        firstName: this.user.name,
-        lastName: (this.user.last_name ? this.user.last_name : ''),
-        email: this.user.email,
-        phone: this.selectedAddress.phone,
-        shippingAddress: {
-      
-          address: 'Adresa de livrare: ' + this.selectedAddress.address,
-          town: this.selectedAddress.town,
-          county: this.selectedAddress.county,
+        this.order[0]['customer'] = {
+          user_id: this.user.id,
+          address_id: this.selectedAddress.id,
+          firstName: this.user.name,
+          lastName: (this.user.last_name ? this.user.last_name : ''),
+          email: this.user.email,
+          phone: this.selectedAddress.phone,
+          shippingAddress: {
+            address: 'Adresa de livrare: ' + this.selectedAddress.address,
+            town: this.selectedAddress.town,
+            county: this.selectedAddress.county,
+          }
         }
-      }
-    
-      if (this.selectedAddress != 0 && this.selectedAddress != undefined) {
-        
 
         if (this.selectedAddress.county == 'Arges') {
           this.order[0].additionalSendOrderEmail = 'comanvvv@yahoo.com';
@@ -498,11 +495,39 @@ export class CheckoutComponent implements OnInit {
           this.order[0].contact_email = 'comenzi@tavacudetoate.ro';
         }
 
-             
-
-        //this.order[0].push(userInfo);
+      } else if(this.selectedAddress != 0 && this.selectedAddress != undefined && this.location != 'livreaza') {
+      
+          this.order[0]['customer'] = {
+            user_id: this.user.id,
+            firstName: this.user.name,
+            lastName: (this.user.last_name ? this.user.last_name : ''),
+            email: this.user.email,
+            phone: this.selectedAddress.phone,
+            shippingAddress: {
+              address: 'Ridicare personala din: ' + this.selectDeliveryLocation.location_name,
+              town: this.selectDeliveryLocation.town,
+              county: this.selectDeliveryLocation.county,
+            }
+          }
+      } else if(this.selectedAddress == 0 && this.location != 'livreaza') {
+      
+      
+        this.order[0].customer = {
+          user_id: this.user[0].id,
+          firstName: this.delivery.firstName,
+          lastName: this.delivery.lastName,
+          email: this.delivery.email,
+          phone: this.delivery.phone,
+  
+          shippingAddress: {
+            address: 'Ridicare personala din: ' + this.selectDeliveryLocation.location_name,
+            town: this.selectDeliveryLocation.town,
+            county: this.selectDeliveryLocation.county,
+          }
+        }
       } else {
-        console.log(this.user)
+      
+      
         this.order[0]['customer'] = {
           user_id: this.user[0].id,
           
@@ -517,10 +542,6 @@ export class CheckoutComponent implements OnInit {
             county: this.model.county,
           }
         }
-        
-
-       
-
       }
     }
 
@@ -542,7 +563,7 @@ export class CheckoutComponent implements OnInit {
       ]
     }
     this.order[0].status = this.status;
-    console.log(this.order);
+  
 
     // this._httpClient.post(this.SEND_ORDER, this.order).subscribe((data: any) => {
     //   if (data.status == "success") {
@@ -612,7 +633,7 @@ export class CheckoutComponent implements OnInit {
                         timeOut: 3000,
                         positionClass: 'toast-bottom-right'
                       });
-                      console.log( this.dataAll)
+                    
                       this.submit();
                       this.cartService.emptyCart();
                       f.reset();
@@ -658,7 +679,7 @@ export class CheckoutComponent implements OnInit {
       }
 
     }, error => {
-      console.log(error)
+    
     });
 
   }
@@ -667,7 +688,7 @@ export class CheckoutComponent implements OnInit {
 
     this._httpClient.get<any>(`https://tavacudetoate.ro/tavacudetoate-api/v1/addresses/${user.id}`).subscribe(addresses => {
       this.addresses = addresses.data;
-      console.log(addresses.data)
+    
       if(addresses.data.length > 0) {
         this.selectedAddress = this.addresses[0];
         this.model.town_city = this.selectedAddress.town;
@@ -716,20 +737,20 @@ export class CheckoutComponent implements OnInit {
       result => {
         this.responseData = result;
         if (this.responseData.userData) {
-          console.log(this.responseData)
+        
           this.userService.storeData(this.responseData.userData);
 
         }
       },
       err => {
-        console.log('error');
+      
       }
     );
   }
 
   submit() {
     const epForm = <HTMLFormElement>document.getElementById('epForm');
-    console.log(epForm)
+  
     epForm.submit();
 
   }
