@@ -48,6 +48,7 @@ export class ProductComponent implements OnInit {
 
   private SEND_REVIEW = "https://tavacudetoate.ro/data/sendReview.php";
   selectedQnt: any;
+  addedReview: boolean = false;
 
 
   /**
@@ -216,11 +217,13 @@ export class ProductComponent implements OnInit {
     this.model.rating = this.addRate;
     this.model.ProductID = this.product.id;
     this.model.product_name = this.product.product_name;
-    console.log(this.model)
+    
     this._ProductService.addProductReview(this.model).then(data => {
-      console.log(data)
       if (data.success) {
-        this.model.review_id = data.review_id;
+        console.log(data)
+        this.model.review_id = data.review.id;
+        this.model.user_email = data.review.user_email;
+        console.log(this.model)
         this._httpClient.post(this.SEND_REVIEW, this.model).subscribe((data: any) => {
           if (data.success) {
             this._toaster.success('Multumimn!', `${data['message']}`, {
@@ -228,6 +231,7 @@ export class ProductComponent implements OnInit {
               positionClass: 'toast-bottom-right'
             });
             this.getReviews();
+            this.addedReview = true;
             form.reset();
           }
 

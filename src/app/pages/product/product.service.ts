@@ -89,6 +89,7 @@ export class ProductService {
     addProductReview(review) : Promise<any>
     {
         return new Promise((resolve, reject) => {
+            console.log(review)
             this._httpClient.post(this.REST_API_SERVER + 'review/add', 
             {
                 id: review.id, 
