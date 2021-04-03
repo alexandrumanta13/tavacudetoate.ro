@@ -36,7 +36,6 @@ export class AddressesComponent implements OnInit {
       if (this.isAuthentificated) {
         this.getAddresses(user);
       }
-      console.log('asdad')
     });
 
   }
@@ -44,7 +43,7 @@ export class AddressesComponent implements OnInit {
   getAddresses(user) {
     this._httpClient.get<any>(`https://tavacudetoate.ro/tavacudetoate-api/v1/addresses/${user.id}`).subscribe(addresses => {
       this.addresses = addresses.data;
-      console.log(this.addresses)
+
     })
   }
 

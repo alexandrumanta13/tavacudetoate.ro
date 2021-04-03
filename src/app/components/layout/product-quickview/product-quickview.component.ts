@@ -52,7 +52,6 @@ export class ProductQuickviewComponent implements OnInit {
 
   
   ngOnInit(): void {
-    console.log(this.productInput)
     this.getProduct();
   }
 
@@ -63,19 +62,12 @@ export class ProductQuickviewComponent implements OnInit {
     this._ProductService.getProduct(this.productInput.alias).then(data => {
       this.product = "";
       this.product = data;
-
-      console.log(this.product)
       
       this.productCategoryName = this.product.categories[0].category_name;
       this.productCategorySlug = this.product.categories[0].slug;
       this.price = this.product.information[0].price;
       this.isActive = this.product.information[0].id;
       this.product.selectedQnt = this.product.information[0].quantity + this.product.information[0].um;
-      // this.product.images.map(productImage => {
-      //   this.productImages.push({ src: '/assets/images/resource/shop/' + productImage.image_url, thumb: '/assets/images/resource/shop/' + productImage.image_url })
-      // })
-      // console.log(this.productImages)
-
     });
   }
 
@@ -86,7 +78,7 @@ export class ProductQuickviewComponent implements OnInit {
     this.price = qnt.price;
     this.portions = qnt.portions;
     this.product.selectedQnt = qnt.quantity + qnt.um;
-    console.log(qnt)
+
   }
 
   changeimage(image: string) {

@@ -32,7 +32,6 @@ export class CareersComponent implements OnInit {
 
   getCareers() {
     this._httpClient.get('https://tavacudetoate.ro/tavacudetoate-api/v1/careers').subscribe((data: any) => {
-      console.log(data)
       this.careers = data;
     });
   }
@@ -59,7 +58,6 @@ export class CareersComponent implements OnInit {
       this.uploadDatasheet(formData, options)
         .then(datasheet => {
           this.datasheet = 'https://www.tavacudetoate.ro/upload/datasheets/' + datasheet.file;
-          console.log(this.datasheet)
           this.disabled = false;
         })
 

@@ -28,7 +28,7 @@ export class PopupDiscountComponent implements OnInit {
      
       if (data.success === true) {
         this._httpClient.post(this.SEND_EMAIL, {email: this.discount, coupon: data.coupon}).subscribe((data: any) => {
-          console.log(data)
+          //console.log(data)
         })
         localStorage.setItem('discount', JSON.stringify(data.coupon));
         this.showPopup = false;

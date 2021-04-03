@@ -122,7 +122,6 @@ export class CartService {
 
     sendOrder(postVars) {
         this.shippingSubject.next(postVars);
-        console.log(this.shippingSubject)
     }
 
 

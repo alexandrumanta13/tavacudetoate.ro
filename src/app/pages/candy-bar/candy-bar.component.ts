@@ -215,9 +215,6 @@ export class CandyBarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.candyBar)
-
-
   }
 
   chooseNoPersons(event) {
@@ -243,7 +240,6 @@ export class CandyBarComponent implements OnInit {
     }
 
     if (!this.terms) {
-      console.log('asdads')
       this.toaster.warning('', 'Trebuie sa fii de acord cu termenii si conditiile site-ului!', {
         timeOut: 3000,
         positionClass: 'toast-bottom-right'

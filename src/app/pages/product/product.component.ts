@@ -132,7 +132,7 @@ export class ProductComponent implements OnInit {
       this.reviews = data;
     })
     this._ProductService.getProductRating(this.product.id).then(data => {
-      console.log(data)
+      
       this.currentRate =data[0].rating
       
     })
@@ -200,12 +200,12 @@ export class ProductComponent implements OnInit {
   }
 
   openModal(product) {
-    console.log(product)
+    
     const modalRef = this.modalService.open(ProductQuickviewComponent);
     modalRef.componentInstance.productInput = product;
     modalRef.result.then((result) => {
       if (result) {
-        console.log(result);
+        
       }
     });
   }
@@ -220,10 +220,10 @@ export class ProductComponent implements OnInit {
     
     this._ProductService.addProductReview(this.model).then(data => {
       if (data.success) {
-        console.log(data)
+        
         this.model.review_id = data.review.id;
         this.model.user_email = data.review.user_email;
-        console.log(this.model)
+        
         this._httpClient.post(this.SEND_REVIEW, this.model).subscribe((data: any) => {
           if (data.success) {
             this._toaster.success('Multumimn!', `${data['message']}`, {

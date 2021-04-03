@@ -19,7 +19,6 @@ export class LocationsComponent implements OnInit {
 
   getLocations() {
     this._httpClient.get('https://tavacudetoate.ro/tavacudetoate-api/v1/locationsAll').subscribe((data: any) => {
-      console.log(data)
       this.locations = data;
     });
   }

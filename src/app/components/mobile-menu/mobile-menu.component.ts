@@ -32,7 +32,6 @@ export class MobileMenuComponent implements OnInit {
   } 
 
   toggleMenu(menu) {
-    console.log(menu)
     this.open = !this.open;
     this.navMenu = menu;
   }

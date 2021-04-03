@@ -213,12 +213,10 @@ export class HeaderComponent implements OnInit {
             $(this).prev('ul').slideToggle(500);
           });
           $('.mobile-menu li a.dropdown-btn-parent_1').on('click', function () {
-            console.log($('.dropdon-list-toggle_1'))
             $(this).next().next().toggleClass('open');
             $('.dropdon-list-toggle_1').slideToggle(500);
           });
           $('.mobile-menu li a.dropdown-btn-parent_2').on('click', function () {
-            console.log($('.dropdon-list-toggle_2'))
             $(this).next().next().toggleClass('open');
             $('.dropdon-list-toggle_2').slideToggle(500);
           });

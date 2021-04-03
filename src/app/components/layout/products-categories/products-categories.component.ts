@@ -64,12 +64,11 @@ export class ProductsCategoriesComponent implements OnInit {
   }
 
   openModal(product) {
-    console.log(product)
     const modalRef = this.modalService.open(ProductQuickviewComponent);
     modalRef.componentInstance.productInput = product;
     modalRef.result.then((result) => {
       if (result) {
-        console.log(result);
+        
       }
     });
   }

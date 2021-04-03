@@ -20,7 +20,6 @@ export class FooterComponent implements OnInit {
 
  
   changeLink(){
-    console.log('asdas')
     this.navigate.emit(null)
   }
 

@@ -47,7 +47,6 @@ export class MyAccountService {
      */
 
     public getUserOrders(userID): Promise<any> {
-        console.log(userID)
         return new Promise((resolve, reject) => {
             this._httpClient.get(this.REST_API_SERVER + 'customer/orders/' + userID)
                 .subscribe((response: any) => {

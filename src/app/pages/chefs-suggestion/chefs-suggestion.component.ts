@@ -52,7 +52,6 @@ export class ChefsSuggestionComponent implements OnInit {
 
   getProducts() {
     this._ProductsService.getChefsProducts().then(data => {
-      console.log(data)
       this.products = data;
     });
 
@@ -80,12 +79,11 @@ export class ChefsSuggestionComponent implements OnInit {
 
 
   openModal(product) {
-    console.log(product)
     const modalRef = this.modalService.open(ProductQuickviewComponent);
     modalRef.componentInstance.productInput = product;
     modalRef.result.then((result) => {
       if (result) {
-        console.log(result);
+        
       }
     });
   }

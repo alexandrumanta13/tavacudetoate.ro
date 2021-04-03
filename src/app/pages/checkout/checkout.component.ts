@@ -263,13 +263,13 @@ export class CheckoutComponent implements OnInit {
 
 
   selectInvoice(event) {
-    if(event.target.value == 'pf') {
-      this.showInvoicePJ = false;      
-    } else if(event.target.value == 'pj'){
-      this.showInvoicePJ = true;
-    }
-
-    this.isInvoice = event.target.value;  
+    // if(event.target.value == 'pf') {
+    //   this.showInvoicePJ = false;      
+    // } else if(event.target.value == 'pj'){
+    //   this.showInvoicePJ = true;
+    // }
+    this.showInvoicePJ = !this.showInvoicePJ;
+    //this.isInvoice = event.target.value;  
   }
 
 
@@ -362,8 +362,11 @@ export class CheckoutComponent implements OnInit {
         deliverydate: this.deliverydate,
         intervaldelivery: '',
         invoicePj: this.invoicePj,
-        isInvoice: (this.isInvoice == 'pf' ? true : false),
-        isInvoicePJ: (this.isInvoice == 'pj' ? true : false),
+        // isInvoice: (this.isInvoice == 'pf' ? true : false),
+        isInvoice: false,
+
+        // isInvoicePJ: (this.isInvoice == 'pj' ? true : false),
+        isInvoicePJ: this.showInvoicePJ,
         sendOrderEmail: 'comenzi@tavacudetoate.ro',
         
       }
@@ -526,20 +529,33 @@ export class CheckoutComponent implements OnInit {
           }
         }
       } else {
-      
-      
-        this.order[0]['customer'] = {
-          user_id: this.user[0].id,
+        if(this.user.provider) {
+          this.order[0]['customer'] = {
+            user_id: this.user[0].id,
+            firstName: this.user[0].name,
+            lastName: (this.user[0].last_name ? this.user[0].last_name : ''),
+            email: this.user[0].email,
+            phone: this.model.phone,
+            shippingAddress: {
           
-          firstName: this.user[0].name,
-          lastName: (this.user[0].last_name ? this.user[0].last_name : ''),
-          email: this.user[0].email,
-          phone: this.model.phone,
-          shippingAddress: {
-        
-            address: 'Adresa de livrare: ' +  (this.model.address_1 ? this.model.address + ' ' + this.model.address_1 : this.model.address),
-            town: this.model.town_city,
-            county: this.model.county,
+              address: 'Adresa de livrare: ' +  (this.model.address_1 ? this.model.address + ' ' + this.model.address_1 : this.model.address),
+              town: this.model.town_city,
+              county: this.model.county,
+            }
+          }
+        } else {
+          this.order[0]['customer'] = {
+            user_id: this.user.id,
+            firstName: this.user.name,
+            lastName: (this.user.last_name ? this.user.last_name : ''),
+            email: this.user.email,
+            phone: this.model.phone,
+            shippingAddress: {
+          
+              address: 'Adresa de livrare: ' +  (this.model.address_1 ? this.model.address + ' ' + this.model.address_1 : this.model.address),
+              town: this.model.town_city,
+              county: this.model.county,
+            }
           }
         }
       }

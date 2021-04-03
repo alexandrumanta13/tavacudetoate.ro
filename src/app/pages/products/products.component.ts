@@ -71,7 +71,6 @@ export class ProductsComponent implements OnInit {
   getProducts() {
     if (!this._categoryRoute) {
       this._ProductsService.getProducts('').then(data => {
-        console.log(data)
         this.totalNoOfProducts = data.total_no_of_products;
         this.products = data.products;
 
@@ -88,18 +87,12 @@ export class ProductsComponent implements OnInit {
 
         this.setTotalPages(data.no_of_pages);
         this.setPagesArray(this.totalPages);
-        console.log(this.products)
         this._ProductsService.getCategory(this._categoryRoute);
 
         this.moveToTop();
       });
 
     }
-    
-    // console.log(window.pageYOffset);
-    // const shopElement = (<HTMLElement>document.querySelector('.shop-page-section')).offsetTop;
-    // if(window.pageYOffset > shopElement)
-
   }
 
   moveToTop() {
@@ -187,12 +180,11 @@ export class ProductsComponent implements OnInit {
   }
 
   openModal(product) {
-    console.log(product)
     const modalRef = this.modalService.open(ProductQuickviewComponent);
     modalRef.componentInstance.productInput = product;
     modalRef.result.then((result) => {
       if (result) {
-        console.log(result);
+        
       }
     });
   }

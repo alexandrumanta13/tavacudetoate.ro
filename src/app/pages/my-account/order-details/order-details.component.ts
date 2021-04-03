@@ -17,7 +17,6 @@ export class OrderDetailsComponent implements OnInit {
     this._route.paramMap.subscribe(params => {
       this.myAccountService.getUserOrder(params.get('orderUUID')).then(data => {
         this.order = data[0];
-        console.log(this.order)
       })
     });
   }

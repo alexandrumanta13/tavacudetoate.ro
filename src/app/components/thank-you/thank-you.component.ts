@@ -48,9 +48,6 @@ export class ThankYouComponent implements OnInit {
       message: this.model.message,
     };
 
-
-    console.log(postVars)
-
     this.http.post(this.endpoint, postVars)
       .subscribe(
         response => {

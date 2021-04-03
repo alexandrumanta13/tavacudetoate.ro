@@ -21,7 +21,7 @@ export class AuthAPIService {
   constructor(private _httpClient: HttpClient, public _router: Router) {
     
     this.user = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('TavaUserData')));
-    console.log('Hello AuthService Provider', this.user);
+    
   }
 
   public postData(credentials, type): Promise<any> {
@@ -47,7 +47,6 @@ export class AuthAPIService {
   // }
 
   signup(user) {
-    console.log(user)
     return this._httpClient.post<AuthResponseData>(`https://tavacudetoate.ro/tavacudetoate-api/v1/register`, {  "firstName": user.name, "lastName": user.last_name, "email": user.email, "password": user.password })
       .pipe(tap(data => {
         this.handleAuthentication(
@@ -102,7 +101,6 @@ export class AuthAPIService {
   autoLogout(expirationDuration: number) {
 
     this.tokenExpirationTimer = setTimeout(() => {
-      console.log(expirationDuration)
       this.logout();
     }, expirationDuration);
   }

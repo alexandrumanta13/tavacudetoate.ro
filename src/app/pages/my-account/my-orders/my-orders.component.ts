@@ -24,7 +24,6 @@ export class MyOrdersComponent implements OnInit {
     this.authService.user.subscribe(user => {
       this.myAccountService.getUserOrders(user.id).then(data => {
         this.orders = data.orders;
-        console.log(this.orders)
       })
     })
   }

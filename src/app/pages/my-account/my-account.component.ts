@@ -23,7 +23,7 @@ export class MyAccountComponent implements OnInit {
     private myAccountService: MyAccountService,
     private toaster: ToastrService,
     public router: Router
-  ) { console.log('asdad1')}
+  ) { }
 
   ngOnInit(): void {
      

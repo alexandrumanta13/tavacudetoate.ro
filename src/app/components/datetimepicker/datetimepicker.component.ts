@@ -125,7 +125,6 @@ export class DatetimepickerComponent implements ControlValueAccessor, OnInit, Af
         const date = new Date();
 
         if (date.getFullYear() == 2020 && date.getMonth() == 11 && date.getDate() + 1 == 31) {
-            console.log(date.getDate() + 1)
             this.isNewYearTowmorrow = true;
         }
 

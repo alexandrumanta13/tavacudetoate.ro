@@ -36,7 +36,6 @@ export class ContactComponent implements OnInit {
   submit(f: NgForm) {
 
     if (!this.terms) {
-      console.log('asdads')
       this.toaster.warning('', 'Trebuie sa fii de acord cu termenii si conditiile site-ului!', {
         timeOut: 3000,
         positionClass: 'toast-bottom-right'
@@ -59,9 +58,6 @@ export class ContactComponent implements OnInit {
       subject: this.model.subject,
       message: this.model.message,
     };
-
- 
-    console.log(postVars)
 
     this.http.post(this.endpoint, postVars)
       .subscribe(

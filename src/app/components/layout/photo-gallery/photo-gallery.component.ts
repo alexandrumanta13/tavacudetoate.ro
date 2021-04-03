@@ -22,11 +22,7 @@ export class PhotoGalleryComponent implements OnInit {
     let active: HTMLElement = document.querySelector('.filter-tabs .active') as HTMLElement;
     let checkExist = setInterval(function() {
       if (active && active instanceof HTMLElement) {
-        console.log(active)
         setTimeout(() => {
-          
-          
-          
           if ($('.sortable-masonry').length) {
             
             var winDow = $(window);
