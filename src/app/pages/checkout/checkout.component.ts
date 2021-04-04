@@ -65,7 +65,7 @@ export class CheckoutComponent implements OnInit {
   showEPForm: boolean = false;
   order_guid: any;
   showForm: boolean;
-  showInvoicePJ: boolean;
+  showInvoicePJ: boolean = false;
 
 
   constructor(
@@ -113,7 +113,7 @@ export class CheckoutComponent implements OnInit {
       this.isAuthentificated = !!user;
       if (this.isAuthentificated) {
         this.user = user;
-      
+
         this.getAddresses(user);
       }
     });
@@ -157,7 +157,7 @@ export class CheckoutComponent implements OnInit {
       });
     }
 
-    if(this.totalPrice$ < 99 && !this.discount && !this.discountDelivery) {
+    if (this.totalPrice$ < 99 && !this.discount && !this.discountDelivery) {
       this.router.navigate(['/cos-cumparaturi']);
     }
 
@@ -188,10 +188,10 @@ export class CheckoutComponent implements OnInit {
     if (this.discountDelivery > 0)
       return;
 
-    if(!this.discount) {
+    if (!this.discount) {
       this.discountDelivery = 15;
     }
-    
+
     this.getTotalPrice();
   }
 
@@ -368,7 +368,7 @@ export class CheckoutComponent implements OnInit {
         // isInvoicePJ: (this.isInvoice == 'pj' ? true : false),
         isInvoicePJ: this.showInvoicePJ,
         sendOrderEmail: 'comenzi@tavacudetoate.ro',
-        
+
       }
     ];
 
@@ -393,7 +393,7 @@ export class CheckoutComponent implements OnInit {
 
 
 
-   
+
 
     if (this.location != 'livreaza') {
 
@@ -463,9 +463,9 @@ export class CheckoutComponent implements OnInit {
     }
 
     if (this.isAuthentificated) {
-         
+
       if (this.selectedAddress != 0 && this.selectedAddress != undefined && this.location == 'livreaza') {
-      
+
         this.order[0]['customer'] = {
           user_id: this.user.id,
           address_id: this.selectedAddress.id,
@@ -498,30 +498,30 @@ export class CheckoutComponent implements OnInit {
           this.order[0].contact_email = 'comenzi@tavacudetoate.ro';
         }
 
-      } else if(this.selectedAddress != 0 && this.selectedAddress != undefined && this.location != 'livreaza') {
-      
-          this.order[0]['customer'] = {
-            user_id: this.user.id,
-            firstName: this.user.name,
-            lastName: (this.user.last_name ? this.user.last_name : ''),
-            email: this.user.email,
-            phone: this.selectedAddress.phone,
-            shippingAddress: {
-              address: 'Ridicare personala din: ' + this.selectDeliveryLocation.location_name,
-              town: this.selectDeliveryLocation.town,
-              county: this.selectDeliveryLocation.county,
-            }
+      } else if (this.selectedAddress != 0 && this.selectedAddress != undefined && this.location != 'livreaza') {
+
+        this.order[0]['customer'] = {
+          user_id: this.user.id,
+          firstName: this.user.name,
+          lastName: (this.user.last_name ? this.user.last_name : ''),
+          email: this.user.email,
+          phone: this.selectedAddress.phone,
+          shippingAddress: {
+            address: 'Ridicare personala din: ' + this.selectDeliveryLocation.location_name,
+            town: this.selectDeliveryLocation.town,
+            county: this.selectDeliveryLocation.county,
           }
-      } else if(this.selectedAddress == 0 && this.location != 'livreaza') {
-      
-      
+        }
+      } else if (this.selectedAddress == 0 && this.location != 'livreaza') {
+
+
         this.order[0].customer = {
-          user_id: this.user[0].id,
+          user_id: this.user.id,
           firstName: this.delivery.firstName,
           lastName: this.delivery.lastName,
           email: this.delivery.email,
           phone: this.delivery.phone,
-  
+
           shippingAddress: {
             address: 'Ridicare personala din: ' + this.selectDeliveryLocation.location_name,
             town: this.selectDeliveryLocation.town,
@@ -529,34 +529,20 @@ export class CheckoutComponent implements OnInit {
           }
         }
       } else {
-        if(this.user.provider) {
-          this.order[0]['customer'] = {
-            user_id: this.user[0].id,
-            firstName: this.user[0].name,
-            lastName: (this.user[0].last_name ? this.user[0].last_name : ''),
-            email: this.user[0].email,
-            phone: this.model.phone,
-            shippingAddress: {
-          
-              address: 'Adresa de livrare: ' +  (this.model.address_1 ? this.model.address + ' ' + this.model.address_1 : this.model.address),
-              town: this.model.town_city,
-              county: this.model.county,
-            }
+
+        this.order[0]['customer'] = {
+          user_id: this.user.id,
+          firstName: this.user.name,
+          lastName: (this.user.last_name ? this.user.last_name : ''),
+          email: this.user.email,
+          phone: this.model.phone,
+          shippingAddress: {
+
+            address: 'Adresa de livrare: ' + (this.model.address_1 ? this.model.address + ' ' + this.model.address_1 : this.model.address),
+            town: this.model.town_city,
+            county: this.model.county,
           }
-        } else {
-          this.order[0]['customer'] = {
-            user_id: this.user.id,
-            firstName: this.user.name,
-            lastName: (this.user.last_name ? this.user.last_name : ''),
-            email: this.user.email,
-            phone: this.model.phone,
-            shippingAddress: {
-          
-              address: 'Adresa de livrare: ' +  (this.model.address_1 ? this.model.address + ' ' + this.model.address_1 : this.model.address),
-              town: this.model.town_city,
-              county: this.model.county,
-            }
-          }
+
         }
       }
     }
@@ -579,8 +565,8 @@ export class CheckoutComponent implements OnInit {
       ]
     }
     this.order[0].status = this.status;
-  
 
+    
     // this._httpClient.post(this.SEND_ORDER, this.order).subscribe((data: any) => {
     //   if (data.status == "success") {
 
@@ -649,7 +635,7 @@ export class CheckoutComponent implements OnInit {
                         timeOut: 3000,
                         positionClass: 'toast-bottom-right'
                       });
-                    
+
                       this.submit();
                       this.cartService.emptyCart();
                       f.reset();
@@ -695,7 +681,7 @@ export class CheckoutComponent implements OnInit {
       }
 
     }, error => {
-    
+
     });
 
   }
@@ -704,13 +690,13 @@ export class CheckoutComponent implements OnInit {
 
     this._httpClient.get<any>(`https://tavacudetoate.ro/tavacudetoate-api/v1/addresses/${user.id}`).subscribe(addresses => {
       this.addresses = addresses.data;
-    
-      if(addresses.data.length > 0) {
+
+      if (addresses.data.length > 0) {
         this.selectedAddress = this.addresses[0];
         this.model.town_city = this.selectedAddress.town;
         this.model.county = this.selectedAddress.county;
       }
-    
+
     })
   }
   selectAddress(addressIndex, event) {
@@ -753,20 +739,20 @@ export class CheckoutComponent implements OnInit {
       result => {
         this.responseData = result;
         if (this.responseData.userData) {
-        
+
           this.userService.storeData(this.responseData.userData);
 
         }
       },
       err => {
-      
+
       }
     );
   }
 
   submit() {
     const epForm = <HTMLFormElement>document.getElementById('epForm');
-  
+
     epForm.submit();
 
   }
