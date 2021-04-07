@@ -1,0 +1,67 @@
+<div class="breadcrumb-area gray-bg">
+  <div class="container">
+    <div class="breadcrumb-content">
+      <ul>
+        <li><a routerLink="/">Acasa</a></li>
+        <li class="active"> Recuperare parola </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="login-register-area pt-95 pb-100">
+  <div class="container">
+    <h4 class="mb-30">Vei primi un email cu pasii de resetare a parolei</h4>
+    <div class="row">
+
+      <div class="col-xs-12 col-md-6" *ngIf="!_route">
+
+
+        <form (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+          <input type="text" name="email" class="form-control" placeholder="Email" [(ngModel)]="model.email"
+            #email="ngModel" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required email>
+          <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+            <div *ngIf="email.errors.required">Te rugam sa introduci email-ul!</div>
+            <div *ngIf="email.errors.email">Email-ul nu este valid!</div>
+          </div>
+
+          <div class="form-footer">
+            <button class="theme-btn-one mt-30" type="submit">Trimite</button>
+          </div><!-- End .form-footer -->
+        </form>
+      </div><!-- End .col-md-6 -->
+
+      <div class="col-xs-12 col-md-6" *ngIf="_route">
+
+
+        <form (ngSubmit)="f.form.valid && change()" #f="ngForm" [mustMatch]="['password', 'confirmPassword']"
+          novalidate>
+          <div class="form-group">
+            <input type="password" name="password" class="form-control" placeholder="Parola"
+              [(ngModel)]="model.password" #password="ngModel"
+              [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required minlength="6">
+            <div *ngIf="f.submitted && password.invalid" class="invalid-feedback mv-">
+              <div *ngIf="password.errors.required">Te rugam sa introduci parola</div>
+              <div *ngIf="password.errors.minlength">Parola trebuie sa fie de minim 6 caractere</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="password" name="confirmPassword" class="form-control" placeholder="Repeta parola"
+              [(ngModel)]="model.confirmPassword" #confirmPassword="ngModel"
+              [ngClass]="{ 'is-invalid': f.submitted && confirmPassword.invalid }" required>
+            <div *ngIf="f.submitted && confirmPassword.invalid" class="invalid-feedback">
+              <div *ngIf="confirmPassword.errors.required">Te rugam sa confirmi parola</div>
+              <div *ngIf="confirmPassword.errors.mustMatch">Parolele nu se potrivesc</div>
+            </div>
+          </div>
+
+
+          <div class="form-footer mt-30">
+            <button type="submit" class="theme-btn-one">Trimite</button>
+          </div><!-- End .form-footer -->
+        </form>
+      </div><!-- End .col-md-6 -->
+
+    </div>
+  </div>
+</div>

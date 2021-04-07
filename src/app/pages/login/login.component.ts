@@ -119,7 +119,7 @@ export class LoginComponent implements OnInit {
     authObs = this.authAPIService.login(this.login.email, this.login.password);
 
     authObs.subscribe(data => {
-
+      console.log(data)
       if(data['success']) {
         this._toaster.success('', `${data['message']}`, {
           timeOut: 8000,
@@ -137,7 +137,7 @@ export class LoginComponent implements OnInit {
           timeOut: 8000,
           positionClass: 'toast-bottom-right'
         });
-        form.reset();
+        //form.reset();
       }
 
     }, error => {

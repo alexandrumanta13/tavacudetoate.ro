@@ -72,18 +72,22 @@ export class AuthAPIService {
     return this._httpClient.post<AuthResponseData>(this.API_LOGIN + 'login', { email: email,  password: password })
       .pipe(
         tap(data => {
-          this.handleAuthentication(
-            data.user.id,
-            data.user.name,
-            data.user.last_name,
-            data.user.email,
-            data.user.provider,
-            data.user.provider_id,
-            data.user.provider_pic,
-            data.user.date_last_visit,
-            data.user.access,
-            data.user.token,
-          );
+        console.log(data)
+          if(data['success']) {
+            this.handleAuthentication(
+              data.user.id,
+              data.user.name,
+              data.user.last_name,
+              data.user.email,
+              data.user.provider,
+              data.user.provider_id,
+              data.user.provider_pic,
+              data.user.date_last_visit,
+              data.user.access,
+              data.user.token,
+            );
+          }
+          
         })
       )
   }
@@ -145,6 +149,28 @@ export class AuthAPIService {
       //this.autoLogout(expirationDuration);
 
     }
+  }
+
+  recover(email) {
+    return new Promise((resolve, reject) => {
+
+      this._httpClient.post(this.API_LOGIN + 'recover', {'email': email} )
+        .subscribe((response: any) => {
+          resolve(response);
+        }, reject);
+
+    });
+  }
+
+  changePassword(password, token) {
+    return new Promise((resolve, reject) => {
+
+      this._httpClient.post(this.API_LOGIN +  'changePassword', {'token': token, 'password': password} )
+        .subscribe((response: any) => {
+          resolve(response);
+        }, reject);
+
+    });
   }
 
   private handleAuthentication(

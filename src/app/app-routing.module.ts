@@ -40,6 +40,7 @@ import { ChefsSuggestionComponent } from './pages/chefs-suggestion/chefs-suggest
 import { CareersComponent } from './pages/careers/careers.component';
 import { ReturnPolicyComponent } from './pages/return-policy/return-policy.component';
 import { HowToDeliverComponent } from './pages/how-to-deliver/how-to-deliver.component';
+import { RecoverComponent } from './pages/recover/recover.component';
 
 const routes: Routes = [
   {
@@ -226,6 +227,8 @@ const routes: Routes = [
   { path: 'comenzile-mele/:orderUUID', component: OrderDetailsComponent, canActivate: [AuthGuard] },
   { path: 'cupoane-reducere', component: CouponsComponent, canActivate: [AuthGuard] },
   { path: 'adresele-mele', component: AddressesComponent, canActivate: [AuthGuard] },
+  { path: 'am-uitat-parola', component: RecoverComponent },
+  { path: 'am-uitat-parola/:token', component: RecoverComponent },
 
 
   { path: '404', component: NotFoundComponent },

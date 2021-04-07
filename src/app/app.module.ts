@@ -91,6 +91,7 @@ import { ChefsSuggestionComponent } from './pages/chefs-suggestion/chefs-suggest
 import { CareersComponent } from './pages/careers/careers.component';
 import { ReturnPolicyComponent } from './pages/return-policy/return-policy.component';
 import { HowToDeliverComponent } from './pages/how-to-deliver/how-to-deliver.component';
+import { RecoverComponent } from './pages/recover/recover.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -145,6 +146,7 @@ import { HowToDeliverComponent } from './pages/how-to-deliver/how-to-deliver.com
     CareersComponent,
     ReturnPolicyComponent,
     HowToDeliverComponent,
+    RecoverComponent,
   ],
   imports: [
     BrowserModule,
