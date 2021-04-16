@@ -211,18 +211,18 @@ export class CheckoutComponent implements OnInit {
 
   checkDiscount() {
 
-    if (this.discountCode.toUpperCase() === 'REDUCERE25') {
-      this.toaster.success('Iti multumim!', `Reducerea a fost aplicata cu succes`, {
-        timeOut: 3000,
-        positionClass: 'toast-bottom-right'
-      });
+    // if (this.discountCode.toUpperCase() === 'REDUCERE25') {
+    //   this.toaster.success('Iti multumim!', `Reducerea a fost aplicata cu succes`, {
+    //     timeOut: 3000,
+    //     positionClass: 'toast-bottom-right'
+    //   });
 
-      this.discount = 25;
+    //   this.discount = 25;
 
-      this.discountDelivery = 0;
-      this.getTotalPrice();
+    //   this.discountDelivery = 0;
+    //   this.getTotalPrice();
 
-    }
+    // }
 
     // if (this.model.email) {
     //   this._httpClient.post(this.CHECK_COUPON, { email: this.model.email, coupon: this.discountCode }).subscribe((data: any) => {

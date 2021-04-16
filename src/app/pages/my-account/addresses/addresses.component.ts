@@ -41,9 +41,11 @@ export class AddressesComponent implements OnInit {
   }
 
   getAddresses(user) {
+    console.log(user.id)
+
     this._httpClient.get<any>(`https://tavacudetoate.ro/tavacudetoate-api/v1/addresses/${user.id}`).subscribe(addresses => {
       this.addresses = addresses.data;
-
+      console.log(this.addresses)
     })
   }
 
