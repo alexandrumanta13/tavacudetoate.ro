@@ -21,3 +21,25 @@ INSERT INTO `product_categories`(`ProductID`, `CategoryID`) VALUES (110, 14);
 INSERT INTO `product_categories`(`ProductID`, `CategoryID`) VALUES (111, 14);
 INSERT INTO `product_categories`(`ProductID`, `CategoryID`) VALUES (112, 14);
 INSERT INTO `product_categories`(`ProductID`, `CategoryID`) VALUES (113, 14);
+
+
+INSERT INTO `product_categories`(`ProductID`, `CategoryID`) VALUES (115, 15);
+INSERT INTO `product_categories`(`ProductID`, `CategoryID`) VALUES (116, 15);
+INSERT INTO `product_categories`(`ProductID`, `CategoryID`) VALUES (117, 15);
+INSERT INTO `product_categories`(`ProductID`, `CategoryID`) VALUES (118, 15);
+INSERT INTO `product_categories`(`ProductID`, `CategoryID`) VALUES (119, 15);
+INSERT INTO `product_categories`(`ProductID`, `CategoryID`) VALUES (120, 15);
+INSERT INTO `product_categories`(`ProductID`, `CategoryID`) VALUES (121, 15);
+INSERT INTO `product_categories`(`ProductID`, `CategoryID`) VALUES (122, 15);
+INSERT INTO `product_categories`(`ProductID`, `CategoryID`) VALUES (123, 15);
+INSERT INTO `product_categories`(`ProductID`, `CategoryID`) VALUES (124, 15);
+INSERT INTO `product_categories`(`ProductID`, `CategoryID`) VALUES (125, 15);
+INSERT INTO `product_categories`(`ProductID`, `CategoryID`) VALUES (126, 15);
+INSERT INTO `product_categories`(`ProductID`, `CategoryID`) VALUES (127, 15);
+INSERT INTO `product_categories`(`ProductID`, `CategoryID`) VALUES (128, 15);
+INSERT INTO `product_categories`(`ProductID`, `CategoryID`) VALUES (129, 15);
+INSERT INTO `product_categories`(`ProductID`, `CategoryID`) VALUES (130, 15);
+INSERT INTO `product_categories`(`ProductID`, `CategoryID`) VALUES (131, 15);
+INSERT INTO `product_categories`(`ProductID`, `CategoryID`) VALUES (132, 15);
+INSERT INTO `product_categories`(`ProductID`, `CategoryID`) VALUES (133, 15);
+INSERT INTO `product_categories`(`ProductID`, `CategoryID`) VALUES (134, 15);

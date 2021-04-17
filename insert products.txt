@@ -24,3 +24,29 @@ INSERT INTO `products`(`product_name`, `alias`, `allergens`, `ingredients`, `act
 INSERT INTO `products`(`product_name`, `alias`, `allergens`, `ingredients`, `active`, `easter`) VALUES ('Drob de pui', 'drob-de-pui', 'ou', 'Ficatei pui, ceapa, ceapa verde, usturoi verde, patrunjel, ou, sare, piper. NU CONTINE PRAPUR.', 1, 1);
 INSERT INTO `products`(`product_name`, `alias`, `allergens`, `ingredients`, `active`, `easter`) VALUES ('Stufat de miel', 'stufat-de-miel', '', 'Carne de miel, ceapa, usturoi, vin, sare, piper, marar si patrunjel', 1, 1);
 INSERT INTO `products`(`product_name`, `alias`, `allergens`, `ingredients`, `active`, `easter`) VALUES ('Cozonac traditional', 'cozonac-traditional', 'gluten (faina), ou, unt, nuca', 'Faina de grau, crema de cacao, zahar, lapte, ou, unt, stafide alcoolizate (stafide, sirop, rom), maia naturala, drojdie de panificatie, zahar vanilat, rom, extract de vanilie, migdale fulgi, nuca, sare                                             ', 1, 1);
+
+
+INSERT INTO `products`(`product_name`, `alias`, active`) VALUES (
+
+INSERT INTO `products`(`product_name`, `alias`, `active`) VALUES ('PEPSI', 'pepsi', 1);
+INSERT INTO `products`(`product_name`, `alias`, `active`) VALUES ('PEPSI MAX', 'pepsi-max', 1);
+INSERT INTO `products`(`product_name`, `alias`, `active`) VALUES ('PEPSI TWIST', 'pepsi-twist', 1);
+INSERT INTO `products`(`product_name`, `alias`, `active`) VALUES ('MIRINDA', 'mirinda', 1);
+INSERT INTO `products`(`product_name`, `alias`, `active`) VALUES ('7 UP', '7-up', 1);
+INSERT INTO `products`(`product_name`, `alias`, `active`) VALUES ('MOUNTAIN DEW', 'mountain-dew', 1);
+INSERT INTO `products`(`product_name`, `alias`, `active`) VALUES ('PRIGAT PIERSICI', 'prigat-piersici', 1);
+INSERT INTO `products`(`product_name`, `alias`, `active`) VALUES ('PRIGAT PORTOCALE', 'prigat-portocale', 1);
+INSERT INTO `products`(`product_name`, `alias`, `active`) VALUES ('PRIGAT CAPSUNI', 'prigat-capsuni', 1);
+INSERT INTO `products`(`product_name`, `alias`, `active`) VALUES ('PRIGAT LIMONADA', 'prigat-limonada', 1);
+INSERT INTO `products`(`product_name`, `alias`, `active`) VALUES ('ICE TEA PIERSICI', 'ice-tea-piersici', 1);
+INSERT INTO `products`(`product_name`, `alias`, `active`) VALUES ('ICE TEA ZMEURA', 'ice-tea-zmeura', 1);
+INSERT INTO `products`(`product_name`, `alias`, `active`) VALUES ('ICE TEA GREEN TEA', 'ice-tea-green-tea', 1);
+INSERT INTO `products`(`product_name`, `alias`, `active`) VALUES ('ICE TEA LAMAIE', 'ice-tea-lamaie', 1);
+INSERT INTO `products`(`product_name`, `alias`, `active`) VALUES ('PRIGAT NECTAR CAPSUNI', 'prigat-nectar-capsuni', 1);
+INSERT INTO `products`(`product_name`, `alias`, `active`) VALUES ('PRIGAT NECTAR PIERSICA', 'prigat-nectar-piersica', 1);
+INSERT INTO `products`(`product_name`, `alias`, `active`) VALUES ('PRIGAT NECTAR PORTOCALE', 'prigat-nectar-portocale', 1);
+INSERT INTO `products`(`product_name`, `alias`, `active`) VALUES ('PRIGAT NECTAR KIWI', 'prigat-nectar-kiwi', 1);
+INSERT INTO `products`(`product_name`, `alias`, `active`) VALUES ('APA PLATA BUCOVINA', 'apa-plata-bucovina', 1);
+INSERT INTO `products`(`product_name`, `alias`, `active`) VALUES ('APA MINERALA BUCOVINA', 'apa-minerala-bucovina', 1);
+
+

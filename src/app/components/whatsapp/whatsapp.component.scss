@@ -1,15 +1,71 @@
-
-
 .whatsapp-module {
-    position: fixed;
-    bottom: 2rem;
-    right: 5rem;
-    z-index: 99999;
-    @media only screen and (max-width: 767px) {
-      right: 1rem;
+  position: fixed;
+  bottom: 2rem;
+  right: 5rem;
+  z-index: 9;
+
+  @media only screen and (max-width: 767px) {
+    right: 1rem;
+  }
+}
+
+.whatsapp-module img {
+  width: 60px;
+}
+
+.whatsapp-list-container {
+  position: relative;
+  // &:after {
+  //   background-color: #F2F2F2;
+  //   box-shadow: -2px 2px 2px 0 rgba( 178, 178, 178, .4 );
+  //   content: "\00a0";
+  //   display: block;
+  //   height: 20px;
+  //   left: -10px;
+  //   position: relative;
+  //   top: 20px;
+  //   transform:             rotate( 45deg );
+  //       -moz-transform:    rotate( 45deg );
+  //       -ms-transform:     rotate( 45deg );
+  //       -o-transform:      rotate( 45deg );
+  //       -webkit-transform: rotate( 45deg );
+  //   width:  20px;
+  // }
+}
+
+.whatsapp-list {
+
+  opacity: 0;
+  visibility: hidden;
+  transition: all 280ms;
+  background-color: #fff;
+  position: absolute;
+  top: -150px;
+  display: flex;
+  flex-direction: column;
+
+  right: 20px;
+  box-shadow: 0 0 25px 0 rgb(0 0 0 / 16%);
+  
+
+  a {
+    padding: 0 40px;
+    transition: all 280ms;
+    height: 48px;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      background-color: #2f333a;
+      color: #fff;
     }
   }
-  
-  .whatsapp-module img {
-    width: 60px;
+
+  &.open {
+
+    opacity: 1;
+    visibility: visible;
   }
+
+  
+}

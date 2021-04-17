@@ -57,7 +57,7 @@ export class CareersComponent implements OnInit {
 
       this.uploadDatasheet(formData, options)
         .then(datasheet => {
-          this.datasheet = 'https://www.tavacudetoate.ro/upload/datasheets/' + datasheet.file;
+          this.datasheet = 'https://tavacudetoate.ro/upload/datasheets/' + datasheet.file;
           this.disabled = false;
         })
 
@@ -68,7 +68,7 @@ export class CareersComponent implements OnInit {
   uploadDatasheet(formData, options): Promise<any> {
 
     return new Promise((resolve, reject) => {
-      this._httpClient.post('https://www.tavacudetoate.ro/upload/upload-datasheet.php', formData, options)
+      this._httpClient.post('https://tavacudetoate.ro/upload/upload-datasheet.php', formData, options)
         .pipe(map(res => res))
         .subscribe((response: any) => {
           resolve(response);

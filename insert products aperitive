@@ -49,6 +49,9 @@ INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (114, 19, 
 
 
 
+
+
+
 INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (106, 'drob-de-miel-1.jpg');
 INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (107, 'pasca-branza-dulce-1.jpg');
 INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (108, 'oua-rosii-1.jpg');
@@ -83,3 +86,48 @@ INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (114, 'cozonac-tra
 
 
 
+
+
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (115, 30, '6');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (116, 30, '6');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (117, 30, '6');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (118, 30, '6');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (119, 30, '6');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (120, 30, '6');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (121, 30, '6');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (122, 30, '6');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (123, 30, '6');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (124, 30, '6');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (125, 30, '6.5');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (126, 30, '6.5');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (127, 30, '6.5');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (128, 30, '6.5');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (129, 29, '6');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (130, 29, '6');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (131, 29, '6');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (132, 29, '6');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (133, 30, '4');
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (134, 30, '4');
+
+
+
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (115, 'pepsi.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (116, 'pepsi-max.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (117, 'pepsi-twist.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (118, 'mirinda.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (119, '7-up.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (120, 'mountain-dew.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (121, 'prigat-piersici.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (122, 'prigat-portocale.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (123, 'prigat-capsuni.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (124, 'prigat-limonada.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (125, 'ice-tea-piersici.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (126, 'ice-tea-zmeura.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (127, 'ice-tea-green-tea.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (128, 'ice-tea-lamaie.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (129, 'prigat-nectar-capsuni.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (130, 'prigat-nectar-piersica.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (131, 'prigat-nectar-portocale.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (132, 'prigat-nectar-kiwi.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (133, 'apa-plata-bucovina.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (134, 'apa-minerala-bucovina.jpg');

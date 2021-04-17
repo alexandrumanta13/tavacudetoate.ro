@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./whatsapp.component.scss']
 })
 export class WhatsappComponent implements OnInit {
+  open: any;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  toggle() {
+    this.open = !this.open;
+    
   }
 
 }

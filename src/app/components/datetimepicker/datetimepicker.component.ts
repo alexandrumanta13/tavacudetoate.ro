@@ -69,12 +69,12 @@ export class DatetimepickerComponent implements ControlValueAccessor, OnInit, Af
     json = {
         disable: [0],
         disabledDates: [
-            { year: 2020, month: 12, day: 31 },
-            { year: 2021, month: 1, day: 1 },
-            { year: 2021, month: 1, day: 2 },
-            { year: 2021, month: 1, day: 3 },
-            { year: 2021, month: 1, day: 4 },
-            { year: 2021, month: 1, day: 5 },
+
+            // { year: 2021, month: 5, day: 30 },
+            // { year: 2021, month: 5, day: 2 },
+            // { year: 2021, month: 5, day: 3 },
+            // { year: 2021, month: 5, day: 4 },
+
 
 
         ]
@@ -228,10 +228,17 @@ export class DatetimepickerComponent implements ControlValueAccessor, OnInit, Af
                 disable: [0],
                 disabledDates: [
                     { year: yyyy, month: mm, day: dd },
-
+                    { year: 2021, month: 5, day: 1 },
+                    { year: 2021, month: 5, day: 2 },
+                    { year: 2021, month: 5, day: 3 },
+                    { year: 2021, month: 5, day: 4 },
                 ]
             };
         }
+
+       
+
+        
 
     }
 
@@ -249,8 +256,8 @@ export class DatetimepickerComponent implements ControlValueAccessor, OnInit, Af
             var m = date.getMonth() + 1;
             var d = date.getDate();
 
-            
-            this.json.disabledDates.push({year: yyyy, month: m, day: d})
+
+            this.json.disabledDates.push({ year: yyyy, month: m, day: d })
             // days.push(
             //     yyyy + '-' +
             //     (m < 10 ? '0' + m : m) + '-' +
@@ -258,6 +265,13 @@ export class DatetimepickerComponent implements ControlValueAccessor, OnInit, Af
             // );
             date.setDate(date.getDate() + 7);
         }
+
+        //blocked for easter
+        this.json.disabledDates.push({ year: 2021, month: 5, day: 1 });
+        this.json.disabledDates.push({ year: 2021, month: 5, day: 2 });
+        this.json.disabledDates.push({ year: 2021, month: 5, day: 3 });
+        this.json.disabledDates.push({ year: 2021, month: 5, day: 4 });
+        
     }
 
     selectInterval(event) {

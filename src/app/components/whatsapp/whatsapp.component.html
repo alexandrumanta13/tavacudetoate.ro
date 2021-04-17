@@ -1,3 +1,11 @@
-<a class="whatsapp-module" href="https://api.whatsapp.com/send?phone=+40762023004">
-    <img src="/assets/images/resource/WhatsApp.svg" alt="">
-</a>
+<div class="whatsapp-module" (click)="toggle()">
+    <img src="/assets/img/icon-img/WhatsApp.svg" alt="">
+    <div class="whatsapp-list-container">
+        <div class="whatsapp-list" [class.open]="open">
+            <a href="https://api.whatsapp.com/send?phone=+40720612962">Bucuresti</a>
+            <a href="https://api.whatsapp.com/send?phone=+40753037121">Pitesti</a>
+        </div>
+    </div>
+    
+</div>
+
