@@ -37,7 +37,47 @@ INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (15, 2, '5
 
 
 
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (106, 27, 112.90);
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (107, 26, 50.90);
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (108, 28, 29.90);
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (109, 27, 129.90);
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (110, 16, 65.90);
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (111, 27, 92.90);
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (112, 27, 77.90);
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (113, 27, 114.90);
+INSERT INTO `product_info`(`ProductID`, `QuantityID`, `price`) VALUES (114, 19, 59.90);
 
+
+
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (106, 'drob-de-miel-1.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (107, 'pasca-branza-dulce-1.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (108, 'oua-rosii-1.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (109, 'friptura-miel-la-cuptor-1.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (110, 'ciorba-de-miel-1.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (111, 'drob-de-porc-1.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (112, 'drob-de-pui-1.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (113, 'stufat-de-miel-1.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (114, 'cozonac-traditional-1.jpg');
+
+
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (106, 'drob-de-miel-2.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (107, 'pasca-branza-dulce-2.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (108, 'oua-rosii-2.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (109, 'friptura-miel-la-cuptor-2.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (110, 'ciorba-de-miel-2.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (111, 'drob-de-porc-2.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (112, 'drob-de-pui-2.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (113, 'stufat-de-miel-2.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (114, 'cozonac-traditional-2.jpg');
+
+
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (106, 'drob-de-miel-3.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (109, 'friptura-miel-la-cuptor-3.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (110, 'ciorba-de-miel-3.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (111, 'drob-de-porc-3.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (112, 'drob-de-pui-3.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (113, 'stufat-de-miel-3.jpg');
+INSERT INTO `product_images`(`ProductID`, `image_url`) VALUES (114, 'cozonac-traditional-3.jpg');
 
 
 

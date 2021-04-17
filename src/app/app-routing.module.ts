@@ -41,6 +41,7 @@ import { CareersComponent } from './pages/careers/careers.component';
 import { ReturnPolicyComponent } from './pages/return-policy/return-policy.component';
 import { HowToDeliverComponent } from './pages/how-to-deliver/how-to-deliver.component';
 import { RecoverComponent } from './pages/recover/recover.component';
+import { EasterComponent } from './pages/easter/easter.component';
 
 const routes: Routes = [
   {
@@ -115,6 +116,14 @@ const routes: Routes = [
   },
   {
     path: 'sugestiile-bucatarului', component: ChefsSuggestionComponent,
+    data: {
+      title: '',
+      description: '',
+      ogUrl: 'your og url'
+    }
+  },
+  {
+    path: 'masa-de-paste-2021', component: EasterComponent,
     data: {
       title: '',
       description: '',

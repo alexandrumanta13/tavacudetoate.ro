@@ -48,7 +48,7 @@ export class ProductsService {
                     resolve(response);
                 }, reject);
         });
-       
+
     }
 
     public getProductsPopular(): Promise<any> {
@@ -58,7 +58,7 @@ export class ProductsService {
                     resolve(response);
                 }, reject);
         });
-       
+
     }
 
     /**
@@ -98,30 +98,43 @@ export class ProductsService {
      *
      * @returns {Promise<any>}
      */
-    getProductsAll() : Promise<any>
-    {
+    getProductsAll(): Promise<any> {
         return new Promise((resolve, reject) => {
             this._httpClient.get(this.REST_API_SERVER + 'productsAll')
                 .subscribe((response: any) => {
                     resolve(response);
                 }, reject);
         });
-       
+
     }
     /**
      * Get chef's products
      *
      * @returns {Promise<any>}
      */
-    getChefsProducts() : Promise<any>
-    {
+    getChefsProducts(): Promise<any> {
         return new Promise((resolve, reject) => {
             this._httpClient.get(this.REST_API_SERVER + 'chefs')
                 .subscribe((response: any) => {
                     resolve(response);
                 }, reject);
         });
-       
+
     }
-    
+
+    /**
+     * Get easter products
+     *
+     * @returns {Promise<any>}
+     */
+    getEasterProducts(): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this._httpClient.get(this.REST_API_SERVER + 'easter')
+                .subscribe((response: any) => {
+                    resolve(response);
+                }, reject);
+        });
+
+    }
+
 }

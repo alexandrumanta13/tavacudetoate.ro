@@ -211,6 +211,11 @@ export class CheckoutComponent implements OnInit {
 
   checkDiscount() {
 
+    this.toaster.warning('', `Acest cupon nu este valabil!`, {
+      timeOut: 3000,
+      positionClass: 'toast-bottom-right'
+    });
+
     // if (this.discountCode.toUpperCase() === 'REDUCERE25') {
     //   this.toaster.success('Iti multumim!', `Reducerea a fost aplicata cu succes`, {
     //     timeOut: 3000,
@@ -566,7 +571,7 @@ export class CheckoutComponent implements OnInit {
     }
     this.order[0].status = this.status;
 
-    
+
     // this._httpClient.post(this.SEND_ORDER, this.order).subscribe((data: any) => {
     //   if (data.status == "success") {
 

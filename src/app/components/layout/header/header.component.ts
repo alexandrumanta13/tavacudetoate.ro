@@ -45,20 +45,29 @@ export class HeaderComponent implements OnInit {
     public authAPIService: AuthAPIService,) {
     this.navMenu = [
       {
+        label: 'Masa de Paste',
+        link: '/masa-de-paste-2021',
+        icon: 'paste.svg'
+      },
+      {
         label: 'Sugestiile bucatarului',
-        link: '/sugestiile-bucatarului'
+        link: '/sugestiile-bucatarului',
+        icon: ''
       },
       {
         label: 'Locatii',
-        link: '/locatii'
+        link: '/locatii',
+        icon: ''
       },
       {
         label: 'Contact',
-        link: '/contact'
+        link: '/contact',
+        icon: ''
       },
       {
         label: 'Cariere',
-        link: '/cariere'
+        link: '/cariere',
+        icon: ''
       }
     ];
 

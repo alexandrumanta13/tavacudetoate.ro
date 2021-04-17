@@ -139,7 +139,9 @@
                    </ul>
                  </li>
                  <li *ngFor="let menu of navMenu">
-                   <a routerLink="{{menu.link}}">{{menu.label}}</a>
+                    <img class="menu-icon" *ngIf="menu.icon" src="/assets/img/icon-img/{{menu.icon}}" alt="">
+                    <a routerLink="{{menu.link}}">{{menu.label}}</a>
+                   
                  </li>
                </ul>
              </nav>

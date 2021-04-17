@@ -12,3 +12,15 @@ INSERT INTO `products`(`product_name`, `alias`, `ingredients`, `allergens` ) VAL
 INSERT INTO `products`(`product_name`, `alias`, `ingredients`, `allergens` ) VALUES ('Orez cu  ciuperci', 'orez-cu-ciuperci', 'Orez, legume asortate, ciuperci, piper, sare, ulei', '');
 INSERT INTO `products`(`product_name`, `alias`, `ingredients`, `allergens` ) VALUES ('Salata Tabouleh', 'salata-tabouleh', 'Rosii, ceapa, grau, patrunjel, ulei', 'grau (gluten)');
 INSERT INTO `products`(`product_name`, `alias`, `ingredients`, `allergens` ) VALUES ('Salata de vinete', 'salata-de-vinete', 'Vinete, maioneza de casa, ceapa, ulei, sare', 'maioneza');
+
+
+
+INSERT INTO `products`(`product_name`, `alias`, `allergens`, `ingredients`, `active`, `easter`) VALUES ('Drob de miel', 'drob-de-miel', 'ou, unt', 'Organe de miel, ceapa verde, usturoi verde, patrunjel proaspat, marar proaspat, ou, ulei, unt, sare, piper, condimente. NU CONTINE PRAPUR.', 1, 1);
+INSERT INTO `products`(`product_name`, `alias`, `allergens`, `ingredients`, `active`, `easter`) VALUES ('Pasca de branza dulce', 'pasca-branza-dulce', 'gluten (faina), ou, lapte, branza dulce', 'Faina, oua, lapte, zahar, drojdie, branza dulce, stafide, coaja de lamaie', 1, 1);
+INSERT INTO `products`(`product_name`, `alias`, `allergens`, `ingredients`, `active`, `easter`) VALUES ('Oua rosii', 'oua-rosii', 'ou', '', 1, 1);
+INSERT INTO `products`(`product_name`, `alias`, `allergens`, `ingredients`, `active`, `easter`) VALUES ('Friptura de miel la cuptor', 'friptura-miel-la-cuptor', '', 'Pulpa de miel, usturoi, ceapa verde, rozmarin', 1, 1);
+INSERT INTO `products`(`product_name`, `alias`, `allergens`, `ingredients`, `active`, `easter`) VALUES ('Ciorba de miel', 'ciorba-de-miel', '', 'Carne de miel cu os, telina, morcovi, ardei, radacina de patrunjel, ceapa, pastarnac, cartofi, orez, suc rosii, bors, leustean', 1, 1);
+INSERT INTO `products`(`product_name`, `alias`, `allergens`, `ingredients`, `active`, `easter`) VALUES ('Drob de porc', 'drob-de-porc', 'ou                          ', 'Ficat porc, carne de porc, slanina de porc, sare, piper, cimbru, marar, patrunjel, ou, marar. NU CONTINE PRAPUR.', 1, 1);
+INSERT INTO `products`(`product_name`, `alias`, `allergens`, `ingredients`, `active`, `easter`) VALUES ('Drob de pui', 'drob-de-pui', 'ou', 'Ficatei pui, ceapa, ceapa verde, usturoi verde, patrunjel, ou, sare, piper. NU CONTINE PRAPUR.', 1, 1);
+INSERT INTO `products`(`product_name`, `alias`, `allergens`, `ingredients`, `active`, `easter`) VALUES ('Stufat de miel', 'stufat-de-miel', '', 'Carne de miel, ceapa, usturoi, vin, sare, piper, marar si patrunjel', 1, 1);
+INSERT INTO `products`(`product_name`, `alias`, `allergens`, `ingredients`, `active`, `easter`) VALUES ('Cozonac traditional', 'cozonac-traditional', 'gluten (faina), ou, unt, nuca', 'Faina de grau, crema de cacao, zahar, lapte, ou, unt, stafide alcoolizate (stafide, sirop, rom), maia naturala, drojdie de panificatie, zahar vanilat, rom, extract de vanilie, migdale fulgi, nuca, sare                                             ', 1, 1);

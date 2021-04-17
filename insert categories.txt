@@ -9,3 +9,15 @@ INSERT INTO `categories`(`category_name`, `slug`) VALUES ('Pui', 'pui');
 INSERT INTO `categories`(`category_name`, `slug`) VALUES ('Curcan', 'curcan');
 INSERT INTO `categories`(`category_name`, `slug`) VALUES ('Oaie', 'oaie');
 INSERT INTO `categories`(`category_name`, `slug`) VALUES ('Deserturi', 'deserturi');
+
+
+
+
+INSERT INTO `product_categories`(`ProductID`, `CategoryID`) VALUES (106, 14);
+INSERT INTO `product_categories`(`ProductID`, `CategoryID`) VALUES (107, 14);
+INSERT INTO `product_categories`(`ProductID`, `CategoryID`) VALUES (108, 14);
+INSERT INTO `product_categories`(`ProductID`, `CategoryID`) VALUES (109, 14);
+INSERT INTO `product_categories`(`ProductID`, `CategoryID`) VALUES (110, 14);
+INSERT INTO `product_categories`(`ProductID`, `CategoryID`) VALUES (111, 14);
+INSERT INTO `product_categories`(`ProductID`, `CategoryID`) VALUES (112, 14);
+INSERT INTO `product_categories`(`ProductID`, `CategoryID`) VALUES (113, 14);
