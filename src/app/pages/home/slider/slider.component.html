@@ -1,7 +1,7 @@
  <div class="slider-area-2">
    <owl-carousel-o [options]="customOptions" class="slider-active owl-dot-style owl-carousel owl-loaded owl-drag">
     <ng-template carouselSlide>
-      <div class="single-slider pt-210 pb-220 bg-img d-none d-md-block"
+      <div (click)="goToEasterMenu()" class="single-slider pt-210 pb-220 bg-img d-none d-md-block"
         style="background-image:url(assets/img/slider/slider_paste.png);">
         <a routerLink="/masa-de-paste-2021" class="route"></a>
         <div class="container">
@@ -16,6 +16,7 @@
       </div>
       <div class="single-slider pt-210 pb-220 bg-img d-block"
         style="background-image:url(assets/img/slider/slider-mobil-paste.png);">
+        <a routerLink="/masa-de-paste-2021" class="route"></a>
         <div class="container">
 
         </div>

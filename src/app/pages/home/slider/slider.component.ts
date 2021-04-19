@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
@@ -8,7 +9,9 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 })
 export class SliderComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router,
+  ) { }
 
   customOptions: OwlOptions = {
     loop: true,
@@ -37,6 +40,10 @@ export class SliderComponent implements OnInit {
   ngOnInit(): void {
 
 
+  }
+
+  goToEasterMenu() {
+    this.router.navigate(['/masa-de-paste-2021']);
   }
 
 }
