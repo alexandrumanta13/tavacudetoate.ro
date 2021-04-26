@@ -66,6 +66,7 @@ export class CheckoutComponent implements OnInit {
   order_guid: any;
   showForm: boolean;
   showInvoicePJ: boolean = false;
+  userCompleteName: any;
 
 
   constructor(
@@ -183,6 +184,18 @@ export class CheckoutComponent implements OnInit {
 
   deliveryLocation(location) {
     this.selectDeliveryLocation = location;
+    this.delivery.firstName = this.user.name;
+    this.delivery.email = this.user.email;
+    this.delivery.phone = this.addresses[0].phone;
+
+    let checkName = this.user.name.split(" ");
+    if(checkName.includes(this.user.last_name)) {
+      this.delivery.firstName = checkName[0];
+      this.delivery.lastName = checkName[1];
+    } else {
+      this.delivery.firstName = this.user.name;
+      this.delivery.lastName = this.user.last_name;
+    }
     //this.discount = 0;
 
     if (this.discountDelivery > 0)
@@ -194,6 +207,23 @@ export class CheckoutComponent implements OnInit {
 
     this.getTotalPrice();
   }
+
+  onChangeDeliveryFirstName(newValue) {
+    this.delivery.firstName = newValue;
+  }
+
+  onChangeDeliveryLastName(newValue) {
+    this.delivery.lastName = newValue;
+  }
+
+  onChangeDeliveryEmail(newValue) {
+    this.delivery.email = newValue;
+  }
+
+  onChangeDeliveryPhone(newValue) {
+    this.delivery.phone = newValue;
+  }
+
 
   toggleNewAddress() {
     this.newAddress = !this.newAddress;
@@ -211,23 +241,25 @@ export class CheckoutComponent implements OnInit {
 
   checkDiscount() {
 
-    this.toaster.warning('', `Acest cupon nu este valabil!`, {
-      timeOut: 3000,
-      positionClass: 'toast-bottom-right'
-    });
+   
 
-    // if (this.discountCode.toUpperCase() === 'REDUCERE25') {
-    //   this.toaster.success('Iti multumim!', `Reducerea a fost aplicata cu succes`, {
-    //     timeOut: 3000,
-    //     positionClass: 'toast-bottom-right'
-    //   });
+    if (this.discountCode.toUpperCase() === 'PASTE10' || this.discountCode.toUpperCase() === 'BUCURIA10') {
+      this.toaster.success('Iti multumim!', `Reducerea a fost aplicata cu succes`, {
+        timeOut: 3000,
+        positionClass: 'toast-bottom-right'
+      });
 
-    //   this.discount = 25;
+      this.discount = 10;
 
-    //   this.discountDelivery = 0;
-    //   this.getTotalPrice();
+      this.discountDelivery = 0;
+      this.getTotalPrice();
 
-    // }
+    } else {
+      this.toaster.warning('', `Acest cupon nu este valabil!`, {
+        timeOut: 3000,
+        positionClass: 'toast-bottom-right'
+      });
+    }
 
     // if (this.model.email) {
     //   this._httpClient.post(this.CHECK_COUPON, { email: this.model.email, coupon: this.discountCode }).subscribe((data: any) => {
@@ -504,13 +536,12 @@ export class CheckoutComponent implements OnInit {
         }
 
       } else if (this.selectedAddress != 0 && this.selectedAddress != undefined && this.location != 'livreaza') {
-
         this.order[0]['customer'] = {
           user_id: this.user.id,
-          firstName: this.user.name,
-          lastName: (this.user.last_name ? this.user.last_name : ''),
-          email: this.user.email,
-          phone: this.selectedAddress.phone,
+          firstName: this.delivery.firstName,
+          lastName: this.delivery.lastName,
+          email: this.delivery.email,
+          phone: this.delivery.phone,
           shippingAddress: {
             address: 'Ridicare personala din: ' + this.selectDeliveryLocation.location_name,
             town: this.selectDeliveryLocation.town,
@@ -570,6 +601,8 @@ export class CheckoutComponent implements OnInit {
       ]
     }
     this.order[0].status = this.status;
+
+   //console.log(this.order)
 
 
     // this._httpClient.post(this.SEND_ORDER, this.order).subscribe((data: any) => {
@@ -695,7 +728,13 @@ export class CheckoutComponent implements OnInit {
 
     this._httpClient.get<any>(`https://tavacudetoate.ro/tavacudetoate-api/v1/addresses/${user.id}`).subscribe(addresses => {
       this.addresses = addresses.data;
-
+      
+      let checkName = user.name.split(" ");
+      if(checkName.includes(user.last_name)) {
+        this.userCompleteName = user.name;
+      } else {
+        this.userCompleteName = user.name + ' ' + user.last_name;
+      }
       if (addresses.data.length > 0) {
         this.selectedAddress = this.addresses[0];
         this.model.town_city = this.selectedAddress.town;

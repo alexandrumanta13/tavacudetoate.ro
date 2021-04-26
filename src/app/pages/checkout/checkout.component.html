@@ -143,7 +143,7 @@
                 <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                   <label>Nume*</label>
                   <div class="field-input">
-                    <input type="text" name="firstName" class="form-control" [(ngModel)]="delivery.firstName"
+                    <input type="text" name="firstName" class="form-control" (ngModelChange)="onChangeDeliveryFirstName($event)" [(ngModel)]="delivery.firstName"
                       #firstName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && firstName.invalid}" required
                       minlength="3">
                     <div *ngIf="f.submitted && firstName.invalid" class="invalid-feedback">
@@ -155,7 +155,7 @@
                 <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                   <label>Prenume*</label>
                   <div class="field-input">
-                    <input type="text" name="lastName" class="form-control" [(ngModel)]="delivery.lastName"
+                    <input type="text" name="lastName" class="form-control" (ngModelChange)="onChangeDeliveryLastName($event)" [(ngModel)]="delivery.lastName"
                       #lastName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && lastName.invalid }" required
                       minlength="3">
                     <div *ngIf="f.submitted && lastName.invalid" class="invalid-feedback">
@@ -168,7 +168,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                   <label>Email*</label>
                   <div class="field-input">
-                    <input type="text" name="email" class="form-control" [(ngModel)]="delivery.email" #email="ngModel"
+                    <input type="text" name="email" class="form-control" (ngModelChange)="onChangeDeliveryEmail($event)" [(ngModel)]="delivery.email" #email="ngModel"
                       [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required email>
                     <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
                       <div *ngIf="email.errors.required">Te rugam sa introduci adresa de email!</div>
@@ -179,7 +179,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                   <label>Telefon*</label>
                   <div class="field-input">
-                    <input type="text" name="phone" class="form-control" [(ngModel)]="delivery.phone" #phone="ngModel"
+                    <input type="text" name="phone" class="form-control" (ngModelChange)="onChangeDeliveryPhone($event)" [(ngModel)]="delivery.phone" #phone="ngModel"
                       [ngClass]="{ 'is-invalid': f.submitted && phone.invalid }" required>
                     <div *ngIf="f.submitted && phone.invalid" class="invalid-feedback">
                       <div *ngIf="phone.errors.required">Te rugam sa introduci numarul de telefon!</div>
@@ -315,7 +315,9 @@
                 <div class="shipping-address-box" *ngFor="let address of addresses; let isFirst = first; let i = index"
                   [class.active]="isFirst">
                   <address>
-                    {{user.name}} {{user.last_name}}<br>
+                    {{userCompleteName}}<br>
+                    {{user.email}}<br>
+                    {{address.phone}}<br>
                     {{address.address}} <br>
                     {{address.town}}, {{address.county}}<br>
                   </address>

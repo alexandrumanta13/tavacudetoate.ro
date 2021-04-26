@@ -14,6 +14,7 @@ export class MyOrdersComponent implements OnInit {
 
   
   p: number = 1;
+  date: any;
   constructor(
     private myAccountService: MyAccountService, 
     private authService: AuthAPIService,
@@ -24,6 +25,14 @@ export class MyOrdersComponent implements OnInit {
     this.authService.user.subscribe(user => {
       this.myAccountService.getUserOrders(user.id).then(data => {
         this.orders = data.orders;
+        
+        this.orders.map((order, i) => {
+          let date = new Date(this.orders[i].date)
+          console.log(date)
+          this.orders[i].date = date.setHours( date.getHours() + 3 );
+         // this.orders[i].date.setHours( date.getHours() + 3 );
+        })
+        console.log(this.orders)
       })
     })
   }

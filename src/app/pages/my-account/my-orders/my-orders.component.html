@@ -34,7 +34,7 @@
           <li *ngFor="let order of orders | paginate: { itemsPerPage: 5, currentPage: p }">
             <div class="desc">
               <h4>Comanda nr {{order.reference}}</h4>
-              <p>Plasata in data: {{order.date}}, Total: {{order.total}}</p>
+              <p>Plasata in data: {{order.date | date:'dd-MM-yyyy H:mm'}}, Total: {{order.total}}</p>
             </div>
 
             <div class="actions">
