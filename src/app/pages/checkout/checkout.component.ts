@@ -186,7 +186,7 @@ export class CheckoutComponent implements OnInit {
     this.selectDeliveryLocation = location;
     this.delivery.firstName = this.user.name;
     this.delivery.email = this.user.email;
-    if(this.addresses) {
+    if(this.addresses && this.addresses[0].phone) {
       this.delivery.phone = this.addresses[0].phone;
     }
    
