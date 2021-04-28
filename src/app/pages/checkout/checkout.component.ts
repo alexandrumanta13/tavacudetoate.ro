@@ -183,23 +183,28 @@ export class CheckoutComponent implements OnInit {
   }
 
   deliveryLocation(location) {
+
     this.selectDeliveryLocation = location;
-    this.delivery.firstName = this.user.name;
-    this.delivery.email = this.user.email;
     
-    if(this.addresses.length && this.addresses[0].phone) {
+    if (this.delivery.length != undefined) {
+      this.delivery.firstName = this.user.name;
+      this.delivery.email = this.user.email;
+
+      let checkName = this.user.name.split(" ");
+      if (checkName.includes(this.user.last_name)) {
+        this.delivery.firstName = checkName[0];
+        this.delivery.lastName = checkName[1];
+      } else {
+        this.delivery.firstName = this.user.name;
+        this.delivery.lastName = this.user.last_name;
+      }
+    }
+    if (this.addresses.length > 0 && this.addresses[0].phone) {
       this.delivery.phone = this.addresses[0].phone;
     }
-   
 
-    let checkName = this.user.name.split(" ");
-    if(checkName.includes(this.user.last_name)) {
-      this.delivery.firstName = checkName[0];
-      this.delivery.lastName = checkName[1];
-    } else {
-      this.delivery.firstName = this.user.name;
-      this.delivery.lastName = this.user.last_name;
-    }
+
+
     //this.discount = 0;
 
     if (this.discountDelivery > 0)
@@ -207,7 +212,7 @@ export class CheckoutComponent implements OnInit {
 
     if (!this.discount) {
       this.discountDelivery = 15;
-    } else if(this.discount == 10) {
+    } else if (this.discount == 10) {
       this.discountDelivery = 15;
       this.discount = 0;
     }
@@ -248,7 +253,7 @@ export class CheckoutComponent implements OnInit {
 
   checkDiscount() {
 
-   
+
 
     if (this.discountCode.toUpperCase() === 'PASTE10' || this.discountCode.toUpperCase() === 'BUCURIA10') {
       this.toaster.success('Iti multumim!', `Reducerea a fost aplicata cu succes`, {
@@ -256,16 +261,16 @@ export class CheckoutComponent implements OnInit {
         positionClass: 'toast-bottom-right'
       });
 
-      if(this.selectDeliveryLocation) {
+      if (this.selectDeliveryLocation) {
         this.discountDelivery = 15;
         this.discount = 0;
       } else {
         this.discount = 10;
         this.discountDelivery = 0;
       }
-      
 
-      
+
+
       this.getTotalPrice();
 
     } else {
@@ -616,7 +621,7 @@ export class CheckoutComponent implements OnInit {
     }
     this.order[0].status = this.status;
 
-   //console.log(this.order)
+    //console.log(this.order)
 
 
     // this._httpClient.post(this.SEND_ORDER, this.order).subscribe((data: any) => {
@@ -742,9 +747,9 @@ export class CheckoutComponent implements OnInit {
 
     this._httpClient.get<any>(`https://tavacudetoate.ro/tavacudetoate-api/v1/addresses/${user.id}`).subscribe(addresses => {
       this.addresses = addresses.data;
-      
+
       let checkName = user.name.split(" ");
-      if(checkName.includes(user.last_name)) {
+      if (checkName.includes(user.last_name)) {
         this.userCompleteName = user.name;
       } else {
         this.userCompleteName = user.name + ' ' + user.last_name;
