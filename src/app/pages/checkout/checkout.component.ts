@@ -186,7 +186,10 @@ export class CheckoutComponent implements OnInit {
     this.selectDeliveryLocation = location;
     this.delivery.firstName = this.user.name;
     this.delivery.email = this.user.email;
-    this.delivery.phone = this.addresses[0].phone;
+    if(this.addresses) {
+      this.delivery.phone = this.addresses[0].phone;
+    }
+   
 
     let checkName = this.user.name.split(" ");
     if(checkName.includes(this.user.last_name)) {
@@ -203,6 +206,9 @@ export class CheckoutComponent implements OnInit {
 
     if (!this.discount) {
       this.discountDelivery = 15;
+    } else if(this.discount == 10) {
+      this.discountDelivery = 15;
+      this.discount = 0;
     }
 
     this.getTotalPrice();
@@ -249,9 +255,16 @@ export class CheckoutComponent implements OnInit {
         positionClass: 'toast-bottom-right'
       });
 
-      this.discount = 10;
+      if(this.selectDeliveryLocation) {
+        this.discountDelivery = 15;
+        this.discount = 0;
+      } else {
+        this.discount = 10;
+        this.discountDelivery = 0;
+      }
+      
 
-      this.discountDelivery = 0;
+      
       this.getTotalPrice();
 
     } else {
