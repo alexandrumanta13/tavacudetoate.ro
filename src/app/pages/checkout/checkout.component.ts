@@ -255,7 +255,7 @@ export class CheckoutComponent implements OnInit {
 
 
 
-    if (this.discountCode.toUpperCase() === 'PASTE10' || this.discountCode.toUpperCase() === 'BUCURIA10') {
+    if (this.discountCode.toUpperCase() === 'BUCURIA10') {
       this.toaster.success('Iti multumim!', `Reducerea a fost aplicata cu succes`, {
         timeOut: 3000,
         positionClass: 'toast-bottom-right'

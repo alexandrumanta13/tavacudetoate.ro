@@ -122,14 +122,14 @@ const routes: Routes = [
       ogUrl: 'your og url'
     }
   },
-  {
-    path: 'masa-de-paste-2021', component: EasterComponent,
-    data: {
-      title: '',
-      description: '',
-      ogUrl: 'your og url'
-    }
-  },
+  // {
+  //   path: 'masa-de-paste-2021', component: EasterComponent,
+  //   data: {
+  //     title: '',
+  //     description: '',
+  //     ogUrl: 'your og url'
+  //   }
+  // },
   {
     path: 'cariere', component: CareersComponent,
     data: {

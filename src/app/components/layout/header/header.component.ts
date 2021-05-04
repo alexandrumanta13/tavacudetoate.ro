@@ -44,11 +44,11 @@ export class HeaderComponent implements OnInit {
     private _eref: ElementRef,
     public authAPIService: AuthAPIService,) {
     this.navMenu = [
-      {
-        label: 'Masa de Paste',
-        link: '/masa-de-paste-2021',
-        icon: 'paste.svg'
-      },
+      // {
+      //   label: 'Masa de Paste',
+      //   link: '/masa-de-paste-2021',
+      //   icon: 'paste.svg'
+      // },
       {
         label: 'Sugestiile bucatarului',
         link: '/sugestiile-bucatarului',
