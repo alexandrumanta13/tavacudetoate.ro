@@ -164,8 +164,9 @@ export class AuthAPIService {
 
   changePassword(password, token) {
     return new Promise((resolve, reject) => {
-
-      this._httpClient.post(this.API_LOGIN +  'changePassword', {'token': token, 'password': password} )
+      let headers = new HttpHeaders();
+      headers = headers.set('Authorization', token);
+      this._httpClient.post(this.API_LOGIN +  'changePassword', {'password': password}, {headers: headers} )
         .subscribe((response: any) => {
           resolve(response);
         }, reject);

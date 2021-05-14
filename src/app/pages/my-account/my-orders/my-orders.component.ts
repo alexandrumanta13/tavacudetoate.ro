@@ -23,16 +23,17 @@ export class MyOrdersComponent implements OnInit {
   ngOnInit(): void {
     this.ordersLink = this.route.snapshot.data['comenzile-mele'];
     this.authService.user.subscribe(user => {
-      this.myAccountService.getUserOrders(user.id).then(data => {
+      this.myAccountService.getUserOrders(user.id, user.token).then(data => {
+        
         this.orders = data.orders;
         
         this.orders.map((order, i) => {
           let date = new Date(this.orders[i].date)
-          console.log(date)
+          
           this.orders[i].date = date.setHours( date.getHours() + 3 );
          // this.orders[i].date.setHours( date.getHours() + 3 );
         })
-        console.log(this.orders)
+        
       })
     })
   }

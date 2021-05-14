@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -20,6 +20,7 @@ export class AddressesComponent implements OnInit {
   delete: any = [];
   edit: any = [];
   user: User;
+  headers: HttpHeaders;
 
   constructor(
     private _httpClient: HttpClient,
@@ -34,57 +35,29 @@ export class AddressesComponent implements OnInit {
       this.isAuthentificated = !!user;
       this.user = user;
       if (this.isAuthentificated) {
-        this.getAddresses(user);
+        this.headers = new HttpHeaders();
+        this.headers = this.headers.set('Authorization', this.user.token);
+        this.getAddresses();
       }
     });
 
   }
 
-  getAddresses(user) {
-    console.log(user.id)
+  getAddresses() {
 
-    this._httpClient.get<any>(`https://tavacudetoate.ro/tavacudetoate-api/v1/addresses/${user.id}`).subscribe(addresses => {
+    this._httpClient.post<any>(`https://tavacudetoate.ro/tavacudetoate-api/v1/addresses`, { 'id': this.user.id }, { headers: this.headers }).subscribe(addresses => {
       this.addresses = addresses.data;
-      console.log(this.addresses)
     })
   }
 
   deleteAddress(id) {
     this._httpClient.post<any>(`https://tavacudetoate.ro/tavacudetoate-api/v1/address/delete`,
-    {
-      'id': id,
-    })
-    .subscribe(data => {
-      if(data.success) {
-        this.getAddresses(this.user);
-        this.toaster.success('', `${data.message}`, {
-          timeOut: 3000,
-          positionClass: 'toast-bottom-right'
-        });
-      } else {
-        this.toaster.warning('', 'A intervenit o eroare!', {
-          timeOut: 3000,
-          positionClass: 'toast-bottom-right'
-        });
-      }
-    
-    })
-  }
-
-  changeAddress(i, f: NgForm) {
-
-
-    this._httpClient.post<any>(`https://tavacudetoate.ro/tavacudetoate-api/v1/address/edit`,
       {
-        'id': this.addresses[i].id, 
-        'phone': f.value.phone, 
-        'address': f.value.address,
-        'town': f.value.town_city,
-        'county': f.value.county,
-      })
+        'id': id,
+      }, { headers: this.headers })
       .subscribe(data => {
-        if(data.success) {
-          this.getAddresses(this.user);
+        if (data.success) {
+          this.getAddresses();
           this.toaster.success('', `${data.message}`, {
             timeOut: 3000,
             positionClass: 'toast-bottom-right'
@@ -95,7 +68,36 @@ export class AddressesComponent implements OnInit {
             positionClass: 'toast-bottom-right'
           });
         }
-      
+
+      })
+  }
+
+  changeAddress(i, f: NgForm) {
+
+
+    this._httpClient.post<any>(`https://tavacudetoate.ro/tavacudetoate-api/v1/address/edit`,
+      {
+        'id': this.addresses[i].id,
+        'phone': f.value.phone,
+        'address': f.value.address,
+        'town': f.value.town_city,
+        'county': f.value.county,
+      },
+      { headers: this.headers })
+      .subscribe(data => {
+        if (data.success) {
+          this.getAddresses();
+          this.toaster.success('', `${data.message}`, {
+            timeOut: 3000,
+            positionClass: 'toast-bottom-right'
+          });
+        } else {
+          this.toaster.warning('', 'A intervenit o eroare!', {
+            timeOut: 3000,
+            positionClass: 'toast-bottom-right'
+          });
+        }
+
       })
   }
 

@@ -253,35 +253,30 @@ export class CheckoutComponent implements OnInit {
 
   checkDiscount() {
 
-    this.toaster.warning('', `Acest cupon nu este valabil!`, {
-      timeOut: 3000,
-      positionClass: 'toast-bottom-right'
-    });
+    if (this.discountCode.toUpperCase() === 'BUCURIE10') {
+      this.toaster.success('Iti multumim!', `Reducerea a fost aplicata cu succes`, {
+        timeOut: 3000,
+        positionClass: 'toast-bottom-right'
+      });
 
-    // if (this.discountCode.toUpperCase() === 'BUCURIA10') {
-    //   this.toaster.success('Iti multumim!', `Reducerea a fost aplicata cu succes`, {
-    //     timeOut: 3000,
-    //     positionClass: 'toast-bottom-right'
-    //   });
-
-    //   if (this.selectDeliveryLocation) {
-    //     this.discountDelivery = 15;
-    //     this.discount = 0;
-    //   } else {
-    //     this.discount = 10;
-    //     this.discountDelivery = 0;
-    //   }
+      if (this.selectDeliveryLocation) {
+        this.discountDelivery = 15;
+        this.discount = 0;
+      } else {
+        this.discount = 10;
+        this.discountDelivery = 0;
+      }
 
 
 
-    //   this.getTotalPrice();
+      this.getTotalPrice();
 
-    // } else {
-    //   this.toaster.warning('', `Acest cupon nu este valabil!`, {
-    //     timeOut: 3000,
-    //     positionClass: 'toast-bottom-right'
-    //   });
-    // }
+    } else {
+      this.toaster.warning('', `Acest cupon nu este valabil!`, {
+        timeOut: 3000,
+        positionClass: 'toast-bottom-right'
+      });
+    }
 
     // if (this.model.email) {
     //   this._httpClient.post(this.CHECK_COUPON, { email: this.model.email, coupon: this.discountCode }).subscribe((data: any) => {

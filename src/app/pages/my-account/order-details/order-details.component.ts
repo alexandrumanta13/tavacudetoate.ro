@@ -11,12 +11,18 @@ import { MyAccountService } from '../my-account.service';
 export class OrderDetailsComponent implements OnInit {
   order: any;
 
-  constructor(private myAccountService: MyAccountService, private _route: ActivatedRoute, public router: Router,  public authAPIService: AuthAPIService,) { }
+  constructor(
+    private myAccountService: MyAccountService, 
+    private _route: ActivatedRoute, 
+    public router: Router,  
+    public authAPIService: AuthAPIService,) { }
 
   ngOnInit(): void {
     this._route.paramMap.subscribe(params => {
-      this.myAccountService.getUserOrder(params.get('orderUUID')).then(data => {
-        this.order = data[0];
+      this.authAPIService.user.subscribe(user => {
+        this.myAccountService.getUserOrder(params.get('orderUUID'), user.token).then(data => {
+          this.order = data[0];
+        })
       })
     });
   }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 
 @Injectable({
@@ -46,9 +46,12 @@ export class MyAccountService {
      * @returns {Promise<any>}
      */
 
-    public getUserOrders(userID): Promise<any> {
+    public getUserOrders(userID, token): Promise<any> {
         return new Promise((resolve, reject) => {
-            this._httpClient.get(this.REST_API_SERVER + 'customer/orders/' + userID)
+            let headers = new HttpHeaders();
+            
+            headers = headers.set('Authorization', token);
+            this._httpClient.post(this.REST_API_SERVER + 'customer/orders', {'id': userID}, {headers: headers})
                 .subscribe((response: any) => {
                     resolve(response);
                 }, reject);
@@ -61,10 +64,13 @@ export class MyAccountService {
      * @returns {Promise<any>}
      */
 
-    public getUserOrder(orderUUID): Promise<any> {
+    public getUserOrder(orderUUID, token): Promise<any> {
 
         return new Promise((resolve, reject) => {
-            this._httpClient.get(this.REST_API_SERVER + 'order/' + orderUUID)
+            let headers = new HttpHeaders();
+            headers = headers.set('Authorization', token);
+            
+            this._httpClient.post(this.REST_API_SERVER + 'order' , {'id': orderUUID}, {headers: headers})
                 .subscribe((response: any) => {
                     resolve(response);
                 }, reject);

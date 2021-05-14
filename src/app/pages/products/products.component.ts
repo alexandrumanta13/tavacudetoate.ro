@@ -72,9 +72,7 @@ export class ProductsComponent implements OnInit {
     if (!this._categoryRoute) {
       this._ProductsService.getProducts('').then(data => {
         this.totalNoOfProducts = data.total_no_of_products;
-
         this.products = data.products;
-        console.log(this.products)
         this.setTotalPages(data.no_of_pages);
         this.setPagesArray(this.totalPages);
       });
