@@ -151,7 +151,7 @@ import { EasterComponent } from './pages/easter/easter.component';
     EasterComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
