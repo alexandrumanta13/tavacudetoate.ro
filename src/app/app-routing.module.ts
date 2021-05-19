@@ -49,7 +49,9 @@ const routes: Routes = [
     data: {
       title: '',
       description: '',
-      ogUrl: 'your og url'
+      ogUrl: 'your og url',
+      keywords: ''
+      
     }
   },
 
@@ -59,7 +61,8 @@ const routes: Routes = [
     data: {
       title: '',
       description: '',
-      ogUrl: 'your og url'
+      ogUrl: 'your og url',
+      keywords: ''
     }
   },
 
@@ -69,7 +72,8 @@ const routes: Routes = [
     data: {
       title: '',
       description: '',
-      ogUrl: 'your og url'
+      ogUrl: 'your og url',
+      keywords: ''
     }
   },
   {
@@ -77,7 +81,8 @@ const routes: Routes = [
     data: {
       title: '',
       description: '',
-      ogUrl: 'your og url'
+      ogUrl: 'your og url',
+      keywords: ''
     }
   },
   {
@@ -85,7 +90,8 @@ const routes: Routes = [
     data: {
       title: '',
       description: '',
-      ogUrl: 'your og url'
+      ogUrl: 'your og url',
+      keywords: ''
     }
   },
 
@@ -94,7 +100,8 @@ const routes: Routes = [
     data: {
       title: '',
       description: '',
-      ogUrl: 'your og url'
+      ogUrl: 'your og url',
+      keywords: ''
     }
   },
 
@@ -103,7 +110,8 @@ const routes: Routes = [
     data: {
       title: '',
       description: '',
-      ogUrl: 'your og url'
+      ogUrl: 'your og url',
+      keywords: ''
     }
   },
   {
@@ -111,7 +119,8 @@ const routes: Routes = [
     data: {
       title: '',
       description: '',
-      ogUrl: 'your og url'
+      ogUrl: 'your og url',
+      keywords: ''
     }
   },
   {
@@ -119,7 +128,8 @@ const routes: Routes = [
     data: {
       title: '',
       description: '',
-      ogUrl: 'your og url'
+      ogUrl: 'your og url',
+      keywords: ''
     }
   },
   // {
@@ -127,7 +137,8 @@ const routes: Routes = [
   //   data: {
   //     title: '',
   //     description: '',
-  //     ogUrl: 'your og url'
+  //     ogUrl: 'your og url',
+  //     keywords: ''
   //   }
   // },
   {
@@ -135,7 +146,8 @@ const routes: Routes = [
     data: {
       title: '',
       description: '',
-      ogUrl: 'your og url'
+      ogUrl: 'your og url',
+      keywords: ''
     }
   },
 
@@ -144,7 +156,8 @@ const routes: Routes = [
   //   data: {
   //     title: 'Despre noi',
   //     description: '',
-  //     ogUrl: 'your og url'
+  //     ogUrl: 'your og url',
+  //     keywords: ''
   //   }
   // },
 
@@ -153,7 +166,8 @@ const routes: Routes = [
   //   data: {
   //     title: 'Setari GDPR',
   //     description: '',
-  //     ogUrl: 'your og url'
+  //     ogUrl: 'your og url',
+  //     keywords: ''
   //   }
   // },
 
@@ -162,7 +176,8 @@ const routes: Routes = [
     data: {
       title: 'Confidentialitate',
       description: '',
-      ogUrl: 'your og url'
+      ogUrl: 'your og url',
+      keywords: ''
     }
   },
   {
@@ -170,7 +185,8 @@ const routes: Routes = [
     data: {
       title: 'politica cookies',
       description: '',
-      ogUrl: 'your og url'
+      ogUrl: 'your og url',
+      keywords: ''
     }
   },
   {
@@ -178,7 +194,8 @@ const routes: Routes = [
     data: {
       title: 'Termeni si conditii',
       description: '',
-      ogUrl: 'your og url'
+      ogUrl: 'your og url',
+      keywords: ''
     }
   },
   {
@@ -186,7 +203,8 @@ const routes: Routes = [
     data: {
       title: 'Cum cumpar',
       description: '',
-      ogUrl: 'your og url'
+      ogUrl: 'your og url',
+      keywords: ''
     }
   },
   {
@@ -194,7 +212,8 @@ const routes: Routes = [
     data: {
       title: 'Cum platesc',
       description: '',
-      ogUrl: 'your og url'
+      ogUrl: 'your og url',
+      keywords: ''
     }
   },
   // {
@@ -202,7 +221,8 @@ const routes: Routes = [
   //   data: {
   //     title: 'Info livrare',
   //     description: '',
-  //     ogUrl: 'your og url'
+  //     ogUrl: 'your og url',
+  //     keywords: ''
   //   }
   // },
   {
@@ -210,7 +230,8 @@ const routes: Routes = [
     data: {
       title: 'Cum platesc',
       description: '',
-      ogUrl: 'your og url'
+      ogUrl: 'your og url',
+      keywords: ''
     }
   },
   {
@@ -218,7 +239,8 @@ const routes: Routes = [
     data: {
       title: 'Politica retur',
       description: '',
-      ogUrl: 'your og url'
+      ogUrl: 'your og url',
+      keywords: ''
     }
   },
   {
@@ -226,7 +248,8 @@ const routes: Routes = [
     data: {
       title: 'Contact',
       description: '',
-      ogUrl: 'your og url'
+      ogUrl: 'your og url',
+      keywords: ''
     }
   },
   { path: 'login', component: LoginComponent },

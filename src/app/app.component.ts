@@ -39,6 +39,9 @@ export class AppComponent {
         this._seoService.updateOgUrl(event['ogUrl']);
         //Updating Description tag dynamically with title
         this._seoService.updateDescription(event['title'] + event['description'])
+        this._seoService.updateKeywords(event['keywords'])
+
+        
       });
 
     this.router.events.subscribe((evt) => {
