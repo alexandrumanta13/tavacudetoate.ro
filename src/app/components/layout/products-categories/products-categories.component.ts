@@ -5,6 +5,7 @@ import { ProductsService } from 'src/app/pages/products/products.service';
 import { v4 as uuidv4 } from 'uuid';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductQuickviewComponent } from '../product-quickview/product-quickview.component';
+import { ProductService } from 'src/app/pages/product/product.service';
 @Component({
   selector: 'app-products-categories',
   templateUrl: './products-categories.component.html',
@@ -16,22 +17,26 @@ export class ProductsCategoriesComponent implements OnInit {
   products: any;
   product: any;
   cartQuantity: any;
+  currentRate: any = 4;
 
   constructor(
     private _route: ActivatedRoute,
     private _ProductsService: ProductsService,
+    private _ProductService: ProductService,
     private _cartService: CartService,
     public router: Router,
     public modalService: NgbModal
   ) {
-    
-   }
+
+  }
 
   ngOnInit(): void {
 
     this._ProductsService.getCategories().then(data => {
       this.categories = data.categories;
     })
+
+
 
     this.getProducts();
   }
@@ -45,15 +50,29 @@ export class ProductsCategoriesComponent implements OnInit {
     if (!this.selectedCategory) {
       this._ProductsService.getProducts('').then(data => {
         this.products = data.products;
+        this.getReviews();
       });
 
     } else {
       this._ProductsService.getProducts(this.selectedCategory).then(data => {
         this.products = data.products;
+        this.getReviews();
       });
 
     }
 
+
+
+   
+  }
+
+  getReviews() {
+    this.products.map((product, i) => {
+      this._ProductService.getProductRating(product.id).then(data => {
+        this.products[i].currentRate = data.score[0].rating
+        this.products[i].reviews = data.count
+      })
+    })
   }
 
   addToCart(product) {
@@ -68,7 +87,7 @@ export class ProductsCategoriesComponent implements OnInit {
     modalRef.componentInstance.productInput = product;
     modalRef.result.then((result) => {
       if (result) {
-        
+
       }
     });
   }

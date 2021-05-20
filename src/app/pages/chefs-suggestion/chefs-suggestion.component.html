@@ -43,6 +43,15 @@
                       <h4>
                         <a routerLink="/produs/{{product.categories[0].slug}}/{{product.alias}}">{{product.product_name}} </a>
                       </h4>
+                      <ng-template #t let-fill="fill">
+                        <span class="star" [class.full]="fill === 100">
+                          <span class="half" [style.width.%]="fill">&#9733;</span>&#9734;
+                        </span>
+                      </ng-template>
+                      <ngb-rating [(rate)]="product.currentRate" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
+                      <div class="count-reviews">
+                       <a [routerLink]="['/produs/', product?.categories[0].slug, product?.alias]" [fragment]="'reviews'">{{product.reviews}} Recenzii</a> 
+                      </div>
                       <div class="product-price-wrapper">
                         <span>{{product.information[0].price}} lei / {{product.information[0].quantity}} {{product.information[0].um}}</span>
                       </div>

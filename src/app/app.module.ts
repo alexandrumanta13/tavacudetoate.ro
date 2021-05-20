@@ -93,6 +93,8 @@ import { ReturnPolicyComponent } from './pages/return-policy/return-policy.compo
 import { HowToDeliverComponent } from './pages/how-to-deliver/how-to-deliver.component';
 import { RecoverComponent } from './pages/recover/recover.component';
 import { EasterComponent } from './pages/easter/easter.component';
+import { RouterModule } from '@angular/router';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -168,6 +170,7 @@ import { EasterComponent } from './pages/easter/easter.component';
     LightboxModule,
     NiceSelectModule,
     Ng2SearchPipeModule,
+   
   ],
   exports: [],
   providers: [

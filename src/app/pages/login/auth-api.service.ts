@@ -72,7 +72,7 @@ export class AuthAPIService {
     return this._httpClient.post<AuthResponseData>(this.API_LOGIN + 'login', { email: email,  password: password })
       .pipe(
         tap(data => {
-        console.log(data)
+        
           if(data['success']) {
             this.handleAuthentication(
               data.user.id,

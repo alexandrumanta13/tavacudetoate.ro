@@ -51,7 +51,10 @@
           <div class="rate mb-20">
             <ngb-rating [(rate)]="currentRate" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
 
-            {{currentRate}}
+            <div class="count-reviews">
+              {{currentRate}} <a (click)="scrollToReviews()">({{countReviews}} Recenzii)</a> 
+             </div>
+             
           </div>
 
           <!-- <button class="btn btn-sm btn-outline-primary mr-2" (click)="currentRate = 1.60">1.35</button> -->
@@ -121,7 +124,7 @@
       <div class="description-review-topbar nav text-center">
         <a class="active" data-toggle="tab" href="#des-details1">Detalii produs</a>
         <a data-toggle="tab" href="#des-details2">Info livrare</a>
-        <a data-toggle="tab" href="#des-details3">Recenzii</a>
+        <!-- <a data-toggle="tab" href="#des-details3">Recenzii</a> -->
       </div>
       <div class="tab-content description-review-bottom">
         <div id="des-details1" class="tab-pane active">
@@ -130,7 +133,7 @@
             <p><strong>Alergeni:</strong> {{product?.allergens}}</p>
             <p><img class="w25" src="/assets/img/icon-img/cooking.svg" alt="">  Mancarea noastra este gatita in ziua in care iti este livrata, de aceea este mereu atat de gustoasa.</p>
 
-            <p><i>Fotografiile sunt cu titlu de prezentare, preparatele comandate sunt livrate in caserole de unica
+            <p id="reviews"><i>Fotografiile sunt cu titlu de prezentare, preparatele comandate sunt livrate in caserole de unica
               folosinta.</i></p>
           </div>
         </div>
@@ -205,7 +208,7 @@
                 <div class="ratting-author f-right">
                   <h3>{{review.user_name}}</h3>
                   <span>{{review.date_added | date:'h:mm'}}</span>
-                  <span>{{review.date_added | date:'d.M.y'}}</span>
+                  <span>{{review.date_added | date:'dd.M.y'}}</span>
                 </div>
               </div>
               <p>{{review.user_message}}</p>
@@ -259,6 +262,71 @@
         </div>
       </div>
     </div>
+    <div class="reviews">
+      <h4>Recenzii</h4>
+      <div class="rattings-wrapper">
+        <div class="sin-rattings" *ngFor="let review of reviews">
+          <div class="star-author-all">
+            <div class="ratting-star f-left">
+              <ngb-rating [(rate)]="review.rating" [readonly]="true" max="5"></ngb-rating>
+              
+            </div>
+            <div class="ratting-author f-right">
+              <h3>{{review.user_name}}</h3>
+              <span>{{review.date_added | date:'h:mm'}}</span>
+              <span>{{review.date_added | date:'dd.M.y'}}</span>
+            </div>
+          </div>
+          <p>{{review.user_message}}</p>
+        </div>
+  
+      </div>
+      <div class="ratting-form-wrapper" *ngIf="!addedReview">
+        <h3>Adauga recenzia ta:</h3>
+        <div class="ratting-form">
+          <form (ngSubmit)="f.form.valid && onSubmit(f)" #f="ngForm" >
+            <div class="star-box">
+              <h2>Calificativul tau:</h2>
+              <ngb-rating [(rate)]="addRate" max="5"></ngb-rating>
+  
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="rating-form-style mb-20">
+                  <input placeholder="Numele tau" type="text" class="form-control" name="user_name"
+                    [(ngModel)]="model.user_name" #user_name="ngModel"
+                    [ngClass]="{ 'is-invalid': f.submitted && user_name.invalid }" required minlength="3">
+                  <div *ngIf="f.submitted && user_name.invalid" class="invalid-feedback">
+                    <div *ngIf="user_name.errors.required">Te rugam sa introduci numele</div>
+                    <div *ngIf="user_name.errors.minlength">Numele trebuie sa fie de minim 3 caractere</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="rating-form-style mb-20">
+                  <input type="email" name="user_email" class="form-control" placeholder="Adresa ta de email"
+                    [(ngModel)]="model.user_email" #user_email="ngModel"
+                    [ngClass]="{ 'is-invalid': f.submitted && user_email.invalid }" required email>
+                  <div *ngIf="f.submitted && user_email.invalid" class="invalid-feedback">
+                    <div *ngIf="user_email.errors.required">Te rugam sa introduci email-ul!</div>
+                    <div *ngIf="user_email.errors.email">Email-ul nu este valid!</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="rating-form-style form-submit">
+                  <textarea name="user_message" class="form-control" placeholder="Recenzia ta"
+                    [(ngModel)]="model.user_message" #user_message="ngModel"
+                    [ngClass]="{ 'is-invalid': f.submitted && user_message.invalid }" required></textarea>
+                  <input type="submit" value="Adauga recenzia">
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    
   </div>
 </div>
 <div class="product-area pb-95">

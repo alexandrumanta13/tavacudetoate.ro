@@ -5,6 +5,7 @@ import { ProductQuickviewComponent } from 'src/app/components/layout/product-qui
 import { CartService } from '../cart/cart.service';
 import { ProductsService } from '../products/products.service';
 import { v4 as uuidv4 } from 'uuid';
+import { ProductService } from '../product/product.service';
 
 @Component({
   selector: 'app-chefs-suggestion',
@@ -15,6 +16,7 @@ export class ChefsSuggestionComponent implements OnInit {
 
   public products: any;
   menus: any;
+  reviewProducts: any;
 
   /**
    * Constructor
@@ -29,6 +31,7 @@ export class ChefsSuggestionComponent implements OnInit {
   constructor(
     private _route: ActivatedRoute,
     private _ProductsService: ProductsService,
+    private _ProductService: ProductService,
     private _cartService: CartService,
     public router: Router,
     public modalService: NgbModal
@@ -36,12 +39,12 @@ export class ChefsSuggestionComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProducts();
-    
+
   }
 
 
   ngAfterViewInit() {
-    
+
 
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
@@ -54,10 +57,22 @@ export class ChefsSuggestionComponent implements OnInit {
   getProducts() {
     this._ProductsService.getChefsProducts().then(data => {
       this.menus = data;
+      
+      data.map((menu, i) => {
+        menu['products'].map((product, j) => {
+          this._ProductService.getProductRating(product.id).then(data => {
+            this.menus[i].products[j].currentRate = data.score[0].rating
+            this.menus[i].products[j].reviews = data.count
+          })
+        })
+
+      })
+     
     });
 
     this.moveToTop();
   }
+
 
   moveToTop() {
     const scrollToContainer = document.querySelector('.shop-page-section');
@@ -93,7 +108,7 @@ export class ChefsSuggestionComponent implements OnInit {
     modalRef.componentInstance.productInput = product;
     modalRef.result.then((result) => {
       if (result) {
-        
+
       }
     });
   }

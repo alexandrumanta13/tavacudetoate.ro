@@ -9,6 +9,7 @@ import { CartService } from '../cart/cart.service';
 import { v4 as uuidv4 } from 'uuid';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductQuickviewComponent } from 'src/app/components/layout/product-quickview/product-quickview.component';
+import { ProductService } from '../product/product.service';
 
 
 
@@ -26,6 +27,7 @@ export class ProductsComponent implements OnInit {
   public totalPages: number = 1;
   public pages: number[] = [];
   categories: any;
+  p: number = 1;
 
 
   /**
@@ -41,6 +43,7 @@ export class ProductsComponent implements OnInit {
   constructor(
     private _route: ActivatedRoute,
     private _ProductsService: ProductsService,
+    private _ProductService: ProductService,
     private _cartService: CartService,
     public router: Router,
     public modalService: NgbModal
@@ -73,10 +76,11 @@ export class ProductsComponent implements OnInit {
       this._ProductsService.getProducts('').then(data => {
         this.totalNoOfProducts = data.total_no_of_products;
         this.products = data.products;
+        
         this.setTotalPages(data.no_of_pages);
         this.setPagesArray(this.totalPages);
       });
-
+      
       this.moveToTop();
 
     } else {
@@ -87,12 +91,14 @@ export class ProductsComponent implements OnInit {
         this.setTotalPages(data.no_of_pages);
         this.setPagesArray(this.totalPages);
         this._ProductsService.getCategory(this._categoryRoute);
-
+        
         this.moveToTop();
       });
 
     }
   }
+
+ 
 
   moveToTop() {
     const scrollToContainer = document.querySelector('.shop-page-section');

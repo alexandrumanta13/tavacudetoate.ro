@@ -45,7 +45,7 @@
     "ngx-gallery": "^5.10.0",
     "ngx-lightbox": "^2.2.2",
     "ngx-owl-carousel-o": "^4.0.0",
-    "ngx-pagination": "^5.0.0",
+    "ngx-pagination": "^5.1.0",
     "ngx-toastr": "^13.2.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",

@@ -49,6 +49,7 @@ export class ProductComponent implements OnInit {
   private SEND_REVIEW = "https://tavacudetoate.ro/data/sendReview.php";
   selectedQnt: any;
   addedReview: boolean = false;
+  countReviews: any = 0;
 
 
   /**
@@ -130,11 +131,11 @@ export class ProductComponent implements OnInit {
   getReviews() {
     this._ProductService.getProductReview(this.product.id).then(data => {
       this.reviews = data;
+
     })
     this._ProductService.getProductRating(this.product.id).then(data => {
-      
-      this.currentRate =data[0].rating
-      
+      this.currentRate = data.score[0].rating
+      this.countReviews = data.count;
     })
     
   }
@@ -209,6 +210,12 @@ export class ProductComponent implements OnInit {
       }
     });
   }
+  scrollToReviews() {
+    try {
+      document.querySelector('#reviews').scrollIntoView();
+    } catch (e) { }
+  }
+  
 
 
   onSubmit(form: NgForm) {

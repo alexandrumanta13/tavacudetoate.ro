@@ -473,3 +473,39 @@ a {
     width: 100%;
   }
 }
+
+.count-reviews {
+  margin-bottom: 10px;
+  a {
+    color: #4CAF50 !important;
+  }
+}
+
+.star {
+  position: relative;
+  display: inline-block;
+  font-size: 16px;
+  color: #d3d3d3;
+}
+
+.full {
+  color: #f3b804;
+}
+
+.half {
+  position: absolute;
+  display: inline-block;
+  overflow: hidden;
+  color: #f3b804;
+}
+
+.rate {
+  ngb-rating {
+    margin-top: 20px;
+    margin-right: 16px;
+  }
+}
+
+ngb-rating .ng-star-inserted {
+  color: #f3b804;
+}

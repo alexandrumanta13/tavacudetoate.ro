@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Product } from '../product/product.model'
 
 @Injectable({
@@ -24,11 +24,12 @@ export class ProductsService {
      */
 
     public getProducts(route): Promise<any> {
-
+        
         return new Promise((resolve, reject) => {
             if (!route) {
                 this._httpClient.get<Product[]>(this.REST_API_SERVER + 'products')
                     .subscribe((response: any) => {
+                       
                         resolve(response);
                     }, reject);
             } else {
@@ -53,7 +54,11 @@ export class ProductsService {
 
     public getProductsPopular(): Promise<any> {
         return new Promise((resolve, reject) => {
-            this._httpClient.get<Product[]>(this.REST_API_SERVER + 'products/popular')
+            let headers = new HttpHeaders();
+            headers.append('Content-Type', 'multipart/form-data');
+            headers.append('Accept', 'application/json');
+            let options = { headers: headers };
+            this._httpClient.get<Product[]>(this.REST_API_SERVER + 'products/popular', options)
                 .subscribe((response: any) => {
                     resolve(response);
                 }, reject);
