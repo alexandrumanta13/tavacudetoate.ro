@@ -16,9 +16,11 @@
           
           
           <div class="grid-list-product-wrapper">
-            <div class="product-grid product-view pb-20">
-              <div class="row">
-                <div class="product-width col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 mb-30" *ngFor="let product of products">
+            <div class="product-grid product-view pb-20" *ngFor="let menu of menus">
+              <div class="row menu-row">
+                <h4 class="menu-title"> {{menu.menu_name}}</h4>
+                <div class="product-width col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 mb-30" *ngFor="let product of menu.products">
+                 
                   <div class="product-wrapper">
                     <div class="product-img">
                       <a routerLink="/produs/{{product.categories[0].slug}}/{{product.alias}}">
@@ -65,7 +67,7 @@
                     </div>
                   </div>
                 </div>
-               
+                <button title="Adauga in cos" (click)="addMenuToCart(menu.products)" class="add-to-cart-btn"> Adauga in cos </button>
               </div>
             </div>
            

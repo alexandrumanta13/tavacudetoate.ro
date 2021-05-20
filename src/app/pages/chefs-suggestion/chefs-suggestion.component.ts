@@ -14,6 +14,7 @@ import { v4 as uuidv4 } from 'uuid';
 export class ChefsSuggestionComponent implements OnInit {
 
   public products: any;
+  menus: any;
 
   /**
    * Constructor
@@ -52,7 +53,7 @@ export class ChefsSuggestionComponent implements OnInit {
 
   getProducts() {
     this._ProductsService.getChefsProducts().then(data => {
-      this.products = data;
+      this.menus = data;
     });
 
     this.moveToTop();
@@ -74,6 +75,15 @@ export class ChefsSuggestionComponent implements OnInit {
     product.selectedPrice = product.information[0].price;
     product.selectedQnt = product.information[0].quantity + product.information[0].um;
     this._cartService.addToCart(product, 1, false);
+  }
+
+  addMenuToCart(products) {
+    products.map(product => {
+      product.cart_uuid = uuidv4();
+      product.selectedPrice = product.information[0].price;
+      product.selectedQnt = product.information[0].quantity + product.information[0].um;
+      this._cartService.addToCart(product, 1, false);
+    })
   }
 
 

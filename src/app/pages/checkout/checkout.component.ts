@@ -211,9 +211,9 @@ export class CheckoutComponent implements OnInit {
       return;
 
     if (!this.discount) {
-      this.discountDelivery = 15;
+      this.discountDelivery = 30;
     } else if (this.discount == 10) {
-      this.discountDelivery = 15;
+      this.discountDelivery = 30;
       this.discount = 0;
     }
 
@@ -253,17 +253,17 @@ export class CheckoutComponent implements OnInit {
 
   checkDiscount() {
 
-    if (this.discountCode.toUpperCase() === 'BUCURIE10') {
+    if (this.discountCode.toUpperCase() === 'BUCURIE15') {
       this.toaster.success('Iti multumim!', `Reducerea a fost aplicata cu succes`, {
         timeOut: 3000,
         positionClass: 'toast-bottom-right'
       });
 
       if (this.selectDeliveryLocation) {
-        this.discountDelivery = 15;
+        this.discountDelivery = 30;
         this.discount = 0;
       } else {
-        this.discount = 10;
+        this.discount = 15;
         this.discountDelivery = 0;
       }
 

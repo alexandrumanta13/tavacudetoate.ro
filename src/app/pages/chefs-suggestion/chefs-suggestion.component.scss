@@ -1,0 +1,44 @@
+.menu-row {
+  position: relative;
+  margin-bottom: 120px;
+
+  &:before {
+    content: "";
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    position: absolute;
+    width: 100%;
+    height: calc(100% + 80px);
+    padding: 30px;
+    top: -40px;
+  }
+
+  h4.menu-title {
+    position: absolute;
+    top: -50px;
+    left: 80px;
+    background-color: #fff;
+    padding: 0 16px;
+  }
+
+  .add-to-cart-btn {
+    background-color: #e2403e;
+    color: #fff;
+    position: absolute;
+    bottom: -70px;
+    right: 80px;
+
+    &:hover {
+        background-color: #f80803;
+    }
+  }
+
+  @media (max-width: 575px) {
+    margin: 40px 0 120px 0;
+    .add-to-cart-btn {
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+  }
+}
