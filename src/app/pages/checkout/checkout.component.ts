@@ -13,6 +13,8 @@ import { SocialAuthService, SocialLoginModule } from "angularx-social-login";
 import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
 import { UserService } from '../user/user.service';
 import { take, map } from 'rxjs/operators';
+import { Inject, Injectable } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 
 
 @Component({
@@ -70,6 +72,7 @@ export class CheckoutComponent implements OnInit {
 
 
   constructor(
+    @Inject(DOCUMENT) private document: Document,
     private cartService: CartService,
     private _httpClient: HttpClient,
     private toaster: ToastrService,
@@ -212,7 +215,7 @@ export class CheckoutComponent implements OnInit {
 
     if (!this.discount) {
       this.discountDelivery = 30;
-    } else if (this.discount == 10) {
+    } else if (this.discount == 15) {
       this.discountDelivery = 30;
       this.discount = 0;
     }

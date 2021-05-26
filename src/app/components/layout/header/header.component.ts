@@ -1,4 +1,5 @@
-import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, ElementRef, HostListener, Inject, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { map, take } from 'rxjs/operators';
@@ -38,6 +39,7 @@ export class HeaderComponent implements OnInit {
   isAuthentificated: boolean;
 
   constructor(
+    @Inject(DOCUMENT) private document: Document,
     private router: Router, 
     private _cartService: CartService, 
     private _ProductsService: ProductsService, 
@@ -211,7 +213,7 @@ export class HeaderComponent implements OnInit {
   ngAfterViewInit() {
 
 
-    let mobileMenu: HTMLElement = document.querySelector('.mobile-menu') as HTMLElement;
+    let mobileMenu = (<HTMLElement>document.querySelector('.mobile-menu'));
     let checkExist = setInterval(function () {
       if (mobileMenu && mobileMenu instanceof HTMLElement) {
 

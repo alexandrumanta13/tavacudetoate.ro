@@ -54,7 +54,7 @@ import { ToasterContainerComponent } from './components/toaster/toaster-containe
 import { ToastrModule } from 'ngx-toastr';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { PlaceOrderComponent } from './pages/place-order/place-order.component';
-import { CandyBarComponent } from './pages/candy-bar/candy-bar.component';
+
 import { LoginComponent } from './pages/login/login.component';
 import { UserComponent } from './pages/user/user.component';
 
@@ -82,7 +82,7 @@ import { MaintenanceComponent } from './components/maintenance/maintenance.compo
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CouponsComponent } from './pages/my-account/coupons/coupons.component';
 import { AddressesComponent } from './pages/my-account/addresses/addresses.component';
-import { NiceSelectModule } from "ng-nice-select";
+
 import { ProductsCategoriesComponent } from './components/layout/products-categories/products-categories.component';
 import { ProductQuickviewComponent } from './components/layout/product-quickview/product-quickview.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
@@ -127,7 +127,7 @@ import { RouterModule } from '@angular/router';
     ToasterContainerComponent,
     CheckoutComponent,
     PlaceOrderComponent,
-    CandyBarComponent,
+    
     LoginComponent,
     UserComponent,
     PopupDiscountComponent,
@@ -168,7 +168,7 @@ import { RouterModule } from '@angular/router';
     SocialLoginModule,
     YouTubePlayerModule,
     LightboxModule,
-    NiceSelectModule,
+    
     Ng2SearchPipeModule,
    
   ],

@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
   authObs: Observable<any>;
   private userSub: Subscription;
   isAuthentificated: boolean;
+  activeTab: any = 'auth';
 
   constructor(private SocialAuthService: SocialAuthService,
     public authAPIService: AuthAPIService,
@@ -161,6 +162,14 @@ export class LoginComponent implements OnInit {
       }
       
     })
+  }
+
+  authTab(activeTab){
+    this.activeTab = activeTab;
+  }
+
+  registerTab(activeTab){
+    this.activeTab = activeTab;
   }
   
 }

@@ -19,7 +19,7 @@ import { ProductComponent } from './pages/product/product.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
-import { CandyBarComponent } from './pages/candy-bar/candy-bar.component';
+
 import { LoginComponent } from './pages/login/login.component';
 import { HowToBuyComponent } from './pages/how-to-buy/how-to-buy.component';
 import { HowToPayComponent } from './pages/how-to-pay/how-to-pay.component';
@@ -76,15 +76,7 @@ const routes: Routes = [
       keywords: ''
     }
   },
-  {
-    path: 'candy-bar', component: CandyBarComponent,
-    data: {
-      title: '',
-      description: '',
-      ogUrl: 'your og url',
-      keywords: ''
-    }
-  },
+  
   {
     path: 'produse/:categorySlug', pathMatch: 'full', component: ProductsComponent,
     data: {
