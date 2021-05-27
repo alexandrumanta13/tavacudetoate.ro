@@ -10,7 +10,8 @@
     "e2e": "ng e2e",
     "dev:ssr": "ng run tavacudetoate:serve-ssr",
     "serve:ssr": "node dist/tavacudetoate/server/main.js",
-    "build:ssr": "ng build --prod && ng run tavacudetoate:server:production",
+    "build:dev": "ng build",
+    "universal:ssr": "ng build --prod && ng run tavacudetoate:server:production",
     "prerender": "ng run tavacudetoate:prerender"
   },
   "private": true,
