@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/tavacudetoate/",
+            "outputPath": "dist/tavacudetoate/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -49,16 +49,7 @@
             "scripts": [
               
               
-              "src/assets/js/popper.js",
-              "src/assets/js/bootstrap.min.js",
-              "src/assets/js/imagesloaded.pkgd.min.js",
-              "src/assets/js/isotope.pkgd.min.js",
-              "src/assets/js/ajax-mail.js",
-              "src/assets/js/owl.carousel.min.js",
-              "src/assets/js/plugins.js",
-              "src/assets/js/main.js",
-              "src/assets/js/vendor/modernizr-2.8.3.min.js",
-              "src/assets/js/vendor/jquery-1.12.0.min.js"
+           
             ]
           },
           "configurations": {

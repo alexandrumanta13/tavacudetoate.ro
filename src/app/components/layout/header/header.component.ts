@@ -6,7 +6,7 @@ import { map, take } from 'rxjs/operators';
 import { CartService } from 'src/app/pages/cart/cart.service';
 import { AuthAPIService } from 'src/app/pages/login/auth-api.service';
 import { ProductsService } from 'src/app/pages/products/products.service';
-declare var $: any;
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -213,29 +213,7 @@ export class HeaderComponent implements OnInit {
   ngAfterViewInit() {
 
 
-    let mobileMenu = (<HTMLElement>document.querySelector('.mobile-menu'));
-    let checkExist = setInterval(function () {
-      if (mobileMenu && mobileMenu instanceof HTMLElement) {
-
-        setTimeout(() => {
-          $('.mobile-menu li.dropdown .dropdown-btn').on('click', function () {
-
-            $(this).toggleClass('open');
-            $(this).prev('ul').slideToggle(500);
-          });
-          $('.mobile-menu li a.dropdown-btn-parent_1').on('click', function () {
-            $(this).next().next().toggleClass('open');
-            $('.dropdon-list-toggle_1').slideToggle(500);
-          });
-          $('.mobile-menu li a.dropdown-btn-parent_2').on('click', function () {
-            $(this).next().next().toggleClass('open');
-            $('.dropdon-list-toggle_2').slideToggle(500);
-          });
-        }, 3000);
-
-        clearInterval(checkExist);
-      }
-    }, 100); // check every 100ms
+   
 
   }
 

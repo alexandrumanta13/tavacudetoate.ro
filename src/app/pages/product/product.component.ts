@@ -12,7 +12,7 @@ import { ProductQuickviewComponent } from 'src/app/components/layout/product-qui
 import { HttpClient } from '@angular/common/http';
 
 
-declare var $: any;
+
 
 @Component({
   selector: 'app-product',
@@ -40,7 +40,7 @@ export class ProductComponent implements OnInit {
   composition: string = "";
 
   productImages = [];
-  activeTab: any = "description";
+  activeTab: any = "prod";
   currentRate: any = 0;
   addRate = 5;
   public model: any = {};
@@ -250,6 +250,10 @@ export class ProductComponent implements OnInit {
         })
       }
     });
+  }
+
+  changeTab(activeTab){
+    this.activeTab = activeTab;
   }
 }
 

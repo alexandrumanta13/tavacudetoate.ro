@@ -122,12 +122,12 @@
   <div class="container">
     <div class="description-review-wrapper">
       <div class="description-review-topbar nav text-center">
-        <a class="active" data-toggle="tab" href="#des-details1">Detalii produs</a>
-        <a data-toggle="tab" href="#des-details2">Info livrare</a>
+        <a data-toggle="tab" [ngClass]="{ 'active':activeTab==='prod'}" (click)="changeTab('prod')">Detalii produs</a>
+        <a data-toggle="tab" [ngClass]="{ 'active':activeTab==='delivery'}" (click)="changeTab('delivery')">Info livrare</a>
         <!-- <a data-toggle="tab" href="#des-details3">Recenzii</a> -->
       </div>
       <div class="tab-content description-review-bottom">
-        <div id="des-details1" class="tab-pane active">
+        <div id="des-details1" class="tab-pane" [ngClass]="{ 'active':activeTab==='prod'}" >
           <div class="product-description-wrapper">
             <p><strong>Ingrediente:</strong> {{product?.ingredients}}</p>
             <p><strong>Alergeni:</strong> {{product?.allergens}}</p>
@@ -137,7 +137,7 @@
               folosinta.</i></p>
           </div>
         </div>
-        <div id="des-details2" class="tab-pane">
+        <div id="des-details2" class="tab-pane" [ngClass]="{ 'active':activeTab==='delivery'}">
           <div class="product-anotherinfo-wrapper">
             <p>TAVA CU DE TOATE este un magazin online ce livreaza mancare la oala in caserole de unica folosinta.</p>
 
@@ -197,7 +197,7 @@
 
           </div>
         </div>
-        <div id="des-details3" class="tab-pane">
+        <div id="des-details3" class="tab-pane" [ngClass]="{ 'active':activeTab==='delivery'}">
           <div class="rattings-wrapper">
             <div class="sin-rattings" *ngFor="let review of reviews">
               <div class="star-author-all">
