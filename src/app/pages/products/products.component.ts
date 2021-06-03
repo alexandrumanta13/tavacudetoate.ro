@@ -76,7 +76,7 @@ export class ProductsComponent implements OnInit {
       this._ProductsService.getProducts('').then(data => {
         this.totalNoOfProducts = data.total_no_of_products;
         this.products = data.products;
-        
+      
         this.setTotalPages(data.no_of_pages);
         this.setPagesArray(this.totalPages);
       });
@@ -87,7 +87,7 @@ export class ProductsComponent implements OnInit {
       this._ProductsService.getProducts(this._categoryRoute).then(data => {
         this.totalNoOfProducts = data.total_no_of_products;
         this.products = data.products;
-
+        
         this.setTotalPages(data.no_of_pages);
         this.setPagesArray(this.totalPages);
         this._ProductsService.getCategory(this._categoryRoute);

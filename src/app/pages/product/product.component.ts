@@ -116,7 +116,7 @@ export class ProductComponent implements OnInit {
       this.selectedQnt = this.product.information[0].quantity + this.product.information[0].um;
       this.isActive = this.product.information[0].id;
       this.product.selectedQnt = this.product.information[0].quantity + this.product.information[0].um;
-
+      
       this.getReviews();
     });
 
@@ -124,7 +124,7 @@ export class ProductComponent implements OnInit {
       this.recommended = data.products;
     });
 
-
+   
   }
 
 

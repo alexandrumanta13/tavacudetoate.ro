@@ -77,6 +77,8 @@ export class LoginComponent implements OnInit {
     this.userPostData.provider_pic = data.photoUrl;
     this.userPostData.token = data.authToken;
 
+    this.user.storeData(this.userPostData);
+
     this.authAPIService.postData(this.userPostData, 'signup').then(
       result => {
         this.responseData = result;
