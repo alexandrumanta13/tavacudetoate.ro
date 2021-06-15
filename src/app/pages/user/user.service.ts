@@ -10,9 +10,9 @@ export class UserService {
 
   async storeData(data) {
     localStorage.setItem('TavaUserData', JSON.stringify(data));
-    this.user = new BehaviorSubject<User>(null);
+    this.user = new BehaviorSubject<User>(data);
     const newData = await this.getData();
-    return this.router.navigate(['/'], newData);
+    return this.router.navigate(['/contul-meu'], newData);
   }
 
   getData() {
@@ -22,6 +22,7 @@ export class UserService {
   sessionIn() {
     let A;
     if (this.getData()) {
+      console.log('asdasd1')
       A = this.router.navigate(['/contul-meu'], this.getData());
     }
     return A;

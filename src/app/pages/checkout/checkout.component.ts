@@ -459,8 +459,10 @@ export class CheckoutComponent implements OnInit {
       this.order[0].contact_email = this.selectDeliveryLocation.email;
       if (this.selectDeliveryLocation.county == 'Arges') {
         this.order[0].additionalSendOrderEmail = 'comanvvv@yahoo.com';
-      } else if (this.selectDeliveryLocation.county == 'Sector 1' || this.selectDeliveryLocation.county == 'Sector 5' || this.selectDeliveryLocation.county == 'Sector 6') {
+      } else if (this.selectDeliveryLocation.county == 'Sector 1' || this.selectDeliveryLocation.county == 'Sector 5') {
         this.order[0].additionalSendOrderEmail = 'cristian.stanga88@gmail.com';
+      } else if (this.selectedAddress.location_name == 'MILITARI SHOPPING CENTER (sect.6)') {
+        this.order[0].additionalSendOrderEmail = 'alex.secara@gmail.com';
       } else {
         this.order[0].additionalSendOrderEmail = 'bursucvictor@yahoo.com';
       }
@@ -493,8 +495,13 @@ export class CheckoutComponent implements OnInit {
 
         this.order[0].contact_phone = '0746252899';
         this.order[0].pretty_contact_phone = '(0746) 252 899';
-      } else if (this.model.county == 'Sector 1' || this.model.county == 'Sector 5' || this.model.county == 'Sector 6') {
+      } else if (this.model.county == 'Sector 1' || this.model.county == 'Sector 5') {
         this.order[0].additionalSendOrderEmail = 'cristian.stanga88@gmail.com';
+        this.order[0].contact_email = 'comenzi@tavacudetoate.ro';
+        this.order[0].contact_phone = '0741285044';
+        this.order[0].pretty_contact_phone = '(0741) 285 044';
+      } else if (this.selectedAddress.location_name == 'MILITARI SHOPPING CENTER (sect.6)') {
+        this.order[0].additionalSendOrderEmail = 'alex.secara@gmail.com';
         this.order[0].contact_email = 'comenzi@tavacudetoate.ro';
         this.order[0].contact_phone = '0741285044';
         this.order[0].pretty_contact_phone = '(0741) 285 044';
@@ -543,11 +550,17 @@ export class CheckoutComponent implements OnInit {
 
           this.order[0].contact_phone = '0746252899';
           this.order[0].pretty_contact_phone = '(0746) 252 899';
-        } else if (this.selectedAddress.county == 'Sector 1' || this.selectedAddress.county == 'Sector 5' || this.selectedAddress.county == 'Sector 6') {
+        } else if (this.selectedAddress.county == 'Sector 1' || this.selectedAddress.county == 'Sector 5') {
           this.order[0].additionalSendOrderEmail = 'cristian.stanga88@gmail.com';
           this.order[0].contact_email = 'comenzi@tavacudetoate.ro';
           this.order[0].contact_phone = '0741285044';
           this.order[0].pretty_contact_phone = '(0741) 285 044';
+        } else if (this.selectedAddress.location_name == 'MILITARI SHOPPING CENTER (sect.6)') {
+          this.order[0].additionalSendOrderEmail = 'alex.secara@gmail.com';
+          this.order[0].contact_email = 'comenzi@tavacudetoate.ro';
+          this.order[0].contact_phone = '0741285044';
+          this.order[0].pretty_contact_phone = '(0741) 285 044';
+        
         } else {
           this.order[0].contact_phone = '0720.612.962';
           this.order[0].pretty_contact_phone = '(0720) 612 962';

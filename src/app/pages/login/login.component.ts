@@ -34,13 +34,14 @@ export class LoginComponent implements OnInit {
   private userSub: Subscription;
   isAuthentificated: boolean;
   activeTab: any = 'auth';
+  social: boolean = false;
 
   constructor(private SocialAuthService: SocialAuthService,
     public authAPIService: AuthAPIService,
     public router: Router,
     public user: UserService,
     private _toaster: ToastrService) {
-    //this.user.sessionIn();
+    this.user.sessionIn();
   }
 
   ngOnInit() { 
@@ -70,6 +71,7 @@ export class LoginComponent implements OnInit {
   }
 
   apiConnection(data) {
+    
     this.userPostData.email = data.email;
     this.userPostData.name = data.name;
     this.userPostData.provider = data.provider;
@@ -77,34 +79,37 @@ export class LoginComponent implements OnInit {
     this.userPostData.provider_pic = data.photoUrl;
     this.userPostData.token = data.authToken;
 
-    this.user.storeData(this.userPostData);
-
     this.authAPIService.postData(this.userPostData, 'signup').then(
       result => {
+        
         this.responseData = result;
         if (this.responseData.userData) {
-          this.user.storeData(this.responseData.userData[0]);
           
-          this._toaster.success('', `${data['message']}`, {
+          this.user.storeData(this.userPostData)
+          
+          this._toaster.success('', `${result['message']}`, {
             timeOut: 8000,
             positionClass: 'toast-bottom-right'
           });
+          
           window.location.reload();
           setTimeout(() => {
+           this.router.navigate(['/contul-meu'])
             
-            this.router.navigate(['/contul-meu'])
           }, 2000)
+          
           
         }
       },
       err => {
-        this._toaster.warning('', `${data['message']}`, {
-          timeOut: 8000,
-          positionClass: 'toast-bottom-right'
-        });
+        // this._toaster.warning('', `${result['message']}`, {
+        //   timeOut: 8000,
+        //   positionClass: 'toast-bottom-right'
+        // });
         console.log('error');
       }
     );
+
   }
 
   onSubmit(form: NgForm) {
@@ -172,6 +177,10 @@ export class LoginComponent implements OnInit {
 
   registerTab(activeTab){
     this.activeTab = activeTab;
+  }
+
+  toggleSocial(){
+    this.social = true;
   }
   
 }

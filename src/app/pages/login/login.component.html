@@ -27,7 +27,7 @@
             <div id="lg1" [ngClass]="{ 'active':activeTab==='auth'}" class="tab-pane active">
               <div class="login-form-container">
                 <div class="login-register-form">
-                  <form (ngSubmit)="f.form.valid && onSubmit(f)" #f="ngForm">
+                  <form (ngSubmit)="f.form.valid && onSubmit(f)" #f="ngForm" *ngIf="!social">
                     <div class="form-group">
                       <input type="text" name="email" class="form-control" [(ngModel)]="login.email" #email="ngModel"
                         [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required email>
@@ -49,7 +49,7 @@
                     </div>
                     <h2>Sau</h2>
                     <div class="social-login">
-                      <button (click)="signInWithFB()" class="btn-facebook">
+                      <button (click)="toggleSocial(); signInWithFB()" class="btn-facebook">
                         <span class="fa fa-facebook"></span> Autentificare cu Facebook</button>
                       <button (click)="signInWithGoogle()" class="btn-google">
                         <span class="fa fa-google"></span> Autentificare cu Google</button>

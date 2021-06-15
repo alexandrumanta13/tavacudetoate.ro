@@ -19,7 +19,7 @@ export class AuthAPIService {
   private tokenExpirationTimer: any;
 
   constructor(private _httpClient: HttpClient, public _router: Router) {
-    
+
     this.user = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('TavaUserData')));
     
   }
@@ -110,45 +110,50 @@ export class AuthAPIService {
   }
 
   autoLogin() {
-    const TavaUserData: {
-      id: number,
-      name: string,
-      last_name: string,
-      email: string,
-      provider: string,
-      provider_id: string,
-      provider_pic: string,
-      date_last_visit: Date,
-      access: number,
-      _token: string;
-      _tokenExpirationDate: string;
-    } = JSON.parse(localStorage.getItem('TavaUserData'));
-    if (!TavaUserData) {
-      return;
+    let data = localStorage.getItem('TavaUserData')
+    if(data) {
+
+      const TavaUserData: {
+        id: number,
+        name: string,
+        last_name: string,
+        email: string,
+        provider: string,
+        provider_id: string,
+        provider_pic: string,
+        date_last_visit: Date,
+        access: number,
+        _token: string;
+        _tokenExpirationDate: string;
+      } = JSON.parse(data);
+
+      const loadedUser = new User(
+        TavaUserData.id,
+        TavaUserData.name,
+        TavaUserData.last_name,
+        TavaUserData.email,
+        TavaUserData.provider,
+        TavaUserData.provider_id,
+        TavaUserData.provider_pic,
+        TavaUserData.date_last_visit,
+        TavaUserData.access,
+        TavaUserData._token,
+        new Date(TavaUserData._tokenExpirationDate)
+      );
+  
+      if (loadedUser.token) {
+        this.user.next(loadedUser);
+        const expirationDuration =
+          new Date(TavaUserData._tokenExpirationDate).getTime() -
+          new Date().getTime();
+        //this.autoLogout(expirationDuration);
+  
+      }
     }
+    
+   
 
-    const loadedUser = new User(
-      TavaUserData.id,
-      TavaUserData.name,
-      TavaUserData.last_name,
-      TavaUserData.email,
-      TavaUserData.provider,
-      TavaUserData.provider_id,
-      TavaUserData.provider_pic,
-      TavaUserData.date_last_visit,
-      TavaUserData.access,
-      TavaUserData._token,
-      new Date(TavaUserData._tokenExpirationDate)
-    );
-
-    if (loadedUser.token) {
-      this.user.next(loadedUser);
-      const expirationDuration =
-        new Date(TavaUserData._tokenExpirationDate).getTime() -
-        new Date().getTime();
-      //this.autoLogout(expirationDuration);
-
-    }
+   
   }
 
   recover(email) {

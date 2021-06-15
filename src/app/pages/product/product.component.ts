@@ -233,7 +233,7 @@ export class ProductComponent implements OnInit {
         
         this._httpClient.post(this.SEND_REVIEW, this.model).subscribe((data: any) => {
           if (data.success) {
-            this._toaster.success('Multumimn!', `${data['message']}`, {
+            this._toaster.success('Multumim!', `${data['message']}`, {
               timeOut: 8000,
               positionClass: 'toast-bottom-right'
             });
