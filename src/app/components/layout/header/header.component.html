@@ -109,6 +109,7 @@
                  </div>
                  <div class="shopping-cart-btn" *ngIf="cartTotal$ > 0">
                    <a [routerLink]="['/cos-cumparaturi']">Vezi cos</a>
+                   
                    <a *ngIf="totalPrice$ > 99" [routerLink]="['/finalizeaza-comanda']">Finalizeaza</a>
                    <p *ngIf="totalPrice$ < 99" style="color: red">Comanda minima 99 Lei</p>
                  </div>

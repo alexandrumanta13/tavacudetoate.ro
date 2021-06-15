@@ -160,7 +160,6 @@ export class CheckoutComponent implements OnInit {
         this.totalPrice$ = info.toFixed(2);
       });
     }
-
     if (this.totalPrice$ < 99 && !this.discount && !this.discountDelivery) {
       this.router.navigate(['/cos-cumparaturi']);
     }
@@ -186,7 +185,6 @@ export class CheckoutComponent implements OnInit {
   }
 
   deliveryLocation(location) {
-
     this.selectDeliveryLocation = location;
     
     if (this.delivery.length != undefined) {
@@ -453,7 +451,7 @@ export class CheckoutComponent implements OnInit {
 
 
     if (this.location != 'livreaza') {
-
+      
       this.order[0].contact_phone = this.selectDeliveryLocation.phone;
       this.order[0].pretty_contact_phone = this.selectDeliveryLocation.pretty_phone;
       this.order[0].contact_email = this.selectDeliveryLocation.email;
@@ -461,12 +459,12 @@ export class CheckoutComponent implements OnInit {
         this.order[0].additionalSendOrderEmail = 'comanvvv@yahoo.com';
       } else if (this.selectDeliveryLocation.county == 'Sector 1' || this.selectDeliveryLocation.county == 'Sector 5') {
         this.order[0].additionalSendOrderEmail = 'cristian.stanga88@gmail.com';
-      } else if (this.selectedAddress.location_name == 'MILITARI SHOPPING CENTER (sect.6)') {
+      } else if (this.selectDeliveryLocation.id == 4) {
         this.order[0].additionalSendOrderEmail = 'alex.secara@gmail.com';
       } else {
         this.order[0].additionalSendOrderEmail = 'bursucvictor@yahoo.com';
       }
-
+      
 
       this.order[0].customer = {
         user_id: 0,
@@ -476,6 +474,7 @@ export class CheckoutComponent implements OnInit {
         phone: this.delivery.phone,
 
         shippingAddress: {
+          id: this.selectDeliveryLocation.id,
           address: 'Ridicare personala din: ' + this.selectDeliveryLocation.location_name,
           town: this.selectDeliveryLocation.town,
           county: this.selectDeliveryLocation.county,
@@ -500,7 +499,7 @@ export class CheckoutComponent implements OnInit {
         this.order[0].contact_email = 'comenzi@tavacudetoate.ro';
         this.order[0].contact_phone = '0741285044';
         this.order[0].pretty_contact_phone = '(0741) 285 044';
-      } else if (this.selectedAddress.location_name == 'MILITARI SHOPPING CENTER (sect.6)') {
+      } else if (this.model.location_id == 4) {
         this.order[0].additionalSendOrderEmail = 'alex.secara@gmail.com';
         this.order[0].contact_email = 'comenzi@tavacudetoate.ro';
         this.order[0].contact_phone = '0741285044';
@@ -555,7 +554,7 @@ export class CheckoutComponent implements OnInit {
           this.order[0].contact_email = 'comenzi@tavacudetoate.ro';
           this.order[0].contact_phone = '0741285044';
           this.order[0].pretty_contact_phone = '(0741) 285 044';
-        } else if (this.selectedAddress.location_name == 'MILITARI SHOPPING CENTER (sect.6)') {
+        } else if (this.selectedAddress.id == 4) {
           this.order[0].additionalSendOrderEmail = 'alex.secara@gmail.com';
           this.order[0].contact_email = 'comenzi@tavacudetoate.ro';
           this.order[0].contact_phone = '0741285044';
@@ -576,6 +575,7 @@ export class CheckoutComponent implements OnInit {
           email: this.delivery.email,
           phone: this.delivery.phone,
           shippingAddress: {
+            id: this.selectDeliveryLocation.id,
             address: 'Ridicare personala din: ' + this.selectDeliveryLocation.location_name,
             town: this.selectDeliveryLocation.town,
             county: this.selectDeliveryLocation.county,
@@ -592,6 +592,7 @@ export class CheckoutComponent implements OnInit {
           phone: this.delivery.phone,
 
           shippingAddress: {
+            id: this.selectDeliveryLocation.id,
             address: 'Ridicare personala din: ' + this.selectDeliveryLocation.location_name,
             town: this.selectDeliveryLocation.town,
             county: this.selectDeliveryLocation.county,
@@ -635,8 +636,7 @@ export class CheckoutComponent implements OnInit {
     }
     this.order[0].status = this.status;
 
-    //console.log(this.order)
-
+   
 
     // this._httpClient.post(this.SEND_ORDER, this.order).subscribe((data: any) => {
     //   if (data.status == "success") {
@@ -683,10 +683,10 @@ export class CheckoutComponent implements OnInit {
                 }
               ]
 
-              if (this.order[0]['customer'].shippingAddress.town == 'Bucuresti') {
-                this.euplatesctSend = "https://tavacudetoate.ro/payment/ep_send_bucuresti.php"
+              if (this.order[0]['customer'].shippingAddress.town == 'Bucuresti' && this.order[0]['customer'].shippingAddress.id != 4) {
+                this.euplatesctSend = "https://tavacudetoate.ro/payment/ep_send_bucuresti.php";
               } else {
-                this.euplatesctSend = "https://tavacudetoate.ro/payment/ep_send_pitesti.php"
+                this.euplatesctSend = "https://tavacudetoate.ro/payment/ep_send_pitesti.php";
               }
               this._httpClient.post(this.euplatesctSend, dataSend)
                 .pipe(
@@ -779,7 +779,7 @@ export class CheckoutComponent implements OnInit {
   selectAddress(addressIndex, event) {
     this.selectedAddress = this.addresses[addressIndex];
     this.model.town_city = this.selectedAddress.town;
-
+    this.model.location_id = this.selectedAddress.id;
 
     const active = document.querySelectorAll('.shipping-address-box.active');
     for (let i = 0; i < active.length; i++) {
