@@ -457,7 +457,7 @@ export class CheckoutComponent implements OnInit {
       this.order[0].contact_email = this.selectDeliveryLocation.email;
       if (this.selectDeliveryLocation.county == 'Arges') {
         this.order[0].additionalSendOrderEmail = 'comanvvv@yahoo.com';
-      } else if (this.selectDeliveryLocation.county == 'Sector 1' || this.selectDeliveryLocation.county == 'Sector 5') {
+      } else if (this.selectDeliveryLocation.county == 'Sector 1' || this.selectDeliveryLocation.county == 'Sector 5' || this.selectDeliveryLocation.id == 3) {
         this.order[0].additionalSendOrderEmail = 'cristian.stanga88@gmail.com';
       } else if (this.selectDeliveryLocation.id == 4) {
         this.order[0].additionalSendOrderEmail = 'alex.secara@gmail.com';
@@ -494,7 +494,7 @@ export class CheckoutComponent implements OnInit {
 
         this.order[0].contact_phone = '0746252899';
         this.order[0].pretty_contact_phone = '(0746) 252 899';
-      } else if (this.model.county == 'Sector 1' || this.model.county == 'Sector 5') {
+      } else if (this.model.county == 'Sector 1' || this.model.county == 'Sector 5' || this.model.location_id == 3) {
         this.order[0].additionalSendOrderEmail = 'cristian.stanga88@gmail.com';
         this.order[0].contact_email = 'comenzi@tavacudetoate.ro';
         this.order[0].contact_phone = '0741285044';
@@ -549,7 +549,7 @@ export class CheckoutComponent implements OnInit {
 
           this.order[0].contact_phone = '0746252899';
           this.order[0].pretty_contact_phone = '(0746) 252 899';
-        } else if (this.selectedAddress.county == 'Sector 1' || this.selectedAddress.county == 'Sector 5') {
+        } else if (this.selectedAddress.county == 'Sector 1' || this.selectedAddress.county == 'Sector 5' || this.selectedAddress.id == 3) {
           this.order[0].additionalSendOrderEmail = 'cristian.stanga88@gmail.com';
           this.order[0].contact_email = 'comenzi@tavacudetoate.ro';
           this.order[0].contact_phone = '0741285044';
@@ -650,6 +650,7 @@ export class CheckoutComponent implements OnInit {
     //     // form.reset();
     //   }
     // })
+
 
 
     this._httpClient.post(this.ADD_ORDER, this.order).subscribe((data: any) => {
