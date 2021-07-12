@@ -44,10 +44,19 @@
               "src/assets/css/style.css",
               "src/assets/css/responsive.css",
               "src/assets/css/toaster.css",
+              "src/assets/css/vendors.css",
+              "src/assets/css/survey.css",
               "src/styles.scss"
             ],
             "scripts": [
-              
+              "src/assets/js/survey/jquery-3.5.1.min.js",
+             
+    
+              "src/assets/js/survey/common_scripts.js",
+  
+              "src/assets/js/survey/functions.js",
+   
+              "src/assets/js/survey/survey_func.js"
               
            
             ]

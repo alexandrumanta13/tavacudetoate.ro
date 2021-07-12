@@ -42,6 +42,7 @@ import { ReturnPolicyComponent } from './pages/return-policy/return-policy.compo
 import { HowToDeliverComponent } from './pages/how-to-deliver/how-to-deliver.component';
 import { RecoverComponent } from './pages/recover/recover.component';
 import { EasterComponent } from './pages/easter/easter.component';
+import { SurveyComponent } from './pages/survey/survey.component';
 
 const routes: Routes = [
   {
@@ -259,6 +260,7 @@ const routes: Routes = [
 
   { path: 'comanda-finalizata', component: SuccessOrderComponent },
   { path: 'mesaj-trimis', component: ThankYouComponent },
+  { path: 'survey', component: SurveyComponent },
 
   { path: '**', redirectTo: '/404' }
 ];

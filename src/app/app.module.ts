@@ -94,6 +94,7 @@ import { HowToDeliverComponent } from './pages/how-to-deliver/how-to-deliver.com
 import { RecoverComponent } from './pages/recover/recover.component';
 import { EasterComponent } from './pages/easter/easter.component';
 import { RouterModule } from '@angular/router';
+import { SurveyComponent } from './pages/survey/survey.component';
 
 @NgModule({
   declarations: [
@@ -151,6 +152,7 @@ import { RouterModule } from '@angular/router';
     HowToDeliverComponent,
     RecoverComponent,
     EasterComponent,
+    SurveyComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

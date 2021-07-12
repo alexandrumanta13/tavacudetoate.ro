@@ -14,7 +14,7 @@ import { AuthAPIService } from './pages/login/auth-api.service';
 export class AppComponent {
 
   constructor(
-    private router: Router,
+    public router: Router,
     private activatedRoute: ActivatedRoute,
     private _seoService: SEOServiceService,
     public authAPIService: AuthAPIService
